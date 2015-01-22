@@ -155,7 +155,7 @@ int WisdomCrystal::MessageLoop() {
             if (timer.Elapsed()) { // タイマーにより1秒間に60回呼ばれる
                 onUpdate();
                 fpsCounter.CountFPS();
-                DebugManager::OutputVal(fpsCounter.GetFPS());
+                DebugManager::OutputValue(fpsCounter.GetFPS());
             }
             
             UpdateWindow(GetHWnd());
