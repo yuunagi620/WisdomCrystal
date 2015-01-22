@@ -7,10 +7,9 @@
 #include "Scene.h"
 
 
-class Title : public Scene , private boost::noncopyable {
+class Title : public Scene, private boost::noncopyable {
 
 public:
-    virtual ~Title() {}
+    virtual ~Title();
     virtual Scene *Update() override;
-
 };

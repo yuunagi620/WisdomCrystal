@@ -5,6 +5,11 @@
 #include "Loading.h"
 
 
+Title::~Title() {
+    // empty
+}
+
+
 Scene *Title::Update() {
     Scene *next = this;
 

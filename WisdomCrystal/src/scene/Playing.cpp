@@ -2,9 +2,12 @@
 
 // Includes
 #include "Playing.h"
+#include "object/GameObjManager.h"
 
-#include "../object/GameObjManager.h"
-#include "../BackGround.h"
+
+Playing::~Playing() {
+    // empty
+}
 
 
 Scene *Playing::Update() {

@@ -4,9 +4,13 @@
 #include "Loading.h"
 #include "Playing.h"
 #include "Error.h"
-#include "../WisdomCrystal.h"
-#include "../object/GameObjManager.h"
-#include "../MapManager.h"
+#include "object/GameObjManager.h"
+#include "MapManager.h"
+
+
+Loading::~Loading() {
+    // empty
+}
 
 
 Scene *Loading::Update() {

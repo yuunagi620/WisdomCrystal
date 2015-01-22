@@ -2,14 +2,14 @@
 
 #pragma once
 
+#include <boost/noncopyable.hpp>
+
 #include "Scene.h"
 
-class Playing : public Scene {
+
+class Playing : public Scene, private boost::noncopyable {
 
 public:
-    virtual ~Playing() { /* empty */ }
-    virtual Scene *Update();
-
-private:
-
+    virtual ~Playing();
+    virtual Scene *Update() override;
 };
