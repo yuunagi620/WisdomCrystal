@@ -22,6 +22,7 @@
 
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
+#include "win/util/JoypadManager.h"
 
 #include "util/MathUtil.h"
 
@@ -158,6 +159,13 @@ int WisdomCrystal::MessageLoop() {
                 onUpdate();
                 fpsCounter.CountFPS();
                 DebugManager::OutputValue(fpsCounter.GetFPS());
+
+                if (JoypadManager::JoypadKeyDown(INPUT_PAD1, PAD_INPUT_RIGHT) == true) {
+                    MessageBox(nullptr, TEXT("input right"), TEXT("ERROR"), MB_OK);
+                }
+                if (JoypadManager::CheackJoypadDevices() == true) {
+                    MessageBox(nullptr, TEXT("ok"), TEXT("ERROR"), MB_OK);
+                }
             }
             
             UpdateWindow(GetHWnd());
@@ -228,6 +236,11 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
     if (wParam == VK_F11) {
         mIsFullscreen = (!mIsFullscreen);
         mGraphicsDevice.SetFullScreenState(mIsFullscreen);
+    }
+
+    // debug
+    if (wParam == VK_F1) {
+        MessageBox(nullptr, TEXT("joypad debug"), TEXT("ERROR"), MB_OK);       
     }
 
 }

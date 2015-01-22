@@ -3,25 +3,40 @@
 #include "JoypadManager.h"
 
 
+bool JoypadManager::CheackJoypadDevices() {
+    JOYINFOEX joypadInfo;
+    SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
+
+	if (joyGetPosEx(INPUT_PAD1, &joypadInfo) == JOYERR_NOERROR) {
+        return true;
+    }
+
+    return false;
+}
+
+
 bool JoypadManager::JoypadKeyDown(JoypadID id, JoypadCode joypadcode) {
-    JOYINFOEX joypad_info;
-    JOYCAPS joypad_caps;
+    JOYINFOEX joypadInfo;
+    SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
 
-    joyGetDevCaps(id, &joypad_caps, sizeof(joypad_caps));
-    joypad_info.dwSize  = sizeof(joypad_info);
-    joypad_info.dwFlags = JOY_RETURNBUTTONS;
+    JOYCAPS joypadCaps;
+    SecureZeroMemory(&joypadCaps, sizeof(joypadCaps));
 
-    if (joyGetPosEx(id, &joypad_info) == JOYERR_NOERROR) {
+    joyGetDevCaps(id, &joypadCaps, sizeof(joypadCaps));
+    joypadInfo.dwSize  = sizeof(joypadInfo);
+    joypadInfo.dwFlags = JOY_RETURNBUTTONS;
+
+    if (joyGetPosEx(id, &joypadInfo) == JOYERR_NOERROR) {
         if (joypadcode <= PAD_INPUT_28) {
-            return (joypad_info.dwButtons & joypadcode) != 0;
+            return (joypadInfo.dwButtons & joypadcode) != 0;
         } else if (joypadcode == PAD_INPUT_UP) {
-            return (joypad_info.dwYpos < joypad_caps.wYmin + (joypad_caps.wYmax - joypad_caps.wYmin) / 3) != 0;
+            return (joypadInfo.dwYpos < joypadCaps.wYmin + (joypadCaps.wYmax - joypadCaps.wYmin) / 3) != 0;
         } else if (joypadcode == PAD_INPUT_DOWN) {
-            return (joypad_info.dwYpos > joypad_caps.wYmax - (joypad_caps.wYmax - joypad_caps.wYmin) / 3) != 0;
+            return (joypadInfo.dwYpos > joypadCaps.wYmax - (joypadCaps.wYmax - joypadCaps.wYmin) / 3) != 0;
         } else if (joypadcode == PAD_INPUT_LEFT) {
-            return (joypad_info.dwXpos < joypad_caps.wXmin + (joypad_caps.wXmax - joypad_caps.wXmin) / 3) != 0;
-        }else if (joypadcode == PAD_INPUT_RIGHT) {
-            return (joypad_info.dwYpos > joypad_caps.wXmax - (joypad_caps.wXmax - joypad_caps.wXmin) / 3) != 0;
+            return (joypadInfo.dwXpos < joypadCaps.wXmin + (joypadCaps.wXmax - joypadCaps.wXmin) / 3) != 0;
+        } else if (joypadcode == PAD_INPUT_RIGHT) {
+            return (joypadInfo.dwYpos > joypadCaps.wXmax - (joypadCaps.wXmax - joypadCaps.wXmin) / 3) != 0;
         } else {
             return false;
         }
@@ -31,32 +46,43 @@ bool JoypadManager::JoypadKeyDown(JoypadID id, JoypadCode joypadcode) {
 
 
 float JoypadManager::JoypadAnalogX(JoypadID id) {
-    JOYINFOEX joypad_info;
-    JOYCAPS joypad_caps;
-    joyGetDevCaps(id, &joypad_caps, sizeof(joypad_caps));
-    joypad_info.dwSize  = sizeof(joypad_info);
-    joypad_info.dwFlags = JOY_RETURNX;
-    if (joyGetPosEx(id, &joypad_info) == JOYERR_NOERROR) {
-        const float center((static_cast<float>(joypad_caps.wXmin + joypad_caps.wXmax)) / 2.f);
-        const float diff(static_cast<float>(joypad_caps.wXmax - joypad_caps.wXmin));
-        const float val((static_cast<float>(joypad_info.dwXpos) - center) * 2.f / diff);
+    JOYINFOEX joypadInfo;
+    SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
+
+    JOYCAPS joypadCaps;
+    SecureZeroMemory(&joypadCaps, sizeof(joypadCaps));
+
+    joyGetDevCaps(id, &joypadCaps, sizeof(joypadCaps));
+    joypadInfo.dwSize  = sizeof(joypadInfo);
+    joypadInfo.dwFlags = JOY_RETURNX;
+
+    if (joyGetPosEx(id, &joypadInfo) == JOYERR_NOERROR) {
+        const float center((static_cast<float>(joypadCaps.wXmin + joypadCaps.wXmax)) / 2.f);
+        const float diff(static_cast<float>(joypadCaps.wXmax - joypadCaps.wXmin));
+        const float val((static_cast<float>(joypadInfo.dwXpos) - center) * 2.f / diff);
         return fabsf(val) < 0.1f ? 0.f : val;
     }
+
     return false;
 }
 
 
 float JoypadManager::JoypadAnalogY(JoypadID id) {
-    JOYINFOEX joypad_info;
-    JOYCAPS joypad_caps;
-    joyGetDevCaps(id, &joypad_caps, sizeof(joypad_caps));
-    joypad_info.dwSize  = sizeof(joypad_info);
-    joypad_info.dwFlags = JOY_RETURNY;
-    if (joyGetPosEx(id, &joypad_info) == JOYERR_NOERROR) {
-        const float center((static_cast<float>(joypad_caps.wYmin + joypad_caps.wYmax)) / 2.f);
-        const float diff(static_cast<float>(joypad_caps.wYmax - joypad_caps.wYmin));
-        const float val((static_cast<float>(joypad_info.dwYpos) - center) * 2.f / diff);
+    JOYINFOEX joypadInfo;
+    SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
+
+    JOYCAPS joypadCaps;
+    SecureZeroMemory(&joypadCaps, sizeof(joypadCaps));
+
+    joyGetDevCaps(id, &joypadCaps, sizeof(joypadCaps));
+    joypadInfo.dwSize  = sizeof(joypadInfo);
+    joypadInfo.dwFlags = JOY_RETURNY;
+    if (joyGetPosEx(id, &joypadInfo) == JOYERR_NOERROR) {
+        const float center((static_cast<float>(joypadCaps.wYmin + joypadCaps.wYmax)) / 2.f);
+        const float diff(static_cast<float>(joypadCaps.wYmax - joypadCaps.wYmin));
+        const float val((static_cast<float>(joypadInfo.dwYpos) - center) * 2.f / diff);
         return fabsf(val) < 0.1f ? 0.f : val;
     }
+
     return false;
 }
