@@ -6,16 +6,17 @@
 
 FPSCounter::FPSCounter() : mCurrentFPS(0.0),
                            mDeltaFreq(0.0),
-                           mCounter(),
-                           mOldLongCount(0) {
+                           mPerformanceCount(),
+                           mLongCount(0) {
 
-    QueryPerformanceCounter(&mCounter);
-    mOldLongCount = mCounter.QuadPart; // 生成時の時刻（クロック数）を取得
+    // 生成時のカウント数を保持
+    QueryPerformanceCounter(&mPerformanceCount);
+    mLongCount = mPerformanceCount.QuadPart;
 
+    // 1秒当たり周波数を取得
     LARGE_INTEGER freq;
-    QueryPerformanceFrequency(&freq); // 1秒当たりクロック数を取得
-    mDeltaFreq = static_cast<double>(freq.QuadPart);
-
+    QueryPerformanceFrequency(&freq);
+    mDeltaFreq = static_cast<double>(freq.QuadPart); 
 }
 
 
@@ -25,10 +26,9 @@ FPSCounter::~FPSCounter() {
 
 
 void FPSCounter::CountFPS() {
-
     double def = getCurDefTime();
 
-    if (def == 0) {
+    if (def <= 0) {
         mCurrentFPS = 0;
         return;
     }
@@ -39,19 +39,15 @@ void FPSCounter::CountFPS() {
 
 double FPSCounter::getCurDefTime() {
 
-    double ret;
-
     // 現在の時刻を取得
-    QueryPerformanceCounter(&mCounter);
+    QueryPerformanceCounter(&mPerformanceCount);
 
     // 差分カウント数を算出する
-    double def = static_cast<double>(mCounter.QuadPart - mOldLongCount);
+    double def = static_cast<double>(mPerformanceCount.QuadPart - mLongCount);
     
     // 現在の時刻を保持
-    mOldLongCount = mCounter.QuadPart;
+    mLongCount = mPerformanceCount.QuadPart;
 
     // 差分時間をミリ秒単位で返す
-    ret = (def * 1000) / mDeltaFreq;
-
-    return ret;
+    return ((def * 1000) / mDeltaFreq);
 }
