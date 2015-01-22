@@ -78,7 +78,7 @@ bool WisdomCrystal::Init() {
     }
 
     // GraphicsDevice ÇÃèâä˙âª
-    if (mGraphicsDevice.Init(GetHWnd(), SCREEN_WIDTH, SCREEN_HEIGHT) == false) {
+    if (mGraphicsDevice.Init(GetHWnd(), GetScreenWidth(), GetScreenHeight()) == false) {
         MessageBox(nullptr, TEXT("Can not initialize GraphicsDevice."), TEXT("ERROR"), MB_OK);
         return false;
     }

@@ -25,11 +25,6 @@ public:
                                          const DWORD_PTR refData);
 
 protected:
-    const int SCREEN_WIDTH;
-    const int SCREEN_HEIGHT;
-    const LPCTSTR CAPTION_NAME;
-    const LPCTSTR WINDOW_CLASS_NAME;
-
     virtual bool Init();
     virtual int MessageLoop();
     virtual LRESULT WinMsgHandler(const UINT msg, const WPARAM wParam, const LPARAM lParam);
@@ -40,10 +35,21 @@ protected:
     inline HWND GetHWnd() const {
         return mHWnd;
     }
+    inline int GetScreenWidth() const {
+        return SCREEN_WIDTH;
+    }
+    inline int GetScreenHeight() const {
+        return SCREEN_HEIGHT;
+    }
 
 private:
     bool registerWindowClass();
     HWND createWindow();
+
+    const int SCREEN_WIDTH;
+    const int SCREEN_HEIGHT;
+    const LPCTSTR CAPTION_NAME;
+    const LPCTSTR WINDOW_CLASS_NAME;
 
     HINSTANCE mHInstance;
     HWND mHWnd;
