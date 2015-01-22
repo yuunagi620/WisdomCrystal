@@ -158,14 +158,13 @@ int WisdomCrystal::MessageLoop() {
             if (timer.Elapsed()) { // タイマーにより1秒間に60回呼ばれる
                 onUpdate();
                 fpsCounter.CountFPS();
-                DebugManager::OutputValue(fpsCounter.GetFPS());
+                //DebugManager::OutputValue(fpsCounter.GetFPS());
 
-                if (JoypadManager::JoypadKeyDown(INPUT_PAD1, PAD_INPUT_RIGHT) == true) {
-                    MessageBox(nullptr, TEXT("input right"), TEXT("ERROR"), MB_OK);
-                }
-                if (JoypadManager::CheackJoypadDevices() == true) {
-                    MessageBox(nullptr, TEXT("ok"), TEXT("ERROR"), MB_OK);
-                }
+                DebugManager::OutputValue(JoypadManager::JoypadAnalogX(JOYPAD_1));
+                //if (JoypadManager::JoypadAnalogX(JOYPAD_1) > 1.0f) {
+                //    MessageBox(nullptr, TEXT("input"), TEXT("ERROR"), MB_OK);
+                //}
+
             }
             
             UpdateWindow(GetHWnd());

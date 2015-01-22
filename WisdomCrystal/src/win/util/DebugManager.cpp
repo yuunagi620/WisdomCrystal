@@ -22,3 +22,10 @@ void DebugManager::OutputValue(const double value) {
     string += TEXT("\n");
     OutputDebugString(string.c_str());
 }
+
+
+void DebugManager::OutputValue(const float value) {
+    std::wstring string = boost::lexical_cast<std::wstring>(value);
+    string += TEXT("\n");
+    OutputDebugString(string.c_str());
+}

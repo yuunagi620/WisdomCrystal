@@ -11,5 +11,6 @@ namespace DebugManager {
 void OutputString(const std::wstring& string);
 void OutputValue(const int value);
 void OutputValue(const double value);
+void OutputValue(const float value);
 
 } // namespace DebugManager

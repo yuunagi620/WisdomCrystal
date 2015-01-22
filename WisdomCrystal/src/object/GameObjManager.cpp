@@ -2,7 +2,7 @@
 
 // Includes
 #include "GameObjManager.h"
-#include "../WisdomCrystal.h"
+#include "WisdomCrystal.h"
 #include "CollisionObject/CollisionObjManager.h"
 
 
@@ -16,6 +16,11 @@ std::vector<GameObject*> GameObjManager::mActiveGameObjects; // アクティブ化した
 
 
 GameObjManager::GameObjManager() {
+    // empty    
+}
+
+
+GameObjManager::~GameObjManager() {
     // empty    
 }
 

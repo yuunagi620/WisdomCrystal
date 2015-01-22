@@ -3,6 +3,7 @@
 #pragma once
 
 #include <boost/noncopyable.hpp>
+
 #include "GameObject.h"
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
@@ -11,6 +12,9 @@
 class GameObjManager : private boost::noncopyable {
 
 public:
+    GameObjManager();
+    virtual ~GameObjManager();
+
     static GameObjManager *GetInstance();
     static std::vector<GameObject*> *GetActiveGameObjects();
 
@@ -27,7 +31,7 @@ private:
     static GameObjManager mGameObjManager;
     static std::vector<GameObject*> mActiveGameObjects;
 
-    GameObjManager();
+    
     void activateForInitAndCleanup();
 
 };
