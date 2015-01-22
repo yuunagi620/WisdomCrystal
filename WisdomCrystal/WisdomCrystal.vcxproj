@@ -40,6 +40,7 @@
     <ClCompile Include="src\win\util\DebugManager.cpp" />
     <ClCompile Include="src\win\util\FPSCounter.cpp" />
     <ClCompile Include="src\win\util\HighResolutionTimer.cpp" />
+    <ClCompile Include="src\win\util\JoypadManager.cpp" />
     <ClCompile Include="src\win\WIC\WICCore.cpp" />
     <ClCompile Include="src\win\XA2\BGMData.cpp" />
     <ClCompile Include="src\win\XA2\MmioUtil.cpp" />
@@ -79,6 +80,8 @@
     <ClInclude Include="src\win\util\DebugManager.h" />
     <ClInclude Include="src\win\util\FPSCounter.h" />
     <ClInclude Include="src\win\util\HighResolutionTimer.h" />
+    <ClInclude Include="src\win\util\JoypadCode.h" />
+    <ClInclude Include="src\win\util\JoypadManager.h" />
     <ClInclude Include="src\win\util\SafeRelease.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
