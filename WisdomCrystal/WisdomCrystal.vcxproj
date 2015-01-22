@@ -11,9 +11,44 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BackGround.cpp" />
+    <ClCompile Include="src\CollisionUtil.cpp" />
+    <ClCompile Include="src\GraphicsDevice.cpp" />
+    <ClCompile Include="src\MapManager.cpp" />
+    <ClCompile Include="src\object\CollisionObject\CollisionData.cpp" />
+    <ClCompile Include="src\object\CollisionObject\CollisionObjManager.cpp" />
+    <ClCompile Include="src\object\CollisionObject\Player.cpp" />
+    <ClCompile Include="src\object\CollisionObject\SolidBlock.cpp" />
+    <ClCompile Include="src\object\GameObjManager.cpp" />
+    <ClCompile Include="src\SceneManager.cpp" />
+    <ClCompile Include="src\scene\Error.cpp" />
+    <ClCompile Include="src\scene\Loading.cpp" />
+    <ClCompile Include="src\scene\Playing.cpp" />
+    <ClCompile Include="src\scene\Scene.cpp" />
+    <ClCompile Include="src\scene\Title.cpp" />
+    <ClCompile Include="src\SoundDevice.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+    <ClCompile Include="src\util\CSVUtil.cpp" />
+    <ClCompile Include="src\util\DebugManager.cpp" />
+    <ClCompile Include="src\util\FPSCounter.cpp" />
+    <ClCompile Include="src\util\HighResolutionTimer.cpp" />
+    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\WinMain.cpp" />
+    <ClCompile Include="src\win\D2D\D2DCore.cpp" />
+    <ClCompile Include="src\win\D2D\D2DTextData.cpp" />
+    <ClCompile Include="src\win\D3D\D3DCore.cpp" />
+    <ClCompile Include="src\win\WIC\WICCore.cpp" />
+    <ClCompile Include="src\win\XA2\BGMData.cpp" />
+    <ClCompile Include="src\win\XA2\MmioUtil.cpp" />
+    <ClCompile Include="src\win\XA2\SEData.cpp" />
+    <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
+    <ClCompile Include="src\win\XA2\WaveData.cpp" />
+    <ClCompile Include="src\win\XA2\XA2Core.cpp" />
+    <ClCompile Include="src\WisdomCrystal.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="src\BackGround.h" />
     <ClInclude Include="src\CollisionUtil.h" />
-    <ClInclude Include="src\DesignPattern\Singleton.h" />
     <ClInclude Include="src\GraphicsDevice.h" />
     <ClInclude Include="src\MapManager.h" />
     <ClInclude Include="src\object\CollisionObject\CollisionData.h" />
@@ -37,56 +72,18 @@
     <ClInclude Include="src\util\FPSCounter.h" />
     <ClInclude Include="src\util\HighResolutionTimer.h" />
     <ClInclude Include="src\Window.h" />
-    <ClInclude Include="src\WinUtil\D2D\D2DCore.h" />
-    <ClInclude Include="src\WinUtil\D2D\D2DTextData.h" />
-    <ClInclude Include="src\WinUtil\D3D\D3DCore.h" />
-    <ClInclude Include="src\WinUtil\SafeRelease.h" />
-    <ClInclude Include="src\WinUtil\WIC\WICCore.h" />
-    <ClInclude Include="src\WinUtil\XA2\BGMData.h" />
-    <ClInclude Include="src\WinUtil\XA2\MmioUtil.h" />
-    <ClInclude Include="src\WinUtil\XA2\SEData.h" />
-    <ClInclude Include="src\WinUtil\XA2\SoundPacket.h" />
-    <ClInclude Include="src\WinUtil\XA2\WaveData.h" />
-    <ClInclude Include="src\WinUtil\XA2\XA2Core.h" />
+    <ClInclude Include="src\win\D2D\D2DCore.h" />
+    <ClInclude Include="src\win\D2D\D2DTextData.h" />
+    <ClInclude Include="src\win\D3D\D3DCore.h" />
+    <ClInclude Include="src\win\SafeRelease.h" />
+    <ClInclude Include="src\win\WIC\WICCore.h" />
+    <ClInclude Include="src\win\XA2\BGMData.h" />
+    <ClInclude Include="src\win\XA2\MmioUtil.h" />
+    <ClInclude Include="src\win\XA2\SEData.h" />
+    <ClInclude Include="src\win\XA2\SoundPacket.h" />
+    <ClInclude Include="src\win\XA2\WaveData.h" />
+    <ClInclude Include="src\win\XA2\XA2Core.h" />
     <ClInclude Include="src\WisdomCrystal.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\BackGround.cpp" />
-    <ClCompile Include="src\CollisionUtil.cpp" />
-    <ClCompile Include="src\GraphicsDevice.cpp" />
-    <ClCompile Include="src\MapManager.cpp" />
-    <ClCompile Include="src\object\CollisionObject\CollisionData.cpp" />
-    <ClCompile Include="src\object\CollisionObject\CollisionObjManager.cpp" />
-    <ClCompile Include="src\object\CollisionObject\Player.cpp" />
-    <ClCompile Include="src\object\CollisionObject\SolidBlock.cpp" />
-    <ClCompile Include="src\object\GameObjManager.cpp" />
-    <ClCompile Include="src\SceneManager.cpp" />
-    <ClCompile Include="src\scene\Error.cpp" />
-    <ClCompile Include="src\scene\Loading.cpp" />
-    <ClCompile Include="src\scene\Playing.cpp" />
-    <ClCompile Include="src\scene\Scene.cpp" />
-    <ClCompile Include="src\scene\Title.cpp" />
-    <ClCompile Include="src\SoundDevice.cpp" />
-    <ClCompile Include="src\StdAfx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\util\CSVUtil.cpp" />
-    <ClCompile Include="src\util\DebugManager.cpp" />
-    <ClCompile Include="src\util\FPSCounter.cpp" />
-    <ClCompile Include="src\util\HighResolutionTimer.cpp" />
-    <ClCompile Include="src\Window.cpp" />
-    <ClCompile Include="src\WinMain.cpp" />
-    <ClCompile Include="src\WinUtil\D2D\D2DCore.cpp" />
-    <ClCompile Include="src\WinUtil\D2D\D2DTextData.cpp" />
-    <ClCompile Include="src\WinUtil\D3D\D3DCore.cpp" />
-    <ClCompile Include="src\WinUtil\WIC\WICCore.cpp" />
-    <ClCompile Include="src\WinUtil\XA2\BGMData.cpp" />
-    <ClCompile Include="src\WinUtil\XA2\MmioUtil.cpp" />
-    <ClCompile Include="src\WinUtil\XA2\SEData.cpp" />
-    <ClCompile Include="src\WinUtil\XA2\SoundPacket.cpp" />
-    <ClCompile Include="src\WinUtil\XA2\WaveData.cpp" />
-    <ClCompile Include="src\WinUtil\XA2\XA2Core.cpp" />
-    <ClCompile Include="src\WisdomCrystal.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1917F29E-CCA2-4703-BB0F-1C37F97DA561}</ProjectGuid>

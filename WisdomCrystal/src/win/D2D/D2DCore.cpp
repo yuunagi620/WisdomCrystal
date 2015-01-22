@@ -4,7 +4,7 @@
 
 // Includes
 #include "D2DCore.h"
-#include "Winutil/SafeRelease.h"
+#include "win/SafeRelease.h"
 
 
 // Static member variables

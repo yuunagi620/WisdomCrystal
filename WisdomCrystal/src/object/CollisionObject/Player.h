@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CollisionObject.h"
-#include "Winutil/D2D/D2DTextData.h"
+#include "win/D2D/D2DTextData.h"
 
 typedef enum PlayerStatusTag {
     NORMAL,
