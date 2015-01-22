@@ -32,9 +32,9 @@
     <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
     <ClCompile Include="src\win\XA2\WaveData.cpp" />
     <ClCompile Include="src\win\XA2\XA2Core.cpp" />
-    <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\WisdomCrystal.cpp" />
+    <ClCompile Include="src\WinApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BackGround.h" />
@@ -64,7 +64,6 @@
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DTextData.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
-    <ClInclude Include="src\win\SafeRelease.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
     <ClInclude Include="src\win\XA2\MmioUtil.h" />
@@ -72,7 +71,8 @@
     <ClInclude Include="src\win\XA2\SoundPacket.h" />
     <ClInclude Include="src\win\XA2\WaveData.h" />
     <ClInclude Include="src\win\XA2\XA2Core.h" />
-    <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WisdomCrystal.h" />
+    <ClInclude Include="src\win\util\SafeRelease.h" />
+    <ClInclude Include="src\WinApplication.h" />
   </ItemGroup>
 </Project>

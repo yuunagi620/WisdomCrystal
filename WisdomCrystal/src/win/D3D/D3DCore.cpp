@@ -2,7 +2,7 @@
 
 // Includes
 #include "D3DCore.h"
-#include "win/SafeRelease.h"
+#include "win/util/SafeRelease.h"
 
 
 D3DCore::D3DCore() : mD3DDevice(nullptr),

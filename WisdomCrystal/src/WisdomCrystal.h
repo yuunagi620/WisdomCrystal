@@ -4,7 +4,7 @@
 
 #include <boost/noncopyable.hpp>
 
-#include "Window.h"
+#include "WinApplication.h"
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
 #include "BackGround.h"
@@ -27,7 +27,7 @@ const int GAME_OBJECT_NUM = 2;
 const float START_BGM_VOLUME = 0.4f;
 
 
-class WisdomCrystal : public Window, private boost::noncopyable {
+class WisdomCrystal : public WinApplication, private boost::noncopyable {
 
 public:
     WisdomCrystal(const HINSTANCE hInstance,

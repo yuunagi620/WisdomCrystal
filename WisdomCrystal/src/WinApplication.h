@@ -1,19 +1,20 @@
-// Window.h
+// WinApplication.h
 
 #pragma once
 
 #include <Windows.h>
 
-class Window {
+
+class WinApplication {
 
 public:
-    Window(const HINSTANCE hInstance,
-           const int screenWidth = 800,
-           const int screenHeight = 600,
-           const LPCTSTR captionName = TEXT("Window"),
-           const LPCTSTR windowClassName = TEXT("Window"));
+    WinApplication(const HINSTANCE hInstance,
+                   const int screenWidth = 800,
+                   const int screenHeight = 600,
+                   const LPCTSTR captionName = TEXT("WinApplication"),
+                   const LPCTSTR windowClassName = TEXT("WinApplication"));
 
-    virtual ~Window();
+    virtual ~WinApplication();
 
     virtual int Run();
 

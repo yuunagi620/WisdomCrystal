@@ -1,18 +1,18 @@
-// Window.cpp
+// WinApplication.cpp
 
 #pragma comment(lib, "comctl32.lib")
 
 
 // Includes
-#include "Window.h"
+#include "WinApplication.h"
 #include <CommCtrl.h>
 
 
-Window::Window(const HINSTANCE hInstnce,
-               const int screenWidth,
-               const int screenHeight,
-               const LPCTSTR captionName,
-               const LPCTSTR windowClassName)
+WinApplication::WinApplication(const HINSTANCE hInstnce,
+                               const int screenWidth,
+                               const int screenHeight,
+                               const LPCTSTR captionName,
+                               const LPCTSTR windowClassName)
 
     : mHInstance(hInstnce),
       mHWnd(nullptr),
@@ -25,12 +25,12 @@ Window::Window(const HINSTANCE hInstnce,
 }
 
 
-Window::~Window() {
+WinApplication::~WinApplication() {
     // empty
 }
 
 
-int Window::Run() {
+int WinApplication::Run() {
     int returnCode = 0;
 
     if (Init()) {
@@ -42,22 +42,22 @@ int Window::Run() {
 
 
 // ウィンドウプロシージャの呼び出し先
-LRESULT CALLBACK Window::SubClassProc(const HWND hWnd,
-                                      const UINT msg,
-                                      const WPARAM wParam,
-                                      const LPARAM lParam,
-                                      const UINT_PTR thisPtr,
-                                      const DWORD_PTR refData) {
+LRESULT CALLBACK WinApplication::SubClassProc(const HWND hWnd,
+                                              const UINT msg,
+                                              const WPARAM wParam,
+                                              const LPARAM lParam,
+                                              const UINT_PTR thisPtr,
+                                              const DWORD_PTR refData) {
     
     // ウィンドウプロシージャの呼び出し先は static 関数でなければならないため
     // 自分自身のポインタを取得して winMsgHandler へメッセージ処理を任せる
-    Window* const Window(reinterpret_cast<Window*>(thisPtr));
-    return Window->WinMsgHandler(msg, wParam, lParam);
+    WinApplication* const WinApplication(reinterpret_cast<WinApplication*>(thisPtr));
+    return WinApplication->WinMsgHandler(msg, wParam, lParam);
 }
 
 
 
-bool Window::Init() {
+bool WinApplication::Init() {
 
     // WindowClass の登録
     if (registerWindowClass() == false) {
@@ -82,7 +82,7 @@ bool Window::Init() {
 }
 
 
-int Window::MessageLoop() {
+int WinApplication::MessageLoop() {
     int returnCode = 0;
     bool isError = false;
 
@@ -116,7 +116,7 @@ int Window::MessageLoop() {
 }
 
 
-LRESULT Window::WinMsgHandler(const UINT msg, const WPARAM wParam, const LPARAM lParam) {
+LRESULT WinApplication::WinMsgHandler(const UINT msg, const WPARAM wParam, const LPARAM lParam) {
     switch (msg) {
         case WM_DESTROY: {
             PostQuitMessage(0);
@@ -131,7 +131,7 @@ LRESULT Window::WinMsgHandler(const UINT msg, const WPARAM wParam, const LPARAM 
 }
 
 
-bool Window::registerWindowClass() {
+bool WinApplication::registerWindowClass() {
     WNDCLASSEX wc;
     SecureZeroMemory(&wc, sizeof(wc));
 
@@ -152,7 +152,7 @@ bool Window::registerWindowClass() {
 }
 
 
-HWND Window::createWindow() {     
+HWND WinApplication::createWindow() {     
     return CreateWindowEx(WS_EX_LEFT,
                           WINDOW_CLASS_NAME,
                           CAPTION_NAME,

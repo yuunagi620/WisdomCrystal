@@ -2,7 +2,7 @@
 
 // Includes
 #include "WICCore.h"
-#include "win/SafeRelease.h"
+#include "win/util/SafeRelease.h"
 
 
 WICCore::WICCore() : mWICImagingFactory(nullptr),

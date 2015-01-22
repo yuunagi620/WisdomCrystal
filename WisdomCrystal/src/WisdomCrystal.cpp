@@ -34,7 +34,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
                              const LPCTSTR captionName,
                              const LPCTSTR windowClassName)
 
-    : Window(hInstance, screenWidth, screenHeight, captionName, windowClassName),
+    : WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
       mIsFullscreen(false),
       mBGMData(),
       mGraphicsDevice()
@@ -65,7 +65,7 @@ int WisdomCrystal::Run() {
 bool WisdomCrystal::Init() {
 
     // Windows ÇÃèâä˙âª
-    if (Window::Init() == false) {
+    if (WinApplication::Init() == false) {
         MessageBox(nullptr, TEXT("Can not initialize Window."), TEXT("ERROR"), MB_OK);
         return false;
     }

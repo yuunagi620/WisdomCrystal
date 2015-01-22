@@ -2,7 +2,7 @@
 
 // Includes
 #include "XA2Core.h"
-#include "win/SafeRelease.h"
+#include "win/util/SafeRelease.h"
 
 
 XA2Core::XA2Core() {

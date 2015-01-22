@@ -32,7 +32,7 @@
     <ClCompile Include="src\util\DebugManager.cpp" />
     <ClCompile Include="src\util\FPSCounter.cpp" />
     <ClCompile Include="src\util\HighResolutionTimer.cpp" />
-    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
     <ClCompile Include="src\win\D2D\D2DTextData.cpp" />
@@ -71,11 +71,11 @@
     <ClInclude Include="src\util\DebugManager.h" />
     <ClInclude Include="src\util\FPSCounter.h" />
     <ClInclude Include="src\util\HighResolutionTimer.h" />
-    <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DTextData.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
-    <ClInclude Include="src\win\SafeRelease.h" />
+    <ClInclude Include="src\win\util\SafeRelease.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
     <ClInclude Include="src\win\XA2\MmioUtil.h" />

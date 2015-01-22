@@ -2,7 +2,7 @@
 
 // Includes
 #include "D2DTextData.h"
-#include "win/SafeRelease.h"
+#include "win/util/SafeRelease.h"
 
 
 D2DTextData::D2DTextData() : mGraphicsDevice(nullptr),
