@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{6f072d24-d2f8-45c4-97dd-5f52b58d48b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene">
+      <UniqueIdentifier>{1666efe1-c6ce-42c8-94ba-c09e9a844382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\object">
+      <UniqueIdentifier>{265eccec-af15-46b0-b9b2-723037a27cd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\object\CollisionObject">
+      <UniqueIdentifier>{39c708e7-c963-4abc-8658-77abbfaa72dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DesignPattern">
+      <UniqueIdentifier>{7d9911db-270e-40b0-a4bf-c568f085c4ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinUtil">
+      <UniqueIdentifier>{6ba8f682-dd1a-49f1-af93-9ea94f6da781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util">
+      <UniqueIdentifier>{96cd715f-8b9c-4560-bc07-6791b6709411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinUtil\D2D">
+      <UniqueIdentifier>{317fd7fe-4cc8-4df6-b137-f7976b06ecf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinUtil\D3D">
+      <UniqueIdentifier>{779e61f1-b41b-4347-ba8b-790a983922e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinUtil\WIC">
+      <UniqueIdentifier>{68b9b771-dc28-44db-8fb2-3206f513fb8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinUtil\XA2">
+      <UniqueIdentifier>{a86582ba-f728-4200-bba3-4155805cbe0f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\scene\Scene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Title.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Loading.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Playing.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Error.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BackGround.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MapManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StdAfx.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WisdomCrystal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\GameObject.h">
+      <Filter>src\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\CollisionObject\CollisionData.h">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\CollisionObject\CollisionObject.h">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\CollisionObject\CollisionRectData.h">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\CollisionObject\Player.h">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\CollisionObject\SolidBlock.h">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\GameObjManager.h">
+      <Filter>src\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\CollisionObject\CollisionObjManager.h">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CollisionUtil.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DesignPattern\Singleton.h">
+      <Filter>src\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\CSVUtil.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\DebugManager.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\FPSCounter.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\HighResolutionTimer.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GraphicsDevice.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\D3D\D3DCore.h">
+      <Filter>src\WinUtil\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\D2D\D2DCore.h">
+      <Filter>src\WinUtil\D2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\D2D\D2DTextData.h">
+      <Filter>src\WinUtil\D2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\WIC\WICCore.h">
+      <Filter>src\WinUtil\WIC</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\XA2\BGMData.h">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\XA2\MmioUtil.h">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\XA2\SEData.h">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\XA2\SoundPacket.h">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\XA2\WaveData.h">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\XA2\XA2Core.h">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SoundDevice.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinUtil\SafeRelease.h">
+      <Filter>src\WinUtil</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\scene\Scene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\Title.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\Playing.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\Loading.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\Error.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BackGround.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StdAfx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WisdomCrystal.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\CollisionObject\CollisionData.cpp">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\CollisionObject\Player.cpp">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\CollisionObject\SolidBlock.cpp">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\GameObjManager.cpp">
+      <Filter>src\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\CollisionObject\CollisionObjManager.cpp">
+      <Filter>src\object\CollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CollisionUtil.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinMain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\CSVUtil.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\DebugManager.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\FPSCounter.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\HighResolutionTimer.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphicsDevice.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\D3D\D3DCore.cpp">
+      <Filter>src\WinUtil\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\D2D\D2DCore.cpp">
+      <Filter>src\WinUtil\D2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\D2D\D2DTextData.cpp">
+      <Filter>src\WinUtil\D2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\WIC\WICCore.cpp">
+      <Filter>src\WinUtil\WIC</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\XA2\BGMData.cpp">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\XA2\MmioUtil.cpp">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\XA2\SEData.cpp">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\XA2\SoundPacket.cpp">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\XA2\WaveData.cpp">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinUtil\XA2\XA2Core.cpp">
+      <Filter>src\WinUtil\XA2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundDevice.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

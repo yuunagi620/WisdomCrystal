@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\BackGround.h" />
+    <ClInclude Include="src\CollisionUtil.h" />
+    <ClInclude Include="src\DesignPattern\Singleton.h" />
+    <ClInclude Include="src\GraphicsDevice.h" />
+    <ClInclude Include="src\MapManager.h" />
+    <ClInclude Include="src\object\CollisionObject\CollisionData.h" />
+    <ClInclude Include="src\object\CollisionObject\CollisionObject.h" />
+    <ClInclude Include="src\object\CollisionObject\CollisionObjManager.h" />
+    <ClInclude Include="src\object\CollisionObject\CollisionRectData.h" />
+    <ClInclude Include="src\object\CollisionObject\Player.h" />
+    <ClInclude Include="src\object\CollisionObject\SolidBlock.h" />
+    <ClInclude Include="src\object\GameObject.h" />
+    <ClInclude Include="src\object\GameObjManager.h" />
+    <ClInclude Include="src\SceneManager.h" />
+    <ClInclude Include="src\scene\Error.h" />
+    <ClInclude Include="src\scene\Loading.h" />
+    <ClInclude Include="src\scene\Playing.h" />
+    <ClInclude Include="src\scene\Scene.h" />
+    <ClInclude Include="src\scene\Title.h" />
+    <ClInclude Include="src\SoundDevice.h" />
+    <ClInclude Include="src\StdAfx.h" />
+    <ClInclude Include="src\util\CSVUtil.h" />
+    <ClInclude Include="src\util\DebugManager.h" />
+    <ClInclude Include="src\util\FPSCounter.h" />
+    <ClInclude Include="src\util\HighResolutionTimer.h" />
+    <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\WinUtil\D2D\D2DCore.h" />
+    <ClInclude Include="src\WinUtil\D2D\D2DTextData.h" />
+    <ClInclude Include="src\WinUtil\D3D\D3DCore.h" />
+    <ClInclude Include="src\WinUtil\SafeRelease.h" />
+    <ClInclude Include="src\WinUtil\WIC\WICCore.h" />
+    <ClInclude Include="src\WinUtil\XA2\BGMData.h" />
+    <ClInclude Include="src\WinUtil\XA2\MmioUtil.h" />
+    <ClInclude Include="src\WinUtil\XA2\SEData.h" />
+    <ClInclude Include="src\WinUtil\XA2\SoundPacket.h" />
+    <ClInclude Include="src\WinUtil\XA2\WaveData.h" />
+    <ClInclude Include="src\WinUtil\XA2\XA2Core.h" />
+    <ClInclude Include="src\WisdomCrystal.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\BackGround.cpp" />
+    <ClCompile Include="src\CollisionUtil.cpp" />
+    <ClCompile Include="src\GraphicsDevice.cpp" />
+    <ClCompile Include="src\MapManager.cpp" />
+    <ClCompile Include="src\object\CollisionObject\CollisionData.cpp" />
+    <ClCompile Include="src\object\CollisionObject\CollisionObjManager.cpp" />
+    <ClCompile Include="src\object\CollisionObject\Player.cpp" />
+    <ClCompile Include="src\object\CollisionObject\SolidBlock.cpp" />
+    <ClCompile Include="src\object\GameObjManager.cpp" />
+    <ClCompile Include="src\SceneManager.cpp" />
+    <ClCompile Include="src\scene\Error.cpp" />
+    <ClCompile Include="src\scene\Loading.cpp" />
+    <ClCompile Include="src\scene\Playing.cpp" />
+    <ClCompile Include="src\scene\Scene.cpp" />
+    <ClCompile Include="src\scene\Title.cpp" />
+    <ClCompile Include="src\SoundDevice.cpp" />
+    <ClCompile Include="src\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\util\CSVUtil.cpp" />
+    <ClCompile Include="src\util\DebugManager.cpp" />
+    <ClCompile Include="src\util\FPSCounter.cpp" />
+    <ClCompile Include="src\util\HighResolutionTimer.cpp" />
+    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\WinMain.cpp" />
+    <ClCompile Include="src\WinUtil\D2D\D2DCore.cpp" />
+    <ClCompile Include="src\WinUtil\D2D\D2DTextData.cpp" />
+    <ClCompile Include="src\WinUtil\D3D\D3DCore.cpp" />
+    <ClCompile Include="src\WinUtil\WIC\WICCore.cpp" />
+    <ClCompile Include="src\WinUtil\XA2\BGMData.cpp" />
+    <ClCompile Include="src\WinUtil\XA2\MmioUtil.cpp" />
+    <ClCompile Include="src\WinUtil\XA2\SEData.cpp" />
+    <ClCompile Include="src\WinUtil\XA2\SoundPacket.cpp" />
+    <ClCompile Include="src\WinUtil\XA2\WaveData.cpp" />
+    <ClCompile Include="src\WinUtil\XA2\XA2Core.cpp" />
+    <ClCompile Include="src\WisdomCrystal.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1917F29E-CCA2-4703-BB0F-1C37F97DA561}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>WisdomCrystal</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)\src;$(BOOST_DIR);$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(BOOST_DIR)\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>$(ProjectDir)/src/StdAfx.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)/src/StdAfx.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
