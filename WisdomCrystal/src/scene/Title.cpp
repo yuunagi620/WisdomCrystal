@@ -4,8 +4,6 @@
 #include "Title.h"
 #include "Loading.h"
 
-#include "../BackGround.h"
-
 
 Scene *Title::Update() {
     Scene *next = this;
