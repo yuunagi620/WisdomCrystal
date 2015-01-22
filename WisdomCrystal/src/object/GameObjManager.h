@@ -26,12 +26,10 @@ public:
     bool Activate(int initX, int initY, int objID);
 
 private:
+    void activateForInitAndCleanup();
+
     static const int MAX_GAME_OBJECT;
 
     static GameObjManager mGameObjManager;
     static std::vector<GameObject*> mActiveGameObjects;
-
-    
-    void activateForInitAndCleanup();
-
 };

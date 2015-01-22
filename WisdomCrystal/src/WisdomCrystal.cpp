@@ -17,7 +17,6 @@
 #include "BackGround.h"
 #include "object/GameObjManager.h"
 #include "MapManager.h"
-#include "SceneManager.h"
 #include "scene/Title.h"
 
 #include "win/util/FPSCounter.h"
@@ -40,7 +39,11 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
     : WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
       mIsFullscreen(false),
       mBGMData(),
-      mGraphicsDevice()
+      mGraphicsDevice(),
+      mSoundDevice(),
+      mBackGround(),
+      mGameObjManager(),
+      mSceneManager()
 {
     // empty
 }
@@ -101,7 +104,7 @@ bool WisdomCrystal::Init() {
     mBGMData.StartBGM();
 
     // GameObjManager‚Ì‰Šú‰»
-    if (GameObjManager::GetInstance()->Init(&mGraphicsDevice, &mSoundDevice) == false) {
+    if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
         MessageBox(nullptr, TEXT("Can not init GameObjManager."), TEXT("ERROR"), MB_OK);
         return false;
     }
@@ -211,7 +214,7 @@ void WisdomCrystal::onUpdate() {
     mGraphicsDevice.BeginDraw();
     
     mBackGround.Draw();
-    SceneManager::GetInstance()->UpdateScene();
+    mSceneManager.UpdateScene();
 
     HRESULT hr = mGraphicsDevice.EndDraw();
     if (hr == D2DERR_RECREATE_TARGET) {

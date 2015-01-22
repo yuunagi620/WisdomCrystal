@@ -8,6 +8,8 @@
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
 #include "BackGround.h"
+#include "object/GameObjManager.h"
+#include "SceneManager.h"
 
 
 // ÉXÉNÉäÅ[Éìä÷åW
@@ -52,8 +54,9 @@ private:
 
     bool mIsFullscreen;
     BGMData mBGMData;
-
     GraphicsDevice mGraphicsDevice;
     SoundDevice mSoundDevice;
     BackGround mBackGround;
+    GameObjManager mGameObjManager;
+    SceneManager mSceneManager;
 };

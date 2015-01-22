@@ -1,12 +1,9 @@
 // SceneManager.cpp
 
+
 // Includes
 #include "SceneManager.h"
 #include "scene/Title.h"
-
-
-// Static member variables
-SceneManager SceneManager::mSceneManager;
 
 
 SceneManager::SceneManager() : mCurrentScene(new Title) {
@@ -16,11 +13,6 @@ SceneManager::SceneManager() : mCurrentScene(new Title) {
 
 SceneManager::~SceneManager() {
     mCurrentScene.reset();
-}
-
-
-SceneManager *SceneManager::GetInstance() {
-    return &mSceneManager;
 }
 
 
