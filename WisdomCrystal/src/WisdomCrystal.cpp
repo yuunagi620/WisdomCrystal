@@ -23,6 +23,8 @@
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
 
+#include "util/MathUtil.h"
+
 #include <d3d10_1.h>
 #include <XAudio2.h>
 #include <CommCtrl.h>

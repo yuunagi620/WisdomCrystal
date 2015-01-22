@@ -31,6 +31,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\util\CSVUtil.cpp" />
+    <ClCompile Include="src\util\MathUtil.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\util\CSVUtil.h" />
+    <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DTextData.h" />
