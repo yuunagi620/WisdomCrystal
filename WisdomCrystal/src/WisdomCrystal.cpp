@@ -20,8 +20,8 @@
 #include "SceneManager.h"
 #include "scene/Title.h"
 
-#include "util/FPSCounter.h"
-#include "util/HighResolutionTimer.h"
+#include "win/util/FPSCounter.h"
+#include "win/util/HighResolutionTimer.h"
 
 #include <d3d10_1.h>
 #include <XAudio2.h>

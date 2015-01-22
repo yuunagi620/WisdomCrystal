@@ -19,9 +19,6 @@
     <ClCompile Include="src\SoundDevice.cpp" />
     <ClCompile Include="src\StdAfx.cpp" />
     <ClCompile Include="src\util\CSVUtil.cpp" />
-    <ClCompile Include="src\util\DebugManager.cpp" />
-    <ClCompile Include="src\util\FPSCounter.cpp" />
-    <ClCompile Include="src\util\HighResolutionTimer.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
     <ClCompile Include="src\win\D2D\D2DTextData.cpp" />
     <ClCompile Include="src\win\D3D\D3DCore.cpp" />
@@ -35,6 +32,9 @@
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\WisdomCrystal.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />
+    <ClCompile Include="src\win\util\DebugManager.cpp" />
+    <ClCompile Include="src\win\util\FPSCounter.cpp" />
+    <ClCompile Include="src\win\util\HighResolutionTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BackGround.h" />
@@ -58,9 +58,6 @@
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\util\CSVUtil.h" />
-    <ClInclude Include="src\util\DebugManager.h" />
-    <ClInclude Include="src\util\FPSCounter.h" />
-    <ClInclude Include="src\util\HighResolutionTimer.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DTextData.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
@@ -74,5 +71,8 @@
     <ClInclude Include="src\WisdomCrystal.h" />
     <ClInclude Include="src\win\util\SafeRelease.h" />
     <ClInclude Include="src\WinApplication.h" />
+    <ClInclude Include="src\win\util\DebugManager.h" />
+    <ClInclude Include="src\win\util\FPSCounter.h" />
+    <ClInclude Include="src\win\util\HighResolutionTimer.h" />
   </ItemGroup>
 </Project>

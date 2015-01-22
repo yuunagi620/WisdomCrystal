@@ -4,19 +4,19 @@
 
 #include <Windows.h>
 
+
 class HighResolutionTimer {
 
 public:
-    HighResolutionTimer(double interval);
-    virtual ~HighResolutionTimer() {}
+    explicit HighResolutionTimer(const double interval);
+    virtual ~HighResolutionTimer();
 
+    // タイマが経過したか調べる
     bool Elapsed();
 
 private:
-    LARGE_INTEGER mFrep;
     LARGE_INTEGER mOldCount;
     LARGE_INTEGER mNowCount;
 
     double mStepCount; 
-
 };
