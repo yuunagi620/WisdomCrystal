@@ -3,7 +3,9 @@
 // Includes
 #include "GameObjManager.h"
 #include "WisdomCrystal.h"
-#include "CollisionObject/CollisionObjManager.h"
+
+#include "Player.h"
+#include "SolidBlock.h"
 
 
 // Static member variables
@@ -82,15 +84,13 @@ bool GameObjManager::Activate(int initX, int initY, int objID) {
     GameObject* obj;
 
     switch (objID) {
-        case 0:  obj = nullptr; break;
+        case 0:  obj = nullptr;                                   break;
+        case 1:  obj = Player::Activate(initX, initY);            break;
+        case 2:  obj = SolidBlock::Activate(initX, initY, objID); break;
 
         default: obj = nullptr;
     }
 
-    if (obj == nullptr) {
-        obj = CollisionObjManager::GetInstance()->Activate(initX, initY, objID);
-    }
-    
     if (obj != nullptr) {
         mActiveGameObjects.push_back(obj);
     }

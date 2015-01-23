@@ -4,7 +4,6 @@
 #include <d2d1helper.h>
 
 #include "Player.h"
-#include "CollisionObjManager.h"
 #include "win/util/Input.h"
 
 
@@ -131,24 +130,6 @@ void Player::Update() {
         soundSE(SE_GAMEOVER);
     }
 
-    // “–‚½‚è”»’è‚Æ‚È‚éRectData‚ðì¬
-    CollisionRectData rectData = {
-        getHitRect(0, 0),
-        dx, dy, 0
-    };
-
-    auto vector = CollisionObjManager::GetActiveCollisionObjects();
-    for (auto it = vector->begin(); it != vector->end(); ++it) {
-
-        CollisionData collisionData = (*it)->CollisionDetection(rectData);
-
-        if (collisionData.Check(COLLISION_LEFT) || collisionData.Check(COLLISION_RIGHT) || 
-            collisionData.Check(COLLISION_TOP) || collisionData.Check(COLLISION_BOTTOM)) {
-            dx = collisionData.mDX; // ¶‰E‚É“–‚½‚Á‚½
-            dy = collisionData.mDY; // ã‰º‚É“–‚½‚Á‚½
-        }
-    }
-    
 
     // ŽÀÛ‚ÉPlayer‚ÌÀ•W‚ðˆÚ“®
     mX += dx;
@@ -190,12 +171,6 @@ void Player::draw() {
     mGraphicsDevice->ResetTransform();
     
     mD2DTextData.DrawText(TEXT("test"), D2D1::RectF(250.f, 250.f, 400.f, 300.f));
-}
-
-
-CollisionData Player::CollisionDetection(const CollisionRectData& rectData) {
-    CollisionData ret;
-    return ret;
 }
 
 

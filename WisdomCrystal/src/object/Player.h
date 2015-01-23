@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CollisionObject.h"
+#include "object/GameObject.h"
 #include "win/D2D/D2DTextData.h"
 
 typedef enum PlayerStatusTag {
@@ -23,7 +23,7 @@ typedef enum PlayerSETag {
 } PlayerSE;
 
 
-class Player : public CollisionObject {
+class Player : public GameObject {
 
 public:
     Player();
@@ -34,8 +34,6 @@ public:
     void Cleanup() override;
     void Update() override;
     void Deactivate() override;
-
-    CollisionData CollisionDetection(const CollisionRectData& rectData);
 
     inline bool IsAlive() const {
         return mIsAlive;

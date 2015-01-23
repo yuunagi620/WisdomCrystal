@@ -2,9 +2,7 @@
 
 // Includes
 #include "SolidBlock.h"
-#include "CollisionObjManager.h"
 
-#include "../../CollisionUtil.h"
 
 // Constants
 const int SolidBlock::MAX_SOLID_BLOCK = 880;
@@ -72,17 +70,6 @@ void SolidBlock::Update() {
     }
 
     mGraphicsDevice->DrawBitmap(mImage, getRectF(), 1, mImageSrcRect);
-}
-
-
-CollisionData SolidBlock::CollisionDetection(const CollisionRectData& rectData) {
-
-    CollisionData collisionData;
-    RECT solidBlockRect = getHitRect();
-
-    CollisionUtil::GetInstance()->RectAndRect(rectData, solidBlockRect, &collisionData);
-
-    return collisionData;
 }
 
 

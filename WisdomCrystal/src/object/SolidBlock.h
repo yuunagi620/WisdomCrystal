@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include "CollisionObject.h"
+#include "object/GameObject.h"
 
 
-class SolidBlock : public CollisionObject {
+class SolidBlock : public GameObject {
 
 public:
     SolidBlock();
@@ -16,8 +16,6 @@ public:
     void Cleanup() override;
     void Update() override;
     void Deactivate() override {};
-
-    CollisionData CollisionDetection(const CollisionRectData& rectData);
 
     inline bool IsAlive() const {
         return mIsAlive;
