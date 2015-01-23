@@ -12,13 +12,14 @@
 
 
 // Constants
+const int MAX_MAP_DATA = 880;
 const std::string MapManager::PATH               = "resources/map/";
 const std::string MapManager::FILENAME           = "map_";
 const std::string MapManager::FILENAME_EXTENSION = ".csv";
 
 
 MapManager::MapManager() : mMapData() {
-    // empty
+    std::fill(std::begin(mMapData), std::end(mMapData), 0); // 0で初期化
 }
 
 
@@ -37,13 +38,8 @@ bool MapManager::LoadMapDataFile(const int mapID) {
     filePath += boost::lexical_cast<std::string>(mapID);
     filePath += FILENAME_EXTENSION;
 
-
-    if (CSVUtil::ImportCSVData(filePath, &mMapData) == false) {
-        return false; // CSV データの読み込みに失敗
-    }
-
-    if (mMapData.size() != MAX_MAP_CHIP) {
-        return false; // 規定のマップデータの大きさと違う
+    if (CSVUtil::ImportCSVData<decltype(mMapData)>(filePath, &mMapData) == false) {
+        return false;
     }
 
     return true;

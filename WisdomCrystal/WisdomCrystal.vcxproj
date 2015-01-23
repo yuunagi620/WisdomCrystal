@@ -62,7 +62,9 @@
     <ClCompile Include="src\scene\Scene.cpp" />
     <ClCompile Include="src\scene\Title.cpp" />
     <ClCompile Include="src\SoundDevice.cpp" />
-    <ClCompile Include="src\StdAfx.cpp" />
+    <ClCompile Include="src\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\util\CSVUtil.cpp" />
     <ClCompile Include="src\util\MathUtil.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />

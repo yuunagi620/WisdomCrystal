@@ -19,9 +19,11 @@ public:
     bool ActivateGameObj(GameObjManager* gameObjManager);
 
 private:
+    static const int MAX_MAP_DATA = 880;
+
     static const std::string PATH;
     static const std::string FILENAME;
     static const std::string FILENAME_EXTENSION;
 
-    std::array<int, 880> mMapData;
+    std::array<int, MAX_MAP_DATA> mMapData;
 };
