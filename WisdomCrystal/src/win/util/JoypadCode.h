@@ -9,7 +9,7 @@ typedef enum JoypadIDTag {
 } JoypadID;
 
 // Joypad ボタン識別番号
-typedef enum JoypadButtonTag {
+typedef enum JoypadButtonTag : unsigned int {
     JOYPAD_BUTTON_1 = JOY_BUTTON1,
     JOYPAD_BUTTON_2 = JOY_BUTTON2,
     JOYPAD_BUTTON_3 = JOY_BUTTON3,
@@ -38,8 +38,8 @@ typedef enum JoypadButtonTag {
     JOYPAD_BUTTON_26 = JOY_BUTTON26,
     JOYPAD_BUTTON_27 = JOY_BUTTON27,
     JOYPAD_BUTTON_28 = JOY_BUTTON28,
-    JOYPAD_BUTTON_UP = JOY_BUTTON29, // アナログパッド上
-    JOYPAD_BUTTON_DOWN = JOY_BUTTON30, // アナログパッド下
-    JOYPAD_BUTTON_LEFT = JOY_BUTTON31, // アナログパッド左
+    JOYPAD_BUTTON_UP    = JOY_BUTTON29, // アナログパッド上
+    JOYPAD_BUTTON_DOWN  = JOY_BUTTON30, // アナログパッド下
+    JOYPAD_BUTTON_LEFT  = JOY_BUTTON31, // アナログパッド左
     JOYPAD_BUTTON_RIGHT = JOY_BUTTON32, // アナログパッド右
 } JoypadButton;

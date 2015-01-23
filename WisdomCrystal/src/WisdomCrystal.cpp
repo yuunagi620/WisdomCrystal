@@ -161,13 +161,20 @@ int WisdomCrystal::MessageLoop() {
             if (timer.Elapsed()) { // タイマーにより1秒間に60回呼ばれる
                 onUpdate();
                 fpsCounter.CountFPS();
-                //DebugManager::OutputValue(fpsCounter.GetFPS());
+                //DebugManager::OutputValue(JoypadManager::JoypadAnalogX(JOYPAD_1));
 
-                DebugManager::OutputValue(JoypadManager::JoypadAnalogX(JOYPAD_1));
-                //if (JoypadManager::JoypadAnalogX(JOYPAD_1) > 1.0f) {
-                //    MessageBox(nullptr, TEXT("input"), TEXT("ERROR"), MB_OK);
+                //if (JoypadManager::JoypadKeyDown(JOYPAD_1, JOYPAD_BUTTON_RIGHT)) {
+                //    MessageBox(nullptr, TEXT("right"), TEXT("ERROR"), MB_OK);
                 //}
-
+                //if (JoypadManager::JoypadKeyDown(JOYPAD_1, JOYPAD_BUTTON_UP)) {
+                //    MessageBox(nullptr, TEXT("up"), TEXT("ERROR"), MB_OK);
+                //}
+                //if (JoypadManager::JoypadKeyDown(JOYPAD_1, JOYPAD_BUTTON_DOWN)) {
+                //    MessageBox(nullptr, TEXT("down"), TEXT("ERROR"), MB_OK);
+                //}
+                //if (JoypadManager::JoypadKeyDown(JOYPAD_1, JOYPAD_BUTTON_LEFT)) {
+                //    MessageBox(nullptr, TEXT("left"), TEXT("ERROR"), MB_OK);
+                //}
             }
             
             UpdateWindow(GetHWnd());

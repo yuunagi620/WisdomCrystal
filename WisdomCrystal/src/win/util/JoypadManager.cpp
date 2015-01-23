@@ -29,19 +29,24 @@ bool JoypadManager::JoypadKeyDown(JoypadID id, JoypadButton joypadcode) {
 
     if (joyGetPosEx(id, &joypadInfo) == JOYERR_NOERROR) {
 
-        // アナログパッド以外が押されたか判定
+        // JOYPAD_BUTTON_28以下(アナログパッド以外)の判定
         if (joypadcode <= JOYPAD_BUTTON_28) {
-            return ((joypadInfo.dwButtons & joypadcode) != 0);
-        } else if (joypadcode == JOYPAD_BUTTON_UP) {
-            return (joypadInfo.dwYpos < joypadCaps.wYmin + (joypadCaps.wYmax - joypadCaps.wYmin) / 3) != 0;
-        } else if (joypadcode == JOYPAD_BUTTON_DOWN) {
-            return (joypadInfo.dwYpos > joypadCaps.wYmax - (joypadCaps.wYmax - joypadCaps.wYmin) / 3) != 0;
-        } else if (joypadcode == JOYPAD_BUTTON_LEFT) {
-            return (joypadInfo.dwXpos < joypadCaps.wXmin + (joypadCaps.wXmax - joypadCaps.wXmin) / 3) != 0;
-        } else if (joypadcode == JOYPAD_BUTTON_RIGHT) {
-            return (joypadInfo.dwXpos > joypadCaps.wXmax - (joypadCaps.wXmax - joypadCaps.wXmin) / 3) != 0;
-        } else {
-            return false;
+            return ((joypadInfo.dwButtons & joypadcode) != 0); 
+        } 
+
+        // アナログパッドの傾きから押されているか判定
+        // max と min を 4 で割った値を補正係数として与えることで小さな傾きを検知しないようにする
+        switch (joypadcode) {
+            case JOYPAD_BUTTON_UP:
+                return (joypadInfo.dwYpos < joypadCaps.wYmin + (joypadCaps.wYmax - joypadCaps.wYmin) / 4);
+            case JOYPAD_BUTTON_DOWN:
+                return (joypadInfo.dwYpos > joypadCaps.wYmax - (joypadCaps.wYmax - joypadCaps.wYmin) / 4);
+            case JOYPAD_BUTTON_LEFT:
+                return (joypadInfo.dwXpos < joypadCaps.wXmin + (joypadCaps.wXmax - joypadCaps.wXmin) / 4);
+            case JOYPAD_BUTTON_RIGHT:
+                return (joypadInfo.dwXpos > joypadCaps.wXmax - (joypadCaps.wXmax - joypadCaps.wXmin) / 4);
+            default:
+                return false;
         }
     }
     return false;

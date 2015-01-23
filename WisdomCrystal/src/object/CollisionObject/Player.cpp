@@ -187,9 +187,7 @@ void Player::draw() {
 
     mGraphicsDevice->ResetTransform();
     
-    mD2DTextData.SetFontStyle(DWRITE_FONT_STYLE_ITALIC);
     mD2DTextData.DrawText(TEXT("test"), D2D1::RectF(250.f, 250.f, 400.f, 300.f));
-
 }
 
 

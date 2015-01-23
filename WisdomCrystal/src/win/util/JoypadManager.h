@@ -11,7 +11,7 @@ namespace JoypadManager {
 // Joypad が接続されているか判定する
 bool CheackJoypadDevices(JoypadID id);
 
-// Joypad のボタンもしくはアナログパッドが押されているか判定する
+// Joypad のボタンもしくはアナログパッドの傾きから押されているか判定する
 bool JoypadKeyDown(JoypadID id, JoypadButton joypadcode);
 
 // X 方向のアナログパッド傾き角度を取得する
