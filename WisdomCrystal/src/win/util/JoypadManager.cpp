@@ -64,10 +64,22 @@ float JoypadManager::JoypadAnalogX(JoypadID id) {
     joyGetDevCaps(id, &joypadCaps, sizeof(joypadCaps));
 
     if (joyGetPosEx(id, &joypadInfo) == JOYERR_NOERROR) {
-        const float center((static_cast<float>(joypadCaps.wXmin + joypadCaps.wXmax)) / 2.f);
-        const float diff(static_cast<float>(joypadCaps.wXmax - joypadCaps.wXmin));
-        const float val((static_cast<float>(joypadInfo.dwXpos) - center) * 2.f / diff);
-        return (fabsf(val) < 0.1f) ? 0.f : val;
+
+        float centerX = (static_cast<float>(joypadCaps.wXmin + joypadCaps.wXmax)) / 2.0f;
+        float differentX = static_cast<float>(joypadCaps.wXmax - joypadCaps.wXmin);
+
+        // XÀ•W‚ÌŒX‚«‹ï‡‚ÌŒW”‚ğ‹‚ß‚é
+        float coefficient = (static_cast<float>(joypadInfo.dwXpos) - centerX) * 2.0f;
+
+        // Å‘å‚ÆÅ¬‚Ì·‚ÅŠ„‚Á‚Ä, 0‚©‚ç1‚ÉŠÛ‚ß‚é
+        coefficient /= differentX;
+
+        // 0.1 ˆÈ‰º‚ÍØ‚èÌ‚Ä‚Ä 0 ‚ğ•Ô‚·
+        if (fabsf(coefficient) >= 0.1f) {
+            return coefficient;
+        } else {
+            return 0.0f;
+        }
     }
 
     return 0.0f;
@@ -85,10 +97,22 @@ float JoypadManager::JoypadAnalogY(JoypadID id) {
     joyGetDevCaps(id, &joypadCaps, sizeof(joypadCaps));
 
     if (joyGetPosEx(id, &joypadInfo) == JOYERR_NOERROR) {
-        const float center((static_cast<float>(joypadCaps.wYmin + joypadCaps.wYmax)) / 2.f);
-        const float diff(static_cast<float>(joypadCaps.wYmax - joypadCaps.wYmin));
-        const float val((static_cast<float>(joypadInfo.dwYpos) - center) * 2.f / diff);
-        return (fabsf(val) < 0.1f) ? 0.f : val;
+
+        float centerY = (static_cast<float>(joypadCaps.wYmin + joypadCaps.wYmax)) / 2.0f;
+        float differentY = static_cast<float>(joypadCaps.wYmax - joypadCaps.wYmin);
+
+        // YÀ•W‚ÌŒX‚«‹ï‡‚ÌŒW”‚ğ‹‚ß‚é
+        float coefficient = (static_cast<float>(joypadInfo.dwYpos) - centerY) * 2.0f;
+
+        // Å‘å‚ÆÅ¬‚Ì·‚ÅŠ„‚Á‚Ä, 0‚©‚ç1‚ÉŠÛ‚ß‚é
+        coefficient /= differentY;
+
+        // 0.1 ˆÈ‰º‚ÍØ‚èÌ‚Ä‚Ä 0 ‚ğ•Ô‚·
+        if (fabsf(coefficient) >= 0.1f) {
+            return coefficient;
+        } else {
+            return 0.0f;
+        }
     }
 
     return 0.0f;

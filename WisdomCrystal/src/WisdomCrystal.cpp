@@ -161,7 +161,7 @@ int WisdomCrystal::MessageLoop() {
             if (timer.Elapsed()) { // タイマーにより1秒間に60回呼ばれる
                 onUpdate();
                 fpsCounter.CountFPS();
-                //DebugManager::OutputValue(JoypadManager::JoypadAnalogX(JOYPAD_1));
+                DebugManager::OutputValue(JoypadManager::JoypadAnalogY(JOYPAD_1));
 
                 //if (JoypadManager::JoypadKeyDown(JOYPAD_1, JOYPAD_BUTTON_RIGHT)) {
                 //    MessageBox(nullptr, TEXT("right"), TEXT("ERROR"), MB_OK);
