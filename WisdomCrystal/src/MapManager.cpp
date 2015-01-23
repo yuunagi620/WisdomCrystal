@@ -18,17 +18,11 @@ const std::string MapManager::FILENAME_EXTENSION = ".csv";
 
 
 // Static member variables
-MapManager       MapManager::mMapManager;
 std::vector<int> MapManager::mMapData(MAX_MAP_CHIP); // マップデータ
 
 
 MapManager::MapManager() {
     // empty
-}
-
-
-MapManager *MapManager::GetInstance() {
-    return &mMapManager;
 }
 
 
@@ -58,14 +52,13 @@ bool MapManager::LoadMapDataFile(int mapID) {
 }
 
 
-bool MapManager::ActivateGameObj() {
+bool MapManager::ActivateGameObj(GameObjManager* gameObjManager) {
     for (int j = 0; j < MAP_ROW; ++j) {
         for (int i = 0; i < MAP_COL; ++i) {
 
-            if (GameObjManager::GetInstance()->
-                Activate(i * MAP_CHIP_WIDTH,
-                         j * MAP_CHIP_HEIGHT,
-                         mMapData.at(i + j * MAP_COL)) == false) {
+            if (gameObjManager->Activate(i * MAP_CHIP_WIDTH,
+                                         j * MAP_CHIP_HEIGHT,
+                                         mMapData.at(i + j * MAP_COL)) == false) {
 
                 return false;
             }

@@ -4,22 +4,21 @@
 
 #include <boost/noncopyable.hpp>
 
+#include "object/GameObjManager.h"
+
+
 class MapManager : private boost::noncopyable {
 
 public:
-    static MapManager *GetInstance();
+    MapManager();
 
     bool LoadMapDataFile(int mapID);
-    bool ActivateGameObj();
+    bool ActivateGameObj(GameObjManager* gameObjManager);
 
 private:
     static const std::string PATH;
     static const std::string FILENAME;
     static const std::string FILENAME_EXTENSION;
 
-    static MapManager mMapManager;
     static std::vector<int> mMapData;
-
-    MapManager(); // インスタンス生成不可
-
 };

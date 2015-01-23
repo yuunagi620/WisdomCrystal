@@ -15,11 +15,13 @@ Loading::~Loading() {
 
 Scene *Loading::Update(GameObjManager *gameObjManager) {
 
-    if (MapManager::GetInstance()->LoadMapDataFile(1) == false) {
+    MapManager mMapmanager;
+
+    if (mMapmanager.LoadMapDataFile(1) == false) {
         return new Error; // マップデータの読み込みに失敗
     }
 
-    if (MapManager::GetInstance()->ActivateGameObj() == false) {
+    if (mMapmanager.ActivateGameObj(gameObjManager) == false) {
         return new Error; // オブジェクトのアクティブ化に失敗
     }
 

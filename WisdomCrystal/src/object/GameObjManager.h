@@ -15,9 +15,6 @@ public:
     GameObjManager();
     virtual ~GameObjManager();
 
-    static GameObjManager *GetInstance();
-    static std::vector<GameObject*> *GetActiveGameObjects();
-
     bool Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice);
     void Cleanup();
     void Update();

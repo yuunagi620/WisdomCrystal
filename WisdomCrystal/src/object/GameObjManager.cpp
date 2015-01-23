@@ -23,16 +23,6 @@ GameObjManager::~GameObjManager() {
 }
 
 
-GameObjManager *GameObjManager::GetInstance() {
-    return &mGameObjManager;
-}
-
-
-std::vector<GameObject*> *GameObjManager::GetActiveGameObjects() {
-    return &mActiveGameObjects;
-}
-
-
 bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
     mActiveGameObjects.reserve(1000);
 
