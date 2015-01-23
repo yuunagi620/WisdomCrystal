@@ -11,5 +11,5 @@ class Loading : public Scene, private boost::noncopyable {
 
 public:
     virtual ~Loading();
-    virtual Scene *Update() override;
+    virtual Scene *Update(GameObjManager *gameObjManager) override;
 };

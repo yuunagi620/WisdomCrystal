@@ -11,5 +11,5 @@ class Title : public Scene, private boost::noncopyable {
 
 public:
     virtual ~Title();
-    virtual Scene *Update() override;
+    virtual Scene *Update(GameObjManager *gameObjManager) override;
 };

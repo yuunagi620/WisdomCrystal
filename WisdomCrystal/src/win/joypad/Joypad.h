@@ -1,12 +1,13 @@
-// JoypadManager.h
+// Joypad.h
 
 #pragma once
 
 #include <Windows.h>
+
 #include "JoypadCode.h"
 
 
-namespace JoypadManager {
+namespace Joypad {
 
 // Joypad が接続されているか判定する
 bool CheackJoypadDevices(JoypadID id);
@@ -20,4 +21,4 @@ float JoypadAnalogX(JoypadID id);
 // Y 方向のアナログパッド傾き角度を取得する
 float JoypadAnalogY(JoypadID id);
 
-} // namespace JoypadManager
+} // namespace Joypad

@@ -1,10 +1,12 @@
 // Player.cpp
 
 // Includes
+#include <d2d1helper.h>
+
 #include "Player.h"
 #include "CollisionObjManager.h"
+#include "win/util/Input.h"
 
-#include <d2d1helper.h>
 
 
 // Constants
@@ -107,25 +109,25 @@ void Player::Update() {
     int dx = 0;
     int dy = 0;
     
-    if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+    if (Input::IsKeyPressed(Input::LEFT)) {
         dx -= PLAYER_SPEED_X;
         mIsLeft = true;
     }
 
-    if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+    if (Input::IsKeyPressed(Input::RIGHT)) {
         dx += PLAYER_SPEED_X;
         mIsLeft = false;
     }
 
-    if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+    if (Input::IsKeyPressed(Input::DOWN)) {
         dy += 3;
     }
 
-    if (GetAsyncKeyState(VK_UP) & 0x8000) {
+    if (Input::IsKeyPressed(Input::UP)) {
         dy -= 3;
     }
 
-    if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+    if (Input::IsKeyPressed(Input::SPACE)) {
         soundSE(SE_GAMEOVER);
     }
 

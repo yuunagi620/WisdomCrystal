@@ -9,7 +9,7 @@ Error::~Error() {
 }
 
 
-Scene *Error::Update() {
+Scene *Error::Update(GameObjManager *gameObjManager) {
     PostQuitMessage(0);
     return this;
 }

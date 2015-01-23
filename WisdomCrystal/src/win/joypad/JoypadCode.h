@@ -2,6 +2,9 @@
 
 #pragma once
 
+
+namespace Joypad {
+
 // Joypad 識別番号
 typedef enum JoypadIDTag {
     JOYPAD_1 = JOYSTICKID1,
@@ -43,3 +46,5 @@ typedef enum JoypadButtonTag : unsigned int {
     JOYPAD_BUTTON_LEFT  = JOY_BUTTON31, // アナログパッド左
     JOYPAD_BUTTON_RIGHT = JOY_BUTTON32, // アナログパッド右
 } JoypadButton;
+
+} // namespace Joypad

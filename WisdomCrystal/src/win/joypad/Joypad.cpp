@@ -1,15 +1,15 @@
-// JoypadManager.cpp
+// Joypad.cpp
 
-#include "JoypadManager.h"
+#include "Joypad.h"
 
 
-bool JoypadManager::CheackJoypadDevices(JoypadID id) {
+bool Joypad::CheackJoypadDevices(JoypadID id) {
     JOYINFOEX joypadInfo;
     SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
     joypadInfo.dwSize  = sizeof(joypadInfo);
     joypadInfo.dwFlags = JOY_RETURNALL;
 
-	if (joyGetPosEx(JOYPAD_1, &joypadInfo) == JOYERR_NOERROR) {
+    if (joyGetPosEx(JOYPAD_1, &joypadInfo) == JOYERR_NOERROR) {
         return true;
     }
 
@@ -17,7 +17,7 @@ bool JoypadManager::CheackJoypadDevices(JoypadID id) {
 }
 
 
-bool JoypadManager::JoypadKeyDown(JoypadID id, JoypadButton joypadcode) {
+bool Joypad::JoypadKeyDown(JoypadID id, JoypadButton joypadcode) {
     JOYINFOEX joypadInfo;
     SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
     joypadInfo.dwSize  = sizeof(joypadInfo);
@@ -35,16 +35,16 @@ bool JoypadManager::JoypadKeyDown(JoypadID id, JoypadButton joypadcode) {
         } 
 
         // アナログパッドの傾きから押されているか判定
-        // max と min を 4 で割った値を補正係数として与えることで小さな傾きを検知しないようにする
+        // max と min を 3 で割った値を補正係数として与えることで小さな傾きを検知しないようにする
         switch (joypadcode) {
             case JOYPAD_BUTTON_UP:
-                return (joypadInfo.dwYpos < joypadCaps.wYmin + (joypadCaps.wYmax - joypadCaps.wYmin) / 4);
+                return (joypadInfo.dwYpos < joypadCaps.wYmin + (joypadCaps.wYmax - joypadCaps.wYmin) / 3);
             case JOYPAD_BUTTON_DOWN:
-                return (joypadInfo.dwYpos > joypadCaps.wYmax - (joypadCaps.wYmax - joypadCaps.wYmin) / 4);
+                return (joypadInfo.dwYpos > joypadCaps.wYmax - (joypadCaps.wYmax - joypadCaps.wYmin) / 3);
             case JOYPAD_BUTTON_LEFT:
-                return (joypadInfo.dwXpos < joypadCaps.wXmin + (joypadCaps.wXmax - joypadCaps.wXmin) / 4);
+                return (joypadInfo.dwXpos < joypadCaps.wXmin + (joypadCaps.wXmax - joypadCaps.wXmin) / 3);
             case JOYPAD_BUTTON_RIGHT:
-                return (joypadInfo.dwXpos > joypadCaps.wXmax - (joypadCaps.wXmax - joypadCaps.wXmin) / 4);
+                return (joypadInfo.dwXpos > joypadCaps.wXmax - (joypadCaps.wXmax - joypadCaps.wXmin) / 3);
             default:
                 return false;
         }
@@ -53,7 +53,7 @@ bool JoypadManager::JoypadKeyDown(JoypadID id, JoypadButton joypadcode) {
 }
 
 
-float JoypadManager::JoypadAnalogX(JoypadID id) {
+float Joypad::JoypadAnalogX(JoypadID id) {
     JOYINFOEX joypadInfo;
     SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
     joypadInfo.dwSize  = sizeof(joypadInfo);
@@ -86,7 +86,7 @@ float JoypadManager::JoypadAnalogX(JoypadID id) {
 }
 
 
-float JoypadManager::JoypadAnalogY(JoypadID id) {
+float Joypad::JoypadAnalogY(JoypadID id) {
     JOYINFOEX joypadInfo;
     SecureZeroMemory(&joypadInfo, sizeof(joypadInfo));
     joypadInfo.dwSize  = sizeof(joypadInfo);

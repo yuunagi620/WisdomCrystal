@@ -11,5 +11,5 @@ class Error : public Scene, private boost::noncopyable {
 
 public:
     virtual ~Error();
-    virtual Scene *Update() override;
+    virtual Scene *Update(GameObjManager *gameObjManager) override;
 };

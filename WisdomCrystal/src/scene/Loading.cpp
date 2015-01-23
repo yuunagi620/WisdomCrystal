@@ -13,7 +13,7 @@ Loading::~Loading() {
 }
 
 
-Scene *Loading::Update() {
+Scene *Loading::Update(GameObjManager *gameObjManager) {
 
     if (MapManager::GetInstance()->LoadMapDataFile(1) == false) {
         return new Error; // マップデータの読み込みに失敗

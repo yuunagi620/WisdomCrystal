@@ -6,10 +6,6 @@
 #include "CollisionObject/CollisionObjManager.h"
 
 
-// Constants
-const int GameObjManager::MAX_GAME_OBJECT = 1000; // GameObject 最大数
-
-
 // Static member variables
 GameObjManager           GameObjManager::mGameObjManager;
 std::vector<GameObject*> GameObjManager::mActiveGameObjects; // アクティブ化したゲームオブジェクト
@@ -36,7 +32,7 @@ std::vector<GameObject*> *GameObjManager::GetActiveGameObjects() {
 
 
 bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
-    mActiveGameObjects.reserve(MAX_GAME_OBJECT);
+    mActiveGameObjects.reserve(1000);
 
     activateForInitAndCleanup();
 

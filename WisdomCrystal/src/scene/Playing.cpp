@@ -10,7 +10,7 @@ Playing::~Playing() {
 }
 
 
-Scene *Playing::Update() {
-    GameObjManager::GetInstance()->Update();
+Scene *Playing::Update(GameObjManager *gameObjManager) {
+    gameObjManager->Update();
     return this;
 }

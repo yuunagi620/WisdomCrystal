@@ -21,7 +21,8 @@
 
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
-#include "win/util/JoypadManager.h"
+
+#include "win/joypad/Joypad.h"
 
 #include "util/MathUtil.h"
 
@@ -103,7 +104,7 @@ bool WisdomCrystal::Init() {
     mBGMData.SetBGMVolume(START_BGM_VOLUME);
     mBGMData.StartBGM();
 
-    // GameObjManager‚Ì‰Šú‰»
+    // GameObjManager ‚Ì‰Šú‰»
     if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
         MessageBox(nullptr, TEXT("Can not init GameObjManager."), TEXT("ERROR"), MB_OK);
         return false;
@@ -124,7 +125,7 @@ bool WisdomCrystal::Init() {
 
 
 void  WisdomCrystal::Cleanup() {
-    GameObjManager::GetInstance()->Cleanup();
+    mGameObjManager.Cleanup();
     mBGMData.Cleanup();
     mSoundDevice.Cleanup();
     mGraphicsDevice.Cleanup();
@@ -208,7 +209,7 @@ void WisdomCrystal::onUpdate() {
     mGraphicsDevice.BeginDraw();
     
     mBackGround.Draw();
-    mSceneManager.UpdateScene();
+    mSceneManager.UpdateScene(&mGameObjManager);
 
     HRESULT hr = mGraphicsDevice.EndDraw();
     if (hr == D2DERR_RECREATE_TARGET) {

@@ -16,10 +16,10 @@ SceneManager::~SceneManager() {
 }
 
 
-void SceneManager::UpdateScene() {
+void SceneManager::UpdateScene(GameObjManager *gameObjManager) {
 
     // CurrentScene ‚Ì Update ‚ÌŒã, Ÿ‚Ìê–Ê‚ğ nextScene ‚É“ü‚ê‚Ä‚¨‚­
-    Scene* nextScene = mCurrentScene->Update();
+    Scene* nextScene = mCurrentScene->Update(gameObjManager);
 
     // next‚ÆCurrent‚ªˆá‚Á‚½ê‡‚Ì‚İ, Current‚ğnext‚É’u‚«Š·‚¦‚é
     if (nextScene != mCurrentScene.get()) {

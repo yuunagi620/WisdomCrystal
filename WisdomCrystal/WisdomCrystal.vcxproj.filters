@@ -36,7 +36,8 @@
     <ClCompile Include="src\win\util\FPSCounter.cpp" />
     <ClCompile Include="src\win\util\HighResolutionTimer.cpp" />
     <ClCompile Include="src\util\MathUtil.cpp" />
-    <ClCompile Include="src\win\util\JoypadManager.cpp" />
+    <ClCompile Include="src\win\util\Input.cpp" />
+    <ClCompile Include="src\win\joypad\Joypad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BackGround.h" />
@@ -77,7 +78,8 @@
     <ClInclude Include="src\win\util\FPSCounter.h" />
     <ClInclude Include="src\win\util\HighResolutionTimer.h" />
     <ClInclude Include="src\util\MathUtil.h" />
-    <ClInclude Include="src\win\util\JoypadCode.h" />
-    <ClInclude Include="src\win\util\JoypadManager.h" />
+    <ClInclude Include="src\win\util\Input.h" />
+    <ClInclude Include="src\win\joypad\Joypad.h" />
+    <ClInclude Include="src\win\joypad\Joypadcode.h" />
   </ItemGroup>
 </Project>

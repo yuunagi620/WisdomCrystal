@@ -3,6 +3,7 @@
 // Includes
 #include "Title.h"
 #include "Loading.h"
+#include "win/util/Input.h"
 
 
 Title::~Title() {
@@ -10,10 +11,10 @@ Title::~Title() {
 }
 
 
-Scene *Title::Update() {
+Scene *Title::Update(GameObjManager *gameObjManager) {
     Scene *next = this;
 
-    if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+    if (Input::IsKeyPressed(Input::SPACE)) {
         next = new Loading();
     }
 

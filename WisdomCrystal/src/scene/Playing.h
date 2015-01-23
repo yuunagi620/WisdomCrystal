@@ -11,5 +11,5 @@ class Playing : public Scene, private boost::noncopyable {
 
 public:
     virtual ~Playing();
-    virtual Scene *Update() override;
+    virtual Scene *Update(GameObjManager *gameObjManager) override;
 };
