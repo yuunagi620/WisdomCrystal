@@ -17,16 +17,17 @@ const std::string MapManager::FILENAME           = "map_";
 const std::string MapManager::FILENAME_EXTENSION = ".csv";
 
 
-// Static member variables
-std::vector<int> MapManager::mMapData(MAX_MAP_CHIP); // マップデータ
-
-
-MapManager::MapManager() {
+MapManager::MapManager() : mMapData() {
     // empty
 }
 
 
-bool MapManager::LoadMapDataFile(int mapID) {
+MapManager::~MapManager() {
+    // empty
+}
+
+
+bool MapManager::LoadMapDataFile(const int mapID) {
 
     std::string filePath;
 
@@ -36,9 +37,6 @@ bool MapManager::LoadMapDataFile(int mapID) {
     filePath += boost::lexical_cast<std::string>(mapID);
     filePath += FILENAME_EXTENSION;
 
-    if (mMapData.empty() == false) {
-        mMapData.clear();
-    }
 
     if (CSVUtil::ImportCSVData(filePath, &mMapData) == false) {
         return false; // CSV データの読み込みに失敗
