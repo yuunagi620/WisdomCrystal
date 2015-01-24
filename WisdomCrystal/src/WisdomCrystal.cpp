@@ -19,6 +19,7 @@
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
 #include "win/joypad/Joypad.h"
+#include "win/util/WinString.h"
 
 
 WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
@@ -110,6 +111,12 @@ bool WisdomCrystal::Init() {
     mIsFullscreen = false;
     mGraphicsDevice.SetFullScreenState(mIsFullscreen);
 
+    WinString str(TEXT("12.3"));
+    WinString str2(12.3f);
+
+    if (str == str2) {
+        MessageBox(nullptr, TEXT("Can not init BackGround."), TEXT("ERROR"), MB_OK);
+    }
     return true;
 }
 
