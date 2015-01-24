@@ -13,6 +13,11 @@ WinString::WinString() : std::basic_string<TCHAR>() {
 }
 
 
+WinString::WinString(const TCHAR* string) : std::basic_string<TCHAR>(string) {
+    // empty
+}
+
+
 WinString::WinString(const std::basic_string<TCHAR>& string) : std::basic_string<TCHAR>(string) {
     // empty
 }

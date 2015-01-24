@@ -13,7 +13,10 @@ public:
     WinString();
 
     // TCHAR から構築
-    explicit WinString(const std::basic_string<TCHAR>& string);
+    // UNICODE を定義しているかによって
+    // TCHAR はchar か WCHAR に変わるので explicit はつけない
+    WinString(const TCHAR* string);
+    WinString(const std::basic_string<TCHAR>& string);
 
     // 数値から構築
     explicit WinString(const int value) throw();

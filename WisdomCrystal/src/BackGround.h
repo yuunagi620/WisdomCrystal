@@ -5,6 +5,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "GraphicsDevice.h"
+#include "win/util/WinString.h"
 
 
 class BackGround : private boost::noncopyable {
@@ -20,16 +21,16 @@ public:
     bool ChangeBackGroundImage(const int index);
 
 private:
-    static const std::basic_string<TCHAR> IMAGE_PATH;
-    static const std::basic_string<TCHAR> FILENAME;
-    static const std::basic_string<TCHAR> FILENAME_EXTENSION;
+    static const WinString IMAGE_PATH;
+    static const WinString FILENAME;
+    static const WinString FILENAME_EXTENSION;
  
     void changeImagePath();
     bool setBackGroundImage();
     D2D1_RECT_F getRectF();
 
     GraphicsDevice* mGraphicsDevice;
-    std::basic_string<TCHAR> mImagePath;
+    WinString mImagePath;
     int mImageID;
 
     D2D1_SIZE_U mImageSize;

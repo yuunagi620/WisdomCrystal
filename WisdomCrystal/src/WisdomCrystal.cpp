@@ -111,12 +111,6 @@ bool WisdomCrystal::Init() {
     mIsFullscreen = false;
     mGraphicsDevice.SetFullScreenState(mIsFullscreen);
 
-    WinString str(TEXT("12.3"));
-    WinString str2(TEXT("abc"));
-
-    WinString str3;
-    str3.append(str + str2 + TEXT("a"));
-
     return true;
 }
 
