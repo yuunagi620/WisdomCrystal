@@ -15,13 +15,9 @@ public:
     // TCHAR Ç©ÇÁç\íz
     explicit WinString(const std::basic_string<TCHAR>& string);
 
-    // int Ç©ÇÁç\íz
+    // êîílÇ©ÇÁç\íz
     explicit WinString(const int value) throw();
-
-    // double Ç©ÇÁç\íz
     explicit WinString(double value) throw();
-
-    // float Ç©ÇÁç\íz
     explicit WinString(float value) throw();
 
     virtual ~WinString();

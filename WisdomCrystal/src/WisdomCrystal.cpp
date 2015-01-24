@@ -112,11 +112,11 @@ bool WisdomCrystal::Init() {
     mGraphicsDevice.SetFullScreenState(mIsFullscreen);
 
     WinString str(TEXT("12.3"));
-    WinString str2(12.3f);
+    WinString str2(TEXT("abc"));
 
-    if (str == str2) {
-        MessageBox(nullptr, TEXT("Can not init BackGround."), TEXT("ERROR"), MB_OK);
-    }
+    WinString str3;
+    str3.append(str + str2 + TEXT("a"));
+
     return true;
 }
 
