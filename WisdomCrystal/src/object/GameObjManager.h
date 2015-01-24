@@ -27,6 +27,7 @@ private:
     void activateForInitAndCleanup();
 
     static const int MAX_GAME_OBJCT = 1080;
+    static const int NUM_GAME_OBJECT = 2;
 
     std::array<GameObject*, MAX_GAME_OBJCT> mActiveGameObjects;
 };

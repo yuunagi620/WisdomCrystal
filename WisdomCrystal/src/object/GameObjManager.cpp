@@ -93,7 +93,7 @@ bool GameObjManager::Activate(int initX, int initY, int objID) {
 
 void GameObjManager::activateForInitAndCleanup() {
     Deactivate();
-    for (int i = 0; i <= GAME_OBJECT_NUM; ++i) {
+    for (int i = 0; i <= NUM_GAME_OBJECT; ++i) {
         Activate(0, 0, i);
     }
 }

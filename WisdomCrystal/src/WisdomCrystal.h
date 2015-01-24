@@ -22,7 +22,7 @@ const int MAX_MAP_CHIP = MAP_ROW * MAP_COL;
 const int MAP_CHIP_WIDTH  = 32;
 const int MAP_CHIP_HEIGHT = 32;
 const int MAP_CHIP_IMAGE_COL = 10;
-const int GAME_OBJECT_NUM = 2;
+
 
 
 // ‚»‚Ì‘¼
