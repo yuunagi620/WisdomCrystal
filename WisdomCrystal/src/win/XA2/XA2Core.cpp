@@ -5,7 +5,9 @@
 #include "win/util/SafeRelease.h"
 
 
-XA2Core::XA2Core() {
+XA2Core::XA2Core() : mXAudio(nullptr), 
+                     mMasteringVoice(nullptr)
+{
     // empty
 }
 

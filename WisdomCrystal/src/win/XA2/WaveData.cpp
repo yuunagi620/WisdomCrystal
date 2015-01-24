@@ -8,7 +8,8 @@
 WaveData::WaveData() : mDataBuffer(nullptr),
                        mHeader(),
                        mFormatEx(),
-                       mDataSize(0) {
+                       mDataSize(0)
+{
     //empty
 }
 
