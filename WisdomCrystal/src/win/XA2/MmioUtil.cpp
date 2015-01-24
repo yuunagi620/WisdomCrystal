@@ -7,7 +7,7 @@
 bool MmioUtil::ReadWaveFile(WAVEFORMATEX *WaveFormatEX,
                             std::shared_ptr<BYTE> *DataBodyAddress,
                             DWORD *DataSize,
-                            TCHAR *WaveFilePath) {
+                            TCHAR* WaveFilePath) {
     HMMIO hMMIO;
     MMCKINFO mmckRiff;
     MMCKINFO mmckFormat;
@@ -19,14 +19,14 @@ bool MmioUtil::ReadWaveFile(WAVEFORMATEX *WaveFormatEX,
 
     // ファイルのオープン
     hMMIO = mmioOpen(WaveFilePath, nullptr, MMIO_READ);
-    if(hMMIO == nullptr) {
+    if (hMMIO == nullptr) {
         MessageBox(nullptr, TEXT("readWaveFile: ファイルのオープンに失敗しました。"), nullptr, MB_ICONWARNING);
         return false;
     }
 
     // ファイルが WAVE 形式かどうか判定
     mmckRiff.fccType = mmioStringToFOURCC(TEXT("WAVE"), 0);
-    if(mmioDescend(hMMIO, &mmckRiff, nullptr, MMIO_FINDRIFF) != MMSYSERR_NOERROR) {
+    if (mmioDescend(hMMIO, &mmckRiff, nullptr, MMIO_FINDRIFF) != MMSYSERR_NOERROR) {
         MessageBox(nullptr, TEXT("readWaveFile: WAVEファイルではありません。"), nullptr, MB_ICONWARNING);
         ret = false;
         goto onError;
@@ -34,7 +34,7 @@ bool MmioUtil::ReadWaveFile(WAVEFORMATEX *WaveFormatEX,
 
     // 'fmt ' chunk の読み取り
     mmckFormat.ckid = mmioStringToFOURCC(TEXT("fmt "), 0); // 'fmt 'の4文字目は空白
-    if(mmioDescend(hMMIO, &mmckFormat, nullptr, MMIO_FINDCHUNK) != MMSYSERR_NOERROR) {
+    if (mmioDescend(hMMIO, &mmckFormat, nullptr, MMIO_FINDCHUNK) != MMSYSERR_NOERROR) {
         MessageBox(nullptr, TEXT("readWaveFile: 無効なファイルです。(no 'fmt ' chunk)"), nullptr, MB_ICONWARNING);
         ret = false;
         goto onError;
@@ -43,7 +43,7 @@ bool MmioUtil::ReadWaveFile(WAVEFORMATEX *WaveFormatEX,
     // PCM データかどうか判定
     mmioRead(hMMIO, reinterpret_cast<HPSTR>(WaveFormatEX), mmckFormat.cksize);
     mmioAscend(hMMIO, &mmckFormat, 0);
-    if(WaveFormatEX->wFormatTag != WAVE_FORMAT_PCM) {
+    if (WaveFormatEX->wFormatTag != WAVE_FORMAT_PCM) {
         MessageBox(nullptr, TEXT("readWaveFile: PCMデータではありません。"), nullptr, MB_ICONWARNING);
         ret = false;
         goto onError;
@@ -51,7 +51,7 @@ bool MmioUtil::ReadWaveFile(WAVEFORMATEX *WaveFormatEX,
 
     // data chunk の読み取り
     mmckData.ckid = mmioStringToFOURCC(TEXT("data"), 0);
-    if(mmioDescend(hMMIO, &mmckData, nullptr, MMIO_FINDCHUNK) != MMSYSERR_NOERROR) {
+    if (mmioDescend(hMMIO, &mmckData, nullptr, MMIO_FINDCHUNK) != MMSYSERR_NOERROR) {
         MessageBox(nullptr, TEXT("readWaveFile: data chunk を読み取れませんでした。"), nullptr, MB_ICONWARNING);
         ret = false;
         goto onError;

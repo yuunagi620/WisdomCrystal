@@ -27,6 +27,7 @@
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\util\CSVUtil.h" />
     <ClInclude Include="src\util\MathUtil.h" />
+    <ClInclude Include="src\util\String.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DTextData.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="src\win\util\HighResolutionTimer.h" />
     <ClInclude Include="src\win\util\Input.h" />
     <ClInclude Include="src\win\util\SafeRelease.h" />
+    <ClInclude Include="src\win\util\WinString.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
     <ClInclude Include="src\win\XA2\MmioUtil.h" />
@@ -75,6 +77,7 @@
     <ClCompile Include="src\win\util\FPSCounter.cpp" />
     <ClCompile Include="src\win\util\HighResolutionTimer.cpp" />
     <ClCompile Include="src\win\util\Input.cpp" />
+    <ClCompile Include="src\win\util\WinString.cpp" />
     <ClCompile Include="src\win\WIC\WICCore.cpp" />
     <ClCompile Include="src\win\XA2\BGMData.cpp" />
     <ClCompile Include="src\win\XA2\MmioUtil.cpp" />

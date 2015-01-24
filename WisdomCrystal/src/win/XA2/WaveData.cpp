@@ -18,7 +18,7 @@ WaveData::~WaveData() {
 }
 
 
-bool WaveData::Init(TCHAR *waveFilePath) {
+bool WaveData::Init(TCHAR* waveFilePath) {
 
     if (MmioUtil::ReadWaveFile(&mFormatEx, &mDataBuffer, &mDataSize, waveFilePath) == false) {
         return false; // WaveFile ‚Ì“Ç‚ÝŽæ‚è‚ÉŽ¸”s

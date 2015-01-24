@@ -36,6 +36,8 @@
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\WisdomCrystal.h" />
     <ClInclude Include="src\scene\SceneChanger.h" />
+    <ClInclude Include="src\util\String.h" />
+    <ClInclude Include="src\win\util\WinString.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -71,5 +73,6 @@
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\WisdomCrystal.cpp" />
     <ClCompile Include="src\scene\SceneChanger.cpp" />
+    <ClCompile Include="src\win\util\WinString.cpp" />
   </ItemGroup>
 </Project>
