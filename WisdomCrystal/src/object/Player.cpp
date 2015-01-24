@@ -25,23 +25,19 @@ const int   Player::ROTATION_RATE = 10;
 // Static member variables
 Player      Player::mPlayer;
 
-ID2D1Bitmap *Player::mImage = nullptr;
-D2D1_RECT_F Player::mImageSrcRect;
-
-SEData      Player::mJumpSE;
-SEData      Player::mGameOverSE;
-
 
 Player::Player() : mGraphicsDevice(nullptr),
+                   mSoundDevice(nullptr),
+                   mImage(nullptr),
+                   mImageSrcRect(),
+                   mJumpSE(),
+                   mGameOverSE(),
                    mD2DTextData(),
                    mX(0),
                    mY(0),
-                   mVY(0),
                    mIsAlive(false),
                    mIsLeft(false),
-                   mIsJump(false),
                    mIsGameOver(false),
-                   mIsGameClear(false),
                    mPlayerStatus(NORMAL) {
     // empty
 }
@@ -100,11 +96,6 @@ void Player::Cleanup() {
 
 
 void Player::Update() {
-
-    if (mIsAlive == false) {
-        return;
-    }
-
     int dx = 0;
     int dy = 0;
     
@@ -144,13 +135,10 @@ void Player::Deactivate() {
     mIsAlive = false;
     mX = 0;
     mY = 0;
-    mVY = 0;
     mPlayerStatus = NORMAL;
     mIsAlive = false;
     mIsLeft = true;
-    mIsJump = true;
     mIsGameOver = false;
-    mIsGameClear = false;
 }
 
 
@@ -186,7 +174,7 @@ void Player::gameOverAnimetion() {
 
 
 // index‚ðŒ³‚É‰æ‘œ‚Ì—Ìˆæ‚ðŽw’è
-void Player::changeImage(int imageIndex) {
+void Player::changeImage(const int imageIndex) {
     mImageSrcRect = 
         D2D1::RectF(static_cast<float>((imageIndex % PLAYER_IMAGE_ROW)     * PLAYER_IMAGE_WIDTH),
                     static_cast<float>((imageIndex / PLAYER_IMAGE_ROW)     * PLAYER_IMAGE_HEIGHT),
@@ -204,7 +192,7 @@ D2D1_RECT_F Player::getRectF() {
 }
 
 
-RECT Player::getHitRect(int dx, int dy) {
+RECT Player::getHitRect(const int dx, const int dy) {
     RECT rect = {
         mX + dx + HIT_REGION_MEAGIN_WIDTH,
         mY + dy + HIT_REGION_MEAGIN_HEIGHT,

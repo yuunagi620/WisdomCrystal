@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "object/GameObject.h"
+#include "GameObject.h"
 #include "win/D2D/D2DTextData.h"
 
 typedef enum PlayerStatusTag {
@@ -40,6 +40,14 @@ public:
     }
 
 private:
+    void draw();
+    void gameOverAnimetion();
+    void changeImage(const int index);
+    D2D1_RECT_F getRectF();
+    RECT getHitRect(const int dx, const int dy);
+
+    void soundSE(PlayerSE playerSE);
+
     static const int   PLAYER_IMAGE_WIDTH;
     static const int   PLAYER_IMAGE_HEIGHT;
     static const int   PLAYER_IMAGE_ROW;
@@ -51,36 +59,24 @@ private:
     static const int   HIT_REGION_MEAGIN_WIDTH;
     static const int   HIT_REGION_MEAGIN_HEIGHT;
     static const int   ROTATION_RATE;
-
-    void draw();
-    void gameOverAnimetion();
-    void changeImage(int index);
-    D2D1_RECT_F getRectF();
-    RECT getHitRect(int dx, int dy);
-
-    void soundSE(PlayerSE playerSE);
-
     static Player mPlayer;
-    
-    static ID2D1Bitmap *mImage;
-    static D2D1_RECT_F mImageSrcRect;
-
-    static SEData mJumpSE;
-    static SEData mGameOverSE;
 
     GraphicsDevice* mGraphicsDevice;
     SoundDevice* mSoundDevice;
 
+    ID2D1Bitmap* mImage;
+    D2D1_RECT_F mImageSrcRect;
+
+    SEData mJumpSE;
+    SEData mGameOverSE;
+
     D2DTextData mD2DTextData;
 
     int mX, mY;
-    float mVY;
 
     bool mIsAlive;
     bool mIsLeft;
-    bool mIsJump;
     bool mIsGameOver;
-    bool mIsGameClear;
 
     PlayerStatus mPlayerStatus;
 };

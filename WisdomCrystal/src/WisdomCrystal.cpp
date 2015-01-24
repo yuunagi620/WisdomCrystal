@@ -200,6 +200,7 @@ void WisdomCrystal::onUpdate() {
     
     mBackGround.Draw();
     mSceneChanger.UpdateScene(&mGameObjManager);
+    
 
     HRESULT hr = mGraphicsDevice.EndDraw();
     if (hr == D2DERR_RECREATE_TARGET) {
