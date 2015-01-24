@@ -12,22 +12,13 @@
 
 
 // Includes
-#include "WisdomCrystal.h"
+#include <CommCtrl.h>
 
-#include "object/GameObjManager.h"
-#include "MapManager.h"
-#include "scene/Title.h"
+#include "WisdomCrystal.h"
 
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
-
 #include "win/joypad/Joypad.h"
-
-#include "util/MathUtil.h"
-
-#include <d3d10_1.h>
-#include <XAudio2.h>
-#include <CommCtrl.h>
 
 
 WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
@@ -50,7 +41,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
 
 
 WisdomCrystal::~WisdomCrystal() {
-    // empty
+    Cleanup();
 }
 
 
