@@ -1,22 +1,22 @@
-// SceneManager.cpp
+// SceneChanger.cpp
 
 
 // Includes
-#include "SceneManager.h"
+#include "SceneChanger.h"
 #include "scene/Title.h"
 
 
-SceneManager::SceneManager() : mCurrentScene(new Title) {
+SceneChanger::SceneChanger() : mCurrentScene(new Title) {
     // empty
 }
 
 
-SceneManager::~SceneManager() {
+SceneChanger::~SceneChanger() {
     // empty
 }
 
 
-void SceneManager::UpdateScene(GameObjManager *gameObjManager) {
+void SceneChanger::UpdateScene(GameObjManager *gameObjManager) {
 
     // CurrentScene ‚Ì Update ‚ÌŒã, ŽŸ‚Ìê–Ê‚ð nextScene ‚É“ü‚ê‚Ä‚¨‚­
     Scene* nextScene = mCurrentScene->Update(gameObjManager);

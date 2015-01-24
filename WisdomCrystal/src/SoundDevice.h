@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <boost/noncopyable.hpp>
 
-#include "win/XA2/XA2Core.h"
+#include "StdAfx.h"
 
 
 class SoundDevice : private boost::noncopyable {

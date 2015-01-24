@@ -34,7 +34,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
       mSoundDevice(),
       mBackGround(),
       mGameObjManager(),
-      mSceneManager()
+      mSceneChanger()
 {
     // empty
 }
@@ -199,7 +199,7 @@ void WisdomCrystal::onUpdate() {
     mGraphicsDevice.BeginDraw();
     
     mBackGround.Draw();
-    mSceneManager.UpdateScene(&mGameObjManager);
+    mSceneChanger.UpdateScene(&mGameObjManager);
 
     HRESULT hr = mGraphicsDevice.EndDraw();
     if (hr == D2DERR_RECREATE_TARGET) {

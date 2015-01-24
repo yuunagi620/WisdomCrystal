@@ -18,11 +18,11 @@
     <ClInclude Include="src\object\GameObjManager.h" />
     <ClInclude Include="src\object\Player.h" />
     <ClInclude Include="src\object\SolidBlock.h" />
-    <ClInclude Include="src\SceneManager.h" />
     <ClInclude Include="src\scene\Error.h" />
     <ClInclude Include="src\scene\Loading.h" />
     <ClInclude Include="src\scene\Playing.h" />
     <ClInclude Include="src\scene\Scene.h" />
+    <ClInclude Include="src\scene\SceneChanger.h" />
     <ClInclude Include="src\scene\Title.h" />
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
@@ -55,11 +55,11 @@
     <ClCompile Include="src\object\GameObjManager.cpp" />
     <ClCompile Include="src\object\Player.cpp" />
     <ClCompile Include="src\object\SolidBlock.cpp" />
-    <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\scene\Error.cpp" />
     <ClCompile Include="src\scene\Loading.cpp" />
     <ClCompile Include="src\scene\Playing.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
+    <ClCompile Include="src\scene\SceneChanger.cpp" />
     <ClCompile Include="src\scene\Title.cpp" />
     <ClCompile Include="src\SoundDevice.cpp" />
     <ClCompile Include="src\StdAfx.cpp">
@@ -127,8 +127,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>$(ProjectDir)/src/StdAfx.h</PrecompiledHeaderFile>
-      <ForcedIncludeFiles>$(ProjectDir)/src/StdAfx.h</ForcedIncludeFiles>
+      <PrecompiledHeaderFile>$(ProjectDir)src/StdAfx.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)src\StdAfx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

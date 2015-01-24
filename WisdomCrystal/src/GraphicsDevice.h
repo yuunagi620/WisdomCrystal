@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <boost/noncopyable.hpp>
 
+#include "StdAfx.h"
 #include "win/WIC/WICCore.h"
 
 

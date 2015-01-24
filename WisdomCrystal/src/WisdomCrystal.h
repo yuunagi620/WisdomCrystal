@@ -9,7 +9,7 @@
 #include "SoundDevice.h"
 #include "BackGround.h"
 #include "object/GameObjManager.h"
-#include "SceneManager.h"
+#include "scene/SceneChanger.h"
 
 
 // ƒXƒNƒŠ[ƒ“ŠÖŒW
@@ -57,5 +57,5 @@ private:
     SoundDevice mSoundDevice;
     BackGround mBackGround;
     GameObjManager mGameObjManager;
-    SceneManager mSceneManager;
+    SceneChanger mSceneChanger;
 };

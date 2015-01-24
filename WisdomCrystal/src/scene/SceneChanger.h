@@ -1,4 +1,4 @@
-// SceneManager.h
+// SceneChanger.h
 
 #include <boost/noncopyable.hpp>
 
@@ -6,11 +6,11 @@
 #include "object/GameObjManager.h"
 
 
-class SceneManager : private boost::noncopyable {
+class SceneChanger : private boost::noncopyable {
 
 public:
-    SceneManager();
-    virtual ~SceneManager();
+    SceneChanger();
+    virtual ~SceneChanger();
 
     void UpdateScene(GameObjManager *gameObjManager);
 
