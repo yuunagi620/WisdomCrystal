@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <array>
 #include <boost/noncopyable.hpp>
 
 #include "GameObject.h"
@@ -25,6 +26,7 @@ public:
 private:
     void activateForInitAndCleanup();
 
-    static GameObjManager mGameObjManager;
-    static std::vector<GameObject*> mActiveGameObjects;
+    static const int MAX_GAME_OBJCT = 1080;
+
+    std::array<GameObject*, MAX_GAME_OBJCT> mActiveGameObjects;
 };

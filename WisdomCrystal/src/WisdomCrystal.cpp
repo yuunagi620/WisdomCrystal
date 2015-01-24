@@ -14,7 +14,6 @@
 // Includes
 #include "WisdomCrystal.h"
 
-#include "BackGround.h"
 #include "object/GameObjManager.h"
 #include "MapManager.h"
 #include "scene/Title.h"
@@ -237,7 +236,7 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
 
     // debug
     if (wParam == VK_F1) {
-        MessageBox(nullptr, TEXT("joypad debug"), TEXT("ERROR"), MB_OK);       
+        MessageBox(nullptr, TEXT("debug"), TEXT("ERROR"), MB_OK);       
     }
 
 }

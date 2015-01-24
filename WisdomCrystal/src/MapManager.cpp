@@ -19,7 +19,7 @@ const std::string MapManager::FILENAME_EXTENSION = ".csv";
 
 
 MapManager::MapManager() : mMapData() {
-    std::fill(std::begin(mMapData), std::end(mMapData), 0); // 0で初期化
+    std::fill(std::begin(mMapData), std::end(mMapData), 0);
 }
 
 
@@ -47,17 +47,22 @@ bool MapManager::LoadMapDataFile(const int mapID) {
 
 
 bool MapManager::ActivateGameObj(GameObjManager* gameObjManager) {
-    for (int j = 0; j < MAP_ROW; ++j) {
-        for (int i = 0; i < MAP_COL; ++i) {
+    try {
 
-            if (gameObjManager->Activate(i * MAP_CHIP_WIDTH,
-                                         j * MAP_CHIP_HEIGHT,
-                                         mMapData.at(i + j * MAP_COL)) == false) {
+        for (int j = 0; j < MAP_ROW; ++j) {
+            for (int i = 0; i < MAP_COL; ++i) {
 
-                return false;
+                if (gameObjManager->Activate(i * MAP_CHIP_WIDTH,
+                                             j * MAP_CHIP_HEIGHT,
+                                             mMapData.at(i + j * MAP_COL)) == false) {
+
+                    return false;
+                }
+
             }
-
         }
+    } catch (const std::out_of_range&) {
+        return false; // 範囲外アクセスした
     }
 
     return true;

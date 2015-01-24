@@ -8,13 +8,8 @@
 #include "SolidBlock.h"
 
 
-// Static member variables
-GameObjManager           GameObjManager::mGameObjManager;
-std::vector<GameObject*> GameObjManager::mActiveGameObjects; // アクティブ化したゲームオブジェクト
-
-
-GameObjManager::GameObjManager() {
-    // empty    
+GameObjManager::GameObjManager() : mActiveGameObjects() {
+    std::fill(std::begin(mActiveGameObjects), std::end(mActiveGameObjects), nullptr);
 }
 
 
@@ -24,13 +19,13 @@ GameObjManager::~GameObjManager() {
 
 
 bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
-    mActiveGameObjects.reserve(1000);
-
     activateForInitAndCleanup();
 
     for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
-        if ((*it)->Init(graphicsDevice, soundDevice) == false) {
-            return false; // GamaObject の初期化に失敗
+        if (*it != nullptr) {
+            if ((*it)->Init(graphicsDevice, soundDevice) == false) {
+                return false; // GamaObject の初期化に失敗
+            }
         }
     }
 
@@ -44,7 +39,9 @@ void GameObjManager::Cleanup() {
     activateForInitAndCleanup();
 
     for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
-        (*it)->Cleanup();
+        if (*it != nullptr) {
+            (*it)->Cleanup();
+        }
     }
 }
 
@@ -64,8 +61,7 @@ void GameObjManager::Deactivate() {
             (*it)->Deactivate();
         }
     }
-
-    mActiveGameObjects.clear();
+    std::fill(std::begin(mActiveGameObjects), std::end(mActiveGameObjects), nullptr);
 }
 
 
@@ -81,9 +77,15 @@ bool GameObjManager::Activate(int initX, int initY, int objID) {
         default: obj = nullptr;
     }
 
-    if (obj != nullptr) {
-        mActiveGameObjects.push_back(obj);
+    static int index = 0;
+    
+    try {
+        mActiveGameObjects.at(index) = obj;
+    } catch (const std::out_of_range&) {
+        return false;
     }
+
+    ++index;
 
     return true;
 }

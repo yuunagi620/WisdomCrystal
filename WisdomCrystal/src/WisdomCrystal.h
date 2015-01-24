@@ -11,8 +11,6 @@
 #include "object/GameObjManager.h"
 #include "SceneManager.h"
 
-#include "win/D2D/D2DTextData.h"
-
 
 // ƒXƒNƒŠ[ƒ“ŠÖŒW
 const double FPS = 60.0;
