@@ -5,7 +5,6 @@
 #include "WisdomCrystal.h"
 
 #include "Player.h"
-#include "SolidBlock.h"
 
 
 GameObjManager::GameObjManager() : mActiveGameObjects() {
@@ -72,7 +71,6 @@ bool GameObjManager::Activate(int initX, int initY, int objID) {
     switch (objID) {
         case 0:  obj = nullptr;                                   break;
         case 1:  obj = Player::Activate(initX, initY);            break;
-        case 2:  obj = SolidBlock::Activate(initX, initY, objID); break;
 
         default: obj = nullptr;
     }
