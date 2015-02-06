@@ -34,7 +34,6 @@ public:
 private:
     std::shared_ptr<BYTE> mBuffer;
     long mDataSize;
-
 };
 
 

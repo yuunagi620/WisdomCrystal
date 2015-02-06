@@ -4,6 +4,7 @@
 
 #include <Windows.h>
 #include <memory>
+#include <vector>
 
 
 class WaveData {
@@ -25,6 +26,9 @@ public:
     }
 
 private:
+    bool ReadWaveFile();
+
+    LPTSTR mWaveFilePath;
     std::shared_ptr<BYTE> mDataBuffer;
 
     WAVEHDR mHeader;

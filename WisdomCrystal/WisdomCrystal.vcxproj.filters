@@ -23,7 +23,6 @@
     <ClInclude Include="src\win\util\SafeRelease.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
-    <ClInclude Include="src\win\XA2\MmioUtil.h" />
     <ClInclude Include="src\win\XA2\SEData.h" />
     <ClInclude Include="src\win\XA2\SoundPacket.h" />
     <ClInclude Include="src\win\XA2\WaveData.h" />
@@ -59,7 +58,6 @@
     <ClCompile Include="src\win\util\Input.cpp" />
     <ClCompile Include="src\win\WIC\WICCore.cpp" />
     <ClCompile Include="src\win\XA2\BGMData.cpp" />
-    <ClCompile Include="src\win\XA2\MmioUtil.cpp" />
     <ClCompile Include="src\win\XA2\SEData.cpp" />
     <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
     <ClCompile Include="src\win\XA2\WaveData.cpp" />
