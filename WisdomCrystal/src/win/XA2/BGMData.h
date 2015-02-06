@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "SoundPacket.h"
-#include <vector>
+#include "WaveData.h"
+
 
 class BGMData {
 
@@ -11,7 +11,7 @@ public:
     explicit BGMData(const unsigned int packetNum = 3);
     virtual ~BGMData();
 
-    bool Init(SoundDevice* soundDevice, TCHAR *inWaveFilePath);
+    bool Init(SoundDevice* soundDevice, LPTSTR waveFilePath);
     void Cleanup();
 
     void StartBGM();
@@ -19,12 +19,9 @@ public:
 
     void SetBGMVolume(const float volume);
 
+    void ResetSourceVoice();
+
 private:
-    const unsigned int SOUND_PACKET_NUM;
-
+    WaveData mWaveData;
     IXAudio2SourceVoice *mSourceVoiceForBGM;
-    std::vector<SoundPacket> mBGMSoundPacket;
-    int mNextBGMPacket;
-
-    void divideWaveData(const WaveData& waveData);
 };

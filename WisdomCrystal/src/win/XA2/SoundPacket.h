@@ -6,6 +6,7 @@
 
 #include <XAudio2.h>
 #include <memory>
+#include <vector>
 
 
 class SoundPacket {
@@ -14,25 +15,24 @@ public:
     SoundPacket();
     virtual ~SoundPacket();
 
-    bool Init(const BYTE *srcBuffer, const long dataSize);
-    bool Init(const WaveData& waveData);
+    bool Init(std::vector<BYTE> *srcBuffer, const long dataSize);
+    bool Init(WaveData* waveData);
 
-    inline BYTE *GetBuffer() const {
-        return mBuffer.get();
+    inline BYTE* GetBuffer() {
+        return &mBuffer.front();
     }
-
     inline const long GetDataSize() const {
         return mDataSize;
     }
 
     static void AddSoundPacket(IXAudio2SourceVoice *targetSourceVoice,
-                               const SoundPacket& soundPacket);
+                               SoundPacket *soundPacket);
 
     static void ResetSourceVoice(IXAudio2SourceVoice *targetSourceVoice,
-                                 const SoundPacket& soundPacket);
+                                 SoundPacket *soundPacket);
 
 private:
-    std::shared_ptr<BYTE> mBuffer;
+    std::vector<BYTE> mBuffer;
     long mDataSize;
 };
 

@@ -13,25 +13,24 @@ public:
     WaveData();
     virtual ~WaveData();
 
-    bool Init(TCHAR *waveFilePath);
+    bool Init(LPTSTR waveFilePath);
 
-    inline WAVEFORMATEX *GetWaveFormatExPtr() {
+    inline WAVEFORMATEX* GetWaveFormatExPtr() {
         return &mFormatEx;
+    }
+    inline BYTE* GetDataBuffer() {
+        return &mDataBuffer.front();
     }
     inline const DWORD GetDataSize() const {
         return mDataSize;
-    }
-    inline BYTE *GetDataBuffer() const {
-        return mDataBuffer.get();
     }
 
 private:
     bool ReadWaveFile();
 
     LPTSTR mWaveFilePath;
-    std::shared_ptr<BYTE> mDataBuffer;
+    std::vector<BYTE> mDataBuffer;
 
-    WAVEHDR mHeader;
     WAVEFORMATEX mFormatEx;
     DWORD mDataSize;
 };

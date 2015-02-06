@@ -4,10 +4,8 @@
 #include "BGMData.h"
 
 
-BGMData::BGMData(const unsigned int packetNum) : SOUND_PACKET_NUM(packetNum),
-                                                 mSourceVoiceForBGM(nullptr),
-                                                 mBGMSoundPacket(SOUND_PACKET_NUM),
-                                                 mNextBGMPacket(-1) {
+BGMData::BGMData(const unsigned int packetNum) : mWaveData(),
+                                                 mSourceVoiceForBGM(nullptr) {
 
     // empty
 }
@@ -18,23 +16,17 @@ BGMData::~BGMData() {
 }
 
 
-bool BGMData::Init(SoundDevice* soundDevice, TCHAR *waveFilePath) {
-    WaveData waveData;
+bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
 
-    if (waveData.Init(waveFilePath) == false) {
+    if (mWaveData.Init(waveFilePath) == false) {
         MessageBox(nullptr, TEXT("Can not read waveData."), TEXT("ERROR"), MB_OK);
         return false; // BGM データの読み込みに失敗
     }
 
-    if (soundDevice->CreateSourceVoice(&mSourceVoiceForBGM, waveData.GetWaveFormatExPtr()) == false) {
+    if (soundDevice->CreateSourceVoice(&mSourceVoiceForBGM, mWaveData.GetWaveFormatExPtr()) == false) {
         MessageBox(nullptr, TEXT("Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice の作成に失敗
     }
-
-    divideWaveData(waveData);
-
-    SoundPacket::AddSoundPacket(mSourceVoiceForBGM, mBGMSoundPacket[0]);
-    mNextBGMPacket = 1;
     
     return true;
 }
@@ -55,17 +47,7 @@ void BGMData::StartBGM() {
 
 
 void BGMData::UpdateBGM() {
-
-    XAUDIO2_VOICE_STATE state;
-    mSourceVoiceForBGM->GetState(&state);
-
-    if (state.BuffersQueued >= SOUND_PACKET_NUM) {
-        return;
-    }
-
-    SoundPacket::AddSoundPacket(mSourceVoiceForBGM, mBGMSoundPacket[mNextBGMPacket]);
-    ++mNextBGMPacket;
-    mNextBGMPacket %= SOUND_PACKET_NUM; // 最大値を超えたら先頭へ
+    ResetSourceVoice();
 }
 
 
@@ -74,24 +56,12 @@ void BGMData::SetBGMVolume(const float volume) {
 }
 
 
-void BGMData::divideWaveData(const WaveData& waveData) {
+// 現在再生している音をリセットしてボイスキューにバッファーを追加
+void BGMData::ResetSourceVoice() {
+    XAUDIO2_BUFFER buffer = {0};
+    buffer.AudioBytes = mWaveData.GetDataSize();
+    buffer.pAudioData = mWaveData.GetDataBuffer();
+    buffer.Flags = XAUDIO2_END_OF_STREAM;
 
-    long dividedDataSize = 0; // すでに分割されたデータサイズ
-    auto it = mBGMSoundPacket.begin(); // iterator
-
-    // 最後の1つをまで分割
-    while (it != (mBGMSoundPacket.end() - 1)) {
-
-        int index = std::distance(mBGMSoundPacket.begin(), it);
-        
-        it->Init(waveData.GetDataBuffer() + dividedDataSize,
-                (waveData.GetDataSize()   - dividedDataSize) / (SOUND_PACKET_NUM - index));
-
-        dividedDataSize += it->GetDataSize();
-        ++it;
-    }
-
-    // 最後の1つは割り算の端数を考慮してデータサイズを決める
-    it->Init(waveData.GetDataBuffer() + dividedDataSize,
-             waveData.GetDataSize()   - dividedDataSize);
+    HRESULT hr = mSourceVoiceForBGM->SubmitSourceBuffer(&buffer);
 }

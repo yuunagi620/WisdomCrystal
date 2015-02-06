@@ -94,6 +94,7 @@ bool WisdomCrystal::Init() {
 
     mBGMData.SetBGMVolume(START_BGM_VOLUME);
     mBGMData.StartBGM();
+    mBGMData.UpdateBGM();
 
     // GameObjManager ÇÃèâä˙âª
     if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
@@ -154,10 +155,11 @@ int WisdomCrystal::MessageLoop() {
                 onUpdate();
                 fpsCounter.CountFPS();
                 DebugManager::OutputValue(fpsCounter.GetFPS());
+                
             }
             
             UpdateWindow(GetHWnd());
-            mBGMData.UpdateBGM();
+            //mBGMData.UpdateBGM();
         }
 
     }
