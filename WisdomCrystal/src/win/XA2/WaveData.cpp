@@ -2,7 +2,6 @@
 
 // Includes
 #include "WaveData.h"
-#include "MmioUtil.h"
 
 
 WaveData::WaveData() : mWaveFilePath(nullptr),
@@ -22,22 +21,20 @@ WaveData::~WaveData() {
 bool WaveData::Init(LPTSTR waveFilePath) {
     mWaveFilePath = waveFilePath;
 
-    if (ReadWaveFile() == false) {
-        return false; // WaveFile の読み取りに失敗
+    if (readWaveFile() == false) {
+        return false;
     }
     return true;
 }
 
 
-bool WaveData::ReadWaveFile() {
+bool WaveData::readWaveFile() {
+    bool ret = true;
+
     HMMIO hMMIO;
     MMCKINFO mmckRiff;
     MMCKINFO mmckFormat;
     MMCKINFO mmckData;
-
-    std::vector<BYTE> tempBuffer;
-
-    bool ret = true;
 
     // ファイルのオープン
     hMMIO = mmioOpen(mWaveFilePath, nullptr, MMIO_READ);
@@ -79,16 +76,19 @@ bool WaveData::ReadWaveFile() {
         goto cleanup;
     }
 
-    // mBuffer を mmckData.cksize バイト確保
-    tempBuffer.resize(mmckData.cksize);
+    // mmckData.cksize バイト分確保
+    mDataBuffer.resize(mmckData.cksize);
 
-    // WAVE データのサイズ分データを取得
-    mmioRead(hMMIO, reinterpret_cast<HPSTR>(&tempBuffer.front()), tempBuffer.size());
+    // WAVE データのサイズ分データを mDataBuffer に読み取る
+    if (mmioRead(hMMIO, reinterpret_cast<HPSTR>(&mDataBuffer.front()), mDataBuffer.size()) == -1) {
+        MessageBox(nullptr, TEXT("WaveData: データの読み取りに失敗しました．"), nullptr, MB_ICONWARNING);
+        ret = false;
+        goto cleanup;
+    }
 
     // RIFF ファイルの chunk から退出
     mmioAscend(hMMIO, &mmckRiff, 0);
 
-    mDataBuffer = tempBuffer; 
     mDataSize = mmckData.cksize;
 
 cleanup:

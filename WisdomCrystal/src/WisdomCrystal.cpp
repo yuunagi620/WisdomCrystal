@@ -22,6 +22,7 @@
 #include "win/util/WinString.h"
 
 
+
 WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
                              const int screenWidth,
                              const int screenHeight,
@@ -54,7 +55,6 @@ int WisdomCrystal::Run() {
     }
 
     Cleanup();
-    _CrtDumpMemoryLeaks();
 
     return returnCode;
 }

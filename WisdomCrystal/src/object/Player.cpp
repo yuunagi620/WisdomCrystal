@@ -7,7 +7,6 @@
 #include "win/util/Input.h"
 
 
-
 // Constants
 const int   Player::PLAYER_IMAGE_WIDTH  = 32;
 const int   Player::PLAYER_IMAGE_HEIGHT = 32;

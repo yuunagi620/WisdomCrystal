@@ -7,11 +7,6 @@
 #include <boost/lexical_cast.hpp>
 #pragma warning (default: 4005) // C4005 åxçêâèú
 
-// Constants
-const std::basic_string<TCHAR> BackGround::IMAGE_PATH         = TEXT("resources/image/");
-const std::basic_string<TCHAR> BackGround::FILENAME           = TEXT("backGround_");
-const std::basic_string<TCHAR> BackGround::FILENAME_EXTENSION = TEXT(".jpg");
-
 
 BackGround::BackGround() : mGraphicsDevice(nullptr),
                            mImageID(0),
@@ -66,10 +61,9 @@ bool BackGround::ChangeBackGroundImage(const int index) {
 //  âÊëúÇÃÉpÉXÇÃïœçX
 void BackGround::changeImagePath() {
     mImagePath.clear();
-    mImagePath += IMAGE_PATH;
-    mImagePath += FILENAME;
+    mImagePath += TEXT("resources/image/backGround_");
     mImagePath += boost::lexical_cast<TCHAR>(mImageID);
-    mImagePath += FILENAME_EXTENSION;
+    mImagePath += TEXT(".jpg");
 }
 
 

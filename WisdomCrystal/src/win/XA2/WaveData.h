@@ -3,7 +3,6 @@
 #pragma once
 
 #include <Windows.h>
-#include <memory>
 #include <vector>
 
 
@@ -18,7 +17,7 @@ public:
     inline WAVEFORMATEX* GetWaveFormatExPtr() {
         return &mFormatEx;
     }
-    inline BYTE* GetDataBuffer() {
+    inline BYTE* GetDataBufferPtr() {
         return &mDataBuffer.front();
     }
     inline const DWORD GetDataSize() const {
@@ -26,7 +25,7 @@ public:
     }
 
 private:
-    bool ReadWaveFile();
+    bool readWaveFile();
 
     LPTSTR mWaveFilePath;
     std::vector<BYTE> mDataBuffer;

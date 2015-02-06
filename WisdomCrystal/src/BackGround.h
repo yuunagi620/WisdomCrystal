@@ -26,10 +26,6 @@ private:
     bool setBackGroundImage();
     D2D1_RECT_F getRectF();
 
-    static const std::basic_string<TCHAR> IMAGE_PATH;
-    static const std::basic_string<TCHAR> FILENAME;
-    static const std::basic_string<TCHAR> FILENAME_EXTENSION;
-
     GraphicsDevice* mGraphicsDevice;
     int mImageID;
 
