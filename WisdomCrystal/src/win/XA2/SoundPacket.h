@@ -4,7 +4,6 @@
 
 #include "WaveData.h"
 
-#include <XAudio2.h>
 #include <vector>
 
 
@@ -17,8 +16,8 @@ public:
     bool Init(std::vector<BYTE> *srcBuffer);
     bool Init(WaveData* waveData);
 
-    inline BYTE* GetBuffer() {
-        return &mBuffer.front();
+    inline std::vector<BYTE>* GetBufferPtr() {
+        return &mBuffer;
     }
     inline const long GetDataSize() const {
         return mDataSize;

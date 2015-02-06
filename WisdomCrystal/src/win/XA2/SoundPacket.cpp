@@ -29,6 +29,5 @@ bool SoundPacket::Init(std::vector<BYTE> *srcBuffer) {
 
 // WaveData ‚Ì‚Ý‚ðŽó‚¯Žæ‚Á‚½‚Æ‚«‚Ì‰Šú‰»
 bool SoundPacket::Init(WaveData* waveData) {
-    return false;
-    //return Init(waveData->GetDataBufferPtr());
+    return Init(waveData->GetDataBufferPtr());
 }

@@ -60,7 +60,7 @@ void BGMData::SetBGMVolume(const float volume) {
 void BGMData::ResetSourceVoice() {
     XAUDIO2_BUFFER buffer = {0};
     buffer.AudioBytes = mWaveData.GetDataSize();
-    buffer.pAudioData = mWaveData.GetDataBufferPtr();
+    buffer.pAudioData = &(mWaveData.GetDataBufferPtr()->front());
     buffer.Flags = XAUDIO2_END_OF_STREAM;
 
     mSourceVoiceForBGM->SubmitSourceBuffer(&buffer);
@@ -70,7 +70,7 @@ void BGMData::ResetSourceVoice() {
 void BGMData::AddSoundPacket() {
     XAUDIO2_BUFFER buffer = {0};
     buffer.AudioBytes = mWaveData.GetDataSize();
-    buffer.pAudioData = mWaveData.GetDataBufferPtr();
+    buffer.pAudioData = &(mWaveData.GetDataBufferPtr()->front());
     buffer.Flags = 0;
 
     mSourceVoiceForBGM->SubmitSourceBuffer(&buffer);

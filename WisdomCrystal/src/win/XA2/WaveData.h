@@ -17,8 +17,8 @@ public:
     inline WAVEFORMATEX* GetWaveFormatExPtr() {
         return &mFormatEx;
     }
-    inline BYTE* GetDataBufferPtr() {
-        return &mDataBuffer.front();
+    inline std::vector<BYTE>* GetDataBufferPtr() {
+        return &mDataBuffer;
     }
     inline const DWORD GetDataSize() const {
         return mDataSize;
