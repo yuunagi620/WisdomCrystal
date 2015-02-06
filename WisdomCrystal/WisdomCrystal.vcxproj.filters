@@ -36,6 +36,7 @@
     <ClInclude Include="src\scene\SceneChanger.h" />
     <ClInclude Include="src\util\String.h" />
     <ClInclude Include="src\win\util\WinString.h" />
+    <ClInclude Include="src\win\XA2\SoundPacket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -70,5 +71,6 @@
     <ClCompile Include="src\WisdomCrystal.cpp" />
     <ClCompile Include="src\scene\SceneChanger.cpp" />
     <ClCompile Include="src\win\util\WinString.cpp" />
+    <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
   </ItemGroup>
 </Project>

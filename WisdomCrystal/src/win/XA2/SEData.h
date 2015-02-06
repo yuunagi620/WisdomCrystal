@@ -18,7 +18,7 @@ public:
     void StartSE();
     void SetSEVolume(const float volume);
     void ResetSourceVoice();
-
+    
 private:
     WaveData mWaveData;
     IXAudio2SourceVoice *mSourceVoiceForSE;

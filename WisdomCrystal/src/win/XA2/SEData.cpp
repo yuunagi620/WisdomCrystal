@@ -16,12 +16,12 @@ SEData::~SEData() {
 
 bool SEData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
     if (mWaveData.Init(waveFilePath) == false) {
-        MessageBox(nullptr, TEXT("Can not read waveData."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("SEData: Can not read waveData."), TEXT("ERROR"), MB_OK);
         return false; // SE ÉfÅ[É^ÇÃì«Ç›çûÇ›Ç…é∏îs
     }
 
     if (soundDevice->CreateSourceVoice(&mSourceVoiceForSE, mWaveData.GetWaveFormatExPtr()) == false) {
-        MessageBox(nullptr, TEXT("Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("SEData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice ÇÃçÏê¨Ç…é∏îs
     }
 

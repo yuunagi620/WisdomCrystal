@@ -20,6 +20,7 @@ public:
     void SetBGMVolume(const float volume);
 
     void ResetSourceVoice();
+    void AddSoundPacket();
 
 private:
     WaveData mWaveData;
