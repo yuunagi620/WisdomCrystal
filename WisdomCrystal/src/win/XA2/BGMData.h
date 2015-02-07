@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "WaveData.h"
-#include "SoundPacket.h"
 
 
 class BGMData {
@@ -22,11 +21,10 @@ public:
 
     void SetBGMVolume(const float volume);
 
-private:
-    bool divideWaveData();
+    void ResetSourceVoice();
 
+private:
     WaveData mWaveData;
-    std::vector<SoundPacket>mSoundPacket;
     int mNextPacket;
     
     IXAudio2SourceVoice *mSourceVoiceForBGM;
