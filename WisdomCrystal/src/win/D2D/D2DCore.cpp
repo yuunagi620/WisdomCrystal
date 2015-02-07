@@ -5,14 +5,12 @@
 // Includes
 #include "D2DCore.h"
 #include "win/util/SafeRelease.h"
-
-
-// Static member variables
-ID2D1RenderTarget *D2DCore::mRenderTarget = nullptr;
+#include "win/util/Deleter.h"
 
 
 D2DCore::D2DCore() : mD2DFactory(nullptr),
-                     mWriteFactory(nullptr)
+                     mWriteFactory(nullptr),
+                     mRenderTarget(nullptr)
 {
     // empty
 }

@@ -7,6 +7,7 @@
 #include <Dwrite.h>
 
 #include <string>
+#include <memory>
 #include <boost/noncopyable.hpp>
 
 
@@ -46,7 +47,6 @@ private:
 
     ID2D1Factory      *mD2DFactory;
     IDWriteFactory    *mWriteFactory;
-
-    static ID2D1RenderTarget *mRenderTarget;
+    ID2D1RenderTarget *mRenderTarget;
 
 };

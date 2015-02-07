@@ -14,14 +14,14 @@ public:
 
     bool Init(LPTSTR waveFilePath);
 
-    inline WAVEFORMATEX GetWaveFormatEx() {
+    inline WAVEFORMATEX GetWaveFormatEx() const {
         return mFormatEx;
-    }
-    inline std::vector<BYTE>* GetDataBufferPtr() {
-        return &mDataBuffer;
     }
     inline const DWORD GetDataSize() const {
         return mDataSize;
+    }
+    inline std::vector<BYTE>* GetDataBufferPtr() {
+        return &mDataBuffer;
     }
 
 private:

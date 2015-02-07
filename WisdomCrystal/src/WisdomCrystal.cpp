@@ -19,8 +19,6 @@
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
 #include "win/joypad/Joypad.h"
-#include "win/util/WinString.h"
-
 
 
 WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
