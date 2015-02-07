@@ -10,22 +10,20 @@
 class BGMData {
 
 public:
-    explicit BGMData(const unsigned int packetNum = 2);
+    BGMData();
     virtual ~BGMData();
 
     bool Init(SoundDevice* soundDevice, LPTSTR waveFilePath);
     void Cleanup();
 
-    void StartBGM();
-    void UpdateBGM();
+    void Start();
+    void Stop();
 
     void SetBGMVolume(const float volume);
 
-    void ResetSourceVoice();
+    bool ResetSourceVoice();
 
 private:
     WaveData mWaveData;
-    int mNextPacket;
-    
     IXAudio2SourceVoice *mSourceVoiceForBGM;
 };

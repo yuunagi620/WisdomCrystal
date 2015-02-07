@@ -93,8 +93,7 @@ bool WisdomCrystal::Init() {
     }
 
     mBGMData.SetBGMVolume(START_BGM_VOLUME);
-    mBGMData.StartBGM();
-    mBGMData.UpdateBGM();
+    mBGMData.Start();
 
     // GameObjManager ÇÃèâä˙âª
     if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
@@ -230,7 +229,9 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
 
     // debug
     if (wParam == VK_F1) {
-        MessageBox(nullptr, TEXT("debug"), TEXT("ERROR"), MB_OK);       
+        static bool isOn = false;
+        isOn = !isOn;
+        isOn ? mBGMData.Start() : mBGMData.Stop() ;
     }
 
 }
