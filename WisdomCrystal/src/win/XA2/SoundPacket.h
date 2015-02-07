@@ -13,7 +13,7 @@ public:
     SoundPacket();
     virtual ~SoundPacket();
 
-    bool Init(std::vector<BYTE> *srcBuffer);
+    bool Init(std::vector<BYTE> *srcBuffer, const long begin, const long end);
     bool Init(WaveData* waveData);
 
     inline std::vector<BYTE>* GetBufferPtr() {
@@ -22,6 +22,9 @@ public:
     inline const long GetDataSize() const {
         return mDataSize;
     }
+
+    void ResetSoundPacket(IXAudio2SourceVoice *targetSourceVoice);
+    void AddSoundPacket(IXAudio2SourceVoice *targetSourceVoice);
 
 private:
     std::vector<BYTE> mBuffer;

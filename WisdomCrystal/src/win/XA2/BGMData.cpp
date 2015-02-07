@@ -5,6 +5,8 @@
 
 
 BGMData::BGMData(const unsigned int packetNum) : mWaveData(),
+                                                 mSoundPacket(packetNum),
+                                                 mNextPacket(0),
                                                  mSourceVoiceForBGM(nullptr) {
 
     // empty
@@ -21,6 +23,10 @@ bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
     if (mWaveData.Init(waveFilePath) == false) {
         MessageBox(nullptr, TEXT("Can not read waveData."), TEXT("ERROR"), MB_OK);
         return false; // BGM データの読み込みに失敗
+    }
+
+    if (divideWaveData() == false) {
+        return false;
     }
 
     if (soundDevice->CreateSourceVoice(&mSourceVoiceForBGM, mWaveData.GetWaveFormatExPtr()) == false) {
@@ -47,7 +53,16 @@ void BGMData::StartBGM() {
 
 
 void BGMData::UpdateBGM() {
-    ResetSourceVoice();
+    XAUDIO2_VOICE_STATE state;
+    mSourceVoiceForBGM->GetState(&state);
+
+    if (state.BuffersQueued >= 2) {
+        return;
+    }
+
+    mSoundPacket.at(mNextPacket).AddSoundPacket(mSourceVoiceForBGM);
+    ++mNextPacket;
+    mNextPacket %= 2; // 最大値を超えたら先頭へ
 }
 
 
@@ -56,22 +71,19 @@ void BGMData::SetBGMVolume(const float volume) {
 }
 
 
-// 現在再生している音をリセットしてボイスキューにバッファーを追加
-void BGMData::ResetSourceVoice() {
-    XAUDIO2_BUFFER buffer = {0};
-    buffer.AudioBytes = mWaveData.GetDataSize();
-    buffer.pAudioData = &(mWaveData.GetDataBufferPtr()->front());
-    buffer.Flags = XAUDIO2_END_OF_STREAM;
 
-    mSourceVoiceForBGM->SubmitSourceBuffer(&buffer);
-}
+bool BGMData::divideWaveData() {
+    if (mSoundPacket.at(0).Init(mWaveData.GetDataBufferPtr(), 0, mWaveData.GetDataSize() / 2) == false) {
+        return false;
+    }
+    if (mSoundPacket.at(1).Init(mWaveData.GetDataBufferPtr(), mWaveData.GetDataSize() / 2, mWaveData.GetDataSize()) == false) {
+
+        return false;
+    }
+
+    //ResetSoundPacket();
+    mSoundPacket.at(0).AddSoundPacket(mSourceVoiceForBGM);
 
 
-void BGMData::AddSoundPacket() {
-    XAUDIO2_BUFFER buffer = {0};
-    buffer.AudioBytes = mWaveData.GetDataSize();
-    buffer.pAudioData = &(mWaveData.GetDataBufferPtr()->front());
-    buffer.Flags = 0;
-
-    mSourceVoiceForBGM->SubmitSourceBuffer(&buffer);
+    return true;
 }
