@@ -3,8 +3,10 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include "WaveData.h"
+#include "SourceVoiceDeleter.h"
 
 
 class BGMData {
@@ -25,5 +27,5 @@ public:
 
 private:
     WaveData mWaveData;
-    IXAudio2SourceVoice *mSourceVoiceForBGM;
+    IXAudio2SourceVoice* mSourceVoiceForBGM;
 };

@@ -3,6 +3,7 @@
 #pragma once
 
 #include <Windows.h>
+#include <memory>
 #include <boost/noncopyable.hpp>
 
 #include "StdAfx.h"

@@ -35,11 +35,7 @@ bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
 
 
 void BGMData::Cleanup() {
-    if (mSourceVoiceForBGM != nullptr) {
-        mSourceVoiceForBGM->Stop();
-        mSourceVoiceForBGM->DestroyVoice();
-        mSourceVoiceForBGM = nullptr;
-    }
+    // empty
 }
 
 
