@@ -20,7 +20,7 @@ bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
         return false; // BGM ÉfÅ[É^ÇÃì«Ç›çûÇ›Ç…é∏îs
     }
 
-    if (soundDevice->CreateSourceVoice(&mSourceVoiceForBGM, mWaveData.GetWaveFormatExPtr()) == false) {
+    if (soundDevice->CreateSourceVoice(&mSourceVoiceForBGM, mWaveData.GetWaveFormatEx()) == false) {
         MessageBox(nullptr, TEXT("Can not create source voice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice ÇÃçÏê¨Ç…é∏îs
     }

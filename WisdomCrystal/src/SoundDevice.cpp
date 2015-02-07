@@ -32,7 +32,7 @@ void SoundDevice::Cleanup() {
 
 
 bool SoundDevice::CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
-                                    WAVEFORMATEX *waveFormatEx) {
+                                    const WAVEFORMATEX& waveFormatEx) {
 
     return mXA2Core.CreateSourceVoice(sourceVoice, waveFormatEx);
 }

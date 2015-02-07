@@ -18,7 +18,7 @@ public:
     void Cleanup();
 
     bool CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
-                           WAVEFORMATEX *waveFormatEx);
+                           const WAVEFORMATEX& waveFormatEx);
 private:
     XA2Core mXA2Core;
 };

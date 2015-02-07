@@ -14,8 +14,8 @@ public:
 
     bool Init(LPTSTR waveFilePath);
 
-    inline WAVEFORMATEX* GetWaveFormatExPtr() {
-        return &mFormatEx;
+    inline WAVEFORMATEX GetWaveFormatEx() {
+        return mFormatEx;
     }
     inline std::vector<BYTE>* GetDataBufferPtr() {
         return &mDataBuffer;

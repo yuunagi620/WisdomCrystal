@@ -20,7 +20,7 @@ bool SEData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
         return false; // SE ÉfÅ[É^ÇÃì«Ç›çûÇ›Ç…é∏îs
     }
 
-    if (soundDevice->CreateSourceVoice(&mSourceVoiceForSE, mWaveData.GetWaveFormatExPtr()) == false) {
+    if (soundDevice->CreateSourceVoice(&mSourceVoiceForSE, mWaveData.GetWaveFormatEx()) == false) {
         MessageBox(nullptr, TEXT("SEData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice ÇÃçÏê¨Ç…é∏îs
     }

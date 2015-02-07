@@ -19,7 +19,7 @@ public:
     bool Init();
 
     bool CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
-                           WAVEFORMATEX *waveFormatEx);
+                           const WAVEFORMATEX& waveFormatEx);
 
 private:
     bool createMasteringVoice();
