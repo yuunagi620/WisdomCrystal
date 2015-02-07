@@ -3,7 +3,11 @@
 #pragma once
 
 #include <XAudio2.h>
+#include <memory>
 #include <boost/noncopyable.hpp>
+
+#include "MasteringVoiceDeleter.h"
+#include "XAudio2Deleter.h"
 
 
 class XA2Core : private boost::noncopyable {
@@ -14,12 +18,13 @@ public:
 
     bool Init();
 
-    void Cleanup();
-
     bool CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
                            WAVEFORMATEX *waveFormatEx);
 
 private:
-    IXAudio2 *mXAudio;
-    IXAudio2MasteringVoice *mMasteringVoice;
+    bool createMasteringVoice();
+    bool createXAudio2();
+
+    std::unique_ptr<IXAudio2, XAudio2Deleter> mXAudio;
+    std::unique_ptr<IXAudio2MasteringVoice, MasteringVoiceDeleter> mMasteringVoice;
 };

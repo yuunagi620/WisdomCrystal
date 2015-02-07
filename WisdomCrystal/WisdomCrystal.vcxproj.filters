@@ -36,7 +36,8 @@
     <ClInclude Include="src\scene\SceneChanger.h" />
     <ClInclude Include="src\util\String.h" />
     <ClInclude Include="src\win\util\WinString.h" />
-    <ClInclude Include="src\win\XA2\SourceVoiceDeleter.h" />
+    <ClInclude Include="src\win\XA2\MasteringVoiceDeleter.h" />
+    <ClInclude Include="src\win\XA2\XAudio2Deleter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />

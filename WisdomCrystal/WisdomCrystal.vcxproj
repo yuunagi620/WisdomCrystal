@@ -42,10 +42,11 @@
     <ClInclude Include="src\win\util\WinString.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
+    <ClInclude Include="src\win\XA2\MasteringVoiceDeleter.h" />
     <ClInclude Include="src\win\XA2\SEData.h" />
-    <ClInclude Include="src\win\XA2\SourceVoiceDeleter.h" />
     <ClInclude Include="src\win\XA2\WaveData.h" />
     <ClInclude Include="src\win\XA2\XA2Core.h" />
+    <ClInclude Include="src\win\XA2\XAudio2Deleter.h" />
     <ClInclude Include="src\WisdomCrystal.h" />
   </ItemGroup>
   <ItemGroup>

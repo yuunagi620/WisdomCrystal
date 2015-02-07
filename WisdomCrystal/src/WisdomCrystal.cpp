@@ -43,7 +43,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
 
 
 WisdomCrystal::~WisdomCrystal() {
-    Cleanup();
+    
 }
 
 
@@ -120,7 +120,7 @@ void  WisdomCrystal::Cleanup() {
     mBGMData.Cleanup();
     mSoundDevice.Cleanup();
     mGraphicsDevice.Cleanup();
-    CoUninitialize();
+    //CoUninitialize();
 }
 
 

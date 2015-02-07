@@ -27,7 +27,7 @@ bool SoundDevice::Init() {
 
 
 void SoundDevice::Cleanup() {
-    mXA2Core.Cleanup();
+    // empty
 }
 
 

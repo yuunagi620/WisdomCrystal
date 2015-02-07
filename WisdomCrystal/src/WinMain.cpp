@@ -17,6 +17,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, 
         WisdomCrystal wisdomCrystal(hInstance, SCREEN_WIDTH, SCREEN_HEIGHT, CAPTION_NAME, WINDOW_CLASS_NAME);
         returnCode = wisdomCrystal.Run();
     }
+    CoUninitialize();
     _CrtDumpMemoryLeaks();
 
     return returnCode;
