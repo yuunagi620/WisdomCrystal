@@ -3,7 +3,7 @@
 #pragma once
 
 
-template <class T>
+template <typename T>
 inline void SafeRelease(T **ppT) {
     if (*ppT) {
         (*ppT)->Release();

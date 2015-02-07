@@ -6,8 +6,8 @@
 #include <memory>
 #include <boost/noncopyable.hpp>
 
+#include "win/util/Deleter.h"
 #include "MasteringVoiceDeleter.h"
-#include "XAudio2Deleter.h"
 
 
 class XA2Core : private boost::noncopyable {
@@ -25,6 +25,6 @@ private:
     bool createMasteringVoice();
     bool createXAudio2();
 
-    std::unique_ptr<IXAudio2, XAudio2Deleter> mXAudio;
+    std::unique_ptr<IXAudio2, Deleter<IXAudio2>> mXAudio;
     std::unique_ptr<IXAudio2MasteringVoice, MasteringVoiceDeleter> mMasteringVoice;
 };

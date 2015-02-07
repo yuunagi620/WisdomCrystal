@@ -43,7 +43,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
 
 
 WisdomCrystal::~WisdomCrystal() {
-    
+    // empty
 }
 
 
@@ -69,8 +69,7 @@ bool WisdomCrystal::Init() {
     }
 
     // COM ÇÃèâä˙âª
-    HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-    if (FAILED(hr)) {
+    if (mCOMInitializer.Init() == false) {
         MessageBox(nullptr, TEXT("Can not initialize COM."), TEXT("ERROR"), MB_OK);
         return false;
     }
@@ -117,10 +116,8 @@ bool WisdomCrystal::Init() {
 
 void  WisdomCrystal::Cleanup() {
     mGameObjManager.Cleanup();
-    mBGMData.Cleanup();
     mSoundDevice.Cleanup();
     mGraphicsDevice.Cleanup();
-    //CoUninitialize();
 }
 
 

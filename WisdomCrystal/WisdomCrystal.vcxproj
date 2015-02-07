@@ -29,12 +29,14 @@
     <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\util\String.h" />
     <ClInclude Include="src\WinApplication.h" />
+    <ClInclude Include="src\win\COM\COMInitializer.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DTextData.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
     <ClInclude Include="src\win\joypad\Joypad.h" />
     <ClInclude Include="src\win\joypad\JoypadCode.h" />
     <ClInclude Include="src\win\util\DebugManager.h" />
+    <ClInclude Include="src\win\util\Deleter.h" />
     <ClInclude Include="src\win\util\FPSCounter.h" />
     <ClInclude Include="src\win\util\HighResolutionTimer.h" />
     <ClInclude Include="src\win\util\Input.h" />
@@ -69,6 +71,7 @@
     <ClCompile Include="src\util\MathUtil.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
+    <ClCompile Include="src\win\COM\COMInitializer.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
     <ClCompile Include="src\win\D2D\D2DTextData.cpp" />
     <ClCompile Include="src\win\D3D\D3DCore.cpp" />

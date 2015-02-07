@@ -10,7 +10,7 @@ BGMData::BGMData() : mWaveData(), mSourceVoiceForBGM(nullptr) {
 
 
 BGMData::~BGMData() {
-    Cleanup();
+    // empty
 }
 
 
@@ -31,11 +31,6 @@ bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
     }
     
     return true;
-}
-
-
-void BGMData::Cleanup() {
-    // empty
 }
 
 

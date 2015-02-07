@@ -14,7 +14,6 @@ public:
     virtual ~BGMData();
 
     bool Init(SoundDevice* soundDevice, LPTSTR waveFilePath);
-    void Cleanup();
 
     void Start();
     void Stop();

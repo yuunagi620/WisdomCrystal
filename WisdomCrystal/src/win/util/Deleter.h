@@ -1,10 +1,11 @@
-// XAudio2Deleter.h
+// Deleter.h
 
 #pragma once
 
 
-struct XAudio2Deleter {
-    void operator ()(IXAudio2 *ptr) {
+template <typename T>
+struct Deleter {
+    void operator()(T *ptr) {
         if (ptr != nullptr) {
             ptr->Release();
             ptr = nullptr;

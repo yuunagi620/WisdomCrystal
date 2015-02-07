@@ -5,6 +5,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "WinApplication.h"
+#include "win/COM/COMInitializer.h"
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
 #include "BackGround.h"
@@ -52,6 +53,8 @@ private:
     void onKeyDown(const WPARAM& wParam);
 
     bool mIsFullscreen;
+
+    COMInitializer mCOMInitializer;
     BGMData mBGMData;
     GraphicsDevice mGraphicsDevice;
     SoundDevice mSoundDevice;

@@ -30,7 +30,6 @@ bool XA2Core::Init() {
 
 bool XA2Core::CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
                                 WAVEFORMATEX *waveFormatEx) {
-
     HRESULT hr = mXAudio->CreateSourceVoice(sourceVoice, waveFormatEx);
     if (FAILED(hr)) {
         return false;
