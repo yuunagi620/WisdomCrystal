@@ -33,9 +33,7 @@ bool WICCore::Init(ID2D1RenderTarget *renderTarget) {
 }
 
 
-// ファイルパスから ID2D1Bitmap を作成する関数
-ID2D1Bitmap *WICCore::CreateD2DBitmap(TCHAR *imageFilePath) {
-
+ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
     ID2D1Bitmap *d2dBitmap = nullptr;
 
     // IWICBitmapDecoder を作成

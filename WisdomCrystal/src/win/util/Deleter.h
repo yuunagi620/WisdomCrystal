@@ -2,8 +2,6 @@
 
 #pragma once
 
-//#include <wincodec.h>
-
 
 template <typename T>
 struct Deleter {
@@ -16,6 +14,7 @@ struct Deleter {
 };
 
 
+//#include <wincodec.h>
 //template <>
 //struct Deleter<IWICImagingFactory> {
 //    void operator()(IWICImagingFactory *ptr) {
