@@ -37,6 +37,7 @@
     <ClInclude Include="src\win\XA2\XAudio2Deleter.h" />
     <ClInclude Include="src\win\COM\COMInitializer.h" />
     <ClInclude Include="src\win\util\Deleter.h" />
+    <ClInclude Include="src\win\XA2\SoundPacket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -70,5 +71,6 @@
     <ClCompile Include="src\WisdomCrystal.cpp" />
     <ClCompile Include="src\scene\SceneChanger.cpp" />
     <ClCompile Include="src\win\COM\COMInitializer.cpp" />
+    <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
   </ItemGroup>
 </Project>

@@ -2,8 +2,10 @@
 
 #pragma once
 
+#include <array>
 
 #include "WaveData.h"
+#include "SoundPacket.h"
 
 
 class BGMData {
@@ -17,11 +19,13 @@ public:
     void Start();
     void Stop();
 
+    void UpdateBGM();
+
     void SetBGMVolume(const float volume);
 
-    bool ResetSourceVoice();
-
 private:
-    WaveData mWaveData;
+    int mNextPacketIndex;
+
+    std::vector<SoundPacket> mSoundPacketArray;
     std::shared_ptr<IXAudio2SourceVoice> mSourceVoiceForBGM;
 };

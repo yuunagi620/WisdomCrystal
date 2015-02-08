@@ -22,7 +22,7 @@ bool SoundPacket::Init(std::vector<BYTE> *srcBuffer, const long begin, const lon
     mBuffer.resize(mDataSize);
 
     std::vector<BYTE>::iterator beginIt = srcBuffer->begin() + begin;
-    std::vector<BYTE>::iterator endIt = srcBuffer->begin() + end;
+    std::vector<BYTE>::iterator endIt   = srcBuffer->begin() + end;
 
     std::copy(beginIt, endIt, mBuffer.begin());
 
@@ -36,8 +36,7 @@ bool SoundPacket::Init(WaveData* waveData) {
 }
 
 
-// 現在再生している音をリセットしてボイスキューにバッファーを追加
-void SoundPacket::ResetSoundPacket(IXAudio2SourceVoice *targetSourceVoice) {
+void SoundPacket::ResetSoundPacket(std::shared_ptr<IXAudio2SourceVoice> targetSourceVoice) {
     XAUDIO2_BUFFER buffer = {0};
     buffer.AudioBytes = GetDataSize();
     buffer.pAudioData = &(GetBufferPtr()->front());
@@ -47,7 +46,7 @@ void SoundPacket::ResetSoundPacket(IXAudio2SourceVoice *targetSourceVoice) {
 }
 
 
-void SoundPacket::AddSoundPacket(IXAudio2SourceVoice *targetSourceVoice) {
+void SoundPacket::AddSoundPacket(std::shared_ptr<IXAudio2SourceVoice> targetSourceVoice) {
     XAUDIO2_BUFFER buffer = {0};
     buffer.AudioBytes = GetDataSize();
     buffer.pAudioData = &(GetBufferPtr()->front());

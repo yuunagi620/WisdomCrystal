@@ -139,7 +139,7 @@ int WisdomCrystal::MessageLoop() {
                 DebugManager::OutputValue(fpsCounter.GetFPS());
                 
             }
-            
+            mBGMData.UpdateBGM();
             UpdateWindow(GetHWnd());
         }
 

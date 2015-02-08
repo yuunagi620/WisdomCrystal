@@ -23,8 +23,8 @@ public:
         return mDataSize;
     }
 
-    void ResetSoundPacket(IXAudio2SourceVoice *targetSourceVoice);
-    void AddSoundPacket(IXAudio2SourceVoice *targetSourceVoice);
+    void ResetSoundPacket(std::shared_ptr<IXAudio2SourceVoice> targetSourceVoice);
+    void AddSoundPacket(std::shared_ptr<IXAudio2SourceVoice> targetSourceVoice);
 
 private:
     std::vector<BYTE> mBuffer;
