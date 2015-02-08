@@ -13,7 +13,7 @@ WICCore::WICCore() : mWICImagingFactory(nullptr),
 
 
 WICCore::~WICCore() {
-    Cleanup();
+    // empty
 }
 
 
@@ -30,11 +30,6 @@ bool WICCore::Init(ID2D1RenderTarget *renderTarget) {
     }
 
     return true;
-}
-
-
-void WICCore::Cleanup() {
-    SafeRelease(&mWICImagingFactory);
 }
 
 
