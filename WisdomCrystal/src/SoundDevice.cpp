@@ -10,7 +10,7 @@ SoundDevice::SoundDevice() {
 
 
 SoundDevice::~SoundDevice() {
-    Cleanup();
+    // empty
 }
 
 
@@ -23,11 +23,6 @@ bool SoundDevice::Init() {
     }
 
     return true;
-}
-
-
-void SoundDevice::Cleanup() {
-    // empty
 }
 
 

@@ -35,6 +35,5 @@ private:
 private:
     std::unique_ptr<ID3D10Device1, Deleter<ID3D10Device1>> mD3DDevice;
     std::unique_ptr<ID3D10RenderTargetView, Deleter<ID3D10RenderTargetView>> mRenderTargetView;
-
     std::shared_ptr<IDXGISwapChain> mSwapChain;
 };

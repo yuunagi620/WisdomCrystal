@@ -50,7 +50,6 @@ private:
 
 private:
     std::unique_ptr<ID2D1Factory, Deleter<ID2D1Factory>> mD2DFactory;
-
     std::shared_ptr<IDWriteFactory>    mWriteFactory;
     std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };
