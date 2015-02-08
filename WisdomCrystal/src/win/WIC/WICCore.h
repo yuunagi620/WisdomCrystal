@@ -3,6 +3,7 @@
 #pragma once
 
 #include <wincodec.h>
+#include <d2d1.h>
 #include <memory>
 #include <boost/noncopyable.hpp>
 
@@ -13,7 +14,7 @@ class WICCore : private boost::noncopyable {
 
 public:
     WICCore();
-    ~WICCore();
+    virtual ~WICCore();
 
     bool Init(std::shared_ptr<ID2D1RenderTarget> renderTarget);
 

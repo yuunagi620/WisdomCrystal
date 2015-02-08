@@ -14,7 +14,7 @@ public:
 
     bool Init(LPTSTR waveFilePath);
 
-    inline WAVEFORMATEX GetWaveFormatEx() const {
+    inline const WAVEFORMATEX GetWaveFormatEx() const {
         return mFormatEx;
     }
     inline const DWORD GetDataSize() const {

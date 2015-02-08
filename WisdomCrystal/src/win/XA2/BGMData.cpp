@@ -15,20 +15,24 @@ BGMData::~BGMData() {
 
 
 bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
+
+    // BGM データの読み込み
     if (mWaveData.Init(waveFilePath) == false) {
         MessageBox(nullptr, TEXT("BGMData: Can not read waveData."), TEXT("ERROR"), MB_OK);
-        return false; // BGM データの読み込みに失敗
+        return false;
     }
 
+    // SourceVoice の作成
     mSourceVoiceForBGM = soundDevice->CreateSourceVoice(mWaveData.GetWaveFormatEx());
     if (mSourceVoiceForBGM == nullptr) {
         MessageBox(nullptr, TEXT("BGMData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
-        return false; // SourceVoice の作成に失敗
+        return false;
     }
 
+    // SourceVoice の割り当て
     if (ResetSourceVoice() == false) {
         MessageBox(nullptr, TEXT("BGMData: Can not set source voice."), TEXT("ERROR"), MB_OK);
-        return false; // SourceVoice の割り当てに失敗
+        return false;
     }
     
     return true;
