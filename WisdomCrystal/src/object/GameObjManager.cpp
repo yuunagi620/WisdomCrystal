@@ -18,7 +18,7 @@ GameObjManager::~GameObjManager() {
 
 
 bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
-    activateForInitAndCleanup();
+    mActiveGameObjects.at(0).reset(new Player());
 
     for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
         if (*it != nullptr) {
@@ -28,15 +28,12 @@ bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevi
         }
     }
 
-    Deactivate();
+    //Deactivate();
     return true;
 }
 
 
 void GameObjManager::Cleanup() {
-
-    activateForInitAndCleanup();
-
     for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
         if (*it != nullptr) {
             (*it)->Cleanup();
@@ -66,32 +63,25 @@ void GameObjManager::Deactivate() {
 
 bool GameObjManager::Activate(int initX, int initY, int objID) {
 
-    GameObject* obj;
+    //GameObject* obj;
 
-    switch (objID) {
-        case 0:  obj = nullptr;                                   break;
-        case 1:  obj = Player::Activate(initX, initY);            break;
+    //switch (objID) {
+    //    case 0:  obj = nullptr;                                   break;
+    //    case 1:  obj = Player::Activate(initX, initY);            break;
 
-        default: obj = nullptr;
-    }
+    //    default: obj = nullptr;
+    //}
 
-    static int index = 0;
-    
-    try {
-        mActiveGameObjects.at(index) = obj;
-    } catch (const std::out_of_range&) {
-        return false;
-    }
+    //static int index = 0;
+    //
+    //try {
+    //    mActiveGameObjects.at(index) = obj;
+    //} catch (const std::out_of_range&) {
+    //    return false;
+    //}
 
-    ++index;
+    //++index;
 
     return true;
 }
 
-
-void GameObjManager::activateForInitAndCleanup() {
-    Deactivate();
-    for (int i = 0; i <= NUM_GAME_OBJECT; ++i) {
-        Activate(0, 0, i);
-    }
-}

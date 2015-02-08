@@ -1,5 +1,7 @@
 // D3DCore.cpp
 
+#pragma comment(lib, "d3d10_1.lib")
+
 // Includes
 #include "D3DCore.h"
 #include "SwapChainDeleter.h"

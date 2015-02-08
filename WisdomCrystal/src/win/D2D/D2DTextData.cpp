@@ -19,7 +19,7 @@ D2DTextData::D2DTextData() : mGraphicsDevice(nullptr),
 
 
 D2DTextData::~D2DTextData() {
-    Cleanup();
+    // empty
 }
 
 
@@ -38,17 +38,12 @@ bool D2DTextData::Init(GraphicsDevice* graphicsDevice) {
 }
 
 
-void D2DTextData::Cleanup() {
-    SafeRelease(&mBrush);
-}
-
-
 void D2DTextData::DrawText(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect) {
     mGraphicsDevice->GetRenderTarget()->DrawText(string.c_str(),
                                                  string.size(),
                                                  mTextFormat,
                                                  layoutRect,
-                                                 mBrush);
+                                                 mBrush.get());
 }
 
 
@@ -71,12 +66,14 @@ bool D2DTextData::CreateTextFormat() {
 
 
 
-bool D2DTextData::SetColor(const D2D1_COLOR_F& color) {        
-    HRESULT hr = mGraphicsDevice->GetRenderTarget()->CreateSolidColorBrush(color, &mBrush);
+bool D2DTextData::SetColor(const D2D1_COLOR_F& color) {
+    ID2D1SolidColorBrush *brush = nullptr;
+    HRESULT hr = mGraphicsDevice->GetRenderTarget()->CreateSolidColorBrush(color, &brush);
     if (SUCCEEDED(hr) == false) {
         return false;
     }
 
+    mBrush.reset(brush);
     return true;
 }
 

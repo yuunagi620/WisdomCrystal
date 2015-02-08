@@ -6,8 +6,10 @@
 #include <d2d1.h>
 #include <Dwrite.h>
 #include <string>
+#include <memory>
 
 #include "GraphicsDevice.h"
+#include "win/util/Deleter.h"
 
 
 class D2DTextData {
@@ -18,8 +20,6 @@ public:
     virtual ~D2DTextData();
 
     bool Init(GraphicsDevice* mGraphicsDevice);
-
-    void Cleanup();
 
     void DrawText(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect);
 
@@ -36,9 +36,10 @@ public:
     bool SetFontStretch(const DWRITE_FONT_STRETCH& fontStretch);
 
 private:
-    GraphicsDevice* mGraphicsDevice;
+    GraphicsDevice*    mGraphicsDevice;
     IDWriteTextFormat* mTextFormat;
-    ID2D1SolidColorBrush *mBrush;
+
+    std::unique_ptr<ID2D1SolidColorBrush, Deleter<ID2D1SolidColorBrush>> mBrush;
 
     std::basic_string<TCHAR> mFontFamilyName;
     float mFontSize;

@@ -14,7 +14,6 @@ Loading::~Loading() {
 
 
 Scene *Loading::Update(GameObjManager *gameObjManager) {
-
     MapManager mMapmanager;
 
     if (mMapmanager.LoadMapDataFile(1) == false) {

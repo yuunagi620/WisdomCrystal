@@ -16,7 +16,7 @@ public:
     GameObjManager();
     virtual ~GameObjManager();
 
-    bool Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice);
+    bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice);
     void Cleanup();
     void Update();
     void Deactivate();
@@ -24,10 +24,8 @@ public:
     bool Activate(int initX, int initY, int objID);
 
 private:
-    void activateForInitAndCleanup();
-
     static const int MAX_GAME_OBJCT = 1080;
     static const int NUM_GAME_OBJECT = 2;
 
-    std::array<GameObject*, MAX_GAME_OBJCT> mActiveGameObjects;
+    std::array<std::unique_ptr<GameObject>, MAX_GAME_OBJCT> mActiveGameObjects;
 };

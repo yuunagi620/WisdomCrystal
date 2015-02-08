@@ -1,7 +1,5 @@
 // WisdomCrystal.cpp
 
-
-#pragma comment(lib, "d3d10_1.lib")
 #pragma comment(lib, "Windowscodecs.lib")
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "comctl32.lib")
@@ -195,12 +193,10 @@ void WisdomCrystal::onUpdate() {
     mBackGround.Draw();
     mSceneChanger.UpdateScene(&mGameObjManager);
     
-
     HRESULT hr = mGraphicsDevice.EndDraw();
     if (hr == D2DERR_RECREATE_TARGET) {
         InvalidateRect(GetHWnd(), nullptr, false);
     }
-
     
     mGraphicsDevice.Present(); // レンダリングされたイメージを表示
     EndPaint(GetHWnd(), &ps);
