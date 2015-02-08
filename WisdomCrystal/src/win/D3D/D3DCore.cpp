@@ -4,7 +4,6 @@
 
 // Includes
 #include "D3DCore.h"
-#include "SwapChainDeleter.h"
 
 
 D3DCore::D3DCore() : mD3DDevice(nullptr),
@@ -87,7 +86,7 @@ bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, 
     }
 
     mD3DDevice.reset(device);
-    mSwapChain.reset(swapChain, SwapChainDeleter());
+    mSwapChain.reset(swapChain, Deleter<IDXGISwapChain>());
     return true;
 }
 

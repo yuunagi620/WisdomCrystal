@@ -7,7 +7,7 @@
 #include <memory>
 #include <boost/noncopyable.hpp>
 
-#include "win/util/Deleter.h"
+#include "win/COM/Deleter.h"
 
 
 class WICCore : private boost::noncopyable {

@@ -2,7 +2,7 @@
 
 // Includes
 #include "XA2Core.h"
-#include "SourceVoiceDeleter.h"
+#include "win/COM/Deleter.h"
 
 
 XA2Core::XA2Core() : mXAudio(nullptr), mMasteringVoice(nullptr) {
@@ -38,7 +38,7 @@ std::shared_ptr<IXAudio2SourceVoice> XA2Core::CreateSourceVoice(const WAVEFORMAT
         return nullptr;
     }
 
-    std::shared_ptr<IXAudio2SourceVoice> sourceVoice(tempSourceVoice, SourceVoiceDeleter());
+    std::shared_ptr<IXAudio2SourceVoice> sourceVoice(tempSourceVoice, Deleter<IXAudio2SourceVoice>());
     return sourceVoice;
 }
 

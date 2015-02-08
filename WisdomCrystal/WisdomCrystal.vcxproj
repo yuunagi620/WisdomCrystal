@@ -32,7 +32,6 @@
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DTextData.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
-    <ClInclude Include="src\win\D3D\SwapChainDeleter.h" />
     <ClInclude Include="src\win\joypad\Joypad.h" />
     <ClInclude Include="src\win\joypad\JoypadCode.h" />
     <ClInclude Include="src\win\util\DebugManager.h" />
@@ -43,7 +42,6 @@
     <ClInclude Include="src\win\util\SafeRelease.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
-    <ClInclude Include="src\win\XA2\MasteringVoiceDeleter.h" />
     <ClInclude Include="src\win\XA2\SEData.h" />
     <ClInclude Include="src\win\XA2\WaveData.h" />
     <ClInclude Include="src\win\XA2\XA2Core.h" />

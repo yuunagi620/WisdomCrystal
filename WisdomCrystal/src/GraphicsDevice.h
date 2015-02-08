@@ -5,6 +5,8 @@
 #include <Windows.h>
 #include <boost/noncopyable.hpp>
 
+#include "win/WIC/WICCore.h"
+
 
 class GraphicsDevice : private boost::noncopyable {
 

@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include "win/WIC/WICCore.h"
 #include "win/D3D/D3DCore.h"
 #include "win/D2D/D2DCore.h"
 

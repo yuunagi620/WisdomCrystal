@@ -9,7 +9,7 @@
 #include <memory>
 
 #include "GraphicsDevice.h"
-#include "win/util/Deleter.h"
+#include "win/COM/Deleter.h"
 
 
 class D2DTextData {

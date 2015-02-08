@@ -5,7 +5,7 @@
 
 // Includes
 #include "D2DCore.h"
-#include "win/util/Deleter.h"
+#include "win/COM/Deleter.h"
 
 
 D2DCore::D2DCore() : mD2DFactory(nullptr),
