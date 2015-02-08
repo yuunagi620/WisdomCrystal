@@ -15,7 +15,7 @@ SoundPacket::~SoundPacket() {
 
 
 // bufferとその大きさを受け取ったときの初期化
-bool SoundPacket::Init(std::vector<BYTE> *srcBuffer, const long begin, const long end) {
+void SoundPacket::Init(std::vector<BYTE> *srcBuffer, const long begin, const long end) {
     mDataSize = end - begin;
 
     // mBuffer を dataSize バイト確保
@@ -25,13 +25,11 @@ bool SoundPacket::Init(std::vector<BYTE> *srcBuffer, const long begin, const lon
     std::vector<BYTE>::iterator endIt   = srcBuffer->begin() + end;
 
     std::copy(beginIt, endIt, mBuffer.begin());
-
-    return true;
 }
 
 
 // WaveData のみを受け取ったときの初期化
-bool SoundPacket::Init(WaveData* waveData) {
+void SoundPacket::Init(WaveData* waveData) {
     return Init(waveData->GetDataBufferPtr(), 0, waveData->GetDataSize());
 }
 

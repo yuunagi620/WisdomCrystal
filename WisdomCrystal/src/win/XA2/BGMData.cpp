@@ -4,9 +4,10 @@
 #include "BGMData.h"
 
 
-BGMData::BGMData() : mNextPacketIndex(0),
-                     mSoundPacketArray(2),
-                     mSourceVoiceForBGM(nullptr)
+BGMData::BGMData(const unsigned int packetNum) : SOUND_PACKET_NUM(packetNum),
+                                                 mNextPacketIndex(0),
+                                                 mSoundPacketArray(SOUND_PACKET_NUM),
+                                                 mSourceVoiceForBGM(nullptr)
 {
     // empty
 }
@@ -33,12 +34,11 @@ bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
         return false;
     }
 
-    mSoundPacketArray.at(0).Init(waveData.GetDataBufferPtr(), 0, waveData.GetDataSize() / 2);
-    mSoundPacketArray.at(1).Init(waveData.GetDataBufferPtr(), waveData.GetDataSize() / 2, waveData.GetDataSize());
+    // BGM データを Sound Packet に分割
+    divideSoundPacket(&waveData);
 
     mSoundPacketArray.at(0).AddSoundPacket(mSourceVoiceForBGM);
     mNextPacketIndex = 1;
-    
     return true;
 }
 
@@ -56,15 +56,32 @@ void BGMData::Stop() {
 void BGMData::UpdateBGM() {
     XAUDIO2_VOICE_STATE state;
     mSourceVoiceForBGM->GetState(&state);
-    if (state.BuffersQueued >= 2) {
+    if (state.BuffersQueued >= SOUND_PACKET_NUM) {
         return;
     }
     mSoundPacketArray.at(mNextPacketIndex).AddSoundPacket(mSourceVoiceForBGM);
     ++mNextPacketIndex;
-    mNextPacketIndex %= 2; // 最大値を超えたら最初に戻る
+    mNextPacketIndex %= SOUND_PACKET_NUM; // 最大値を超えたら最初に戻る
 }
 
 
 void BGMData::SetBGMVolume(const float volume) {
     mSourceVoiceForBGM->SetVolume(volume);
+}
+
+
+void BGMData::divideSoundPacket(WaveData* waveData) {
+
+    auto it = mSoundPacketArray.begin();
+
+    it->Init(waveData->GetDataBufferPtr(), 0, waveData->GetDataSize() / SOUND_PACKET_NUM);
+    ++it;
+
+    while (it != mSoundPacketArray.end()) {
+        int index = std::distance(mSoundPacketArray.begin(), it);
+        it->Init(waveData->GetDataBufferPtr(),
+                (waveData->GetDataSize() / SOUND_PACKET_NUM  * index),
+                (waveData->GetDataSize() / SOUND_PACKET_NUM) * (index + 1));
+        ++it;
+    }
 }

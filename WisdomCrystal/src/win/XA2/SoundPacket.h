@@ -13,8 +13,8 @@ public:
     SoundPacket();
     virtual ~SoundPacket();
 
-    bool Init(std::vector<BYTE> *srcBuffer, const long begin, const long end);
-    bool Init(WaveData* waveData);
+    void Init(std::vector<BYTE> *srcBuffer, const long begin, const long end);
+    void Init(WaveData* waveData);
 
     inline std::vector<BYTE>* GetBufferPtr() {
         return &mBuffer;

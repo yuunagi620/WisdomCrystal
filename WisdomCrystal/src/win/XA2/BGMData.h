@@ -11,7 +11,7 @@
 class BGMData {
 
 public:
-    BGMData();
+    explicit BGMData(const unsigned int packetNum = 10);
     virtual ~BGMData();
 
     bool Init(SoundDevice* soundDevice, LPTSTR waveFilePath);
@@ -24,6 +24,10 @@ public:
     void SetBGMVolume(const float volume);
 
 private:
+    void divideSoundPacket(WaveData* waveData);
+
+private:
+    const unsigned int SOUND_PACKET_NUM;
     int mNextPacketIndex;
 
     std::vector<SoundPacket> mSoundPacketArray;
