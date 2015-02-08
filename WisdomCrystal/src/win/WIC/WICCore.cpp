@@ -35,23 +35,21 @@ bool WICCore::Init(ID2D1RenderTarget *renderTarget) {
 ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 
     // IWICBitmapDecoder を作成
-    std::unique_ptr<IWICBitmapDecoder, Deleter<IWICBitmapDecoder>> decoder = nullptr;
-    decoder.reset(createBitmapDecoder(imageFilePath));
+    std::shared_ptr<IWICBitmapDecoder> decoder = nullptr;
+    decoder.reset(createBitmapDecoder(imageFilePath), Deleter<IWICBitmapDecoder>());
     if (decoder == nullptr) {
         return nullptr;
     }
 
     // イメージから Frame を取得
-    std::unique_ptr<IWICBitmapFrameDecode, Deleter<IWICBitmapFrameDecode>> frame = nullptr;
-    frame.reset(getFrame(decoder.get()));
+    std::shared_ptr<IWICBitmapFrameDecode> frame = nullptr;
+    frame.reset(getFrame(decoder), Deleter<IWICBitmapFrameDecode>());
     if (frame == nullptr) {
         return nullptr;
     }
 
-    // Direct2D で使用できる形式に変換
-    ID2D1Bitmap *d2dBitmap = convertD2DBitmap(frame.get());
-
-    return d2dBitmap;
+    // Direct2D で使用できる形式に変換して返す
+    return convertD2DBitmap(frame);
 }
 
 
@@ -70,7 +68,7 @@ IWICBitmapDecoder* WICCore::createBitmapDecoder(LPCTSTR imageFilePath) {
 }
 
 
-IWICBitmapFrameDecode* WICCore::getFrame(IWICBitmapDecoder *decoder) {
+IWICBitmapFrameDecode* WICCore::getFrame(std::shared_ptr<IWICBitmapDecoder> decoder) {
     IWICBitmapFrameDecode *frame = nullptr;
     HRESULT hr = decoder->GetFrame(0, &frame);
     if (FAILED(hr)) {
@@ -82,7 +80,7 @@ IWICBitmapFrameDecode* WICCore::getFrame(IWICBitmapDecoder *decoder) {
 
 
 // Bitmap を Direct2D で使用できる形式に変換する関数
-ID2D1Bitmap *WICCore::convertD2DBitmap(IWICBitmapFrameDecode *frame) {
+ID2D1Bitmap *WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame) {
 
     // converter の作成
     std::unique_ptr<IWICFormatConverter, Deleter<IWICFormatConverter>> converter = nullptr;
@@ -92,7 +90,7 @@ ID2D1Bitmap *WICCore::convertD2DBitmap(IWICBitmapFrameDecode *frame) {
     }
 
     // イメージのピクセル形式を 32bppPBGRA に変換
-    HRESULT hr = converter->Initialize(frame,
+    HRESULT hr = converter->Initialize(frame.get(),
                                        GUID_WICPixelFormat32bppPBGRA,
                                        WICBitmapDitherTypeNone,
                                        nullptr,
