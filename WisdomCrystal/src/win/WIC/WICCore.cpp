@@ -79,12 +79,10 @@ IWICBitmapFrameDecode* WICCore::getFrame(std::shared_ptr<IWICBitmapDecoder> deco
 }
 
 
-// Bitmap を Direct2D で使用できる形式に変換する関数
 ID2D1Bitmap *WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame) {
 
     // converter の作成
-    std::unique_ptr<IWICFormatConverter, Deleter<IWICFormatConverter>> converter = nullptr;
-    converter.reset(createConverter());
+    std::unique_ptr<IWICFormatConverter, Deleter<IWICFormatConverter>> converter(createConverter());
     if (converter == nullptr) {
         return nullptr; // converter の作成に失敗
     }
@@ -100,7 +98,7 @@ ID2D1Bitmap *WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> fr
         return nullptr; // 変換に失敗
     }
 
-    // 他の Direct2D オブジェクトと共に使用できる ID2D1Bitmap オブジェクトを作成
+    // ID2D1Bitmap オブジェクトを作成
     ID2D1Bitmap *d2dBitmap = nullptr;
     hr = mRenderTarget->CreateBitmapFromWicBitmap(converter.get(), &d2dBitmap);
     if (FAILED(hr)) {

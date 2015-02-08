@@ -25,6 +25,7 @@ private:
     bool createMasteringVoice();
     bool createXAudio2();
 
+private:
     std::unique_ptr<IXAudio2, Deleter<IXAudio2>> mXAudio;
     std::unique_ptr<IXAudio2MasteringVoice, MasteringVoiceDeleter> mMasteringVoice;
 };

@@ -27,6 +27,7 @@ public:
 private:
     bool readWaveFile();
 
+private:
     LPTSTR mWaveFilePath;
     std::vector<BYTE> mDataBuffer;
 

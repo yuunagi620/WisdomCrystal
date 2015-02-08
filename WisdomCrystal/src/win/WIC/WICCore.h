@@ -27,6 +27,7 @@ private:
     ID2D1Bitmap*           convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame);
     IWICFormatConverter*   createConverter();
 
+private:
     std::unique_ptr<IWICImagingFactory, Deleter<IWICImagingFactory>> mWICImagingFactory;
     ID2D1RenderTarget *mRenderTarget;
 };

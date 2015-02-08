@@ -19,9 +19,9 @@ public:
     };
 
 private:
-    // 差分時間を計測する
     double getCurDefTime();
 
+private:
     double mCurrentFPS; 
     double mDeltaFreq; // 1秒当たりクロック数
     LARGE_INTEGER mPerformanceCount;

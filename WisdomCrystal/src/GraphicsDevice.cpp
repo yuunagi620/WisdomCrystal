@@ -50,7 +50,6 @@ bool GraphicsDevice::Init(const HWND& hWnd, const int screenWidth, const int scr
 
 void GraphicsDevice::Cleanup() {
     mD2DCore.Cleanup();
-    mD3DCore.Cleanup();
 }
 
 
