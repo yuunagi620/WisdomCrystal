@@ -4,10 +4,10 @@
 #include "BGMData.h"
 
 
-BGMData::BGMData(const unsigned int packetNum) : SOUND_PACKET_NUM(packetNum),
-                                                 mNextPacketIndex(0),
-                                                 mSoundPacketArray(SOUND_PACKET_NUM),
-                                                 mSourceVoiceForBGM(nullptr)
+BGMData::BGMData() : SOUND_PACKET_NUM(2),
+                     mNextPacketIndex(0),
+                     mSoundPacketArray(SOUND_PACKET_NUM),
+                     mSourceVoiceForBGM(nullptr)
 {
     // empty
 }
@@ -35,9 +35,12 @@ bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
     }
 
     // BGM データを Sound Packet に分割
-    divideSoundPacket(&waveData);
+    if (divideSoundPacket(&waveData) == false) {
+        MessageBox(nullptr, TEXT("BGMData: Can not divide sound packet."), TEXT("ERROR"), MB_OK);
+        return false;
+    }
 
-    mSoundPacketArray.at(0).AddSoundPacket(mSourceVoiceForBGM);
+    mSoundPacketArray.front().AddSoundPacket(mSourceVoiceForBGM);
     mNextPacketIndex = 1;
     return true;
 }
@@ -70,18 +73,30 @@ void BGMData::SetBGMVolume(const float volume) {
 }
 
 
-void BGMData::divideSoundPacket(WaveData* waveData) {
+bool BGMData::divideSoundPacket(WaveData* waveData) {
 
-    auto it = mSoundPacketArray.begin();
+    try {
+        unsigned int index = 0;
 
-    it->Init(waveData->GetDataBufferPtr(), 0, waveData->GetDataSize() / SOUND_PACKET_NUM);
-    ++it;
+        // 最初のパケット
+        mSoundPacketArray.at(index).Init(waveData->GetDataBufferPtr(), 0, waveData->GetDataSize() / SOUND_PACKET_NUM);
 
-    while (it != mSoundPacketArray.end()) {
-        int index = std::distance(mSoundPacketArray.begin(), it);
-        it->Init(waveData->GetDataBufferPtr(),
-                (waveData->GetDataSize() / SOUND_PACKET_NUM  * index),
-                (waveData->GetDataSize() / SOUND_PACKET_NUM) * (index + 1));
-        ++it;
+        ++index;
+        while (index < SOUND_PACKET_NUM - 1) {
+            mSoundPacketArray.at(index).Init(waveData->GetDataBufferPtr(),
+                                            (waveData->GetDataSize() / SOUND_PACKET_NUM  * index),
+                                            (waveData->GetDataSize() / SOUND_PACKET_NUM) * (index + 1));
+
+            ++index;
+        }
+
+        // 最後のパケット
+        mSoundPacketArray.at(index).Init(waveData->GetDataBufferPtr(),
+                                         waveData->GetDataSize() / SOUND_PACKET_NUM  * index,
+                                         waveData->GetDataSize());
+    } catch (const std::out_of_range&) {
+        return false; // 範囲外アクセス
     }
+
+    return true;
 }
