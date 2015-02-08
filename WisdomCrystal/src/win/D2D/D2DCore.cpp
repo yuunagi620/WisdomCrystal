@@ -34,13 +34,14 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
     }
 
     // BackBuffer の作成
-    std::shared_ptr<IDXGISurface> backBuffer(createBackBuffer(swapChain), Deleter<IDXGISurface>());
+    auto backBuffer = createBackBuffer(swapChain);
     if (backBuffer == nullptr) {
         return false;
     }
 
     // デスクトップのDPI取得
-    float dpiX, dpiY;
+    float dpiX = 0;
+    float dpiY = 0;
     mD2DFactory->GetDesktopDpi(&dpiX, &dpiY);
 
     // RenderTarget プロパティの設定
@@ -134,13 +135,14 @@ bool D2DCore::createFactory() {
 }
 
 
-IDXGISurface* D2DCore::createBackBuffer(IDXGISwapChain* swapChain) {
-    IDXGISurface *backBuffer;
-    HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+std::shared_ptr<IDXGISurface> D2DCore::createBackBuffer(IDXGISwapChain* swapChain) {
+    IDXGISurface *tempBuffer;
+    HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&tempBuffer));
     if (FAILED(hr)) {
         return nullptr; // backBuffeの確保に失敗
     }
 
+    std::shared_ptr<IDXGISurface> backBuffer(tempBuffer, Deleter<IDXGISurface>());
     return backBuffer;
 }
 
@@ -151,7 +153,6 @@ bool  D2DCore::createRenderTarget(std::shared_ptr<IDXGISurface> backBuffer,
     HRESULT hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer.get(),
                                                             &props,
                                                             &renderTarget);
-
     if (FAILED(hr)) {
         return false; // レンダーターゲットの生成に失敗
     }

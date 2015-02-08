@@ -43,7 +43,7 @@ public:
 private:
     bool createFactory();
     bool createWriteFactory();
-    IDXGISurface* createBackBuffer(IDXGISwapChain* swapChain);
+    std::shared_ptr<IDXGISurface> createBackBuffer(IDXGISwapChain* swapChain);
     bool createRenderTarget(std::shared_ptr<IDXGISurface> backBuffer,
                             const D2D1_RENDER_TARGET_PROPERTIES& props);
 
