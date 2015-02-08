@@ -15,7 +15,7 @@ public:
     BackGround();
     virtual ~BackGround();
 
-    bool Init(GraphicsDevice* graphicsDevice, const int index = 0);
+    bool Init(GraphicsDevice *graphicsDevice, const int index = 0);
 
     void Draw();
 

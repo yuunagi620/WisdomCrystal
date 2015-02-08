@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include <vector>
 
 #include "WaveData.h"
 

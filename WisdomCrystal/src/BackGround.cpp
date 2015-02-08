@@ -24,7 +24,7 @@ BackGround::~BackGround() {
 }
 
 
-bool BackGround::Init(GraphicsDevice* graphicsDevice, const int backGroundIndex) {
+bool BackGround::Init(GraphicsDevice *graphicsDevice, const int backGroundIndex) {
     mGraphicsDevice = graphicsDevice;
     mImageID = backGroundIndex;
 
