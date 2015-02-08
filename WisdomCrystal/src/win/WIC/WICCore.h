@@ -16,13 +16,11 @@ public:
 
     bool Init(ID2D1RenderTarget *renderTarget);
 
-    // 
     // ファイルパスから ID2D1Bitmap を作成する
-    //
     ID2D1Bitmap *CreateD2DBitmap(LPCTSTR imageFilePath);
 
 private:
-    IWICBitmapDecoder*     createBitmapDecoder(LPCTSTR imageFilePath);
+    std::shared_ptr<IWICBitmapDecoder> createBitmapDecoder(LPCTSTR imageFilePath);
     IWICBitmapFrameDecode* getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
     ID2D1Bitmap*           convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame);
     IWICFormatConverter*   createConverter();

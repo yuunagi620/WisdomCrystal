@@ -86,9 +86,9 @@ bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, 
 
 
 bool D3DCore::createRenderTargetView() {
-    std::unique_ptr<ID3D10Texture2D, Deleter<ID3D10Texture2D>> backBuffer(createBackBuffer());
 
     //  BackBuffer ‚ÌŠm•Û
+    auto backBuffer = createBackBuffer();
     if (backBuffer == nullptr) {
         return false;
     }
@@ -102,21 +102,21 @@ bool D3DCore::createRenderTargetView() {
 
     // RenderTargetView ‚Ì“o˜^
     mD3DDevice->OMSetRenderTargets(1, &renderTargetView, nullptr);
-
     mRenderTargetView.reset(renderTargetView);
 
     return true;
 }
 
 
-ID3D10Texture2D* D3DCore::createBackBuffer() {
-    ID3D10Texture2D* buffer = nullptr;
-    HRESULT hr = mSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), reinterpret_cast<LPVOID*>(&buffer));
+std::shared_ptr<ID3D10Texture2D> D3DCore::createBackBuffer() {
+    ID3D10Texture2D* tempBuffer = nullptr;
+    HRESULT hr = mSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), reinterpret_cast<LPVOID*>(&tempBuffer));
     if (FAILED(hr)) {
         return nullptr;
     }
 
-    return buffer;
+    std::shared_ptr<ID3D10Texture2D> backBuffer(tempBuffer, Deleter<ID3D10Texture2D>());
+    return backBuffer;
 }
 
 

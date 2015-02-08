@@ -27,7 +27,7 @@ public:
 private:
     bool createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, const int screenHeight);
     bool createRenderTargetView();
-    ID3D10Texture2D* createBackBuffer();
+    std::shared_ptr<ID3D10Texture2D> createBackBuffer();
     void setViewport(const int screenWidth, const int screenHeight);
 
 private:

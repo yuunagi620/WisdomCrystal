@@ -35,8 +35,7 @@ bool WICCore::Init(ID2D1RenderTarget *renderTarget) {
 ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 
     // IWICBitmapDecoder ÇçÏê¨
-    std::shared_ptr<IWICBitmapDecoder> decoder = nullptr;
-    decoder.reset(createBitmapDecoder(imageFilePath), Deleter<IWICBitmapDecoder>());
+    auto decoder = createBitmapDecoder(imageFilePath);
     if (decoder == nullptr) {
         return nullptr;
     }
@@ -53,17 +52,18 @@ ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 }
 
 
-IWICBitmapDecoder* WICCore::createBitmapDecoder(LPCTSTR imageFilePath) {
-    IWICBitmapDecoder *decoder;
+std::shared_ptr<IWICBitmapDecoder> WICCore::createBitmapDecoder(LPCTSTR imageFilePath) {
+    IWICBitmapDecoder *tempDecoder;
     HRESULT hr = mWICImagingFactory->CreateDecoderFromFilename(imageFilePath,
                                                                nullptr,
                                                                GENERIC_READ,
                                                                WICDecodeMetadataCacheOnLoad,
-                                                               &decoder);
+                                                               &tempDecoder);
     if (FAILED(hr)) {
         return nullptr;
     }
 
+    std::shared_ptr<IWICBitmapDecoder> decoder(tempDecoder,  Deleter<IWICBitmapDecoder>());
     return decoder;
 }
 
