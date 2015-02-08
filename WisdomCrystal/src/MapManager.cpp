@@ -29,7 +29,6 @@ MapManager::~MapManager() {
 
 
 bool MapManager::LoadMapDataFile(const int mapID) {
-
     std::string filePath;
 
     filePath = filePath.erase();
@@ -48,7 +47,6 @@ bool MapManager::LoadMapDataFile(const int mapID) {
 
 bool MapManager::ActivateGameObj(GameObjManager* gameObjManager) {
     try {
-
         for (int j = 0; j < MAP_ROW; ++j) {
             for (int i = 0; i < MAP_COL; ++i) {
 

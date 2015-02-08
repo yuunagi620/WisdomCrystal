@@ -48,5 +48,4 @@ private:
     ID2D1Factory      *mD2DFactory;
     IDWriteFactory    *mWriteFactory;
     ID2D1RenderTarget *mRenderTarget;
-
 };
