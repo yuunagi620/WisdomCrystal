@@ -16,7 +16,7 @@ WICCore::~WICCore() {
 }
 
 
-bool WICCore::Init(ID2D1RenderTarget *renderTarget) {
+bool WICCore::Init(std::shared_ptr<ID2D1RenderTarget> renderTarget) {
     mRenderTarget = renderTarget;
 
     HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,

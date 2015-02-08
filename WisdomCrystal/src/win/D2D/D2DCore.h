@@ -33,11 +33,11 @@ public:
     void FlipVertical(const float centerX, const float centerY);
     void RotateTransform(const float centerX, const float centerY, const float angle);
 
-    inline ID2D1RenderTarget* GetRenderTarget() {
-        return mRenderTarget.get();
+    inline std::shared_ptr<ID2D1RenderTarget> GetRenderTarget() const {
+        return mRenderTarget;
     }
-    inline IDWriteFactory* GetWriteFactory() const {
-        return mWriteFactory.get();
+    inline std::shared_ptr<IDWriteFactory> GetWriteFactory() const {
+        return mWriteFactory;
     }
 
 private:

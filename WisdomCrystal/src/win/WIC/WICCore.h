@@ -3,6 +3,7 @@
 #pragma once
 
 #include <wincodec.h>
+#include <memory>
 #include <boost/noncopyable.hpp>
 
 #include "win/util/Deleter.h"
@@ -14,7 +15,7 @@ public:
     WICCore();
     ~WICCore();
 
-    bool Init(ID2D1RenderTarget *renderTarget);
+    bool Init(std::shared_ptr<ID2D1RenderTarget> renderTarget);
 
     // ファイルパスから ID2D1Bitmap を作成する
     ID2D1Bitmap* CreateD2DBitmap(LPCTSTR imageFilePath);
@@ -27,5 +28,5 @@ private:
 
 private:
     std::unique_ptr<IWICImagingFactory, Deleter<IWICImagingFactory>> mWICImagingFactory;
-    ID2D1RenderTarget *mRenderTarget;
+    std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };

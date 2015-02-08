@@ -5,9 +5,6 @@
 #include <Windows.h>
 #include <boost/noncopyable.hpp>
 
-#include "StdAfx.h"
-#include "win/WIC/WICCore.h"
-
 
 class GraphicsDevice : private boost::noncopyable {
 
@@ -43,10 +40,10 @@ public:
     void RotateTransform(const float centerX, const float centerY, const float angle);
 
     inline ID2D1RenderTarget* GetRenderTarget() const {
-        return mRenderTarget;
+        return mRenderTarget.get();
     }
     inline IDWriteFactory* GetWriteFactory() const {
-        return mWriteFactory;
+        return mWriteFactory.get();
     }
 
 private:
@@ -55,6 +52,6 @@ private:
     WICCore mWICCore;
 
     IDXGISwapChain* mSwapChain;
-    ID2D1RenderTarget *mRenderTarget;
-    IDWriteFactory* mWriteFactory;
+    std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
+    std::shared_ptr<IDWriteFactory>    mWriteFactory;
 };
