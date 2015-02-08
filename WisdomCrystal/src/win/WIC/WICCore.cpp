@@ -2,7 +2,6 @@
 
 // Includes
 #include "WICCore.h"
-#include "win/util/SafeRelease.h"
 
 
 WICCore::WICCore() : mWICImagingFactory(nullptr),
@@ -34,66 +33,92 @@ bool WICCore::Init(ID2D1RenderTarget *renderTarget) {
 
 
 ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
-    ID2D1Bitmap *d2dBitmap = nullptr;
 
     // IWICBitmapDecoder を作成
-    IWICBitmapDecoder *decoder = nullptr;
+    std::unique_ptr<IWICBitmapDecoder, Deleter<IWICBitmapDecoder>> decoder = nullptr;
+    decoder.reset(createBitmapDecoder(imageFilePath));
+    if (decoder == nullptr) {
+        return nullptr;
+    }
+
+    // イメージから Frame を取得
+    std::unique_ptr<IWICBitmapFrameDecode, Deleter<IWICBitmapFrameDecode>> frame = nullptr;
+    frame.reset(getFrame(decoder.get()));
+    if (frame == nullptr) {
+        return nullptr;
+    }
+
+    // Direct2D で使用できる形式に変換
+    ID2D1Bitmap *d2dBitmap = convertD2DBitmap(frame.get());
+
+    return d2dBitmap;
+}
+
+
+IWICBitmapDecoder* WICCore::createBitmapDecoder(LPCTSTR imageFilePath) {
+    IWICBitmapDecoder *decoder;
     HRESULT hr = mWICImagingFactory->CreateDecoderFromFilename(imageFilePath,
                                                                nullptr,
                                                                GENERIC_READ,
                                                                WICDecodeMetadataCacheOnLoad,
                                                                &decoder);
     if (FAILED(hr)) {
-        return nullptr; // IWICBitmapDecoder の作成に失敗
+        return nullptr;
     }
 
-    // イメージから Frame を取得し、IWICBitmapFrameDecode オブジェクトに格納
+    return decoder;
+}
+
+
+IWICBitmapFrameDecode* WICCore::getFrame(IWICBitmapDecoder *decoder) {
     IWICBitmapFrameDecode *frame = nullptr;
-    hr = decoder->GetFrame(0, &frame);
+    HRESULT hr = decoder->GetFrame(0, &frame);
     if (FAILED(hr)) {
-        goto cleanup; // Frame の確保に失敗
+        return nullptr;
     }
 
-    // Direct2D で使用できる形式に変換
-    d2dBitmap = convertD2DBitmap(frame);
-
-cleanup:
-    SafeRelease(&frame);
-    SafeRelease(&decoder);
-
-    return d2dBitmap;
+    return frame;
 }
 
 
 // Bitmap を Direct2D で使用できる形式に変換する関数
 ID2D1Bitmap *WICCore::convertD2DBitmap(IWICBitmapFrameDecode *frame) {
 
-    ID2D1Bitmap *d2dBitmap = nullptr;
-
-    // イメージのピクセル形式を 32bppPBGRA に変換
-    IWICFormatConverter *converter = nullptr;
-    HRESULT hr = mWICImagingFactory->CreateFormatConverter(&converter);
-    if (FAILED(hr)) {
-        goto cleanup; // IWICFormatConverter の作成に失敗
+    // converter の作成
+    std::unique_ptr<IWICFormatConverter, Deleter<IWICFormatConverter>> converter = nullptr;
+    converter.reset(createConverter());
+    if (converter == nullptr) {
+        return nullptr; // converter の作成に失敗
     }
 
-    hr = converter->Initialize(frame,
-                               GUID_WICPixelFormat32bppPBGRA,
-                               WICBitmapDitherTypeNone,
-                               nullptr,
-                               0.0f,
-                               WICBitmapPaletteTypeMedianCut);
+    // イメージのピクセル形式を 32bppPBGRA に変換
+    HRESULT hr = converter->Initialize(frame,
+                                       GUID_WICPixelFormat32bppPBGRA,
+                                       WICBitmapDitherTypeNone,
+                                       nullptr,
+                                       0.0f,
+                                       WICBitmapPaletteTypeMedianCut);
     if (FAILED(hr)) {
-        goto cleanup; // イメージの変換に失敗
+        return nullptr; // 変換に失敗
     }
 
     // 他の Direct2D オブジェクトと共に使用できる ID2D1Bitmap オブジェクトを作成
-    hr = mRenderTarget->CreateBitmapFromWicBitmap(converter, &d2dBitmap);
+    ID2D1Bitmap *d2dBitmap = nullptr;
+    hr = mRenderTarget->CreateBitmapFromWicBitmap(converter.get(), &d2dBitmap);
     if (FAILED(hr)) {
-        d2dBitmap = nullptr;
+        d2dBitmap = nullptr; // D2D1Bitmap オブジェクトの作成に失敗
     }
 
-cleanup:
-    SafeRelease(&converter);
     return d2dBitmap;
+}
+
+
+IWICFormatConverter* WICCore::createConverter() {
+    IWICFormatConverter *converter = nullptr;
+    HRESULT hr = mWICImagingFactory->CreateFormatConverter(&converter);
+    if (FAILED(hr)) {
+        return nullptr;
+    }
+
+    return converter;
 }

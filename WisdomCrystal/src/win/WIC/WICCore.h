@@ -16,12 +16,17 @@ public:
 
     bool Init(ID2D1RenderTarget *renderTarget);
 
+    // 
     // ファイルパスから ID2D1Bitmap を作成する
+    //
     ID2D1Bitmap *CreateD2DBitmap(LPCTSTR imageFilePath);
 
 private:
-    ID2D1Bitmap *convertD2DBitmap(IWICBitmapFrameDecode *frame);
+    IWICBitmapDecoder*     createBitmapDecoder(LPCTSTR imageFilePath);
+    IWICBitmapFrameDecode* getFrame(IWICBitmapDecoder *decoder);
+    ID2D1Bitmap*           convertD2DBitmap(IWICBitmapFrameDecode *frame);
+    IWICFormatConverter*   createConverter();
 
     std::unique_ptr<IWICImagingFactory, Deleter<IWICImagingFactory>> mWICImagingFactory;
-    ID2D1RenderTarget  *mRenderTarget;
+    ID2D1RenderTarget *mRenderTarget;
 };
