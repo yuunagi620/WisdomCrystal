@@ -23,9 +23,10 @@ D2DCore::~D2DCore() {
 
 bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
 
+     // D2Dファクトリ生成
     HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &mD2DFactory);
     if (FAILED(hr)) {
-        return false; // D2Dファクトリ生成に失敗
+        return false;
     }
 
     if (createWriteFactory() == false) {
@@ -51,13 +52,16 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
             dpiY);
 
     // Direct2D用のレンダーターゲット作成
+    ID2D1RenderTarget *renderTarget = nullptr;
     hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer,
                                                     &props,
-                                                    &mRenderTarget);
+                                                    &renderTarget);
 
     if (FAILED(hr)) {
         return false; // レンダーターゲットの生成に失敗
     }
+
+    mRenderTarget.reset(renderTarget, Deleter<ID2D1RenderTarget>());
 
     SafeRelease(&backBuffer); // 以降、バックバッファは使わないので解放
 
@@ -68,7 +72,6 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
 void D2DCore::Cleanup() {
     SafeRelease(&mD2DFactory);
     SafeRelease(&mWriteFactory);
-    SafeRelease(&mRenderTarget);
 }
 
 

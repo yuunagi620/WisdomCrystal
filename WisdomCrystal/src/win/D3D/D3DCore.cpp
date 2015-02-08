@@ -111,7 +111,7 @@ bool D3DCore::createRenderTargetView() {
 
 
 ID3D10Texture2D* D3DCore::createBackBuffer() {
-    ID3D10Texture2D* buffer;
+    ID3D10Texture2D* buffer = nullptr;
     HRESULT hr = mSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), reinterpret_cast<LPVOID*>(&buffer));
     if (FAILED(hr)) {
         return nullptr;

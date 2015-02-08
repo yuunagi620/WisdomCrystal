@@ -35,8 +35,8 @@ public:
     void FlipVertical(const float centerX, const float centerY);
     void RotateTransform(const float centerX, const float centerY, const float angle);
 
-    inline ID2D1RenderTarget* GetRenderTarget() const {
-        return mRenderTarget;
+    inline ID2D1RenderTarget* GetRenderTarget() {
+        return mRenderTarget.get();
     }
     inline IDWriteFactory* GetWriteFactory() const {
         return mWriteFactory;
@@ -45,7 +45,8 @@ public:
 private:
     bool createWriteFactory();
 
+private:
     ID2D1Factory      *mD2DFactory;
     IDWriteFactory    *mWriteFactory;
-    ID2D1RenderTarget *mRenderTarget;
+    std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };
