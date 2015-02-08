@@ -6,7 +6,6 @@
 #include <d2d1.h>
 #include <Dwrite.h>
 
-#include <string>
 #include <memory>
 #include <boost/noncopyable.hpp>
 
@@ -45,6 +44,8 @@ private:
     bool createFactory();
     bool createWriteFactory();
     IDXGISurface* createBackBuffer(IDXGISwapChain* swapChain);
+    bool createRenderTarget(std::shared_ptr<IDXGISurface> backBuffer,
+                            const D2D1_RENDER_TARGET_PROPERTIES& props);
 
 private:
     std::unique_ptr<ID2D1Factory, Deleter<ID2D1Factory>> mD2DFactory;

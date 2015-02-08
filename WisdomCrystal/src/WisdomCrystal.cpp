@@ -1,6 +1,6 @@
 // WisdomCrystal.cpp
 
-#pragma comment(lib, "d2d1.lib")
+
 #pragma comment(lib, "d3d10_1.lib")
 #pragma comment(lib, "Windowscodecs.lib")
 #pragma comment(lib, "winmm.lib")

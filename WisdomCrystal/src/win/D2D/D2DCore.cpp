@@ -1,5 +1,6 @@
 // D2DCore.cpp
 
+#pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "DWrite.lib")
 
 // Includes
@@ -33,7 +34,7 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
     }
 
     // BackBuffer の作成
-    std::unique_ptr<IDXGISurface, Deleter<IDXGISurface>> backBuffer(createBackBuffer(swapChain));
+    std::shared_ptr<IDXGISurface> backBuffer(createBackBuffer(swapChain), Deleter<IDXGISurface>());
     if (backBuffer == nullptr) {
         return false;
     }
@@ -50,16 +51,9 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
             dpiY);
 
     // Direct2D用のレンダーターゲット作成
-    ID2D1RenderTarget *renderTarget = nullptr;
-    HRESULT hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer.get(),
-                                                            &props,
-                                                            &renderTarget);
-
-    if (FAILED(hr)) {
-        return false; // レンダーターゲットの生成に失敗
+    if (createRenderTarget(backBuffer, props) == false) {
+        return false;
     }
-
-    mRenderTarget.reset(renderTarget, Deleter<ID2D1RenderTarget>());
 
     return true;
 }
@@ -148,4 +142,20 @@ IDXGISurface* D2DCore::createBackBuffer(IDXGISwapChain* swapChain) {
     }
 
     return backBuffer;
+}
+
+
+bool  D2DCore::createRenderTarget(std::shared_ptr<IDXGISurface> backBuffer,
+                                  const D2D1_RENDER_TARGET_PROPERTIES& props) {
+    ID2D1RenderTarget *renderTarget = nullptr;
+    HRESULT hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer.get(),
+                                                            &props,
+                                                            &renderTarget);
+
+    if (FAILED(hr)) {
+        return false; // レンダーターゲットの生成に失敗
+    }
+
+    mRenderTarget.reset(renderTarget, Deleter<ID2D1RenderTarget>());
+    return true;
 }
