@@ -41,8 +41,7 @@ ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
     }
 
     // ÉCÉÅÅ[ÉWÇ©ÇÁ Frame ÇéÊìæ
-    std::shared_ptr<IWICBitmapFrameDecode> frame = nullptr;
-    frame.reset(getFrame(decoder), Deleter<IWICBitmapFrameDecode>());
+    auto frame = getFrame(decoder);
     if (frame == nullptr) {
         return nullptr;
     }
@@ -53,28 +52,29 @@ ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 
 
 std::shared_ptr<IWICBitmapDecoder> WICCore::createBitmapDecoder(LPCTSTR imageFilePath) {
-    IWICBitmapDecoder *tempDecoder;
+    IWICBitmapDecoder *decoderPtr;
     HRESULT hr = mWICImagingFactory->CreateDecoderFromFilename(imageFilePath,
                                                                nullptr,
                                                                GENERIC_READ,
                                                                WICDecodeMetadataCacheOnLoad,
-                                                               &tempDecoder);
+                                                               &decoderPtr);
     if (FAILED(hr)) {
         return nullptr;
     }
 
-    std::shared_ptr<IWICBitmapDecoder> decoder(tempDecoder,  Deleter<IWICBitmapDecoder>());
+    std::shared_ptr<IWICBitmapDecoder> decoder(decoderPtr,  Deleter<IWICBitmapDecoder>());
     return decoder;
 }
 
 
-IWICBitmapFrameDecode* WICCore::getFrame(std::shared_ptr<IWICBitmapDecoder> decoder) {
-    IWICBitmapFrameDecode *frame = nullptr;
-    HRESULT hr = decoder->GetFrame(0, &frame);
+std::shared_ptr<IWICBitmapFrameDecode> WICCore::getFrame(std::shared_ptr<IWICBitmapDecoder> decoder) {
+    IWICBitmapFrameDecode *framePtr = nullptr;
+    HRESULT hr = decoder->GetFrame(0, &framePtr);
     if (FAILED(hr)) {
         return nullptr;
     }
 
+    std::shared_ptr<IWICBitmapFrameDecode> frame(framePtr, Deleter<IWICBitmapFrameDecode>());
     return frame;
 }
 

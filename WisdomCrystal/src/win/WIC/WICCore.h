@@ -20,8 +20,8 @@ public:
     ID2D1Bitmap *CreateD2DBitmap(LPCTSTR imageFilePath);
 
 private:
-    std::shared_ptr<IWICBitmapDecoder> createBitmapDecoder(LPCTSTR imageFilePath);
-    IWICBitmapFrameDecode* getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
+    std::shared_ptr<IWICBitmapDecoder>     createBitmapDecoder(LPCTSTR imageFilePath);
+    std::shared_ptr<IWICBitmapFrameDecode> getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
     ID2D1Bitmap*           convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame);
     IWICFormatConverter*   createConverter();
 
