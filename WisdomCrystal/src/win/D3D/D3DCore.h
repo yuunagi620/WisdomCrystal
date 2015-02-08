@@ -28,11 +28,11 @@ private:
     bool createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, const int screenHeight);
     bool createRenderTargetView();
     ID3D10Texture2D* createBackBuffer();
+    void setViewport(const int screenWidth, const int screenHeight);
 
 private:
     std::unique_ptr<ID3D10Device1, Deleter<ID3D10Device1>> mD3DDevice;
-    std::shared_ptr<IDXGISwapChain> mSwapChain;
     std::unique_ptr<ID3D10RenderTargetView, Deleter<ID3D10RenderTargetView>> mRenderTargetView;
-    IDXGIAdapter           *mAdapter;
-    IDXGIOutput            *mOutput;
+
+    std::shared_ptr<IDXGISwapChain> mSwapChain;
 };

@@ -2,15 +2,12 @@
 
 // Includes
 #include "D3DCore.h"
-#include "win/util/SafeRelease.h"
 #include "SwapChainDeleter.h"
 
 
 D3DCore::D3DCore() : mD3DDevice(nullptr),
                      mSwapChain(nullptr),
-                     mRenderTargetView(nullptr),
-                     mAdapter(nullptr),
-                     mOutput(nullptr)
+                     mRenderTargetView(nullptr)
 {
     // empty
 }
@@ -33,25 +30,15 @@ bool D3DCore::Init(const HWND& hWnd, const int screenWidth, const int screenHeig
         return false;
     }
 
-    // viewport ÇÃê›íË
-    D3D10_VIEWPORT vp;
-
-	vp.TopLeftX = 0;
-	vp.TopLeftY = 0;
-	vp.Width    = static_cast<UINT>(screenWidth);
-	vp.Height   = static_cast<UINT>(screenHeight);
-	vp.MinDepth = 0.0f;
-	vp.MaxDepth = 1.0f;
-
     // viewport ÇÃìoò^
-	mD3DDevice->RSSetViewports(1, &vp);
+    setViewport(screenWidth, screenHeight);
 
     return true;
 }
 
 
 void D3DCore::SetFullscreenState(const bool isFullscreen) const {
-    mSwapChain->SetFullscreenState(isFullscreen, mOutput);
+    mSwapChain->SetFullscreenState(isFullscreen, nullptr);
 }
 
 
@@ -106,10 +93,11 @@ bool D3DCore::createRenderTargetView() {
         return false;
     }
 
+    // RenderTargetView ÇÃçÏê¨
     ID3D10RenderTargetView *renderTargetView = nullptr;
     HRESULT hr = mD3DDevice->CreateRenderTargetView(backBuffer.get(), nullptr, &renderTargetView);
     if (FAILED(hr)) {
-        return false; // RenderTargetView ÇÃçÏê¨Ç…é∏îs
+        return false;
     }
 
     // RenderTargetView ÇÃìoò^
@@ -130,4 +118,21 @@ ID3D10Texture2D* D3DCore::createBackBuffer() {
     }
 
     return buffer;
+}
+
+
+void D3DCore::setViewport(const int screenWidth, const int screenHeight) {
+
+    // viewport ÇÃê›íË
+    D3D10_VIEWPORT vp;
+
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	vp.Width    = static_cast<UINT>(screenWidth);
+	vp.Height   = static_cast<UINT>(screenHeight);
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
+
+    // viewport ÇÃìoò^
+	mD3DDevice->RSSetViewports(1, &vp);
 }
