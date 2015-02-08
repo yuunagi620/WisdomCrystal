@@ -48,10 +48,3 @@ void GameObjManager::Update() {
         }
     }
 }
-
-
-bool GameObjManager::Activate(int initX, int initY, int objID) {
-
-    return true;
-}
-

@@ -28,7 +28,6 @@
     <ClInclude Include="src\win\XA2\XA2Core.h" />
     <ClInclude Include="src\BackGround.h" />
     <ClInclude Include="src\GraphicsDevice.h" />
-    <ClInclude Include="src\MapManager.h" />
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\WinApplication.h" />
@@ -66,7 +65,6 @@
     <ClCompile Include="src\win\XA2\XA2Core.cpp" />
     <ClCompile Include="src\BackGround.cpp" />
     <ClCompile Include="src\GraphicsDevice.cpp" />
-    <ClCompile Include="src\MapManager.cpp" />
     <ClCompile Include="src\SoundDevice.cpp" />
     <ClCompile Include="src\StdAfx.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />

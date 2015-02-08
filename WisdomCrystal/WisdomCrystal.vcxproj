@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClInclude Include="src\BackGround.h" />
     <ClInclude Include="src\GraphicsDevice.h" />
-    <ClInclude Include="src\MapManager.h" />
     <ClInclude Include="src\object\GameObject.h" />
     <ClInclude Include="src\object\GameObjManager.h" />
     <ClInclude Include="src\object\Player.h" />
@@ -54,7 +53,6 @@
   <ItemGroup>
     <ClCompile Include="src\BackGround.cpp" />
     <ClCompile Include="src\GraphicsDevice.cpp" />
-    <ClCompile Include="src\MapManager.cpp" />
     <ClCompile Include="src\object\GameObjManager.cpp" />
     <ClCompile Include="src\object\Player.cpp" />
     <ClCompile Include="src\scene\Error.cpp" />

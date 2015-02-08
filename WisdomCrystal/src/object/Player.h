@@ -33,10 +33,6 @@ public:
     void Cleanup() override;
     void Update() override;
 
-    inline bool IsAlive() const {
-        return mIsAlive;
-    }
-
 private:
     void draw();
     void gameOverAnimetion();
@@ -46,6 +42,7 @@ private:
 
     void soundSE(PlayerSE playerSE);
 
+private:
     static const int   PLAYER_IMAGE_WIDTH;
     static const int   PLAYER_IMAGE_HEIGHT;
     static const int   PLAYER_IMAGE_ROW;

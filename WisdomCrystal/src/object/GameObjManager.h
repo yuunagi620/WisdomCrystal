@@ -20,8 +20,6 @@ public:
     void Cleanup();
     void Update();
 
-    bool Activate(int initX, int initY, int objID);
-
 private:
     static const int MAX_GAME_OBJCT = 1080;
     static const int NUM_GAME_OBJECT = 2;
