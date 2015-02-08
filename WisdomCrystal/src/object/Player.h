@@ -27,13 +27,11 @@ class Player : public GameObject {
 
 public:
     Player();
-
-    static Player *Activate(int initX, int initY);
+    virtual ~Player();
 
     bool Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) override;
     void Cleanup() override;
     void Update() override;
-    void Deactivate() override;
 
     inline bool IsAlive() const {
         return mIsAlive;
@@ -59,7 +57,6 @@ private:
     static const int   HIT_REGION_MEAGIN_WIDTH;
     static const int   HIT_REGION_MEAGIN_HEIGHT;
     static const int   ROTATION_RATE;
-    static Player mPlayer;
 
     GraphicsDevice* mGraphicsDevice;
     SoundDevice* mSoundDevice;

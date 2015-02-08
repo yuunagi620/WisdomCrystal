@@ -28,7 +28,6 @@ bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevi
         }
     }
 
-    //Deactivate();
     return true;
 }
 
@@ -51,36 +50,7 @@ void GameObjManager::Update() {
 }
 
 
-void GameObjManager::Deactivate() {
-    for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
-        if (*it != nullptr) {
-            (*it)->Deactivate();
-        }
-    }
-    std::fill(std::begin(mActiveGameObjects), std::end(mActiveGameObjects), nullptr);
-}
-
-
 bool GameObjManager::Activate(int initX, int initY, int objID) {
-
-    //GameObject* obj;
-
-    //switch (objID) {
-    //    case 0:  obj = nullptr;                                   break;
-    //    case 1:  obj = Player::Activate(initX, initY);            break;
-
-    //    default: obj = nullptr;
-    //}
-
-    //static int index = 0;
-    //
-    //try {
-    //    mActiveGameObjects.at(index) = obj;
-    //} catch (const std::out_of_range&) {
-    //    return false;
-    //}
-
-    //++index;
 
     return true;
 }

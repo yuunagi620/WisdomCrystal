@@ -16,6 +16,4 @@ public:
     virtual void Cleanup() = 0;
 
     virtual void Update() = 0;
-
-    virtual void Deactivate() = 0;
 };

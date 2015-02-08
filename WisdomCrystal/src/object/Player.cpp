@@ -21,10 +21,6 @@ const int   Player::HIT_REGION_MEAGIN_HEIGHT = 0;
 const int   Player::ROTATION_RATE = 10;
 
 
-// Static member variables
-Player      Player::mPlayer;
-
-
 Player::Player() : mGraphicsDevice(nullptr),
                    mSoundDevice(nullptr),
                    mImage(nullptr),
@@ -32,25 +28,19 @@ Player::Player() : mGraphicsDevice(nullptr),
                    mJumpSE(),
                    mGameOverSE(),
                    mD2DTextData(),
-                   mX(0),
-                   mY(0),
+                   mX(100),
+                   mY(400),
                    mIsAlive(false),
                    mIsLeft(false),
                    mIsGameOver(false),
-                   mPlayerStatus(NORMAL) {
+                   mPlayerStatus(NORMAL)
+{
     // empty
 }
 
 
-Player *Player::Activate(int initX, int initY) {
-    if (mPlayer.IsAlive() == false) {
-        mPlayer.mX = initX;
-        mPlayer.mY = initY;
-        mPlayer.mIsAlive = true;
-        return &mPlayer;
-    }
-
-    return nullptr;
+Player::~Player() {
+    // empty
 }
 
 
@@ -127,17 +117,6 @@ void Player::Update() {
 
     changeImage(mPlayerStatus);
     draw();
-}
-
-
-void Player::Deactivate() {
-    mIsAlive = false;
-    mX = 0;
-    mY = 0;
-    mPlayerStatus = NORMAL;
-    mIsAlive = false;
-    mIsLeft = true;
-    mIsGameOver = false;
 }
 
 

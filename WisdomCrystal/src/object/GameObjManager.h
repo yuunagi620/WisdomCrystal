@@ -19,7 +19,6 @@ public:
     bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice);
     void Cleanup();
     void Update();
-    void Deactivate();
 
     bool Activate(int initX, int initY, int objID);
 
