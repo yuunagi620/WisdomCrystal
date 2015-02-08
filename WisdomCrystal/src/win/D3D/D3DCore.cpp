@@ -101,7 +101,6 @@ bool D3DCore::createRenderTargetView() {
     }
 
     // RenderTargetView の登録
-	// これでレンダリング結果がSwapChainのバッファに書き込まれる
     mD3DDevice->OMSetRenderTargets(1, &renderTargetView, nullptr);
 
     mRenderTargetView.reset(renderTargetView);

@@ -4,7 +4,6 @@
 
 // Includes
 #include "D2DCore.h"
-#include "win/util/SafeRelease.h"
 #include "win/util/Deleter.h"
 
 
@@ -33,11 +32,10 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
         return false;
     }
 
-
-    IDXGISurface *backBuffer;
-    HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
-    if (FAILED(hr)) {
-        return false; // backBuffeの確保に失敗
+    // BackBuffer の作成
+    std::unique_ptr<IDXGISurface, Deleter<IDXGISurface>> backBuffer(createBackBuffer(swapChain));
+    if (backBuffer == nullptr) {
+        return false;
     }
 
     // デスクトップのDPI取得
@@ -53,17 +51,15 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
 
     // Direct2D用のレンダーターゲット作成
     ID2D1RenderTarget *renderTarget = nullptr;
-    hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer,
-                                                    &props,
-                                                    &renderTarget);
+    HRESULT hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer.get(),
+                                                            &props,
+                                                            &renderTarget);
 
     if (FAILED(hr)) {
         return false; // レンダーターゲットの生成に失敗
     }
 
     mRenderTarget.reset(renderTarget, Deleter<ID2D1RenderTarget>());
-
-    SafeRelease(&backBuffer); // 以降、バックバッファは使わないので解放
 
     return true;
 }
@@ -141,4 +137,15 @@ bool D2DCore::createFactory() {
 
     mD2DFactory.reset(factory);
     return true;
+}
+
+
+IDXGISurface* D2DCore::createBackBuffer(IDXGISwapChain* swapChain) {
+    IDXGISurface *backBuffer;
+    HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+    if (FAILED(hr)) {
+        return nullptr; // backBuffeの確保に失敗
+    }
+
+    return backBuffer;
 }

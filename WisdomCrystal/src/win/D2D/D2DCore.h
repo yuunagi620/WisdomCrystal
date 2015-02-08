@@ -44,6 +44,7 @@ public:
 private:
     bool createFactory();
     bool createWriteFactory();
+    IDXGISurface* createBackBuffer(IDXGISwapChain* swapChain);
 
 private:
     std::unique_ptr<ID2D1Factory, Deleter<ID2D1Factory>> mD2DFactory;
