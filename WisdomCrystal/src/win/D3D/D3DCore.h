@@ -19,9 +19,11 @@ public:
     bool Init(const HWND& hWnd, const int screenWidth, const int screenHeight);
 
     void SetFullscreenState(const bool isFullscreen) const;
+
+    void Present() const;
     
-    inline IDXGISwapChain *GetSwapChain() {
-        return mSwapChain.get();
+    inline std::shared_ptr<IDXGISwapChain> GetSwapChain() const {
+        return mSwapChain;
     }
 
 private:

@@ -42,6 +42,11 @@ void D3DCore::SetFullscreenState(const bool isFullscreen) const {
 }
 
 
+void D3DCore::Present() const {
+    mSwapChain->Present(1, 0);
+}
+
+
 bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, const int screenHeight) {
 
     // SwapChain ‚Ìİ’è

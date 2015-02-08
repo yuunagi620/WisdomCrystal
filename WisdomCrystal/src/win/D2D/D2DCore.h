@@ -16,7 +16,7 @@ public:
     D2DCore();
     virtual ~D2DCore();
 
-    bool Init(const HWND hWnd, IDXGISwapChain* swapChain);
+    bool Init(const HWND hWnd, std::shared_ptr<IDXGISwapChain> swapChain);
 
     void BeginDraw();
     HRESULT EndDraw();
@@ -43,7 +43,8 @@ public:
 private:
     bool createFactory();
     bool createWriteFactory();
-    std::shared_ptr<IDXGISurface> createBackBuffer(IDXGISwapChain* swapChain);
+    std::shared_ptr<IDXGISurface> createBackBuffer(std::shared_ptr<IDXGISwapChain> swapChain);
+
     bool createRenderTarget(std::shared_ptr<IDXGISurface> backBuffer,
                             const D2D1_RENDER_TARGET_PROPERTIES& props);
 

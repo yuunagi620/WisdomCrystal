@@ -21,7 +21,7 @@ D2DCore::~D2DCore() {
 }
 
 
-bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
+bool D2DCore::Init(const HWND hWnd, std::shared_ptr<IDXGISwapChain> swapChain) {
 
     // Factory �̍쐬
     if (createFactory() == false) {
@@ -135,7 +135,7 @@ bool D2DCore::createFactory() {
 }
 
 
-std::shared_ptr<IDXGISurface> D2DCore::createBackBuffer(IDXGISwapChain* swapChain) {
+std::shared_ptr<IDXGISurface> D2DCore::createBackBuffer(std::shared_ptr<IDXGISwapChain> swapChain) {
     IDXGISurface *tempBuffer;
     HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&tempBuffer));
     if (FAILED(hr)) {

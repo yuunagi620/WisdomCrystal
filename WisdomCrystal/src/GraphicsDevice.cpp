@@ -6,9 +6,7 @@
 
 GraphicsDevice::GraphicsDevice() : mD3DCore(),
                                    mD2DCore(),
-                                   mWICCore(),
-                                   mSwapChain(nullptr),
-                                   mWriteFactory(nullptr)
+                                   mWICCore()
 {
     // empty
 }
@@ -27,16 +25,11 @@ bool GraphicsDevice::Init(const HWND& hWnd, const int screenWidth, const int scr
         return false;
     }
 
-    mSwapChain = mD3DCore.GetSwapChain();
-
     // Direct2D ‚Ì‰Šú‰»
-    if (mD2DCore.Init(hWnd, mSwapChain) == false) {
+    if (mD2DCore.Init(hWnd, mD3DCore.GetSwapChain()) == false) {
         MessageBox(nullptr, TEXT("Can not initialize Direct2D."), TEXT("ERROR"), MB_OK);
         return false;
     }
-
-    mWriteFactory = mD2DCore.GetWriteFactory();
-    mRenderTarget = mD2DCore.GetRenderTarget();
 
     // WIC ‚Ì‰Šú‰»
     if (mWICCore.Init(mD2DCore.GetRenderTarget()) == false) {
@@ -59,7 +52,7 @@ HRESULT GraphicsDevice::EndDraw() {
 
 
 void GraphicsDevice::Present() {
-    mSwapChain->Present(1, 0);
+    mD3DCore.Present();
 }
 
 
@@ -73,7 +66,7 @@ void GraphicsDevice::ClearScreen(const D2D1_COLOR_F& fillColor) {
 }
 
 
-ID2D1Bitmap* GraphicsDevice::CreateD2DBitmap(TCHAR *imageFilePath) {
+ID2D1Bitmap* GraphicsDevice::CreateD2DBitmap(LPCTSTR imageFilePath) {
     return mWICCore.CreateD2DBitmap(imageFilePath);
 }
 
