@@ -52,37 +52,37 @@ ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 
 
 std::shared_ptr<IWICBitmapDecoder> WICCore::createBitmapDecoder(LPCTSTR imageFilePath) {
-    IWICBitmapDecoder *decoderPtr;
+    IWICBitmapDecoder *tempDecoder;
     HRESULT hr = mWICImagingFactory->CreateDecoderFromFilename(imageFilePath,
                                                                nullptr,
                                                                GENERIC_READ,
                                                                WICDecodeMetadataCacheOnLoad,
-                                                               &decoderPtr);
+                                                               &tempDecoder);
     if (FAILED(hr)) {
         return nullptr;
     }
 
-    std::shared_ptr<IWICBitmapDecoder> decoder(decoderPtr,  Deleter<IWICBitmapDecoder>());
+    std::shared_ptr<IWICBitmapDecoder> decoder(tempDecoder,  Deleter<IWICBitmapDecoder>());
     return decoder;
 }
 
 
 std::shared_ptr<IWICBitmapFrameDecode> WICCore::getFrame(std::shared_ptr<IWICBitmapDecoder> decoder) {
-    IWICBitmapFrameDecode *framePtr = nullptr;
-    HRESULT hr = decoder->GetFrame(0, &framePtr);
+    IWICBitmapFrameDecode *tempFrame = nullptr;
+    HRESULT hr = decoder->GetFrame(0, &tempFrame);
     if (FAILED(hr)) {
         return nullptr;
     }
 
-    std::shared_ptr<IWICBitmapFrameDecode> frame(framePtr, Deleter<IWICBitmapFrameDecode>());
+    std::shared_ptr<IWICBitmapFrameDecode> frame(tempFrame, Deleter<IWICBitmapFrameDecode>());
     return frame;
 }
 
 
-ID2D1Bitmap *WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame) {
+ID2D1Bitmap* WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame) {
 
     // converter ÇÃçÏê¨
-    std::unique_ptr<IWICFormatConverter, Deleter<IWICFormatConverter>> converter(createConverter());
+    auto converter = createConverter();
     if (converter == nullptr) {
         return nullptr; // converter ÇÃçÏê¨Ç…é∏îs
     }
@@ -109,12 +109,13 @@ ID2D1Bitmap *WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> fr
 }
 
 
-IWICFormatConverter* WICCore::createConverter() {
-    IWICFormatConverter *converter = nullptr;
-    HRESULT hr = mWICImagingFactory->CreateFormatConverter(&converter);
+std::shared_ptr<IWICFormatConverter> WICCore::createConverter() {
+    IWICFormatConverter *tempConverter = nullptr;
+    HRESULT hr = mWICImagingFactory->CreateFormatConverter(&tempConverter);
     if (FAILED(hr)) {
         return nullptr;
     }
 
+    std::shared_ptr<IWICFormatConverter> converter(tempConverter, Deleter<IWICFormatConverter>());
     return converter;
 }
