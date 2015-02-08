@@ -2,6 +2,7 @@
 
 // Includes
 #include "XA2Core.h"
+#include "SourceVoiceDeleter.h"
 
 
 XA2Core::XA2Core() : mXAudio(nullptr), 
@@ -28,14 +29,15 @@ bool XA2Core::Init() {
 }
 
 
-bool XA2Core::CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
-                                const WAVEFORMATEX& waveFormatEx) {
-    HRESULT hr = mXAudio->CreateSourceVoice(sourceVoice, &waveFormatEx);
+std::shared_ptr<IXAudio2SourceVoice> XA2Core::CreateSourceVoice(const WAVEFORMATEX& waveFormatEx) {
+    IXAudio2SourceVoice *tempSourceVoice = nullptr;
+    HRESULT hr = mXAudio->CreateSourceVoice(&tempSourceVoice, &waveFormatEx);
     if (FAILED(hr)) {
-        return false;
+        return nullptr;
     }
 
-    return true;
+    std::shared_ptr<IXAudio2SourceVoice> sourceVoice(tempSourceVoice, SourceVoiceDeleter());
+    return sourceVoice;
 }
 
 

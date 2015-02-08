@@ -25,7 +25,6 @@ Player::Player() : mGraphicsDevice(nullptr),
                    mSoundDevice(nullptr),
                    mImage(nullptr),
                    mImageSrcRect(),
-                   mJumpSE(),
                    mGameOverSE(),
                    mD2DTextData(),
                    mX(100),
@@ -58,11 +57,6 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
     mImageSrcRect = getRectF();
 
     // 以下、SEデータの作成
-    if (mJumpSE.Init(mSoundDevice, TEXT("resources/sound/SE/jumpSE.wav")) == false) {
-        MessageBox(nullptr, TEXT("Can not init jumpSE.wav."), TEXT("ERROR"), MB_OK);
-        return false;
-    }
-
     if (mGameOverSE.Init(mSoundDevice, TEXT("resources/sound/SE/gameOverSE.wav")) == false) {
         MessageBox(nullptr, TEXT("Can not init gameOverSE.wav."), TEXT("ERROR"), MB_OK);
         return false;
@@ -79,8 +73,7 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
 
 
 void Player::Cleanup() {
-    mJumpSE.Cleanup();
-    mGameOverSE.Cleanup();
+    // empty
 }
 
 
@@ -184,7 +177,6 @@ RECT Player::getHitRect(const int dx, const int dy) {
 
 void Player::soundSE(PlayerSE playerSE) {
     switch (playerSE) {
-        case SE_JUMP:     mJumpSE.StartSE();     break;
         case SE_GAMEOVER: mGameOverSE.StartSE(); break;
     }
 }

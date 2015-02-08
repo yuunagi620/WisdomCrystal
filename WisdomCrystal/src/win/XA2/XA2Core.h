@@ -18,8 +18,7 @@ public:
 
     bool Init();
 
-    bool CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
-                           const WAVEFORMATEX& waveFormatEx);
+    std::shared_ptr<IXAudio2SourceVoice> CreateSourceVoice(const WAVEFORMATEX& waveFormatEx);
 
 private:
     bool createMasteringVoice();

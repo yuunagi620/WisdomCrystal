@@ -10,7 +10,7 @@ SEData::SEData() : mWaveData(), mSourceVoiceForSE(nullptr) {
 
 
 SEData::~SEData() {
-    Cleanup();
+    // empty
 }
 
 
@@ -20,21 +20,13 @@ bool SEData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
         return false; // SE ƒf[ƒ^‚Ì“Ç‚Ýž‚Ý‚ÉŽ¸”s
     }
 
-    if (soundDevice->CreateSourceVoice(&mSourceVoiceForSE, mWaveData.GetWaveFormatEx()) == false) {
+    mSourceVoiceForSE = soundDevice->CreateSourceVoice(mWaveData.GetWaveFormatEx());
+    if (mSourceVoiceForSE == nullptr) {
         MessageBox(nullptr, TEXT("SEData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice ‚Ìì¬‚ÉŽ¸”s
     }
 
     return true;
-}
-
-
-void SEData::Cleanup() {
-    if (mSourceVoiceForSE != nullptr) {
-        mSourceVoiceForSE->Stop();
-        mSourceVoiceForSE->DestroyVoice();
-        mSourceVoiceForSE = nullptr;
-    }
 }
 
 

@@ -16,17 +16,18 @@ BGMData::~BGMData() {
 
 bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
     if (mWaveData.Init(waveFilePath) == false) {
-        MessageBox(nullptr, TEXT("Can not read waveData."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("BGMData: Can not read waveData."), TEXT("ERROR"), MB_OK);
         return false; // BGM ÉfÅ[É^ÇÃì«Ç›çûÇ›Ç…é∏îs
     }
 
-    if (soundDevice->CreateSourceVoice(&mSourceVoiceForBGM, mWaveData.GetWaveFormatEx()) == false) {
-        MessageBox(nullptr, TEXT("Can not create source voice."), TEXT("ERROR"), MB_OK);
+    mSourceVoiceForBGM = soundDevice->CreateSourceVoice(mWaveData.GetWaveFormatEx());
+    if (mSourceVoiceForBGM == nullptr) {
+        MessageBox(nullptr, TEXT("BGMData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice ÇÃçÏê¨Ç…é∏îs
     }
 
     if (ResetSourceVoice() == false) {
-        MessageBox(nullptr, TEXT("Can not set source voice."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("BGMData: Can not set source voice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice ÇÃäÑÇËìñÇƒÇ…é∏îs
     }
     

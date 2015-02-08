@@ -55,9 +55,9 @@ private:
     bool mIsFullscreen;
 
     COMInitializer mCOMInitializer;
-    BGMData mBGMData;
     GraphicsDevice mGraphicsDevice;
     SoundDevice mSoundDevice;
+    BGMData mBGMData;
     BackGround mBackGround;
     GameObjManager mGameObjManager;
     SceneChanger mSceneChanger;

@@ -61,7 +61,6 @@ private:
     ID2D1Bitmap* mImage;
     D2D1_RECT_F mImageSrcRect;
 
-    SEData mJumpSE;
     SEData mGameOverSE;
 
     D2DTextData mD2DTextData;

@@ -23,5 +23,5 @@ public:
 
 private:
     WaveData mWaveData;
-    IXAudio2SourceVoice* mSourceVoiceForBGM;
+    std::shared_ptr<IXAudio2SourceVoice> mSourceVoiceForBGM;
 };

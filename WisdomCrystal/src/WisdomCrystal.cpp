@@ -16,7 +16,6 @@
 
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
-#include "win/joypad/Joypad.h"
 
 
 WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
@@ -27,9 +26,9 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
 
     : WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
       mIsFullscreen(false),
-      mBGMData(),
       mGraphicsDevice(),
       mSoundDevice(),
+      mBGMData(),
       mBackGround(),
       mGameObjManager(),
       mSceneChanger()

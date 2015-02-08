@@ -26,8 +26,6 @@ bool SoundDevice::Init() {
 }
 
 
-bool SoundDevice::CreateSourceVoice(IXAudio2SourceVoice **sourceVoice,
-                                    const WAVEFORMATEX& waveFormatEx) {
-
-    return mXA2Core.CreateSourceVoice(sourceVoice, waveFormatEx);
+std::shared_ptr<IXAudio2SourceVoice> SoundDevice::CreateSourceVoice(const WAVEFORMATEX& waveFormatEx) {
+    return mXA2Core.CreateSourceVoice(waveFormatEx);
 }

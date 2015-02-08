@@ -13,7 +13,6 @@ public:
     virtual ~SEData();
 
     bool Init(SoundDevice* soundDevice, LPTSTR waveFilePath);
-    void Cleanup();
 
     void StartSE();
     void SetSEVolume(const float volume);
@@ -21,5 +20,5 @@ public:
     
 private:
     WaveData mWaveData;
-    IXAudio2SourceVoice *mSourceVoiceForSE;
+    std::shared_ptr<IXAudio2SourceVoice> mSourceVoiceForSE;
 };

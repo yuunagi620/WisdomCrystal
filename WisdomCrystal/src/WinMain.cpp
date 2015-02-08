@@ -12,13 +12,14 @@ const LPCTSTR WINDOW_CLASS_NAME = TEXT("WisdomCrystal");
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, int cmdShow) {
     int returnCode = 0;
-
     {
         WisdomCrystal wisdomCrystal(hInstance, SCREEN_WIDTH, SCREEN_HEIGHT, CAPTION_NAME, WINDOW_CLASS_NAME);
         returnCode = wisdomCrystal.Run();
     }
-    CoUninitialize();
-    _CrtDumpMemoryLeaks();
+    
+    if (_CrtDumpMemoryLeaks()) {
+        MessageBox(nullptr, TEXT("Detected Memory Leaks."), TEXT("ERROR"), MB_OK);
+    }
 
     return returnCode;
 }
