@@ -18,7 +18,6 @@ public:
     virtual ~D2DCore();
 
     bool Init(const HWND hWnd, IDXGISwapChain* swapChain);
-    void Cleanup();
 
     void BeginDraw();
     HRESULT EndDraw();
@@ -39,14 +38,16 @@ public:
         return mRenderTarget.get();
     }
     inline IDWriteFactory* GetWriteFactory() const {
-        return mWriteFactory;
+        return mWriteFactory.get();
     }
 
 private:
+    bool createFactory();
     bool createWriteFactory();
 
 private:
-    ID2D1Factory      *mD2DFactory;
-    IDWriteFactory    *mWriteFactory;
+    std::unique_ptr<ID2D1Factory, Deleter<ID2D1Factory>> mD2DFactory;
+
+    std::shared_ptr<IDWriteFactory>    mWriteFactory;
     std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };

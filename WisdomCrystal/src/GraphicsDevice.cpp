@@ -15,7 +15,7 @@ GraphicsDevice::GraphicsDevice() : mD3DCore(),
 
 
 GraphicsDevice::~GraphicsDevice() {
-    Cleanup();
+    // empty
 }
 
 
@@ -45,11 +45,6 @@ bool GraphicsDevice::Init(const HWND& hWnd, const int screenWidth, const int scr
     }
 
     return true;
-}
-
-
-void GraphicsDevice::Cleanup() {
-    mD2DCore.Cleanup();
 }
 
 

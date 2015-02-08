@@ -14,13 +14,14 @@ struct Deleter {
 };
 
 
-//#include <wincodec.h>
-//template <>
-//struct Deleter<IWICImagingFactory> {
-//    void operator()(IWICImagingFactory *ptr) {
-//        if (ptr != nullptr) {
-//            ptr->Release();
-//            ptr = nullptr;
-//        }
-//    }
-//};
+#include <d2d1.h>
+#include <Dwrite.h>
+template <>
+struct Deleter<IDWriteFactory> {
+    void operator()(IDWriteFactory *ptr) {
+        if (ptr != nullptr) {
+            ptr->Release();
+            ptr = nullptr;
+        }
+    }
+};

@@ -115,7 +115,6 @@ bool WisdomCrystal::Init() {
 void  WisdomCrystal::Cleanup() {
     mGameObjManager.Cleanup();
     mSoundDevice.Cleanup();
-    mGraphicsDevice.Cleanup();
 }
 
 

@@ -17,25 +17,25 @@ D2DCore::D2DCore() : mD2DFactory(nullptr),
 
 
 D2DCore::~D2DCore() {
-    Cleanup();
+    // empty
 }
 
 
 bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
 
-     // D2Dファクトリ生成
-    HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &mD2DFactory);
-    if (FAILED(hr)) {
+    // Factory の作成
+    if (createFactory() == false) {
         return false;
     }
 
+    // WriteFactory の作成
     if (createWriteFactory() == false) {
         return false;
     }
 
 
     IDXGISurface *backBuffer;
-    hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+    HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
     if (FAILED(hr)) {
         return false; // backBuffeの確保に失敗
     }
@@ -66,12 +66,6 @@ bool D2DCore::Init(const HWND hWnd, IDXGISwapChain* swapChain) {
     SafeRelease(&backBuffer); // 以降、バックバッファは使わないので解放
 
     return true;
-}
-
-
-void D2DCore::Cleanup() {
-    SafeRelease(&mD2DFactory);
-    SafeRelease(&mWriteFactory);
 }
 
 
@@ -124,13 +118,27 @@ void D2DCore::RotateTransform(const float centerX, const float centerY, const fl
 
 
 bool D2DCore::createWriteFactory() {
+    IDWriteFactory* writeFactory = nullptr;
     HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,
                                      __uuidof(mWriteFactory),
-                                     reinterpret_cast<IUnknown **>(&mWriteFactory));
+                                     reinterpret_cast<IUnknown **>(&writeFactory));
 
-    if (SUCCEEDED(hr) == false) {
-        return false; // IDWriteFactory の作成に失敗
+    if (FAILED(hr)) {
+        return false;
     }
 
+    mWriteFactory.reset(writeFactory, Deleter<IDWriteFactory>());
+    return true;
+}
+
+
+bool D2DCore::createFactory() {
+    ID2D1Factory* factory = nullptr;
+    HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
+    if (FAILED(hr)) {
+        return false;
+    }
+
+    mD2DFactory.reset(factory);
     return true;
 }

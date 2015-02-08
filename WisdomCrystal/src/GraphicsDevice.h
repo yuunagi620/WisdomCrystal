@@ -17,8 +17,6 @@ public:
     
     bool Init(const HWND& hWnd, const int screenWidth, const int screenHeight);
 
-    void Cleanup();
-
     void BeginDraw();
 
     HRESULT EndDraw();
@@ -59,5 +57,4 @@ private:
     IDXGISwapChain* mSwapChain;
     ID2D1RenderTarget *mRenderTarget;
     IDWriteFactory* mWriteFactory;
-
 };
