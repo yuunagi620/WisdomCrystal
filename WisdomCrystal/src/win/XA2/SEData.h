@@ -16,7 +16,9 @@ public:
 
     void StartSE();
     void SetSEVolume(const float volume);
-    void ResetSourceVoice();
+
+private:
+    void resetSourceVoice();
     
 private:
     WaveData mWaveData;

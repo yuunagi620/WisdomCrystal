@@ -47,6 +47,7 @@ private:
     bool registerWindowClass();
     HWND createWindow();
 
+private:
     const int SCREEN_WIDTH;
     const int SCREEN_HEIGHT;
     const LPCTSTR CAPTION_NAME;

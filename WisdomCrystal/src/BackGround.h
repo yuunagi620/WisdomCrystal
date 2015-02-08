@@ -8,7 +8,6 @@
 #include "GraphicsDevice.h"
 
 
-
 class BackGround : private boost::noncopyable {
 
 public:
@@ -26,6 +25,7 @@ private:
     bool setBackGroundImage();
     D2D1_RECT_F getRectF();
 
+private:
     GraphicsDevice* mGraphicsDevice;
     int mImageID;
 

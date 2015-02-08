@@ -13,7 +13,6 @@
 #include <CommCtrl.h>
 
 #include "WisdomCrystal.h"
-
 #include "win/util/FPSCounter.h"
 #include "win/util/HighResolutionTimer.h"
 
@@ -26,6 +25,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
 
     : WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
       mIsFullscreen(false),
+      mCOMInitializer(),
       mGraphicsDevice(),
       mSoundDevice(),
       mBGMData(),
@@ -48,8 +48,6 @@ int WisdomCrystal::Run() {
     if (Init()) {
         returnCode = MessageLoop();
     }
-
-    Cleanup();
 
     return returnCode;
 }
@@ -89,15 +87,15 @@ bool WisdomCrystal::Init() {
     mBGMData.SetBGMVolume(START_BGM_VOLUME);
     mBGMData.Start();
 
-    // GameObjManager ‚Ì‰Šú‰»
-    if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
-        MessageBox(nullptr, TEXT("Can not init GameObjManager."), TEXT("ERROR"), MB_OK);
+     // ‰Šú‚Ì”wŒi‚Ì‰Šú‰»
+    if (mBackGround.Init(&mGraphicsDevice, 0) == false) {
+        MessageBox(nullptr, TEXT("Can not init BackGround."), TEXT("ERROR"), MB_OK);
         return false;
     }
 
-    // ‰Šú‚Ì”wŒi‚Ì‰Šú‰»
-    if (mBackGround.Init(&mGraphicsDevice, 0) == false) {
-        MessageBox(nullptr, TEXT("Can not init BackGround."), TEXT("ERROR"), MB_OK);
+    // GameObjManager ‚Ì‰Šú‰»
+    if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
+        MessageBox(nullptr, TEXT("Can not init GameObjManager."), TEXT("ERROR"), MB_OK);
         return false;
     }
 
@@ -106,11 +104,6 @@ bool WisdomCrystal::Init() {
     mGraphicsDevice.SetFullScreenState(mIsFullscreen);
 
     return true;
-}
-
-
-void  WisdomCrystal::Cleanup() {
-    mGameObjManager.Cleanup();
 }
 
 

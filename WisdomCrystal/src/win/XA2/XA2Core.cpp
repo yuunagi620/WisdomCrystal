@@ -5,9 +5,7 @@
 #include "SourceVoiceDeleter.h"
 
 
-XA2Core::XA2Core() : mXAudio(nullptr), 
-                     mMasteringVoice(nullptr)
-{
+XA2Core::XA2Core() : mXAudio(nullptr), mMasteringVoice(nullptr) {
     // empty
 }
 
@@ -18,11 +16,15 @@ XA2Core::~XA2Core() {
 
 
 bool XA2Core::Init() {
+
+     // XAudio2 オブジェクトの作成
     if (createXAudio2() == false) {
-        return false; // XAudio2 オブジェクトの作成に失敗
+        return false;
     }
+
+     // マスターボイスの作成
     if (createMasteringVoice() == false) {
-        return false; // マスターボイスの作成に失敗
+        return false;
     }
 
     return true;

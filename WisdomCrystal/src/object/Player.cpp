@@ -72,11 +72,6 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
 }
 
 
-void Player::Cleanup() {
-    // empty
-}
-
-
 void Player::Update() {
     int dx = 0;
     int dy = 0;

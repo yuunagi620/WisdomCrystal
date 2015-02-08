@@ -44,7 +44,6 @@ public:
 
 protected:
     virtual bool Init() override;
-    virtual void Cleanup();
     virtual int MessageLoop() override;
     virtual LRESULT WinMsgHandler(const UINT msg, const WPARAM wParam, const LPARAM lParam) override;
 
@@ -52,13 +51,14 @@ private:
     void onUpdate();
     void onKeyDown(const WPARAM& wParam);
 
+private:
     bool mIsFullscreen;
 
     COMInitializer mCOMInitializer;
     GraphicsDevice mGraphicsDevice;
-    SoundDevice mSoundDevice;
-    BGMData mBGMData;
-    BackGround mBackGround;
+    SoundDevice    mSoundDevice;
+    BGMData        mBGMData;
+    BackGround     mBackGround;
     GameObjManager mGameObjManager;
-    SceneChanger mSceneChanger;
+    SceneChanger   mSceneChanger;
 };

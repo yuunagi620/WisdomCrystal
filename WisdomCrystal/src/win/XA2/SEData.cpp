@@ -33,7 +33,7 @@ bool SEData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
 void SEData::StartSE() {
     mSourceVoiceForSE->Stop();
     mSourceVoiceForSE->FlushSourceBuffers();
-    ResetSourceVoice();
+    resetSourceVoice();
     mSourceVoiceForSE->Start();
 }
 
@@ -43,7 +43,7 @@ void SEData::SetSEVolume(const float volume) {
 }
 
 
-void SEData::ResetSourceVoice() {
+void SEData::resetSourceVoice() {
     XAUDIO2_BUFFER buffer = {0};
     buffer.AudioBytes = mWaveData.GetDataSize();
     buffer.pAudioData = &(mWaveData.GetDataBufferPtr()->front());

@@ -30,7 +30,6 @@ public:
     virtual ~Player();
 
     bool Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) override;
-    void Cleanup() override;
     void Update() override;
 
 private:

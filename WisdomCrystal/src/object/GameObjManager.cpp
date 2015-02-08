@@ -32,15 +32,6 @@ bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevi
 }
 
 
-void GameObjManager::Cleanup() {
-    for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
-        if (*it != nullptr) {
-            (*it)->Cleanup();
-        }
-    }
-}
-
-
 void GameObjManager::Update() {
     for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
         if (*it != nullptr) {

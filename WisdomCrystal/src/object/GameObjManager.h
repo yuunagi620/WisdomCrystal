@@ -17,7 +17,6 @@ public:
     virtual ~GameObjManager();
 
     bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice);
-    void Cleanup();
     void Update();
 
 private:
