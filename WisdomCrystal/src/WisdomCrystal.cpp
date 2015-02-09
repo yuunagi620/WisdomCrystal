@@ -80,7 +80,7 @@ bool WisdomCrystal::Init() {
     }
 
     // BGMData ÇÃèâä˙âª
-    if (mBGMData.Init(&mSoundDevice, TEXT("resources/sound/BGM/bgm_02.wav")) == false) { 
+    if (mBGMData.Init(&mSoundDevice, TEXT("resources/sound/BGM/bgm_01.wav")) == false) { 
         MessageBox(nullptr, TEXT("Can not initialize BGM Data."), TEXT("ERROR"), MB_OK);
     }
 
@@ -210,7 +210,7 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
 
     // debug
     if (wParam == VK_F1) {
-        static bool isOn = false;
+        static bool isOn = true;
         isOn = !isOn;
         isOn ? mBGMData.Start() : mBGMData.Stop() ;
     }

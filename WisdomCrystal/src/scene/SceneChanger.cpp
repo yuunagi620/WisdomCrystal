@@ -3,10 +3,10 @@
 
 // Includes
 #include "SceneChanger.h"
-#include "scene/Title.h"
+#include "scene/Playing.h"
 
 
-SceneChanger::SceneChanger() : mCurrentScene(new Title) {
+SceneChanger::SceneChanger() : mCurrentScene(new Playing()) {
     // empty
 }
 
