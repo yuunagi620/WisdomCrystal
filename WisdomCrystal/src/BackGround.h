@@ -6,6 +6,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "GraphicsDevice.h"
+#include "win/D2D/D2DImage.h"
 
 
 class BackGround : private boost::noncopyable {
@@ -30,8 +31,5 @@ private:
     int mImageID;
 
     std::basic_string<TCHAR> mImagePath;
-
-    D2D1_SIZE_U mImageSize;
-    D2D1_RECT_F mImageSrcRect;
-    ID2D1Bitmap *mImage;
+    D2DImage mImage;
 };

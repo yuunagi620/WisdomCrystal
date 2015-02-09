@@ -11,10 +11,8 @@
 BackGround::BackGround() : mGraphicsDevice(nullptr),
                            mImageID(0),
                            mImagePath(),
-                           mImageSize(), 
-                           mImageSrcRect(),
-                           mImage(nullptr) {
-
+                           mImage()
+{
     mImagePath.clear();
 }
 
@@ -40,7 +38,7 @@ bool BackGround::Init(GraphicsDevice *graphicsDevice, const int backGroundIndex)
 void BackGround::Draw() {
     D2D1_COLOR_F fillColor = D2D1::ColorF(0x000000); // black
     mGraphicsDevice->ClearScreen(fillColor);
-    mGraphicsDevice->DrawBitmap(mImage, getRectF(), 1, mImageSrcRect);
+    mImage.Draw(0, 0);
 }
 
 
@@ -73,21 +71,9 @@ bool BackGround::setBackGroundImage() {
         return false;
     }
 
-    mImage = mGraphicsDevice->CreateD2DBitmap(&mImagePath.front());
-    if (mImage == nullptr) {
+    if (mImage.Init(mGraphicsDevice, &mImagePath.front()) == false) {
         return false;
     }
 
-    mImageSize = mImage->GetPixelSize();
-    mImageSrcRect = getRectF();
-
     return true;
-}
-
-
-D2D1_RECT_F BackGround::getRectF() {
-    return D2D1::RectF(0,
-                       0,
-                       static_cast<float>(mImageSize.width), 
-                       static_cast<float>(mImageSize.height));
 }

@@ -18,7 +18,6 @@
     <ClInclude Include="src\win\util\FPSCounter.h" />
     <ClInclude Include="src\win\util\HighResolutionTimer.h" />
     <ClInclude Include="src\win\util\Input.h" />
-    <ClInclude Include="src\win\util\SafeRelease.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
     <ClInclude Include="src\win\XA2\SEData.h" />
@@ -38,6 +37,10 @@
     <ClInclude Include="src\win\XA2\SoundPacket.h" />
     <ClInclude Include="src\scene\TitleMenu.h" />
     <ClInclude Include="src\scene\Title.h" />
+    <ClInclude Include="src\win\com\deleter.h" />
+    <ClInclude Include="src\win\String\WinString.h" />
+    <ClInclude Include="src\win\COM\SafeRelease.h" />
+    <ClInclude Include="src\win\D2D\D2DImage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -72,5 +75,7 @@
     <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
     <ClCompile Include="src\scene\TitleMenu.cpp" />
     <ClCompile Include="src\scene\Title.cpp" />
+    <ClCompile Include="src\win\String\WinString.cpp" />
+    <ClCompile Include="src\win\D2D\D2DImage.cpp" />
   </ItemGroup>
 </Project>

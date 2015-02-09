@@ -55,7 +55,7 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
 
 Scene* Title::Update() {
 
-    mText.DrawText(TEXT("タイトル"), D2D1::RectF(550.f, 300.f, 800.f, 400.f));
+    mText.Draw(TEXT("タイトル"), D2D1::RectF(550.f, 300.f, 800.f, 400.f));
     
     onKeyDown();
 

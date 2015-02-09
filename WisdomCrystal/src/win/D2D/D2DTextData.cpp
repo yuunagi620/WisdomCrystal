@@ -2,7 +2,6 @@
 
 // Includes
 #include "D2DTextData.h"
-#include "win/util/SafeRelease.h"
 
 
 D2DTextData::D2DTextData() : mGraphicsDevice(nullptr),
@@ -38,7 +37,7 @@ bool D2DTextData::Init(GraphicsDevice* graphicsDevice) {
 }
 
 
-void D2DTextData::DrawText(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect) {
+void D2DTextData::Draw(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect) {
     mGraphicsDevice->GetRenderTarget()->DrawText(string.c_str(),
                                                  string.size(),
                                                  mTextFormat,

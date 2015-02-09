@@ -19,9 +19,9 @@ public:
 
     virtual ~D2DTextData();
 
-    bool Init(GraphicsDevice* mGraphicsDevice);
+    bool Init(GraphicsDevice *mGraphicsDevice);
 
-    void DrawText(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect);
+    void Draw(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect);
 
     bool CreateTextFormat();
 
@@ -36,8 +36,8 @@ public:
     bool SetFontStretch(const DWRITE_FONT_STRETCH& fontStretch);
 
 private:
-    GraphicsDevice*    mGraphicsDevice;
-    IDWriteTextFormat* mTextFormat;
+    GraphicsDevice    *mGraphicsDevice;
+    IDWriteTextFormat *mTextFormat;
 
     std::unique_ptr<ID2D1SolidColorBrush, Deleter<ID2D1SolidColorBrush>> mBrush;
 
