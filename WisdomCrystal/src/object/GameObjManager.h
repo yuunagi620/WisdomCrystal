@@ -20,8 +20,7 @@ public:
     void Update();
 
 private:
-    static const int MAX_GAME_OBJCT = 1080;
-    static const int NUM_GAME_OBJECT = 2;
+    static const int MAX_GAME_OBJCT = 1000;
 
     std::array<std::unique_ptr<GameObject>, MAX_GAME_OBJCT> mActiveGameObjects;
 };

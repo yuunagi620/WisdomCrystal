@@ -19,7 +19,7 @@ public:
     bool Init(GraphicsDevice* graphicsDevice,
               SoundDevice*    soundDevice,
               const int id, const float x, const float y,
-              const std::basic_string<TCHAR>& captionName);
+              const std::basic_string<TCHAR>& name);
 
     void Draw(int id);
 
@@ -28,5 +28,6 @@ private:
     float mX;
     float mY;
 
+    std::basic_string<TCHAR> mName;
     D2DTextData mText;
 };

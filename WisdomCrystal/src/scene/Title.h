@@ -2,8 +2,8 @@
 
 #pragma once
 
-
 #include <boost/noncopyable.hpp>
+#include <vector>
 
 #include "Scene.h"
 #include "TitleMenu.h"
@@ -24,7 +24,7 @@ public:
     Scene* Update() override;
 
 private:
-    void keyDownEvent();
+    void onKeyDown();
 
 private:
     int mId;

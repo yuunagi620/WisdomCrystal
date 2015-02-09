@@ -2,6 +2,7 @@
 
 // Includes
 #include "Title.h"
+#include "Loading.h"
 #include "win/util/Input.h"
 
 
@@ -29,15 +30,15 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
     mGraphicsDevice = graphicsDevice;
     mSoundDevice = soundDevice;
 
-    if (mPlay.Init(graphicsDevice, soundDevice, 0, 40, 60, TEXT("")) == false) {
+    if (mPlay.Init(graphicsDevice, soundDevice, 0, 600, 460, TEXT("リスト1")) == false) {
         return false;
     }
 
-    if (mSetting.Init(graphicsDevice, soundDevice, 1, 40, 90, TEXT("")) == false) {
+    if (mSetting.Init(graphicsDevice, soundDevice, 1, 600, 490, TEXT("リスト2")) == false) {
         return false;
     }
 
-    if (mEnd.Init(graphicsDevice, soundDevice, 2, 40, 120, TEXT("")) == false) {
+    if (mEnd.Init(graphicsDevice, soundDevice, 2, 600, 520, TEXT("終了")) == false) {
         return false;
     }
 
@@ -54,12 +55,10 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
 
 Scene* Title::Update() {
 
-    // 描画
-    mText.DrawText(TEXT("タイトル"), D2D1::RectF(0.f, 0.f, 300.f, 40.f));
+    mText.DrawText(TEXT("タイトル"), D2D1::RectF(550.f, 300.f, 800.f, 400.f));
     
-    keyDownEvent();
+    onKeyDown();
 
-    // 項目の描画メソッドをまとめて呼ぶ
     mPlay.Draw(mId);
     mSetting.Draw(mId);
     mEnd.Draw(mId);
@@ -68,7 +67,7 @@ Scene* Title::Update() {
 }
 
 
-void Title::keyDownEvent() {
+void Title::onKeyDown() {
 
     if (++mKeyWait < 5) {
         return;
@@ -79,7 +78,13 @@ void Title::keyDownEvent() {
     } else if (IsKeyPressed(Input::UP)) {
         mId = --mId < 0 ? 2 : mId;
     } else if (IsKeyPressed(Input::SPACE)) {
-        // empty
+
+        switch (mId) {
+            case 0: { mNextScene = new Loading(); break; }
+            case 1: { mNextScene = new Loading(); break; }
+            case 2: { PostQuitMessage(0); }
+            default:{ mNextScene = this; }
+        }
     }
 
     mKeyWait = 0;
