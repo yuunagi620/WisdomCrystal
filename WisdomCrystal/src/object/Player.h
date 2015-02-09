@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameObject.h"
-#include "win/D2D/D2DTextData.h"
+#include "win/D2D/D2DText.h"
 
 typedef enum PlayerStatusTag {
     NORMAL,
@@ -62,7 +62,7 @@ private:
 
     SEData mGameOverSE;
 
-    D2DTextData mD2DTextData;
+    D2DText mD2DText;
 
     int mX, mY;
 

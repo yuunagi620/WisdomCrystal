@@ -1,4 +1,4 @@
-// D2DTextData.h
+// D2DText.h
 
 #pragma once
 
@@ -12,16 +12,18 @@
 #include "win/COM/Deleter.h"
 
 
-class D2DTextData {
+class D2DText {
 
 public:
-    D2DTextData();
+    D2DText();
 
-    virtual ~D2DTextData();
+    virtual ~D2DText();
 
     bool Init(GraphicsDevice *mGraphicsDevice);
 
     void Draw(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect);
+
+    void Draw(const std::basic_string<TCHAR>& string, const RECT& rect);
 
     bool CreateTextFormat();
 

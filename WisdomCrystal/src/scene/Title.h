@@ -33,7 +33,7 @@ private:
     TitleMenu mPlay;
     TitleMenu mSetting;
     TitleMenu mEnd;
-    D2DTextData mText;
+    D2DText mText;
 
     GraphicsDevice *mGraphicsDevice;
     SoundDevice    *mSoundDevice;

@@ -7,7 +7,7 @@
 
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
-#include "win/D2D/D2DTextData.h"
+#include "win/D2D/D2DText.h"
 
 
 class TitleMenu : private boost::noncopyable {
@@ -29,5 +29,5 @@ private:
     float mY;
 
     std::basic_string<TCHAR> mName;
-    D2DTextData mText;
+    D2DText mText;
 };

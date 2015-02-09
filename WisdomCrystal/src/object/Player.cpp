@@ -26,7 +26,7 @@ Player::Player() : mGraphicsDevice(nullptr),
                    mImage(nullptr),
                    mImageSrcRect(),
                    mGameOverSE(),
-                   mD2DTextData(),
+                   mD2DText(),
                    mX(100),
                    mY(400),
                    mIsAlive(false),
@@ -63,10 +63,10 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
     }
 
     // test
-    if (mD2DTextData.Init(mGraphicsDevice) == false) {
+    if (mD2DText.Init(mGraphicsDevice) == false) {
         return false;
     }
-    mD2DTextData.SetFontSize(50.0f);
+    mD2DText.SetFontSize(50.0f);
 
     return true;
 }
@@ -123,7 +123,8 @@ void Player::draw() {
     mGraphicsDevice->DrawBitmap(mImage, getRectF(), 1, mImageSrcRect);
     mGraphicsDevice->ResetTransform();
     
-    mD2DTextData.Draw(TEXT("test"), D2D1::RectF(250.f, 250.f, 400.f, 300.f));
+    RECT rect = {250, 250, 400, 300};
+    mD2DText.Draw(TEXT("test"), rect);
 }
 
 

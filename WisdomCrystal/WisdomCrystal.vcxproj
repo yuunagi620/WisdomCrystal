@@ -33,7 +33,7 @@
     <ClInclude Include="src\win\COM\SafeRelease.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DImage.h" />
-    <ClInclude Include="src\win\D2D\D2DTextData.h" />
+    <ClInclude Include="src\win\D2D\D2DText.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
     <ClInclude Include="src\win\joypad\Joypad.h" />
     <ClInclude Include="src\win\joypad\JoypadCode.h" />
@@ -74,7 +74,7 @@
     <ClCompile Include="src\win\COM\COMInitializer.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
     <ClCompile Include="src\win\D2D\D2DImage.cpp" />
-    <ClCompile Include="src\win\D2D\D2DTextData.cpp" />
+    <ClCompile Include="src\win\D2D\D2DText.cpp" />
     <ClCompile Include="src\win\D3D\D3DCore.cpp" />
     <ClCompile Include="src\win\joypad\Joypad.cpp" />
     <ClCompile Include="src\win\String\WinString.cpp" />

@@ -10,7 +10,6 @@
     <ClInclude Include="src\util\CSVUtil.h" />
     <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
-    <ClInclude Include="src\win\D2D\D2DTextData.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
     <ClInclude Include="src\win\joypad\Joypad.h" />
     <ClInclude Include="src\win\joypad\JoypadCode.h" />
@@ -41,6 +40,7 @@
     <ClInclude Include="src\win\String\WinString.h" />
     <ClInclude Include="src\win\COM\SafeRelease.h" />
     <ClInclude Include="src\win\D2D\D2DImage.h" />
+    <ClInclude Include="src\win\D2D\D2DText.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -51,7 +51,6 @@
     <ClCompile Include="src\util\CSVUtil.cpp" />
     <ClCompile Include="src\util\MathUtil.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
-    <ClCompile Include="src\win\D2D\D2DTextData.cpp" />
     <ClCompile Include="src\win\D3D\D3DCore.cpp" />
     <ClCompile Include="src\win\joypad\Joypad.cpp" />
     <ClCompile Include="src\win\util\DebugManager.cpp" />
@@ -77,5 +76,6 @@
     <ClCompile Include="src\scene\Title.cpp" />
     <ClCompile Include="src\win\String\WinString.cpp" />
     <ClCompile Include="src\win\D2D\D2DImage.cpp" />
+    <ClCompile Include="src\win\D2D\D2DText.cpp" />
   </ItemGroup>
 </Project>
