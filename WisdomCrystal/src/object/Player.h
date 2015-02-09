@@ -13,6 +13,7 @@ public:
     virtual ~Player();
 
     bool Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) override;
+    bool Activate(const int initX, const int initY) override;
     void Update() override;
 
 private:
@@ -32,7 +33,6 @@ private:
     SEData mGameOverSE;
 
     int mX, mY;
-
     bool mIsAlive;
     bool mIsLeft;
     bool mIsGameOver;

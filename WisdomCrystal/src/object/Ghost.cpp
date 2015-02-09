@@ -33,6 +33,18 @@ bool Ghost::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
 }
 
 
+bool Ghost::Activate(const int initX, const int initY) {
+    if (GetIsAlive()) {
+        return false;
+    }
+    mX = initX;
+    mY = initY;
+
+    SetIsAlive(true);
+    return true;
+}
+
+
 void Ghost::Update() {
     mImage.Draw(mX, mY);
 }

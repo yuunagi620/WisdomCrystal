@@ -55,6 +55,7 @@
   <ItemGroup>
     <ClCompile Include="src\BackGround.cpp" />
     <ClCompile Include="src\GraphicsDevice.cpp" />
+    <ClCompile Include="src\object\GameObject.cpp" />
     <ClCompile Include="src\object\GameObjManager.cpp" />
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\Player.cpp" />

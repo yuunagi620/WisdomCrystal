@@ -17,10 +17,11 @@ public:
     virtual ~GameObjManager();
 
     bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice);
+    void Activate(const int initX, const int initY);
     void Update();
 
 private:
     static const int MAX_GAME_OBJCT = 1000;
 
-    std::array<std::unique_ptr<GameObject>, MAX_GAME_OBJCT> mActiveGameObjects;
+    std::array<std::unique_ptr<GameObject>, MAX_GAME_OBJCT> mGameObjectArray;
 };

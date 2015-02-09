@@ -13,6 +13,7 @@ public:
     virtual ~Ghost();
 
     bool Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) override;
+    bool Activate(const int initX, const int initY) override;
     void Update() override;
 
 private:

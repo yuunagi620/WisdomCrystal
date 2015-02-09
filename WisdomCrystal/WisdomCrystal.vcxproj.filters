@@ -78,5 +78,6 @@
     <ClCompile Include="src\win\D2D\D2DImage.cpp" />
     <ClCompile Include="src\win\D2D\D2DText.cpp" />
     <ClCompile Include="src\object\Ghost.cpp" />
+    <ClCompile Include="src\object\GameObject.cpp" />
   </ItemGroup>
 </Project>

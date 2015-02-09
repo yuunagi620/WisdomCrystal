@@ -52,6 +52,18 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
 }
 
 
+bool Player::Activate(const int initX, const int initY) {
+    if (GetIsAlive()) {
+        return false;
+    }
+    mX = initX;
+    mY = initY;
+    SetIsAlive(true);
+
+    return true;
+}
+
+
 void Player::Update() {
     int dx = 0;
     int dy = 0;

@@ -6,8 +6,8 @@
 #include "Ghost.h"
 
 
-GameObjManager::GameObjManager() : mActiveGameObjects() {
-    std::fill(std::begin(mActiveGameObjects), std::end(mActiveGameObjects), nullptr);
+GameObjManager::GameObjManager() : mGameObjectArray() {
+    std::fill(std::begin(mGameObjectArray), std::end(mGameObjectArray), nullptr);
 }
 
 
@@ -17,25 +17,39 @@ GameObjManager::~GameObjManager() {
 
 
 bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
-    mActiveGameObjects.at(0).reset(new Player());
-    mActiveGameObjects.at(1).reset(new Ghost());
+    mGameObjectArray.at(0).reset(new Player());
+    mGameObjectArray.at(1).reset(new Ghost());
 
-    for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
+    for (auto it = mGameObjectArray.begin(); it != mGameObjectArray.end(); ++it) {
         if (*it != nullptr) {
             if ((*it)->Init(graphicsDevice, soundDevice) == false) {
-                return false; // GamaObject ‚Ì‰Šú‰»‚ÉŽ¸”s
+                return false;
             }
         }
     }
+
+    mGameObjectArray.at(0)->Activate(100, 300);
+    mGameObjectArray.at(1)->Activate(700, 300);
 
     return true;
 }
 
 
-void GameObjManager::Update() {
-    for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
+void GameObjManager::Activate(const int initX, const int initY) {
+    for (auto it = mGameObjectArray.begin(); it != mGameObjectArray.end(); ++it) {
         if (*it != nullptr) {
-            (*it)->Update();
+            (*it)->Activate(initX, initY);
+        }
+    }
+}
+
+
+void GameObjManager::Update() {
+    for (auto it = mGameObjectArray.begin(); it != mGameObjectArray.end(); ++it) {
+        if (*it != nullptr) {
+            if ((*it)->GetIsAlive()) { 
+                (*it)->Update();
+            }
         }
     }
 }
