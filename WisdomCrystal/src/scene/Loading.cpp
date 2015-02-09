@@ -11,13 +11,15 @@ Loading::~Loading() {
 }
 
 
-bool Loading::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) {
-    // do notihng.
+bool Loading::Init(GraphicsDevice *graphicsDevice,
+                   SoundDevice *soundDevice,
+                   GameObjManager *gameObjManager) {
+    // do nothing.
     return true;
 }
 
 
-Scene *Loading::Update(GameObjManager *gameObjManager) {
-
+Scene *Loading::Update() {
+    // do nothing.
     return new Playing();
 }

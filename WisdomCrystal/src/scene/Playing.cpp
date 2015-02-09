@@ -5,18 +5,23 @@
 #include "object/GameObjManager.h"
 
 
+Playing::Playing() : mGameObjManager(nullptr) {
+    // empty
+}
+
+
 Playing::~Playing() {
     // empty
 }
 
 
-bool Playing::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) {
-    // do notihng.
+bool Playing::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice, GameObjManager *gameObjManager) {
+    mGameObjManager = gameObjManager;
     return true;
 }
 
 
-Scene* Playing::Update(GameObjManager *gameObjManager) {
-    gameObjManager->Update();
+Scene* Playing::Update() {
+    mGameObjManager->Update();
     return this;
 }

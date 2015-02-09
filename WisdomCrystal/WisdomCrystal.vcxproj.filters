@@ -4,7 +4,6 @@
     <ClInclude Include="src\object\GameObject.h" />
     <ClInclude Include="src\object\GameObjManager.h" />
     <ClInclude Include="src\object\Player.h" />
-    <ClInclude Include="src\scene\Error.h" />
     <ClInclude Include="src\scene\Loading.h" />
     <ClInclude Include="src\scene\Playing.h" />
     <ClInclude Include="src\scene\Scene.h" />
@@ -41,7 +40,6 @@
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
     <ClCompile Include="src\object\Player.cpp" />
-    <ClCompile Include="src\scene\Error.cpp" />
     <ClCompile Include="src\scene\Loading.cpp" />
     <ClCompile Include="src\scene\Playing.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />

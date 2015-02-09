@@ -100,7 +100,7 @@ bool WisdomCrystal::Init() {
     }
 
     // SceneChanger ÇÃèâä˙âª
-    if (mSceneChanger.Init(&mGraphicsDevice, &mSoundDevice) == false) {
+    if (mSceneChanger.Init(&mGraphicsDevice, &mSoundDevice, &mGameObjManager) == false) {
         MessageBox(nullptr, TEXT("Can not initialize SceneChanger."), TEXT("ERROR"), MB_OK);
         return false;
     }
@@ -189,7 +189,7 @@ void WisdomCrystal::onUpdate() {
     mGraphicsDevice.BeginDraw();
     
     mBackGround.Draw();
-    mSceneChanger.UpdateScene(&mGameObjManager);
+    mSceneChanger.UpdateScene();
     
     HRESULT hr = mGraphicsDevice.EndDraw();
     if (hr == D2DERR_RECREATE_TARGET) {
