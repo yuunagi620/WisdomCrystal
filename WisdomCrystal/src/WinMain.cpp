@@ -1,7 +1,6 @@
 // WinMain.cpp
 
 #include "WisdomCrystal.h"
-#include <crtdbg.h>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 704;

@@ -23,7 +23,6 @@ const int MAP_CHIP_WIDTH  = 32;
 const int MAP_CHIP_HEIGHT = 32;
 const int MAP_CHIP_IMAGE_COL = 10;
 
-
 // ‚»‚Ì‘¼
 const float START_BGM_VOLUME = 0.4f;
 

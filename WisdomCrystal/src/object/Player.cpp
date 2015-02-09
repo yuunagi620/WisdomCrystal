@@ -10,13 +10,8 @@
 // Constants
 const int   Player::PLAYER_IMAGE_WIDTH  = 32;
 const int   Player::PLAYER_IMAGE_HEIGHT = 32;
-const int   Player::PLAYER_IMAGE_ROW    = 10;
-const int   Player::PLAYER_SPEED_X      = 3;
-const float Player::PLAYER_SPEED_JUMP   = -10.0f;
-const float Player::PLAYER_GRAVITY      = 0.5f;
-const float Player::PLAYER_MAX_GRAVITY  = 4;
-
-const int   Player::ROTATION_RATE = 10;
+const int   Player::PLAYER_SPEED        = 3;
+const int   Player::ROTATION_RATE       = 10;
 
 
 Player::Player() : mGraphicsDevice(nullptr),
@@ -62,21 +57,21 @@ void Player::Update() {
     int dy = 0;
     
     if (Input::IsKeyPressed(Input::LEFT)) {
-        dx -= PLAYER_SPEED_X;
+        dx -= PLAYER_SPEED;
         mIsLeft = true;
     }
 
     if (Input::IsKeyPressed(Input::RIGHT)) {
-        dx += PLAYER_SPEED_X;
+        dx += PLAYER_SPEED;
         mIsLeft = false;
     }
 
     if (Input::IsKeyPressed(Input::DOWN)) {
-        dy += 3;
+        dy += PLAYER_SPEED;
     }
 
     if (Input::IsKeyPressed(Input::UP)) {
-        dy -= 3;
+        dy -= PLAYER_SPEED;
     }
 
     if (Input::IsKeyPressed(Input::SPACE)) {
@@ -86,7 +81,6 @@ void Player::Update() {
     if (Input::IsKeyPressed(Input::C)) {
         mIsGameOver = true;
     }
-
 
     // é¿ç€Ç…PlayerÇÃç¿ïWÇà⁄ìÆ
     mX += dx;
