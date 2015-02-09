@@ -10,7 +10,13 @@ Playing::~Playing() {
 }
 
 
-Scene *Playing::Update(GameObjManager *gameObjManager) {
+bool Playing::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) {
+    // do notihng.
+    return true;
+}
+
+
+Scene* Playing::Update(GameObjManager *gameObjManager) {
     gameObjManager->Update();
     return this;
 }

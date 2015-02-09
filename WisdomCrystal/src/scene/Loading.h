@@ -11,5 +11,6 @@ class Loading : public Scene, private boost::noncopyable {
 
 public:
     virtual ~Loading();
+    virtual bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) override;
     virtual Scene *Update(GameObjManager *gameObjManager) override;
 };

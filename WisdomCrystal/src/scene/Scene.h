@@ -9,5 +9,8 @@ class Scene {
 
 public:
     virtual ~Scene() {}
-    virtual Scene *Update(GameObjManager *gameObjManager) = 0;
+
+    virtual bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) = 0;
+
+    virtual Scene* Update(GameObjManager *gameObjManager) = 0;
 };

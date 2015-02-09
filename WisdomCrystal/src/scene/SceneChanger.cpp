@@ -22,7 +22,6 @@ SceneChanger::~SceneChanger() {
 bool SceneChanger::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) {
     mGraphicsDevice = graphicsDevice;
     mSoundDevice = soundDevice;
-
     return true;
 }
 
