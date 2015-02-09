@@ -3,24 +3,8 @@
 #pragma once
 
 #include "GameObject.h"
+#include "win/D2D/D2DImage.h"
 #include "win/D2D/D2DText.h"
-
-typedef enum PlayerStatusTag {
-    NORMAL,
-    WALK_1,
-    WALK_2,
-    JUMP,
-    FALL,
-    DEATH,
-    PLAYER_STATUS_NUM
-} PlayerStatus;
-
-
-typedef enum PlayerSETag {
-    SE_JUMP,
-    SE_GAMEOVER,
-    PLAYER_SE_NUM
-} PlayerSE;
 
 
 class Player : public GameObject {
@@ -35,11 +19,8 @@ public:
 private:
     void draw();
     void gameOverAnimetion();
-    void changeImage(const int index);
-    D2D1_RECT_F getRectF();
-    RECT getHitRect(const int dx, const int dy);
-
-    void soundSE(PlayerSE playerSE);
+    //void changeImage(const int index);
+    //D2D1_RECT_F getRectF();
 
 private:
     static const int   PLAYER_IMAGE_WIDTH;
@@ -57,18 +38,12 @@ private:
     GraphicsDevice* mGraphicsDevice;
     SoundDevice* mSoundDevice;
 
-    ID2D1Bitmap* mImage;
-    D2D1_RECT_F mImageSrcRect;
-
+    D2DImage mImage;
     SEData mGameOverSE;
-
-    D2DText mD2DText;
 
     int mX, mY;
 
     bool mIsAlive;
     bool mIsLeft;
     bool mIsGameOver;
-
-    PlayerStatus mPlayerStatus;
 };

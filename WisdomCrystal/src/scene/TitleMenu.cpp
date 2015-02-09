@@ -19,8 +19,8 @@ TitleMenu::~TitleMenu() {
 }
 
 
-bool TitleMenu::Init(GraphicsDevice* graphicsDevice,
-                     SoundDevice*    soundDevice,
+bool TitleMenu::Init(GraphicsDevice *graphicsDevice,
+                     SoundDevice *soundDevice,
                      const int id, const float x, const float y,
                      const std::basic_string<TCHAR>& name) {
     mId = id;

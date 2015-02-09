@@ -17,8 +17,10 @@ public:
     bool Init(GraphicsDevice* mGraphicsDevice, LPCTSTR imageFilePath);
 
     void Draw(const int x, const int y, const float opacity = 1);
+
     void Draw(const RECT& rect, const float opacity = 1);
 
+    void SetImageSrcRect(const RECT& rect);
 
 private:
     GraphicsDevice *mGraphicsDevice;

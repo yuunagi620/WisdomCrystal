@@ -16,23 +16,18 @@ const float Player::PLAYER_SPEED_JUMP   = -10.0f;
 const float Player::PLAYER_GRAVITY      = 0.5f;
 const float Player::PLAYER_MAX_GRAVITY  = 4;
 
-const int   Player::HIT_REGION_MEAGIN_WIDTH  = 0;
-const int   Player::HIT_REGION_MEAGIN_HEIGHT = 0;
 const int   Player::ROTATION_RATE = 10;
 
 
 Player::Player() : mGraphicsDevice(nullptr),
                    mSoundDevice(nullptr),
-                   mImage(nullptr),
-                   mImageSrcRect(),
+                   mImage(),
                    mGameOverSE(),
-                   mD2DText(),
                    mX(100),
                    mY(400),
                    mIsAlive(false),
                    mIsLeft(false),
-                   mIsGameOver(false),
-                   mPlayerStatus(NORMAL)
+                   mIsGameOver(false)
 {
     // empty
 }
@@ -47,26 +42,16 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
     mGraphicsDevice = graphicsDevice;
     mSoundDevice = soundDevice;
 
-    // 以下、画像の読み込み
-    mImage = mGraphicsDevice->CreateD2DBitmap(TEXT("resources/image/player.png"));
-    if (mImage == nullptr) {
-        MessageBox(nullptr, TEXT("Can not init player.png"), TEXT("ERROR"), MB_OK);
+    if (mImage.Init(mGraphicsDevice, TEXT("resources/image/player.png")) == false) {
         return false;
     }
 
-    mImageSrcRect = getRectF();
+    RECT imageSrcRect = {0, 0, PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT};
+    mImage.SetImageSrcRect(imageSrcRect);
 
-    // 以下、SEデータの作成
     if (mGameOverSE.Init(mSoundDevice, TEXT("resources/sound/SE/gameOverSE.wav")) == false) {
-        MessageBox(nullptr, TEXT("Can not init gameOverSE.wav."), TEXT("ERROR"), MB_OK);
         return false;
     }
-
-    // test
-    if (mD2DText.Init(mGraphicsDevice) == false) {
-        return false;
-    }
-    mD2DText.SetFontSize(50.0f);
 
     return true;
 }
@@ -95,7 +80,11 @@ void Player::Update() {
     }
 
     if (Input::IsKeyPressed(Input::SPACE)) {
-        soundSE(SE_GAMEOVER);
+        mGameOverSE.StartSE();
+    }
+
+    if (Input::IsKeyPressed(Input::C)) {
+        mIsGameOver = true;
     }
 
 
@@ -103,7 +92,6 @@ void Player::Update() {
     mX += dx;
     mY += dy;
 
-    changeImage(mPlayerStatus);
     draw();
 }
 
@@ -120,11 +108,8 @@ void Player::draw() {
         gameOverAnimetion();
     } 
 
-    mGraphicsDevice->DrawBitmap(mImage, getRectF(), 1, mImageSrcRect);
+    mImage.Draw(mX, mY);
     mGraphicsDevice->ResetTransform();
-    
-    RECT rect = {250, 250, 400, 300};
-    mD2DText.Draw(TEXT("test"), rect);
 }
 
 
@@ -134,44 +119,7 @@ void Player::gameOverAnimetion() {
     angle = (angle + ROTATION_RATE) % 360;
     
     mGraphicsDevice->RotateTransform(static_cast<float>(mX) + PLAYER_IMAGE_WIDTH  / 2,
-                              static_cast<float>(mY) + PLAYER_IMAGE_HEIGHT / 2,
-                              static_cast<float>(angle));
+                                     static_cast<float>(mY) + PLAYER_IMAGE_HEIGHT / 2,
+                                     static_cast<float>(angle));
 }
 
-
-// indexを元に画像の領域を指定
-void Player::changeImage(const int imageIndex) {
-    mImageSrcRect = 
-        D2D1::RectF(static_cast<float>((imageIndex % PLAYER_IMAGE_ROW)     * PLAYER_IMAGE_WIDTH),
-                    static_cast<float>((imageIndex / PLAYER_IMAGE_ROW)     * PLAYER_IMAGE_HEIGHT),
-                    static_cast<float>((imageIndex % PLAYER_IMAGE_ROW + 1) * PLAYER_IMAGE_WIDTH),
-                    static_cast<float>((imageIndex / PLAYER_IMAGE_ROW + 1) * PLAYER_IMAGE_HEIGHT));
-}
-
-
-
-D2D1_RECT_F Player::getRectF() {
-    return D2D1::RectF(static_cast<float>(mX),
-                       static_cast<float>(mY),
-                       static_cast<float>(mX) + PLAYER_IMAGE_WIDTH,
-                       static_cast<float>(mY) + PLAYER_IMAGE_HEIGHT);
-}
-
-
-RECT Player::getHitRect(const int dx, const int dy) {
-    RECT rect = {
-        mX + dx + HIT_REGION_MEAGIN_WIDTH,
-        mY + dy + HIT_REGION_MEAGIN_HEIGHT,
-        mX + dx - HIT_REGION_MEAGIN_WIDTH  + PLAYER_IMAGE_WIDTH,
-        mY + dy - HIT_REGION_MEAGIN_HEIGHT + PLAYER_IMAGE_HEIGHT
-    };
-
-    return rect;
-}
-
-
-void Player::soundSE(PlayerSE playerSE) {
-    switch (playerSE) {
-        case SE_GAMEOVER: mGameOverSE.StartSE(); break;
-    }
-}
