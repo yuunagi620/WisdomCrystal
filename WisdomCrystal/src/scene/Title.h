@@ -7,7 +7,7 @@
 
 #include "Scene.h"
 #include "TitleMenu.h"
-
+#include "BackGround.h"
 #include "win/util/Input.h"
 
 
@@ -34,6 +34,7 @@ private:
     TitleMenu mSetting;
     TitleMenu mEnd;
     D2DText mText;
+    BackGround mBackGround;
 
     GraphicsDevice *mGraphicsDevice;
     SoundDevice    *mSoundDevice;

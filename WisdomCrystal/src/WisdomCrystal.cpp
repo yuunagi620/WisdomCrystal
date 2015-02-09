@@ -29,7 +29,6 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
       mGraphicsDevice(),
       mSoundDevice(),
       mBGMData(),
-      mBackGround(),
       mGameObjManager(),
       mSceneChanger()
 {
@@ -86,12 +85,6 @@ bool WisdomCrystal::Init() {
 
     mBGMData.SetBGMVolume(START_BGM_VOLUME);
     mBGMData.Start();
-
-     // èâä˙ÇÃîwåiÇÃèâä˙âª
-    if (mBackGround.Init(&mGraphicsDevice, 0) == false) {
-        MessageBox(nullptr, TEXT("Can not initialize BackGround."), TEXT("ERROR"), MB_OK);
-        return false;
-    }
 
     // GameObjManager ÇÃèâä˙âª
     if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
@@ -188,7 +181,9 @@ void WisdomCrystal::onUpdate() {
     BeginPaint(GetHWnd(), &ps);
     mGraphicsDevice.BeginDraw();
     
-    mBackGround.Draw();
+    const D2D1_COLOR_F fillColor = D2D1::ColorF(0x000000); // black
+    mGraphicsDevice.ClearScreen(fillColor);
+
     mSceneChanger.UpdateScene();
     
     HRESULT hr = mGraphicsDevice.EndDraw();

@@ -5,6 +5,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "Scene.h"
+#include "BackGround.h"
 
 
 class Playing : public Scene, private boost::noncopyable {
@@ -20,4 +21,5 @@ public:
 
 private:
     GameObjManager *mGameObjManager;
+    BackGround mBackGround;
 };

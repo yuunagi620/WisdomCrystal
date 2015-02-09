@@ -11,6 +11,7 @@ Title::Title() : mId(0),
                  mPlay(),
                  mSetting(),
                  mText(),
+                 mBackGround(),
                  mGraphicsDevice(nullptr),
                  mSoundDevice(nullptr),
                  mNextScene(nullptr)
@@ -30,21 +31,22 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
     mGraphicsDevice = graphicsDevice;
     mSoundDevice = soundDevice;
 
-    if (mPlay.Init(graphicsDevice, soundDevice, 0, 600, 460, TEXT("リスト1")) == false) {
+    if (mPlay.Init(mGraphicsDevice, mSoundDevice, 0, 600, 460, TEXT("リスト1")) == false) {
         return false;
     }
-
-    if (mSetting.Init(graphicsDevice, soundDevice, 1, 600, 490, TEXT("リスト2")) == false) {
+    if (mSetting.Init(mGraphicsDevice, mSoundDevice, 1, 600, 490, TEXT("リスト2")) == false) {
         return false;
     }
-
-    if (mEnd.Init(graphicsDevice, soundDevice, 2, 600, 520, TEXT("終了")) == false) {
+    if (mEnd.Init(mGraphicsDevice, mSoundDevice, 2, 600, 520, TEXT("終了")) == false) {
         return false;
     }
-
     if (mText.Init(mGraphicsDevice) == false) {
         return false;
     }
+    if (mBackGround.Init(mGraphicsDevice, 0) == false) {
+        return false;
+    }
+
     mText.SetFontSize(50.0f);
 
     mNextScene = this;
@@ -59,6 +61,7 @@ Scene* Title::Update() {
     
     onKeyDown();
 
+    mBackGround.Draw();
     mPlay.Draw(mId);
     mSetting.Draw(mId);
     mEnd.Draw(mId);

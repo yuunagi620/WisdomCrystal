@@ -8,7 +8,6 @@
 #include "win/COM/COMInitializer.h"
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
-#include "BackGround.h"
 #include "object/GameObjManager.h"
 #include "scene/SceneChanger.h"
 
@@ -58,7 +57,6 @@ private:
     GraphicsDevice mGraphicsDevice;
     SoundDevice    mSoundDevice;
     BGMData        mBGMData;
-    BackGround     mBackGround;
     GameObjManager mGameObjManager;
     SceneChanger   mSceneChanger;
 };
