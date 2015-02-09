@@ -6,13 +6,15 @@
 #include "win/util/Input.h"
 
 
+
+
 Title::Title() : mId(0),
                  mPlay(),
                  mSetting(),
                  mText(),
                  mGraphicsDevice(nullptr),
                  mSoundDevice(nullptr),
-                 mDrawSignal(),
+                 //mDrawSignal(),
                  mNextScene(nullptr)
 {
     // empty
@@ -44,9 +46,11 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
     }
     mText.SetFontSize(35.0f);
 
+
+
     // 描画シグナルにタイトル項目の描画メソッドをセット
-    mDrawSignal.connect([this](int id) {mPlay.Draw(id);});
-    mDrawSignal.connect([this](int id) {mSetting.Draw(id);});
+    mDrawSignal.connect([&](int id) {mPlay.Draw(id);});
+    mDrawSignal.connect([&](int id) {mSetting.Draw(id);});
 
     // 次のシーンをthisにする。
     mNextScene = this;
@@ -72,10 +76,7 @@ void Title::KeyDownEvent() {
     } else if (IsKeyPressed(Input::UP)) {
         mId = --mId < 0 ? 1 : mId;
     } else if (IsKeyPressed(Input::SPACE)) {
-
-        // 次のシーンを調べる。
-        //const Scene *next(mNextSignal(mId));
-        //mNextScene = next ? next : this;
+        // empty
     }
 }
 

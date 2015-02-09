@@ -9,7 +9,7 @@
 #include "Playing.h"
 
 
-SceneChanger::SceneChanger() : mCurrentScene(new Title()),
+SceneChanger::SceneChanger() : mCurrentScene(new Loading()),
                                mGraphicsDevice(nullptr),
                                mSoundDevice(nullptr),
                                mGameObjManager(nullptr)
@@ -29,6 +29,10 @@ bool SceneChanger::Init(GraphicsDevice *graphicsDevice,
     mGraphicsDevice = graphicsDevice;
     mSoundDevice = soundDevice;
     mGameObjManager = gameObjManager;
+
+    if (initNextScene() == false) {
+        return false;
+    }
     return true;
 }
 

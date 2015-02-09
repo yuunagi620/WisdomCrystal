@@ -2,11 +2,8 @@
 
 #pragma once
 
-#include <boost/noncopyable.hpp>
 
-#pragma warning (disable: 4005) // C4005 Œx–³‹
-#include <boost/signals2.hpp>
-//#pragma warning (default: 4005) // C4005 Œx‰ğœ
+#include <boost/noncopyable.hpp>
 
 #include "Scene.h"
 #include "TitleMenu.h"
@@ -14,6 +11,8 @@
 #include "win/util/Input.h"
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
+
+#include <boost/signals2.hpp>
 
 
 class Title : public Scene, private boost::noncopyable {

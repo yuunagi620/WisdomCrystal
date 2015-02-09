@@ -36,8 +36,8 @@
     <ClInclude Include="src\win\COM\COMInitializer.h" />
     <ClInclude Include="src\win\util\Deleter.h" />
     <ClInclude Include="src\win\XA2\SoundPacket.h" />
-    <ClInclude Include="src\scene\Title.h" />
     <ClInclude Include="src\scene\TitleMenu.h" />
+    <ClInclude Include="src\scene\Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -70,7 +70,7 @@
     <ClCompile Include="src\scene\SceneChanger.cpp" />
     <ClCompile Include="src\win\COM\COMInitializer.cpp" />
     <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
-    <ClCompile Include="src\scene\Title.cpp" />
     <ClCompile Include="src\scene\TitleMenu.cpp" />
+    <ClCompile Include="src\scene\Title.cpp" />
   </ItemGroup>
 </Project>
