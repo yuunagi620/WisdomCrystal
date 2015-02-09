@@ -9,7 +9,7 @@
 #include "Playing.h"
 
 
-SceneChanger::SceneChanger() : mCurrentScene(new Loading()),
+SceneChanger::SceneChanger() : mCurrentScene(new Title()),
                                mGraphicsDevice(nullptr),
                                mSoundDevice(nullptr),
                                mGameObjManager(nullptr)

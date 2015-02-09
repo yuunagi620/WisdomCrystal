@@ -9,10 +9,6 @@
 #include "TitleMenu.h"
 
 #include "win/util/Input.h"
-#include "GraphicsDevice.h"
-#include "SoundDevice.h"
-
-#include <boost/signals2.hpp>
 
 
 class Title : public Scene, private boost::noncopyable {
@@ -27,17 +23,20 @@ public:
 
     Scene* Update() override;
 
-    virtual void KeyDownEvent();
+private:
+    void keyDownEvent();
 
 private:
     int mId;
+    int mKeyWait;
+
     TitleMenu mPlay;
     TitleMenu mSetting;
+    TitleMenu mEnd;
     D2DTextData mText;
 
     GraphicsDevice *mGraphicsDevice;
     SoundDevice    *mSoundDevice;
 
-    boost::signals2::signal<void (int)> mDrawSignal;
     Scene *mNextScene;
 };
