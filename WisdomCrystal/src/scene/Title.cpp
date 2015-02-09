@@ -25,34 +25,40 @@ Title::~Title() {
 
 
 bool Title::Init(GraphicsDevice* graphicsDevice,
-                 SoundDevice*    soundDevice) {
+                 SoundDevice*    soundDevice,
+                 GameObjManager *gameObjManager) {
     mGraphicsDevice = graphicsDevice;
     mSoundDevice = soundDevice;
 
-    // test
+    if (mPlay.Init(graphicsDevice, soundDevice, 0, 0, 0, TEXT("")) == false) {
+        return false;
+    }
+
+    if (mSetting.Init(graphicsDevice, soundDevice, 1, 0, 80, TEXT("")) == false) {
+        return false;
+    }
+
+    // text
     if (mText.Init(mGraphicsDevice) == false) {
         return false;
     }
-    mText.SetFontSize(50.0f);
+    mText.SetFontSize(35.0f);
 
     // 描画シグナルにタイトル項目の描画メソッドをセット
-    mDrawSignal.connect([this](int id) {mPlay.draw(id);});
-    mDrawSignal.connect([this](int id) {mSetting.draw(id);});
-
-    // 選択シグナルに次の項目を調べるメソッドをセット
-    //mNextSignal.connect([this](int id) {return mPlay.next<Playing>(id);});
-    //mNextSignal.connect([this](int id) {return mSetting.next<Setting>(id);});
+    mDrawSignal.connect([this](int id) {mPlay.Draw(id);});
+    mDrawSignal.connect([this](int id) {mSetting.Draw(id);});
 
     // 次のシーンをthisにする。
     mNextScene = this;
 }
 
 
-Scene *Title::Update(GameObjManager *gameObjManager) {
+Scene* Title::Update() {
 
     // 描画
     mText.DrawText(TEXT("タイトル"), D2D1::RectF(250.f, 250.f, 400.f, 300.f));
     
+    KeyDownEvent();
 
     // 項目の描画メソッドをまとめて呼ぶ
     mDrawSignal(mId);

@@ -21,19 +21,12 @@ public:
               const int id, const float x, const float y,
               const std::basic_string<TCHAR>& captionName);
 
-    void draw(const int id);
-
-    template <typename T>
-    Scene *next(int id) const {
-        // 選択idが該当したら新しいシーンを生成して返す
-        // 新しいシーンの型はテンプレート引数で渡す
-        return (mId == id ? new T() : nullptr);
-    }
+    void Draw(int id);
 
 private:
     int mId;
     float mX;
     float mY;
 
-    D2DTextData mCaptionName;
+    D2DTextData mText;
 };

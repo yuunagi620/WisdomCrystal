@@ -2,15 +2,12 @@
 
 // Includes
 #include "TitleMenu.h"
-#include "Loading.h"
-#include "win/util/Input.h"
-
 
 
 TitleMenu::TitleMenu() : mId(0),
                          mX(0),
                          mY(0),
-                         mCaptionName()
+                         mText()
 {
     // empty
 }
@@ -29,18 +26,20 @@ bool TitleMenu::Init(GraphicsDevice* graphicsDevice,
     mX = x;
     mY = y;
 
-    if (mCaptionName.Init(graphicsDevice) == false) {
+    if (mText.Init(graphicsDevice) == false) {
         return false;
     }
-    mCaptionName.SetFontSize(50.0f);
+    mText.SetFontSize(25.0f);
+
+    return true;
 }
 
 
 
-void TitleMenu::draw(const int id) {
+void TitleMenu::Draw(int id) {
 
     // 選択idが該当したら色を赤に
     const D2D1_COLOR_F color(mId == id ? D2D1::ColorF(0xff0000) : D2D1::ColorF(0x000000));
-    mCaptionName.SetColor(color);
-    mCaptionName.DrawText(TEXT("タイトル画面"), D2D1::RectF(250.f, 250.f, 400.f, 300.f));
+    mText.SetColor(color);
+    mText.DrawText(TEXT("メニュー"), D2D1::RectF(mX, mY, mX + 100, mY + 100));
 }

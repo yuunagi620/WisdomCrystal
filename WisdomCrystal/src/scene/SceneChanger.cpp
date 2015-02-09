@@ -3,11 +3,13 @@
 
 // Includes
 #include "SceneChanger.h"
+
+#include "Title.h"
 #include "Loading.h"
-#include "scene/Playing.h"
+#include "Playing.h"
 
 
-SceneChanger::SceneChanger() : mCurrentScene(new Loading()),
+SceneChanger::SceneChanger() : mCurrentScene(new Title()),
                                mGraphicsDevice(nullptr),
                                mSoundDevice(nullptr),
                                mGameObjManager(nullptr)
