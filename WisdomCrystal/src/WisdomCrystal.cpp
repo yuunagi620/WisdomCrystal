@@ -89,13 +89,19 @@ bool WisdomCrystal::Init() {
 
      // ‰Šú‚Ì”wŒi‚Ì‰Šú‰»
     if (mBackGround.Init(&mGraphicsDevice, 0) == false) {
-        MessageBox(nullptr, TEXT("Can not init BackGround."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("Can not initialize BackGround."), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // GameObjManager ‚Ì‰Šú‰»
     if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
-        MessageBox(nullptr, TEXT("Can not init GameObjManager."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("Can not initialize GameObjManager."), TEXT("ERROR"), MB_OK);
+        return false;
+    }
+
+    // SceneChanger ‚Ì‰Šú‰»
+    if (mSceneChanger.Init(&mGraphicsDevice, &mSoundDevice) == false) {
+        MessageBox(nullptr, TEXT("Can not initialize SceneChanger."), TEXT("ERROR"), MB_OK);
         return false;
     }
 

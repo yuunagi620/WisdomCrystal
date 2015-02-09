@@ -6,13 +6,24 @@
 #include "scene/Playing.h"
 
 
-SceneChanger::SceneChanger() : mCurrentScene(new Playing()) {
+SceneChanger::SceneChanger() : mCurrentScene(new Playing()),
+                               mGraphicsDevice(nullptr),
+                               mSoundDevice(nullptr)
+{
     // empty
 }
 
 
 SceneChanger::~SceneChanger() {
     // empty
+}
+
+
+bool SceneChanger::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) {
+    mGraphicsDevice = graphicsDevice;
+    mSoundDevice = soundDevice;
+
+    return true;
 }
 
 

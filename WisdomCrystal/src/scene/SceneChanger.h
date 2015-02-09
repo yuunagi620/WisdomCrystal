@@ -12,8 +12,13 @@ public:
     SceneChanger();
     virtual ~SceneChanger();
 
+    bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice);
+
     void UpdateScene(GameObjManager *gameObjManager);
 
 private:
     std::unique_ptr<Scene> mCurrentScene;
+
+    GraphicsDevice* mGraphicsDevice;
+    SoundDevice*    mSoundDevice;
 };
