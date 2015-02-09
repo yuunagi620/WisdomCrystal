@@ -15,6 +15,7 @@
     <ClInclude Include="src\GraphicsDevice.h" />
     <ClInclude Include="src\object\GameObject.h" />
     <ClInclude Include="src\object\GameObjManager.h" />
+    <ClInclude Include="src\object\Ghost.h" />
     <ClInclude Include="src\object\Player.h" />
     <ClInclude Include="src\scene\Loading.h" />
     <ClInclude Include="src\scene\Playing.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="src\BackGround.cpp" />
     <ClCompile Include="src\GraphicsDevice.cpp" />
     <ClCompile Include="src\object\GameObjManager.cpp" />
+    <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\Player.cpp" />
     <ClCompile Include="src\scene\Loading.cpp" />
     <ClCompile Include="src\scene\Playing.cpp" />

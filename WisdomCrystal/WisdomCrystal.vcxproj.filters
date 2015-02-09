@@ -40,6 +40,7 @@
     <ClInclude Include="src\win\COM\SafeRelease.h" />
     <ClInclude Include="src\win\D2D\D2DImage.h" />
     <ClInclude Include="src\win\D2D\D2DText.h" />
+    <ClInclude Include="src\object\Ghost.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -76,5 +77,6 @@
     <ClCompile Include="src\win\String\WinString.cpp" />
     <ClCompile Include="src\win\D2D\D2DImage.cpp" />
     <ClCompile Include="src\win\D2D\D2DText.cpp" />
+    <ClCompile Include="src\object\Ghost.cpp" />
   </ItemGroup>
 </Project>

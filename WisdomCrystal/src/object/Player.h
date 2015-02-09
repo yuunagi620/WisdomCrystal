@@ -4,7 +4,6 @@
 
 #include "GameObject.h"
 #include "win/D2D/D2DImage.h"
-#include "win/D2D/D2DText.h"
 
 
 class Player : public GameObject {

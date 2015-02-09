@@ -2,9 +2,8 @@
 
 // Includes
 #include "GameObjManager.h"
-#include "WisdomCrystal.h"
-
 #include "Player.h"
+#include "Ghost.h"
 
 
 GameObjManager::GameObjManager() : mActiveGameObjects() {
@@ -19,6 +18,7 @@ GameObjManager::~GameObjManager() {
 
 bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
     mActiveGameObjects.at(0).reset(new Player());
+    mActiveGameObjects.at(1).reset(new Ghost());
 
     for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it) {
         if (*it != nullptr) {
