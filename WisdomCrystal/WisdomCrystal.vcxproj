@@ -27,6 +27,7 @@
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\util\CSVUtil.h" />
+    <ClInclude Include="src\util\CSVUtilImpl.h" />
     <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\COM\COMInitializer.h" />

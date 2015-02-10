@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Ghost.h"
 
+#include "util/CSVUtil.h"
+
 
 GameObjManager::GameObjManager() : mGameObjectMap() {
     // empty
@@ -29,10 +31,15 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
             }
         }
     }
-    Activate(PLAYER, 100, 300);
-    Activate(GHOST, 600, 300);
-    Activate(GHOST, 700, 300);
-    Activate(GHOST, 200, 300);
+
+    std::array<int, 6> posArray;
+
+    if (CSVUtil::ImportCSVData<decltype(posArray)>("resources/map/test.csv", &posArray) == false) {
+        return false;
+    }
+    Activate(PLAYER, posArray.at(0), posArray.at(1));
+    Activate(GHOST,  posArray.at(2), posArray.at(3));
+    Activate(GHOST,  posArray.at(4), posArray.at(5));
 
     return true;
 }
