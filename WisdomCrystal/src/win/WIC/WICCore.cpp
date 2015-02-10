@@ -1,6 +1,5 @@
 // WICCore.cpp
 
-// Includes
 #include "WICCore.h"
 
 

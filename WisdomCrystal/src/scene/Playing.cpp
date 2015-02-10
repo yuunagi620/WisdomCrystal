@@ -1,6 +1,5 @@
 // Playing.cpp
 
-// Includes
 #include "Playing.h"
 #include "object/GameObjManager.h"
 

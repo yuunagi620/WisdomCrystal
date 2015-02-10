@@ -1,10 +1,8 @@
 // GameObjManager.cpp
 
-// Includes
 #include "GameObjManager.h"
 #include "Player.h"
 #include "Ghost.h"
-
 #include "util/CSVUtil.h"
 
 

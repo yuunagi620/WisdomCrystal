@@ -1,6 +1,5 @@
 // Player.cpp
 
-// Includes
 #include <d2d1helper.h>
 
 #include "Player.h"

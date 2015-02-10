@@ -1,6 +1,5 @@
 // BackGround.cpp
 
-// Includes
 #include "BackGround.h"
 
 #pragma warning (disable: 4005) // C4005 åxçêñ≥éã

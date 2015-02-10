@@ -1,9 +1,6 @@
 // SceneChanger.cpp
 
-
-// Includes
 #include "SceneChanger.h"
-
 #include "Title.h"
 #include "Loading.h"
 #include "Playing.h"

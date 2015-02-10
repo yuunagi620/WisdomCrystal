@@ -1,6 +1,5 @@
 // XA2Core.cpp
 
-// Includes
 #include "XA2Core.h"
 #include "win/COM/Deleter.h"
 

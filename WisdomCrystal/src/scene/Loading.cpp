@@ -1,6 +1,5 @@
 // Loading.cpp
 
-// Includes
 #include "Loading.h"
 #include "Playing.h"
 #include "object/GameObjManager.h"

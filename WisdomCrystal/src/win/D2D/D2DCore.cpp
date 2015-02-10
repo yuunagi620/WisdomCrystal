@@ -3,7 +3,6 @@
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "DWrite.lib")
 
-// Includes
 #include "D2DCore.h"
 #include "win/COM/Deleter.h"
 

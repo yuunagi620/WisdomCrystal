@@ -1,6 +1,5 @@
 // Title.cpp
 
-// Includes
 #include "Title.h"
 #include "Loading.h"
 #include "win/util/Input.h"

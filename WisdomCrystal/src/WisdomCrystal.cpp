@@ -9,7 +9,6 @@
 #endif
 
 
-// Includes
 #include <CommCtrl.h>
 
 #include "WisdomCrystal.h"

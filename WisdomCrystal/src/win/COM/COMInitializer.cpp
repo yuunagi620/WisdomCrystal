@@ -1,6 +1,5 @@
 // COMInitializer.cpp
 
-// Includes
 #include "COMInitializer.h"
 
 

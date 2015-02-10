@@ -1,6 +1,5 @@
 // WinString.h
 
-// Includes
 #include "WinString.h"
 
 #pragma warning (disable: 4005) // C4005 åxçêñ≥éã

@@ -1,6 +1,5 @@
 // D2DImage.cpp
 
-// Includes
 #include "D2DImage.h"
 
 

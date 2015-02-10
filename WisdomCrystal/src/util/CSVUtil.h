@@ -15,5 +15,4 @@ bool ImportData(const std::string& filePath, T *data);
 template<typename T>
 bool ExportData(const std::string& filePath, T *data);
 
-
 } // namespace CSVUtil

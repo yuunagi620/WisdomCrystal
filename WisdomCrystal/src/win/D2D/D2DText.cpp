@@ -1,6 +1,5 @@
 // D2DText.cpp
 
-// Includes
 #include "D2DText.h"
 
 
@@ -8,7 +7,7 @@ D2DText::D2DText() : mGraphicsDevice(nullptr),
                      mTextFormat(nullptr),
                      mBrush(nullptr),
                      mFontFamilyName(TEXT("ÉÅÉCÉäÉI")),
-                     mFontSize(10.0f),
+                     mFontSize(12.0f),
                      mFontWeight(DWRITE_FONT_WEIGHT_NORMAL),
                      mFontStyle(DWRITE_FONT_STYLE_NORMAL),
                      mFontStretch(DWRITE_FONT_STRETCH_NORMAL)

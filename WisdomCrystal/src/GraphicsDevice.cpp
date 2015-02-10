@@ -1,6 +1,5 @@
 // GraphicsDevice.cpp
 
-// Includes
 #include "GraphicsDevice.h"
 
 

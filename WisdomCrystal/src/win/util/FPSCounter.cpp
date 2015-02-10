@@ -1,6 +1,5 @@
 // FPSCounter.cpp
 
-// Includes
 #include "FPSCounter.h"
 
 

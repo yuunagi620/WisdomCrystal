@@ -1,6 +1,5 @@
 // Ghost.cpp
 
-// Includes
 #include "Ghost.h"
 #include "win/util/Input.h"
 

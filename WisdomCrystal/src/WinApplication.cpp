@@ -2,8 +2,6 @@
 
 #pragma comment(lib, "comctl32.lib")
 
-
-// Includes
 #include "WinApplication.h"
 #include <CommCtrl.h>
 

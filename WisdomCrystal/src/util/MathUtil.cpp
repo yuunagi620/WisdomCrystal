@@ -1,9 +1,7 @@
 // MathUtil.cpp
 
-// Includes
-#include "MathUtil.h"
-
 #include <math.h>
+#include "MathUtil.h"
 
 
 double MathUtil::Round(double value , const int position) {

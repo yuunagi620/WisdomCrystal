@@ -1,6 +1,5 @@
 // WaveData.cpp
 
-// Includes
 #include "WaveData.h"
 
 
