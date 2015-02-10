@@ -18,7 +18,7 @@ public:
     virtual ~GameObjManager();
 
     bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice);
-    void Activate(const int initX, const int initY);
+    bool Activate(const GameObjectId initId, const int initX, const int initY);
     void Update();
 
 private:
