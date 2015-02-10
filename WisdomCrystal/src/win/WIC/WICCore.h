@@ -22,7 +22,7 @@ public:
     ID2D1Bitmap* CreateD2DBitmap(LPCTSTR imageFilePath);
 
     // ÉäÉ\Å[ÉXÇ©ÇÁ ID2D1Bitmap ÇçÏê¨Ç∑ÇÈ
-    ID2D1Bitmap* CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCWSTR resourceType);
+    ID2D1Bitmap* CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
 private:
     std::shared_ptr<IWICBitmapDecoder>     createBitmapDecoder(LPCTSTR imageFilePath);

@@ -28,6 +28,8 @@ public:
 
     ID2D1Bitmap* CreateD2DBitmap(LPCTSTR imageFilePath);
 
+    ID2D1Bitmap* CreateD2DBitmap(LPCTSTR resourceName, LPCTSTR resourceType);
+
     void DrawBitmap(ID2D1Bitmap* bitmap,
                     const D2D1_RECT_F& destinationRectangle,
                     const float opacity,

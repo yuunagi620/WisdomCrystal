@@ -17,7 +17,7 @@ D2DImage::~D2DImage() {
 }
 
 
-bool D2DImage::Init(GraphicsDevice* graphicsDevice, LPCTSTR imageFilePath) {
+bool D2DImage::Init(GraphicsDevice *graphicsDevice, LPCTSTR imageFilePath) {
     mGraphicsDevice = graphicsDevice;
     mImage = mGraphicsDevice->CreateD2DBitmap(imageFilePath);
     if (mImage == nullptr) {
@@ -31,6 +31,20 @@ bool D2DImage::Init(GraphicsDevice* graphicsDevice, LPCTSTR imageFilePath) {
     return true;
 }
 
+
+bool D2DImage::Init(GraphicsDevice *graphicsDevice, LPCTSTR resourceName, LPCTSTR resourceType) {
+    mGraphicsDevice = graphicsDevice;
+    mImage = mGraphicsDevice->CreateD2DBitmap(resourceName, resourceType);
+    if (mImage == nullptr) {
+        return false;
+    }
+    mImageSize = mImage->GetPixelSize();
+
+    mImageSrcRect = D2D1::RectF(0, 0, 
+                                static_cast<float>(mImageSize.width),
+                                static_cast<float>(mImageSize.height));
+    return true;
+}
 
 void D2DImage::Draw(const int x, const int y, const float opacity) {
     D2D1_RECT_F targetRect = D2D1::RectF(static_cast<float>(x + mImageSrcRect.left),

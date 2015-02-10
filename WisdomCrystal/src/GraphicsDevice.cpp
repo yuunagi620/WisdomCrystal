@@ -70,6 +70,11 @@ ID2D1Bitmap* GraphicsDevice::CreateD2DBitmap(LPCTSTR imageFilePath) {
 }
 
 
+ID2D1Bitmap* GraphicsDevice::CreateD2DBitmap(LPCTSTR resourceName, LPCTSTR resourceType) {
+    return mWICCore.CreateD2DBitmapFromResource(resourceName, resourceType);
+}
+
+
 void GraphicsDevice::DrawBitmap(ID2D1Bitmap* bitmap,
                                 const D2D1_RECT_F& destinationRectangle,
                                 const float opacity,

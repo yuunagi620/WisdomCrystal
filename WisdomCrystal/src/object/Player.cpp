@@ -36,7 +36,7 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
     mGraphicsDevice = graphicsDevice;
     mSoundDevice = soundDevice;
 
-    if (mImage.Init(mGraphicsDevice, TEXT("resources/image/player.png")) == false) {
+    if (mImage.Init(mGraphicsDevice, TEXT("IMAGE_1"), TEXT("PNG")) == false) {
         return false;
     }
 

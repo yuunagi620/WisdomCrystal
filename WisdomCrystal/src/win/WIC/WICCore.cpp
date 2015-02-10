@@ -51,7 +51,7 @@ ID2D1Bitmap* WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 }
 
 
-ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCWSTR resourceType) {
+ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
 
     HMODULE hModule = GetModuleHandle(nullptr);
     HRSRC imageResHandle = FindResource(hModule, resourceName, resourceType);

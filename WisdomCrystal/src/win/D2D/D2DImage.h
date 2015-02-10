@@ -14,7 +14,9 @@ public:
 
     virtual ~D2DImage();
 
-    bool Init(GraphicsDevice* mGraphicsDevice, LPCTSTR imageFilePath);
+    bool Init(GraphicsDevice *mGraphicsDevice, LPCTSTR imageFilePath);
+
+    bool Init(GraphicsDevice *mGraphicsDevice, LPCTSTR resourceName, LPCTSTR resourceType);
 
     void Draw(const int x, const int y, const float opacity = 1);
 
