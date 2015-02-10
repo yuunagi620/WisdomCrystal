@@ -16,10 +16,11 @@ GameObjManager::~GameObjManager() {
 }
 
 
-bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
+bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) {
     mGameObjectMap.insert(std::make_pair(PLAYER, new Player()));
-    mGameObjectMap.insert(std::make_pair(GHOST, new Ghost()));
-    mGameObjectMap.insert(std::make_pair(GHOST, new Ghost()));
+    for (int i = 0; i < 3; ++i) {
+        mGameObjectMap.insert(std::make_pair(GHOST, new Ghost()));
+    }
 
     for (auto it = mGameObjectMap.begin(); it != mGameObjectMap.end(); ++it) {
         if (it->second != nullptr) {
@@ -31,6 +32,7 @@ bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevi
     Activate(PLAYER, 100, 300);
     Activate(GHOST, 600, 300);
     Activate(GHOST, 700, 300);
+    Activate(GHOST, 200, 300);
 
     return true;
 }
