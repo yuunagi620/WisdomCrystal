@@ -1,4 +1,4 @@
 // resource.rc
 
-ICON_1 ICON  "myicon.ico"
+ICON_1 ICON  "../resources/icon/myicon.ico"
 
