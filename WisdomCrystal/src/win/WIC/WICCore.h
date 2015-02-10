@@ -21,6 +21,9 @@ public:
     // ファイルパスから ID2D1Bitmap を作成する
     ID2D1Bitmap* CreateD2DBitmap(LPCTSTR imageFilePath);
 
+    // リソースから ID2D1Bitmap を作成する
+    ID2D1Bitmap* CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCWSTR resourceType);
+
 private:
     std::shared_ptr<IWICBitmapDecoder>     createBitmapDecoder(LPCTSTR imageFilePath);
     std::shared_ptr<IWICBitmapFrameDecode> getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);

@@ -1,6 +1,7 @@
 // WICCore.cpp
 
 #include "WICCore.h"
+#include "win/COM/SafeRelease.h"
 
 
 WICCore::WICCore() : mWICImagingFactory(nullptr),
@@ -31,7 +32,7 @@ bool WICCore::Init(std::shared_ptr<ID2D1RenderTarget> renderTarget) {
 }
 
 
-ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
+ID2D1Bitmap* WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 
     // IWICBitmapDecoder を作成
     auto decoder = createBitmapDecoder(imageFilePath);
@@ -41,6 +42,65 @@ ID2D1Bitmap *WICCore::CreateD2DBitmap(LPCTSTR imageFilePath) {
 
     // イメージから Frame を取得
     auto frame = getFrame(decoder);
+    if (frame == nullptr) {
+        return nullptr;
+    }
+
+    // Direct2D で使用できる形式に変換して返す
+    return convertD2DBitmap(frame);
+}
+
+
+ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCWSTR resourceType) {
+
+    HMODULE hModule = GetModuleHandle(nullptr);
+    HRSRC imageResHandle = FindResource(hModule, resourceName, resourceType);
+    if (imageResHandle == nullptr) {
+        return false;
+    }
+
+    HGLOBAL imageResDataHandle = LoadResource(hModule, imageResHandle);
+    if (imageResDataHandle == nullptr) {
+        return false;
+    }
+
+    void *imageFilePtr = LockResource(imageResDataHandle);
+    if (imageFilePtr == nullptr) {
+        return false;
+    }
+
+    // Calculate the size.
+    DWORD imageFileSize = SizeofResource(hModule, imageResHandle);
+    if (imageFileSize == 0) {
+        return false;
+    }
+
+    // Create a WIC stream to map onto the memory.
+    IWICStream *stream = nullptr;
+    HRESULT hr = mWICImagingFactory->CreateStream(&stream);
+    if (FAILED(hr)) {
+        return false;
+    }
+
+    // Initialize the stream with the memory pointer and size.
+    hr = stream->InitializeFromMemory(reinterpret_cast<BYTE*>(imageFilePtr), imageFileSize);
+    if (FAILED(hr)) {
+        return false;
+    }
+
+    // Create a decoder for the stream.
+    IWICBitmapDecoder *decoder = nullptr;
+    hr = mWICImagingFactory->CreateDecoderFromStream(stream,
+                                                     nullptr,
+                                                     WICDecodeMetadataCacheOnLoad,
+                                                     &decoder);
+    if (FAILED(hr)) {
+        return false;
+    }
+
+    // イメージから Frame を取得
+    std::shared_ptr<IWICBitmapDecoder> ptr(decoder, Deleter<IWICBitmapDecoder>());
+    auto frame = getFrame(ptr);
     if (frame == nullptr) {
         return nullptr;
     }
