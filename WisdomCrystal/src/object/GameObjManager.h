@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <array>
+#include <map>
 #include <boost/noncopyable.hpp>
 
 #include "GameObject.h"
@@ -21,7 +21,5 @@ public:
     void Update();
 
 private:
-    static const int MAX_GAME_OBJCT = 1000;
-
-    std::array<std::unique_ptr<GameObject>, MAX_GAME_OBJCT> mGameObjectArray;
+    std::multimap<int, std::unique_ptr<GameObject>> mGameObjectMap;
 };
