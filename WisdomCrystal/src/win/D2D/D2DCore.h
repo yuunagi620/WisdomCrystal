@@ -23,7 +23,7 @@ public:
 
     void ClearScreen(const D2D1_COLOR_F& fillColor);
 
-    void DrawBitmap(ID2D1Bitmap* bitmap,
+    void DrawBitmap(ID2D1Bitmap *bitmap,
                     const D2D1_RECT_F& destinationRectangle,
                     const float opacity,
                     const D2D1_RECT_F& sourceRectangle);

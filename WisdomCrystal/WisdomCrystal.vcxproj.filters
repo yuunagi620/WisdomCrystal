@@ -83,9 +83,9 @@
     <ClCompile Include="src\object\GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="src\resource.rc" />
+    <None Include="src\myicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\myicon.ico" />
+    <ResourceCompile Include="resources\resource.rc" />
   </ItemGroup>
 </Project>

@@ -95,10 +95,10 @@
     <ClCompile Include="src\WisdomCrystal.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="src\resource.rc" />
+    <None Include="src\myicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\myicon.ico" />
+    <ResourceCompile Include="resources\resource.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1917F29E-CCA2-4703-BB0F-1C37F97DA561}</ProjectGuid>
