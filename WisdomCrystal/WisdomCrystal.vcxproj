@@ -94,6 +94,12 @@
     <ClCompile Include="src\win\XA2\XA2Core.cpp" />
     <ClCompile Include="src\WisdomCrystal.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\myicon.ico" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1917F29E-CCA2-4703-BB0F-1C37F97DA561}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -142,6 +148,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <ResourceCompile>
+      <ResourceOutputFileName>$(IntDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

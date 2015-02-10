@@ -1,0 +1,4 @@
+// resource.rc
+
+ICON_1 ICON  "myicon.ico"
+

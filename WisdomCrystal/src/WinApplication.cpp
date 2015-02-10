@@ -139,7 +139,7 @@ bool WinApplication::registerWindowClass() {
     wc.cbClsExtra    = 0;
     wc.cbWndExtra    = 0;
     wc.hInstance     = mHInstance;
-    wc.hIcon         = LoadIcon(nullptr, IDI_APPLICATION);
+    wc.hIcon         = LoadIcon(mHInstance, TEXT("ICON_1"));
     wc.hCursor       = LoadCursor(nullptr, IDC_ARROW);
     wc.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW);
     wc.lpszMenuName  = nullptr;

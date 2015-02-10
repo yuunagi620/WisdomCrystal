@@ -82,4 +82,10 @@
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\GameObject.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\myicon.ico" />
+  </ItemGroup>
 </Project>
