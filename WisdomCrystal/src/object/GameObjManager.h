@@ -6,6 +6,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "GameObject.h"
+#include "GameObjectId.h"
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
 
@@ -21,5 +22,5 @@ public:
     void Update();
 
 private:
-    std::multimap<int, std::unique_ptr<GameObject>> mGameObjectMap;
+    std::multimap<GameObjectId, std::unique_ptr<GameObject>> mGameObjectMap;
 };

@@ -14,6 +14,7 @@
     <ClInclude Include="src\BackGround.h" />
     <ClInclude Include="src\GraphicsDevice.h" />
     <ClInclude Include="src\object\GameObject.h" />
+    <ClInclude Include="src\object\GameObjectId.h" />
     <ClInclude Include="src\object\GameObjManager.h" />
     <ClInclude Include="src\object\Ghost.h" />
     <ClInclude Include="src\object\Player.h" />

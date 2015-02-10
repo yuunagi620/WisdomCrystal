@@ -17,8 +17,8 @@ GameObjManager::~GameObjManager() {
 
 
 bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
-    mGameObjectMap.insert(std::make_pair(0, new Player()));
-    mGameObjectMap.insert(std::make_pair(1, new Ghost()));
+    mGameObjectMap.insert(std::make_pair(PLAYER, new Player()));
+    mGameObjectMap.insert(std::make_pair(GHOST, new Ghost()));
 
     for (auto it = mGameObjectMap.begin(); it != mGameObjectMap.end(); ++it) {
         if (it->second != nullptr) {
@@ -27,8 +27,8 @@ bool GameObjManager::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevi
             }
         }
     }
-    mGameObjectMap.find(0)->second->Activate(100, 300);
-    mGameObjectMap.find(1)->second->Activate(700, 300);
+    mGameObjectMap.find(PLAYER)->second->Activate(100, 300);
+    mGameObjectMap.find(GHOST)->second->Activate(700, 300);
 
     return true;
 }

@@ -41,6 +41,7 @@
     <ClInclude Include="src\win\D2D\D2DText.h" />
     <ClInclude Include="src\object\Ghost.h" />
     <ClInclude Include="src\win\com\deleter.h" />
+    <ClInclude Include="src\object\GameObjectId.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
