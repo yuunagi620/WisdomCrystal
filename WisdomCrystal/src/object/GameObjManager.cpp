@@ -34,7 +34,7 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
 
     std::array<int, 6> posArray;
 
-    if (CSVUtil::ImportCSVData<decltype(posArray)>("resources/map/test.csv", &posArray) == false) {
+    if (CSVUtil::ImportData<decltype(posArray)>("resources/map/test.csv", &posArray) == false) {
         return false;
     }
     Activate(PLAYER, posArray.at(0), posArray.at(1));

@@ -7,10 +7,13 @@
 
 namespace CSVUtil {
 
-// CSV ファイルからロード
+// CSV ファイルを読み込み
 template<typename T>
-bool ImportCSVData(const std::string& filePath, T *container);
+bool ImportData(const std::string& filePath, T *data);
 
+// CSV ファイルへ書き込み
+template<typename T>
+bool ExportData(const std::string& filePath, T *data);
 
 
 } // namespace CSVUtil

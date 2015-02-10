@@ -11,14 +11,8 @@
 namespace CSVUtil {
 
 template<typename T>
-bool ImportCSVData(const std::string& filePath, T* arr) {
-
-    auto deleter = [](std::ifstream *ifs){
-        ifs->close();
-    };
-
+bool ImportData(const std::string& filePath, T* data) {
     std::ifstream ifs(filePath);
-    std::unique_ptr<std::ifstream, decltype(deleter)> ptr(&ifs, deleter);
     if (ifs.fail()) {
         return false; // ファイルの読み込みに失敗
     }
@@ -35,7 +29,7 @@ bool ImportCSVData(const std::string& filePath, T* arr) {
 
             // 文字列をコンマ単位で抽出
             while (getline(stream, token, ',')) {
-                arr->at(index) = (std::atoi(token.c_str()));
+                data->at(index) = (std::atoi(token.c_str()));
                 ++index;
             }
         }
@@ -44,6 +38,26 @@ bool ImportCSVData(const std::string& filePath, T* arr) {
         return false; // 範囲外アクセスした
     }
     return true;
-} 
+}
+
+
+template<typename T>
+bool ExportData(const std::string& fileName, T* data) {
+    std::ofstream ofs(fileName);
+
+    auto it = data->begin();
+    while (it != (data->end() - 1)) {
+        ofs << (*it) << ",";
+        ++it;
+    }
+    ofs << (*it) << std::endl; // 最後はコンマを入れないようにする
+
+    if (ofs.fail()) {
+        return false;
+    }
+
+    return true;
+}
+
 
 } // namespace CSVUtil
