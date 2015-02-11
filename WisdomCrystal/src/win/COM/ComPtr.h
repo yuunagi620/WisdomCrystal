@@ -1,120 +1,116 @@
-// COMPtr.h
+// ComPtr.h
 
 #pragma once
 
+#include "SafeRelease.h"
 
-template<class INTERFACE, const IID *piid = nullptr>
-class COMPtr {
+
+template<typename INTERFACE>
+class ComPtr {
 
 public:
-    COMPtr() {
-        mInterface = nullptr;
+    ComPtr();
+    ComPtr(INTERFACE *ptr);
+    ComPtr(const ComPtr<INTERFACE>& other);
+
+    virtual ~ComPtr();
+
+    INTERFACE* operator=(INTERFACE *ptr);
+    INTERFACE* operator=(const ComPtr<INTERFACE>& RefComPtr);
+
+    bool Equals(IUnknown *other);
+
+    inline operator INTERFACE*() const {
+        return mPtr;
     }
 
-    COMPtr(INTERFACE *ptr) {
-        mInterface = nullptr;
-        if (ptr != nullptr) {
-            mInterface = ptr;
-            mInterface->AddRef();
-        }
+    inline INTERFACE& operator*() const {
+        return *mPtr;
     }
 
-    COMPtr(const COMPtr<INTERFACE, piid>& RefCOMPtr) {
-        mInterface = nullptr;
-        mInterface = reinterpret_cast<INTERFACE*>(RefCOMPtr);
-        if (mInterface) {
-            mInterface->AddRef();
-        }
+    inline INTERFACE** operator&() {
+        return &mPtr;
     }
 
-    COMPtr(IUnknown* pIUnknown, IID iid) {
-        mInterface = nullptr;
-        if (pIUnknown != nullptr) {
-            pIUnknown->QueryInterface(iid, reinterpret_cast<void**>(&mInterface));
-        }
+    inline INTERFACE* operator->() const {
+        return mPtr;
     }
 
-    virtual ~COMPtr() {
-        if (mInterface) {
-            mInterface->Release();
-            mInterface = nullptr;
-        }
-    }
-
-    operator INTERFACE*() const {
-        return mInterface;
-    }
-
-    INTERFACE& operator*() const {
-        return *mInterface;
-    }
-
-    INTERFACE** operator&() {
-        return &mInterface;
-    }
-
-    INTERFACE* operator->() const {
-        return mInterface;
-    }
-
-    INTERFACE* operator=(INTERFACE *ptr) {
-        if (IsEqualObject(ptr)) {
-            return mInterface;
-        }
-        mInterface->Release();
-        ptr->AddRef();
-        mInterface = ptr;
-        return mInterface;
-    }
-
-    INTERFACE* operator=(IUnknown* unknown) {
-        assert(unknown != nullptr);
-        assert(piid != nullptr);
-        unknown->QueryInterface(*piid, (void**)&mInterface);
-        assert(mInterface != nullptr);
-        return mInterface;
-    }
-
-    INTERFACE* operator=(const COMPtr<INTERFACE, piid>& RefCOMPtr) {
-        assert(&RefCOMPtr != nullptr);
-        mInterface = reinterpret_cast<INTERFACE*>RefCOMPtr;
-        if (mInterface) {
-            mInterface->AddRef();
-        }
-        return mInterface;
-    }
-
-    void Attach(INTERFACE *ptr) {
-        if (mInterface) {
-            mInterface->Release();
-        }
-        mInterface = ptr;
-    }
-
-    INTERFACE* Detach() {
-        INTERFACE *ptr = mInterface;
-        mInterface = nullptr;
-        return ptr;
-    }
-
-    void Release() {
-        if (mInterface) {
-            mInterface->Release();
-            mInterface = nullptr;
-        }
-    }
-
-    bool Equals(IUnknown *other) {
-        if (other == nullptr) {
-            return false;
-        }
-        IUnknown *unknown = nullptr;
-        mInterface->QueryInterface(IID_IUnknown, reinterpret_cast<void**>(&unknown));
-        const bool ret = ((other == unknown) ? true : false);
-        pUnknown->Release();
-        return ret;
+    inline void Release() {
+        SafeRelease(&mPtr);
     }
 
 private:
-    INTERFACE *mInterface;
+    INTERFACE *mPtr;
 };
+
+
+template<typename INTERFACE>
+ComPtr<INTERFACE>::ComPtr() {
+    mPtr = nullptr;
+}
+
+
+template<typename INTERFACE>
+ComPtr<INTERFACE>::ComPtr(INTERFACE *ptr) {
+    mPtr = nullptr;
+    if (ptr != nullptr) {
+        mPtr = ptr;
+        mPtr->AddRef();
+    }
+}
+
+
+template<typename INTERFACE>
+ComPtr<INTERFACE>::ComPtr(const ComPtr<INTERFACE>& other) {
+    mPtr = nullptr;
+    mPtr = reinterpret_cast<INTERFACE*>(RefComPtr);
+    if (mPtr) {
+        mPtr->AddRef();
+    }
+}
+
+template<typename INTERFACE>
+ComPtr<INTERFACE>::~ComPtr() {
+    SafeRelease(&mPtr);
+}
+
+
+template<typename INTERFACE>
+INTERFACE* ComPtr<INTERFACE>::operator=(INTERFACE *rhs) {
+    if (Equals(rhs)) {
+        return mPtr;
+    }
+    mPtr->Release();
+    rhs->AddRef();
+    mPtr = rhs;
+    return mPtr;
+}
+
+
+template<typename INTERFACE>
+INTERFACE* ComPtr<INTERFACE>::operator=(const ComPtr<INTERFACE>& rhs) {
+    if (&rhs == nullptr) {
+        mPtr = nullptr;
+        return nullptr;
+    }
+
+    mPtr = reinterpret_cast<INTERFACE*>rhs;
+    if (mPtr) {
+        mPtr->AddRef();
+    }
+    return mPtr;
+}
+
+
+template<typename INTERFACE>
+bool ComPtr<INTERFACE>::Equals(IUnknown *other) {
+    if (other == nullptr) {
+        return false;
+    }
+    IUnknown *unknown = nullptr;
+    mPtr->QueryInterface(IID_IUnknown, reinterpret_cast<void**>(&unknown));
+    const bool ret = ((other == unknown) ? true : false);
+    unknown->Release();
+    return ret;
+}

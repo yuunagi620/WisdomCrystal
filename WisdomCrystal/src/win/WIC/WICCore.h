@@ -8,7 +8,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "win/COM/Deleter.h"
-#include "win/COM/COMPtr.h"
+#include "win/COM/ComPtr.h"
 
 
 class WICCore : private boost::noncopyable {
@@ -32,6 +32,6 @@ private:
     std::shared_ptr<IWICFormatConverter>   createConverter();
 
 private:
-    COMPtr<IWICImagingFactory> mWICImagingFactory;
+    ComPtr<IWICImagingFactory> mWICImagingFactory;
     std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };

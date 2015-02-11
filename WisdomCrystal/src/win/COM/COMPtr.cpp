@@ -1,16 +1,5 @@
-// COMPtr.cpp
+// ComPtr.cpp
 
-#include "COMPtr.h"
-
-
-COMPtr::COMPtr() 
-{
-
-}
-
-
-COMPtr::~COMPtr() {
-    // empty
-}
+#include "ComPtr.h"
 
 
