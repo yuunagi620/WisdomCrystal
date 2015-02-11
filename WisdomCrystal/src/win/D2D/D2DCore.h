@@ -5,7 +5,6 @@
 #include <Windows.h>
 #include <d2d1.h>
 #include <Dwrite.h>
-
 #include <memory>
 #include <boost/noncopyable.hpp>
 

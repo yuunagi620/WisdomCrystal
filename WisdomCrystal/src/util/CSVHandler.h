@@ -1,4 +1,4 @@
-// CSVUtilImpl.h
+// CSVHandler.h
 
 #pragma once
 
@@ -8,10 +8,21 @@
 #include <sstream>
 
 
-namespace CSVUtil {
+namespace CSVHandler {
+
+// CSV ファイルを読み込み
+template<typename T>
+bool ImportData(const std::string& filePath, T *container);
+
+// CSV ファイルへ書き込み
+template<typename T>
+bool ExportData(const std::string& filePath, T *container);
+
+} // namespace CSVHandler
+
 
 template<typename T>
-bool ImportData(const std::string& filePath, T* data) {
+bool CSVHandler::ImportData(const std::string& filePath, T* container) {
     std::ifstream ifs(filePath);
     if (ifs.fail()) {
         return false; // ファイルの読み込みに失敗
@@ -29,7 +40,7 @@ bool ImportData(const std::string& filePath, T* data) {
 
             // 文字列をコンマ単位で抽出
             while (getline(stream, token, ',')) {
-                data->at(index) = (std::atoi(token.c_str()));
+                container->at(index) = (std::atoi(token.c_str()));
                 ++index;
             }
         }
@@ -42,11 +53,11 @@ bool ImportData(const std::string& filePath, T* data) {
 
 
 template<typename T>
-bool ExportData(const std::string& fileName, T* data) {
+bool CSVHandler::ExportData(const std::string& fileName, T* container) {
     std::ofstream ofs(fileName);
 
-    auto it = data->begin();
-    while (it != (data->end() - 1)) {
+    auto it = container->begin();
+    while (it != (container->end() - 1)) {
         ofs << (*it) << ",";
         ++it;
     }
@@ -59,5 +70,3 @@ bool ExportData(const std::string& fileName, T* data) {
     return true;
 }
 
-
-} // namespace CSVUtil

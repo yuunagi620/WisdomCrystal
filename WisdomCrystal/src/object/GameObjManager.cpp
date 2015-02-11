@@ -3,7 +3,8 @@
 #include "GameObjManager.h"
 #include "Player.h"
 #include "Ghost.h"
-#include "util/CSVUtil.h"
+#include "util/CSVHandler.h"
+#include "util/BinaryFileHandler.h"
 
 
 GameObjManager::GameObjManager() : mGameObjectMap() {
@@ -30,14 +31,16 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
         }
     }
 
-    std::array<int, 6> posArray;
+    std::array<int, 7> posArray;
 
-    if (CSVUtil::ImportData<decltype(posArray)>("resources/map/test.csv", &posArray) == false) {
+    if (BinaryFileHandler::ImportData<decltype(posArray)>("abc.csv", &posArray) == false) {
         return false;
     }
     Activate(PLAYER, posArray.at(0), posArray.at(1));
     Activate(GHOST,  posArray.at(2), posArray.at(3));
     Activate(GHOST,  posArray.at(4), posArray.at(5));
+
+    //BinaryFileHandler::ExportData<decltype(posArray)>("abc.csv", &posArray);
 
     return true;
 }

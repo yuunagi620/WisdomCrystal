@@ -26,8 +26,8 @@
     <ClInclude Include="src\scene\TitleMenu.h" />
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
-    <ClInclude Include="src\util\CSVUtil.h" />
-    <ClInclude Include="src\util\CSVUtilImpl.h" />
+    <ClInclude Include="src\util\BinaryFileHandler.h" />
+    <ClInclude Include="src\util\CSVHandler.h" />
     <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\COM\COMInitializer.h" />
@@ -71,7 +71,6 @@
     <ClCompile Include="src\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\util\CSVUtil.cpp" />
     <ClCompile Include="src\util\MathUtil.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
