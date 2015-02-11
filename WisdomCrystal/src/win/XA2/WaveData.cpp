@@ -27,6 +27,12 @@ bool WaveData::Init(LPTSTR waveFilePath) {
 }
 
 
+bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
+
+    return true;
+}
+
+
 bool WaveData::readWaveFile() {
     bool ret = true;
 

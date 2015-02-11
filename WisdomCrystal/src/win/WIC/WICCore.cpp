@@ -3,7 +3,7 @@
 #include "WICCore.h"
 
 
-WICCore::WICCore() : mWICImagingFactory(nullptr),
+WICCore::WICCore() : mWICFactory(nullptr),
                      mRenderTarget(nullptr)                 
 {
     // empty
@@ -22,7 +22,7 @@ bool WICCore::Init(std::shared_ptr<ID2D1RenderTarget> renderTarget) {
                                   nullptr,
                                   CLSCTX_INPROC_SERVER,
                                   IID_IWICImagingFactory,
-                                  reinterpret_cast<void **>(&mWICImagingFactory));
+                                  reinterpret_cast<void **>(&mWICFactory));
     if (FAILED(hr)) {
         return false;
     }
@@ -109,11 +109,11 @@ ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR 
 
 IWICBitmapDecoder* WICCore::createDecoder(LPCTSTR imageFilePath) {
     IWICBitmapDecoder *decoder = nullptr;
-    HRESULT hr = mWICImagingFactory->CreateDecoderFromFilename(imageFilePath,
-                                                               nullptr,
-                                                               GENERIC_READ,
-                                                               WICDecodeMetadataCacheOnLoad,
-                                                               &decoder);
+    HRESULT hr = mWICFactory->CreateDecoderFromFilename(imageFilePath,
+                                                        nullptr,
+                                                        GENERIC_READ,
+                                                        WICDecodeMetadataCacheOnLoad,
+                                                        &decoder);
     if (FAILED(hr)) {
         return nullptr;
     }
@@ -123,10 +123,10 @@ IWICBitmapDecoder* WICCore::createDecoder(LPCTSTR imageFilePath) {
 
 IWICBitmapDecoder* WICCore::createDecoder(std::shared_ptr<IWICStream> stream) {
     IWICBitmapDecoder *decoder = nullptr;
-    HRESULT hr = mWICImagingFactory->CreateDecoderFromStream(stream.get(),
-                                                             nullptr,
-                                                             WICDecodeMetadataCacheOnLoad,
-                                                             &decoder);
+    HRESULT hr = mWICFactory->CreateDecoderFromStream(stream.get(),
+                                                      nullptr,
+                                                      WICDecodeMetadataCacheOnLoad,
+                                                      &decoder);
     if (FAILED(hr)) {
         return nullptr;
     }
@@ -136,7 +136,7 @@ IWICBitmapDecoder* WICCore::createDecoder(std::shared_ptr<IWICStream> stream) {
 
 IWICStream* WICCore::createStream() {
     IWICStream *stream = nullptr;
-    HRESULT hr = mWICImagingFactory->CreateStream(&stream);
+    HRESULT hr = mWICFactory->CreateStream(&stream);
     if (FAILED(hr)) {
         return nullptr;
     }
@@ -179,7 +179,7 @@ ID2D1Bitmap* WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> fr
     ID2D1Bitmap *d2dBitmap = nullptr;
     hr = mRenderTarget->CreateBitmapFromWicBitmap(converter.get(), &d2dBitmap);
     if (FAILED(hr)) {
-        d2dBitmap = nullptr; // D2D1Bitmap オブジェクトの作成に失敗
+        d2dBitmap = nullptr;
     }
 
     return d2dBitmap;
@@ -188,7 +188,7 @@ ID2D1Bitmap* WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> fr
 
 IWICFormatConverter* WICCore::createConverter() {
     IWICFormatConverter *converter = nullptr;
-    HRESULT hr = mWICImagingFactory->CreateFormatConverter(&converter);
+    HRESULT hr = mWICFactory->CreateFormatConverter(&converter);
     if (FAILED(hr)) {
         return nullptr;
     }

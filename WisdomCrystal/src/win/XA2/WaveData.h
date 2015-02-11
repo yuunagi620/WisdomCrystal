@@ -13,6 +13,7 @@ public:
     virtual ~WaveData();
 
     bool Init(LPTSTR waveFilePath);
+    bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
     inline const WAVEFORMATEX GetWaveFormatEx() const {
         return mFormatEx;

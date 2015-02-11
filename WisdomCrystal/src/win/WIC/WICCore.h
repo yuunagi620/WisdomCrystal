@@ -35,6 +35,6 @@ private:
     IWICFormatConverter*   createConverter();
 
 private:
-    std::unique_ptr<IWICImagingFactory, Deleter<IWICImagingFactory>> mWICImagingFactory;
+    std::unique_ptr<IWICImagingFactory, Deleter<IWICImagingFactory>> mWICFactory;
     std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };
