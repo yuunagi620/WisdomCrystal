@@ -13,7 +13,7 @@ public:
     WaveFile();
     virtual ~WaveFile();
 
-    bool Init(const std::string& filePath);
+    bool Load(const std::string& filePath);
     bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
     inline const WAVEFORMATEX GetWaveFormatEx() const {
@@ -27,11 +27,6 @@ public:
     }
 
 private:
-    bool readWaveFile();
-
-private:
-    std::string mWaveFilePath;
     std::vector<unsigned char> mBuffer;
-
     WAVEFORMATEX mFormat;
 };

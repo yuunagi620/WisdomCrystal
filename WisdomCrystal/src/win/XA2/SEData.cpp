@@ -14,7 +14,7 @@ SEData::~SEData() {
 
 
 bool SEData::Init(SoundDevice* soundDevice, const std::string& filePath) {
-    if (mWaveFile.Init(filePath) == false) {
+    if (mWaveFile.Load(filePath) == false) {
         MessageBox(nullptr, TEXT("SEData: Can not read WaveFile."), TEXT("ERROR"), MB_OK);
         return false; // SE ÉfÅ[É^ÇÃì«Ç›çûÇ›Ç…é∏îs
     }

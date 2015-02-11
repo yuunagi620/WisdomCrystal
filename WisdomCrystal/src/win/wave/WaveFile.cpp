@@ -6,8 +6,7 @@
 #include "win/wave/WaveFile.h"
 
 
-WaveFile::WaveFile() : mWaveFilePath(),
-                       mBuffer(),
+WaveFile::WaveFile() : mBuffer(),
                        mFormat()
 {
     //empty
@@ -19,26 +18,16 @@ WaveFile::~WaveFile() {
 }
 
 
-bool WaveFile::Init(const std::string& filePath) {
-    mWaveFilePath = filePath;
-
-    if (readWaveFile() == false) {
-        return false;
-    }
-    return true;
-}
-
-
 bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
 
     return true;
 }
 
 
-bool WaveFile::readWaveFile(){
+bool WaveFile::Load(const std::string& filePath){
 
     // ファイルの読み込み
-    std::ifstream ifs(mWaveFilePath, std::ios::in | std::ios::binary);
+    std::ifstream ifs(filePath, std::ios::in | std::ios::binary);
     if (ifs == false) {
         MessageBox(nullptr, TEXT("WaveFile: ファイルのオープンに失敗．"), TEXT("ERROR"), MB_OK);
         return false;

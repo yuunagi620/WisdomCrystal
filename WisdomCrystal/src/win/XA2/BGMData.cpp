@@ -21,7 +21,7 @@ bool BGMData::Init(SoundDevice* soundDevice, const std::string& filePath) {
     WaveFile WaveFile;
 
     // BGM ÉfÅ[É^ÇÃì«Ç›çûÇ›
-    if (WaveFile.Init(filePath) == false) {
+    if (WaveFile.Load(filePath) == false) {
         MessageBox(nullptr, TEXT("BGMData: Can not read WaveFile."), TEXT("ERROR"), MB_OK);
         return false;
     }
