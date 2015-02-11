@@ -8,7 +8,6 @@
 #include <boost/noncopyable.hpp>
 
 #include "win/COM/Deleter.h"
-#include "win/COM/ComPtr.h"
 
 
 class WICCore : private boost::noncopyable {
@@ -20,18 +19,22 @@ public:
     bool Init(std::shared_ptr<ID2D1RenderTarget> renderTarget);
 
     // ファイルパスから ID2D1Bitmap を作成する
-    ID2D1Bitmap* CreateD2DBitmap(LPCTSTR imageFilePath);
+    ID2D1Bitmap* CreateD2DBitmapFromFile(LPCTSTR imageFilePath);
 
     // リソースから ID2D1Bitmap を作成する
     ID2D1Bitmap* CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
 private:
-    std::shared_ptr<IWICBitmapDecoder>     createBitmapDecoder(LPCTSTR imageFilePath);
-    std::shared_ptr<IWICBitmapFrameDecode> getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
-    ID2D1Bitmap*                           convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame);
-    std::shared_ptr<IWICFormatConverter>   createConverter();
+    IWICBitmapDecoder* createDecoder(LPCTSTR imageFilePath);
+    IWICBitmapDecoder* createDecoder(std::shared_ptr<IWICStream> stream);
+
+    IWICStream* createStream();
+
+    IWICBitmapFrameDecode* getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
+    ID2D1Bitmap*           convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame);
+    IWICFormatConverter*   createConverter();
 
 private:
-    ComPtr<IWICImagingFactory> mWICImagingFactory;
+    std::unique_ptr<IWICImagingFactory, Deleter<IWICImagingFactory>> mWICImagingFactory;
     std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };
