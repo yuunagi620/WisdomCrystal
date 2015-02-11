@@ -13,8 +13,8 @@ SEData::~SEData() {
 }
 
 
-bool SEData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
-    if (mWaveData.Init(waveFilePath) == false) {
+bool SEData::Init(SoundDevice* soundDevice, const std::string& filePath) {
+    if (mWaveData.Init(filePath) == false) {
         MessageBox(nullptr, TEXT("SEData: Can not read waveData."), TEXT("ERROR"), MB_OK);
         return false; // SE ÉfÅ[É^ÇÃì«Ç›çûÇ›Ç…é∏îs
     }

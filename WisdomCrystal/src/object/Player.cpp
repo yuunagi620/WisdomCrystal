@@ -43,7 +43,7 @@ bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
     RECT imageSrcRect = {0, 0, PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT};
     mImage.SetImageSrcRect(imageSrcRect);
 
-    if (mGameOverSE.Init(mSoundDevice, TEXT("resources/sound/SE/gameOverSE.wav")) == false) {
+    if (mGameOverSE.Init(mSoundDevice, "resources/sound/SE/gameOverSE.wav") == false) {
         return false;
     }
 

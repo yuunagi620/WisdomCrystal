@@ -13,10 +13,10 @@ public:
     SoundPacket();
     virtual ~SoundPacket();
 
-    void Init(std::vector<BYTE> *srcBuffer, const long begin, const long end);
+    void Init(std::vector<unsigned char> *srcBuffer, const long begin, const long end);
     void Init(WaveData* waveData);
 
-    inline std::vector<BYTE>* GetBufferPtr() {
+    inline std::vector<unsigned char>* GetBufferPtr() {
         return &mBuffer;
     }
     inline const long GetDataSize() const {
@@ -27,7 +27,7 @@ public:
     void AddSoundPacket(std::shared_ptr<IXAudio2SourceVoice> targetSourceVoice);
 
 private:
-    std::vector<BYTE> mBuffer;
+    std::vector<unsigned char> mBuffer;
     long mDataSize;
 };
 

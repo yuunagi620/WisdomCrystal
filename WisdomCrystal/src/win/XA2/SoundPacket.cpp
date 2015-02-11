@@ -15,14 +15,14 @@ SoundPacket::~SoundPacket() {
 
 
 // bufferとその大きさを受け取ったときの初期化
-void SoundPacket::Init(std::vector<BYTE> *srcBuffer, const long begin, const long end) {
+void SoundPacket::Init(std::vector<unsigned char> *srcBuffer, const long begin, const long end) {
     mDataSize = end - begin;
 
     // mBuffer を dataSize バイト確保
     mBuffer.resize(mDataSize);
 
-    std::vector<BYTE>::iterator beginIt = srcBuffer->begin() + begin;
-    std::vector<BYTE>::iterator endIt   = srcBuffer->begin() + end;
+    std::vector<unsigned char>::iterator beginIt = srcBuffer->begin() + begin;
+    std::vector<unsigned char>::iterator endIt   = srcBuffer->begin() + end;
 
     std::copy(beginIt, endIt, mBuffer.begin());
 }

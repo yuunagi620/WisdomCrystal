@@ -14,7 +14,7 @@ public:
     BGMData();
     virtual ~BGMData();
 
-    bool Init(SoundDevice* soundDevice, LPTSTR waveFilePath);
+    bool Init(SoundDevice* soundDevice, const std::string& filePath);
 
     void Start();
     void Stop();

@@ -66,7 +66,7 @@ void GraphicsDevice::ClearScreen(const D2D1_COLOR_F& fillColor) {
 
 
 ID2D1Bitmap* GraphicsDevice::CreateD2DBitmap(LPCTSTR imageFilePath) {
-    return mWICCore.CreateD2DBitmap(imageFilePath);
+    return mWICCore.CreateD2DBitmapFromFile(imageFilePath);
 }
 
 

@@ -12,7 +12,7 @@ public:
     SEData();
     virtual ~SEData();
 
-    bool Init(SoundDevice* soundDevice, LPTSTR waveFilePath);
+    bool Init(SoundDevice* soundDevice, const std::string& filePath);
 
     void StartSE();
     void SetSEVolume(const float volume);

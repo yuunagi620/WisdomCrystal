@@ -4,6 +4,7 @@
 
 #include <Windows.h>
 #include <vector>
+#include <string>
 
 
 class WaveData {
@@ -12,26 +13,26 @@ public:
     WaveData();
     virtual ~WaveData();
 
-    bool Init(LPTSTR waveFilePath);
+    bool Init(const std::string& filePath);
     bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
     inline const WAVEFORMATEX GetWaveFormatEx() const {
-        return mFormatEx;
+        return mFormat;
     }
     inline const DWORD GetDataSize() const {
-        return mDataSize;
+        return mBuffer.size();
     }
-    inline std::vector<BYTE>* GetDataBufferPtr() {
-        return &mDataBuffer;
+    inline std::vector<unsigned char>* GetDataBufferPtr() {
+        return &mBuffer;
     }
 
 private:
     bool readWaveFile();
 
 private:
-    LPTSTR mWaveFilePath;
-    std::vector<BYTE> mDataBuffer;
+    std::string mWaveFilePath;
+    std::vector<unsigned char> mBuffer;
 
-    WAVEFORMATEX mFormatEx;
+    WAVEFORMATEX mFormat;
     DWORD mDataSize;
 };

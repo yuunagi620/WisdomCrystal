@@ -17,11 +17,11 @@ BGMData::~BGMData() {
 }
 
 
-bool BGMData::Init(SoundDevice* soundDevice, LPTSTR waveFilePath) {
+bool BGMData::Init(SoundDevice* soundDevice, const std::string& filePath) {
     WaveData waveData;
 
     // BGM ÉfÅ[É^ÇÃì«Ç›çûÇ›
-    if (waveData.Init(waveFilePath) == false) {
+    if (waveData.Init(filePath) == false) {
         MessageBox(nullptr, TEXT("BGMData: Can not read waveData."), TEXT("ERROR"), MB_OK);
         return false;
     }

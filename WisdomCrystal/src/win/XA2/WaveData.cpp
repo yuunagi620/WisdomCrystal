@@ -1,11 +1,15 @@
 // WaveData.cpp
 
+#include <fstream>
+#include <cstdint>
+#include <cstring>
+
 #include "WaveData.h"
 
 
-WaveData::WaveData() : mWaveFilePath(nullptr),
-                       mDataBuffer(),
-                       mFormatEx(),
+WaveData::WaveData() : mWaveFilePath(),
+                       mBuffer(),
+                       mFormat(),
                        mDataSize(0)
 {
     //empty
@@ -17,8 +21,8 @@ WaveData::~WaveData() {
 }
 
 
-bool WaveData::Init(LPTSTR waveFilePath) {
-    mWaveFilePath = waveFilePath;
+bool WaveData::Init(const std::string& filePath) {
+    mWaveFilePath = filePath;
 
     if (readWaveFile() == false) {
         return false;
@@ -33,70 +37,75 @@ bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
 }
 
 
-bool WaveData::readWaveFile() {
-    bool ret = true;
+bool WaveData::readWaveFile(){
 
-    HMMIO hMMIO;
-    MMCKINFO mmckRiff;
-    MMCKINFO mmckFormat;
-    MMCKINFO mmckData;
-
-    // ファイルのオープン
-    hMMIO = mmioOpen(mWaveFilePath, nullptr, MMIO_READ);
-    if (hMMIO == nullptr) {
-        MessageBox(nullptr, TEXT("WaveData: ファイルのオープンに失敗しました．"), nullptr, MB_ICONWARNING);
-        return false;
+    std::ifstream fin(mWaveFilePath, std::ios::in | std::ios::binary);
+    if (!fin) {
+        throw std::runtime_error("ファイルを開くのに失敗");
     }
-
-    // ファイルが WAVE 形式かどうか判定
-    mmckRiff.fccType = mmioStringToFOURCC(TEXT("WAVE"), 0);
-    if (mmioDescend(hMMIO, &mmckRiff, nullptr, MMIO_FINDRIFF) != MMSYSERR_NOERROR) {
-        MessageBox(nullptr, TEXT("WaveData: WAVEファイルではありません．"), nullptr, MB_ICONWARNING);
-        ret = false;
-        goto cleanup;
+    const char riff[4] = {'R', 'I', 'F', 'F'};
+    char read_data[4];
+    // ヘッダの頭から4バイトを読み込んで"RIFE"かどうかを調べる
+    fin.read(read_data, sizeof(read_data));
+    if (std::memcmp(riff, read_data, sizeof(riff))) {
+        throw std::runtime_error("RIFEチャンクが存在しない");
+    } 
+    // 4バイト読み飛ばし
+    fin.ignore(4);
+    const char wave[4] = {'W', 'A', 'V', 'E'};
+    // 続いての4バイトを読み込んで"WAVE"かどうかを調べる
+    fin.read(read_data, sizeof(read_data));
+    if (std::memcmp(wave, read_data, sizeof(wave))) {
+	throw std::runtime_error("WAVEチャンクが存在しない");
+    } 
+    // 続いての4バイトを読み込んで"fmt "かどうかを調べる
+    const char fmt[4] = {'f', 'm', 't', ' '};
+    fin.read(read_data, sizeof(read_data));
+    if (std::memcmp(fmt, read_data, sizeof(fmt))) {
+	throw std::runtime_error("fmt チャンクが存在しない");
+    } 
+    std::uint32_t format_size;
+    // フォーマットサイズ読み込み
+    fin.read(reinterpret_cast<char *>(&format_size), sizeof(format_size));
+    std::uint16_t id;
+    // フォーマットタグIDの読み込み
+    fin.read(reinterpret_cast<char *>(&id), sizeof(id));
+    // IDに対応するフォーマットにする
+    switch (id) {
+    case 1:
+	mFormat.wFormatTag = WAVE_FORMAT_PCM;
+	break;
+    case 2:
+	mFormat.wFormatTag = WAVE_FORMAT_ADPCM;
+	break;
+    default:
+	throw std::runtime_error("対応していないフォーマット");
     }
+    // チャンネル数を読み込む
+    fin.read(reinterpret_cast<char *>(&mFormat.nChannels), sizeof(mFormat.nChannels));
+    // サンプルレートを読み込む
+    fin.read(reinterpret_cast<char *>(&mFormat.nSamplesPerSec), sizeof(mFormat.nSamplesPerSec));
+    // データ速度を読み込む
+    fin.read(reinterpret_cast<char *>(&mFormat.nAvgBytesPerSec), sizeof(mFormat.nAvgBytesPerSec));
+    // ブロックサイズを読み込む
+    fin.read(reinterpret_cast<char *>(&mFormat.nBlockAlign), sizeof(mFormat.nBlockAlign));
+    // サンプル当たりのビット数を読み込む
+    fin.read(reinterpret_cast<char *>(&mFormat.wBitsPerSample), sizeof(mFormat.wBitsPerSample));
+    // 拡張ヘッダ情報を読み飛ばす
+    fin.ignore(format_size - 16);
 
-    // 'fmt ' chunk の読み取り
-    mmckFormat.ckid = mmioStringToFOURCC(TEXT("fmt "), 0); // 'fmt 'の4文字目は空白
-    if (mmioDescend(hMMIO, &mmckFormat, nullptr, MMIO_FINDCHUNK) != MMSYSERR_NOERROR) {
-        MessageBox(nullptr, TEXT("WaveData: 無効なファイルです．(no 'fmt ' chunk)"), nullptr, MB_ICONWARNING);
-        ret = false;
-        goto cleanup;
-    }
+    const char data[4] = {'d', 'a', 't', 'a'};
+    // 続いての4バイトを読み込んで"data"かどうかを調べる
+    fin.read(read_data, sizeof(read_data));
+    if (std::memcmp(data, read_data, sizeof(data))) {
+	    throw std::runtime_error("dataチャンクが存在しない");
+    } 
+    std::uint32_t size;
+    // 波形データのサイズを読み込む
+    fin.read(reinterpret_cast<char *>(&size), sizeof(size));
+    mBuffer.resize(size);
+    // 波形データ読み込み
+    fin.read(reinterpret_cast<char *>(&mBuffer.front()), size);
 
-    // PCM データかどうか判定
-    mmioRead(hMMIO, reinterpret_cast<HPSTR>(&mFormatEx), mmckFormat.cksize);
-    mmioAscend(hMMIO, &mmckFormat, 0);
-    if (mFormatEx.wFormatTag != WAVE_FORMAT_PCM) {
-        MessageBox(nullptr, TEXT("WaveData: PCMデータではありません．"), nullptr, MB_ICONWARNING);
-        ret = false;
-        goto cleanup;
-    }
-
-    // data chunk の読み取り
-    mmckData.ckid = mmioStringToFOURCC(TEXT("data"), 0);
-    if (mmioDescend(hMMIO, &mmckData, nullptr, MMIO_FINDCHUNK) != MMSYSERR_NOERROR) {
-        MessageBox(nullptr, TEXT("WaveData: data chunk を読み取れませんでした．"), nullptr, MB_ICONWARNING);
-        ret = false;
-        goto cleanup;
-    }
-
-    // mmckData.cksize バイト分確保
-    mDataBuffer.resize(mmckData.cksize);
-
-    // WAVE データのサイズ分データを mDataBuffer に読み取る
-    if (mmioRead(hMMIO, reinterpret_cast<HPSTR>(&mDataBuffer.front()), mDataBuffer.size()) == -1) {
-        MessageBox(nullptr, TEXT("WaveData: データの読み取りに失敗しました．"), nullptr, MB_ICONWARNING);
-        ret = false;
-        goto cleanup;
-    }
-
-    // RIFF ファイルの chunk から退出
-    mmioAscend(hMMIO, &mmckRiff, 0);
-
-    mDataSize = mmckData.cksize;
-
-cleanup:
-    mmioClose(hMMIO, 0);
-    return ret;
+    return true;
 }
