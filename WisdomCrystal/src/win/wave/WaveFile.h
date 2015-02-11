@@ -14,7 +14,6 @@ public:
     virtual ~WaveFile();
 
     bool Load(const std::string& filePath);
-    bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
     inline const WAVEFORMATEX GetWaveFormatEx() const {
         return mFormat;

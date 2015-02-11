@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cstdint>
 
-#include "win/wave/WaveFile.h"
+#include "WaveFile.h"
 
 
 WaveFile::WaveFile() : mBuffer(),
@@ -15,12 +15,6 @@ WaveFile::WaveFile() : mBuffer(),
 
 WaveFile::~WaveFile() {
     // empty
-}
-
-
-bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
-
-    return true;
 }
 
 
