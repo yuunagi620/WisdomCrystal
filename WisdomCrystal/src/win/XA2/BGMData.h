@@ -4,7 +4,7 @@
 
 #include <array>
 
-#include "WaveData.h"
+#include "win/wave/WaveFile.h"
 #include "SoundPacket.h"
 
 
@@ -24,7 +24,7 @@ public:
     void SetBGMVolume(const float volume);
 
 private:
-    bool divideSoundPacket(WaveData* waveData);
+    bool divideSoundPacket(WaveFile* WaveFile);
 
 private:
     const unsigned int SOUND_PACKET_NUM;

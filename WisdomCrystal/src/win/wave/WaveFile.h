@@ -1,4 +1,4 @@
-// WaveData.h
+// WaveFile.h
 
 #pragma once
 
@@ -7,11 +7,11 @@
 #include <string>
 
 
-class WaveData {
+class WaveFile {
 
 public:
-    WaveData();
-    virtual ~WaveData();
+    WaveFile();
+    virtual ~WaveFile();
 
     bool Init(const std::string& filePath);
     bool InitFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
@@ -34,5 +34,4 @@ private:
     std::vector<unsigned char> mBuffer;
 
     WAVEFORMATEX mFormat;
-    DWORD mDataSize;
 };

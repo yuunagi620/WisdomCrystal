@@ -3,7 +3,7 @@
 #pragma once
 
 #include "SoundDevice.h"
-#include "WaveData.h"
+#include "win/wave/WaveFile.h"
 
 
 class SEData {
@@ -21,6 +21,6 @@ private:
     void resetSourceVoice();
     
 private:
-    WaveData mWaveData;
+    WaveFile mWaveFile;
     std::shared_ptr<IXAudio2SourceVoice> mSourceVoiceForSE;
 };

@@ -28,9 +28,9 @@ void SoundPacket::Init(std::vector<unsigned char> *srcBuffer, const long begin, 
 }
 
 
-// WaveData ‚Ì‚Ý‚ðŽó‚¯Žæ‚Á‚½‚Æ‚«‚Ì‰Šú‰»
-void SoundPacket::Init(WaveData* waveData) {
-    return Init(waveData->GetDataBufferPtr(), 0, waveData->GetDataSize());
+// WaveFile ‚Ì‚Ý‚ðŽó‚¯Žæ‚Á‚½‚Æ‚«‚Ì‰Šú‰»
+void SoundPacket::Init(WaveFile* WaveFile) {
+    return Init(WaveFile->GetDataBufferPtr(), 0, WaveFile->GetDataSize());
 }
 
 

@@ -20,7 +20,6 @@
     <ClInclude Include="src\win\WIC\WICCore.h" />
     <ClInclude Include="src\win\XA2\BGMData.h" />
     <ClInclude Include="src\win\XA2\SEData.h" />
-    <ClInclude Include="src\win\XA2\WaveData.h" />
     <ClInclude Include="src\win\XA2\XA2Core.h" />
     <ClInclude Include="src\BackGround.h" />
     <ClInclude Include="src\GraphicsDevice.h" />
@@ -43,6 +42,7 @@
     <ClInclude Include="src\object\GameObjectId.h" />
     <ClInclude Include="src\util\CSVUtilImpl.h" />
     <ClInclude Include="src\win\COM\Deleter.h" />
+    <ClInclude Include="src\win\wave\WaveFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -62,7 +62,6 @@
     <ClCompile Include="src\win\WIC\WICCore.cpp" />
     <ClCompile Include="src\win\XA2\BGMData.cpp" />
     <ClCompile Include="src\win\XA2\SEData.cpp" />
-    <ClCompile Include="src\win\XA2\WaveData.cpp" />
     <ClCompile Include="src\win\XA2\XA2Core.cpp" />
     <ClCompile Include="src\BackGround.cpp" />
     <ClCompile Include="src\GraphicsDevice.cpp" />
@@ -81,6 +80,7 @@
     <ClCompile Include="src\win\D2D\D2DText.cpp" />
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\GameObject.cpp" />
+    <ClCompile Include="src\win\wave\WaveFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

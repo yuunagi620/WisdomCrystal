@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "WaveData.h"
+#include "win/wave/WaveFile.h"
 
 #include <vector>
 
@@ -14,7 +14,7 @@ public:
     virtual ~SoundPacket();
 
     void Init(std::vector<unsigned char> *srcBuffer, const long begin, const long end);
-    void Init(WaveData* waveData);
+    void Init(WaveFile* WaveFile);
 
     inline std::vector<unsigned char>* GetBufferPtr() {
         return &mBuffer;

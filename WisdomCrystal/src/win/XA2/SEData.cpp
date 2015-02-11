@@ -3,7 +3,7 @@
 #include "SEData.h"
 
 
-SEData::SEData() : mWaveData(), mSourceVoiceForSE(nullptr) {
+SEData::SEData() : mWaveFile(), mSourceVoiceForSE(nullptr) {
     // empty
 }
 
@@ -14,12 +14,12 @@ SEData::~SEData() {
 
 
 bool SEData::Init(SoundDevice* soundDevice, const std::string& filePath) {
-    if (mWaveData.Init(filePath) == false) {
-        MessageBox(nullptr, TEXT("SEData: Can not read waveData."), TEXT("ERROR"), MB_OK);
+    if (mWaveFile.Init(filePath) == false) {
+        MessageBox(nullptr, TEXT("SEData: Can not read WaveFile."), TEXT("ERROR"), MB_OK);
         return false; // SE ƒf[ƒ^‚Ì“Ç‚Ýž‚Ý‚ÉŽ¸”s
     }
 
-    mSourceVoiceForSE = soundDevice->CreateSourceVoice(mWaveData.GetWaveFormatEx());
+    mSourceVoiceForSE = soundDevice->CreateSourceVoice(mWaveFile.GetWaveFormatEx());
     if (mSourceVoiceForSE == nullptr) {
         MessageBox(nullptr, TEXT("SEData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false; // SourceVoice ‚Ìì¬‚ÉŽ¸”s
@@ -44,8 +44,8 @@ void SEData::SetSEVolume(const float volume) {
 
 void SEData::resetSourceVoice() {
     XAUDIO2_BUFFER buffer = {0};
-    buffer.AudioBytes = mWaveData.GetDataSize();
-    buffer.pAudioData = &(mWaveData.GetDataBufferPtr()->front());
+    buffer.AudioBytes = mWaveFile.GetDataSize();
+    buffer.pAudioData = &(mWaveFile.GetDataBufferPtr()->front());
     buffer.Flags = XAUDIO2_END_OF_STREAM;
 
     mSourceVoiceForSE->SubmitSourceBuffer(&buffer);
