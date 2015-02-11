@@ -40,9 +40,10 @@
     <ClInclude Include="src\win\D2D\D2DImage.h" />
     <ClInclude Include="src\win\D2D\D2DText.h" />
     <ClInclude Include="src\object\Ghost.h" />
-    <ClInclude Include="src\win\com\deleter.h" />
     <ClInclude Include="src\object\GameObjectId.h" />
     <ClInclude Include="src\util\CSVUtilImpl.h" />
+    <ClInclude Include="src\win\COM\COMPtr.h" />
+    <ClInclude Include="src\win\COM\Deleter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="src\win\D2D\D2DText.cpp" />
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\GameObject.cpp" />
+    <ClCompile Include="src\win\COM\COMPtr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

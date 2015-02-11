@@ -1,7 +1,6 @@
 // WICCore.cpp
 
 #include "WICCore.h"
-#include "win/COM/SafeRelease.h"
 
 
 WICCore::WICCore() : mWICImagingFactory(nullptr),

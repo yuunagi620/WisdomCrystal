@@ -31,7 +31,8 @@
     <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\COM\COMInitializer.h" />
-    <ClInclude Include="src\win\com\deleter.h" />
+    <ClInclude Include="src\win\COM\COMPtr.h" />
+    <ClInclude Include="src\win\COM\Deleter.h" />
     <ClInclude Include="src\win\COM\SafeRelease.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DImage.h" />
@@ -76,6 +77,7 @@
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\win\COM\COMInitializer.cpp" />
+    <ClCompile Include="src\win\COM\COMPtr.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
     <ClCompile Include="src\win\D2D\D2DImage.cpp" />
     <ClCompile Include="src\win\D2D\D2DText.cpp" />
