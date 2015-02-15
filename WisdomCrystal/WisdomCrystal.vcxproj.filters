@@ -43,6 +43,7 @@
     <ClInclude Include="src\win\wave\WaveFile.h" />
     <ClInclude Include="src\util\CSVHandler.h" />
     <ClInclude Include="src\util\BinaryFileHandler.h" />
+    <ClInclude Include="src\util\CSVFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\GameObject.cpp" />
     <ClCompile Include="src\win\wave\WaveFile.cpp" />
+    <ClCompile Include="src\util\CSVFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

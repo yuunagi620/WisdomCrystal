@@ -27,6 +27,7 @@
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\util\BinaryFileHandler.h" />
+    <ClInclude Include="src\util\CSVFile.h" />
     <ClInclude Include="src\util\CSVHandler.h" />
     <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\WinApplication.h" />
@@ -71,6 +72,7 @@
     <ClCompile Include="src\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\util\CSVFile.cpp" />
     <ClCompile Include="src\util\MathUtil.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />

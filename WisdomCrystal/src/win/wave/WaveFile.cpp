@@ -29,19 +29,18 @@ bool WaveFile::Load(const std::string& filePath){
 
     // 4バイトを読み込んで RIFE ヘッダかどうかを調べる
     const char riff[4] = {'R', 'I', 'F', 'F'};
-    char readData[4];  
+    char readData[4];
     ifs.read(readData, sizeof(readData));
     if (std::memcmp(riff, readData, sizeof(riff))) {
         MessageBox(nullptr, TEXT("WaveFile: RIFEチャンクが存在しませんでした．"), TEXT("ERROR"), MB_OK);
         return false;
     } 
 
-    // ファイルサイズ情報の4バイト読み飛ばす
+    // ファイルサイズ情報の4バイトを読み飛ばす
     ifs.ignore(4);
 
     // 4バイトを読み込んで WAVE ヘッダかどうかを調べる
     const char wave[4] = {'W', 'A', 'V', 'E'};
-
     ifs.read(readData, sizeof(readData));
     if (std::memcmp(wave, readData, sizeof(wave))) {
         MessageBox(nullptr, TEXT("WaveFile: WAVEチャンクが存在しませんでした．"), TEXT("ERROR"), MB_OK);
@@ -58,11 +57,11 @@ bool WaveFile::Load(const std::string& filePath){
 
     // フォーマットサイズの読み込み
     std::uint32_t formatSize;
-    ifs.read(reinterpret_cast<char *>(&formatSize), sizeof(formatSize));
+    ifs.read(reinterpret_cast<char*>(&formatSize), sizeof(formatSize));
 
     // フォーマットIDの読み込み
     std::uint16_t id;
-    ifs.read(reinterpret_cast<char *>(&id), sizeof(id));
+    ifs.read(reinterpret_cast<char*>(&id), sizeof(id));
 
     //  フォーマットIDから対応している形式か調べる
     if (id == 1) {
@@ -75,19 +74,19 @@ bool WaveFile::Load(const std::string& filePath){
     }
 
     // チャンネル数の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nChannels), sizeof(mFormat.nChannels));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nChannels), sizeof(mFormat.nChannels));
 
     // サンプルレートの読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nSamplesPerSec), sizeof(mFormat.nSamplesPerSec));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nSamplesPerSec), sizeof(mFormat.nSamplesPerSec));
 
     // データ速度 (Byte/sec)の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nAvgBytesPerSec), sizeof(mFormat.nAvgBytesPerSec));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nAvgBytesPerSec), sizeof(mFormat.nAvgBytesPerSec));
 
     // ブロックサイズ(Byte/sample×チャンネル数)の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nBlockAlign), sizeof(mFormat.nBlockAlign));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nBlockAlign), sizeof(mFormat.nBlockAlign));
 
     // サンプル当たりのビット数の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.wBitsPerSample), sizeof(mFormat.wBitsPerSample));
+    ifs.read(reinterpret_cast<char*>(&mFormat.wBitsPerSample), sizeof(mFormat.wBitsPerSample));
 
     // 拡張ヘッダ情報を読み飛ばす
     ifs.ignore(formatSize - 16);
@@ -102,12 +101,11 @@ bool WaveFile::Load(const std::string& filePath){
 
     // 波形データのバイト数の読み込み
     std::uint32_t size;
-    ifs.read(reinterpret_cast<char *>(&size), sizeof(size));
-
+    ifs.read(reinterpret_cast<char*>(&size), sizeof(size));
 
     // 波形データの読み込み
     mBuffer.resize(size);
-    ifs.read(reinterpret_cast<char *>(&mBuffer.front()), size);
+    ifs.read(reinterpret_cast<char*>(&mBuffer.front()), size);
 
     return true;
 }

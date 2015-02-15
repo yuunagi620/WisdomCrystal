@@ -5,6 +5,7 @@
 #include "Ghost.h"
 #include "util/CSVHandler.h"
 #include "util/BinaryFileHandler.h"
+#include "util/CSVFile.h"
 
 
 GameObjManager::GameObjManager() : mGameObjectMap() {
@@ -39,8 +40,6 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
     Activate(PLAYER, posArray.at(0), posArray.at(1));
     Activate(GHOST,  posArray.at(2), posArray.at(3));
     Activate(GHOST,  posArray.at(4), posArray.at(5));
-
-    //BinaryFileHandler::ExportData<decltype(posArray)>("abc.csv", &posArray);
 
     return true;
 }
