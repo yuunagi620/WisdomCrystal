@@ -4,7 +4,6 @@
 #pragma comment(lib, "DWrite.lib")
 
 #include "D2DCore.h"
-#include "win/COM/Deleter.h"
 
 
 D2DCore::D2DCore() : mD2DFactory(nullptr),
@@ -20,7 +19,7 @@ D2DCore::~D2DCore() {
 }
 
 
-bool D2DCore::Init(const HWND hWnd, std::shared_ptr<IDXGISwapChain> swapChain) {
+bool D2DCore::Init(const HWND& hWnd, COMPtr<IDXGISwapChain> swapChain) {
 
     // Factory の作成
     if (createFactory() == false) {
@@ -33,8 +32,9 @@ bool D2DCore::Init(const HWND hWnd, std::shared_ptr<IDXGISwapChain> swapChain) {
     }
 
     // BackBuffer の作成
-    auto backBuffer = createBackBuffer(swapChain);
-    if (backBuffer == nullptr) {
+    COMPtr<IDXGISurface> backBuffer(nullptr);
+    HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+    if (FAILED(hr)) {
         return false;
     }
 
@@ -51,7 +51,10 @@ bool D2DCore::Init(const HWND hWnd, std::shared_ptr<IDXGISwapChain> swapChain) {
             dpiY);
 
     // Direct2D用のレンダーターゲット作成
-    if (createRenderTarget(backBuffer, props) == false) {
+    hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer,
+                                                    &props,
+                                                    &mRenderTarget);
+    if (FAILED(hr)) {
         return false;
     }
 
@@ -121,7 +124,6 @@ bool D2DCore::createWriteFactory() {
     HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,
                                      __uuidof(mWriteFactory),
                                      reinterpret_cast<IUnknown **>(&mWriteFactory));
-
     if (FAILED(hr)) {
         return false;
     }
@@ -129,28 +131,3 @@ bool D2DCore::createWriteFactory() {
     return true;
 }
 
-
-std::shared_ptr<IDXGISurface> D2DCore::createBackBuffer(std::shared_ptr<IDXGISwapChain> swapChain) {
-    IDXGISurface *tempBuffer;
-    HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&tempBuffer));
-    if (FAILED(hr)) {
-        return nullptr; // backBuffeの確保に失敗
-    }
-
-    std::shared_ptr<IDXGISurface> backBuffer(tempBuffer, Deleter<IDXGISurface>());
-    return backBuffer;
-}
-
-
-bool D2DCore::createRenderTarget(std::shared_ptr<IDXGISurface> backBuffer,
-                                  const D2D1_RENDER_TARGET_PROPERTIES& props) {
-
-    HRESULT hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer.get(),
-                                                            &props,
-                                                            &mRenderTarget);
-    if (FAILED(hr)) {
-        return false; // レンダーターゲットの生成に失敗
-    }
-
-    return true;
-}

@@ -5,7 +5,6 @@
 #include <Windows.h>
 #include <d2d1.h>
 #include <Dwrite.h>
-#include <memory>
 #include <boost/noncopyable.hpp>
 
 #include "win/COM/COMPtr.h"
@@ -17,7 +16,7 @@ public:
     D2DCore();
     virtual ~D2DCore();
 
-    bool Init(const HWND hWnd, std::shared_ptr<IDXGISwapChain> swapChain);
+    bool Init(const HWND& hWnd, COMPtr<IDXGISwapChain> swapChain);
 
     void BeginDraw();
     HRESULT EndDraw();
@@ -44,10 +43,6 @@ public:
 private:
     bool createFactory();
     bool createWriteFactory();
-    std::shared_ptr<IDXGISurface> createBackBuffer(std::shared_ptr<IDXGISwapChain> swapChain);
-
-    bool createRenderTarget(std::shared_ptr<IDXGISurface> backBuffer,
-                            const D2D1_RENDER_TARGET_PROPERTIES& props);
 
 private:
     COMPtr<ID2D1Factory>      mD2DFactory;

@@ -8,6 +8,8 @@
 #include <boost/noncopyable.hpp>
 
 #include "win/COM/Deleter.h"
+#include "win/COM/COMPtr.h"
+
 
 
 class D3DCore : private boost::noncopyable {
@@ -22,18 +24,17 @@ public:
 
     void Present() const;
     
-    inline std::shared_ptr<IDXGISwapChain> GetSwapChain() const {
+    inline COMPtr<IDXGISwapChain> GetSwapChain() const {
         return mSwapChain;
     }
 
 private:
     bool createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, const int screenHeight);
     bool createRenderTargetView();
-    std::shared_ptr<ID3D10Texture2D> createBackBuffer();
     void setViewport(const int screenWidth, const int screenHeight);
 
 private:
-    std::unique_ptr<ID3D10Device1, Deleter<ID3D10Device1>> mD3DDevice;
-    std::unique_ptr<ID3D10RenderTargetView, Deleter<ID3D10RenderTargetView>> mRenderTargetView;
-    std::shared_ptr<IDXGISwapChain> mSwapChain;
+    COMPtr<ID3D10Device1>          mD3DDevice;
+    COMPtr<ID3D10RenderTargetView> mRenderTargetView;
+    COMPtr<IDXGISwapChain>         mSwapChain;
 };

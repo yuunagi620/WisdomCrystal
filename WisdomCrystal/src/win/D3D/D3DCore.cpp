@@ -67,8 +67,6 @@ bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, 
     sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
     sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-    ID3D10Device1 *device = nullptr;
-    IDXGISwapChain *swapChain = nullptr;
     HRESULT hr = D3D10CreateDeviceAndSwapChain1(nullptr,
                                                 D3D10_DRIVER_TYPE_HARDWARE,
                                                 nullptr,
@@ -76,16 +74,12 @@ bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, 
                                                 D3D10_FEATURE_LEVEL_10_1,
                                                 D3D10_1_SDK_VERSION ,
                                                 &sd,
-                                                &swapChain,
-                                                &device);
-
-
+                                                &mSwapChain,
+                                                &mD3DDevice);
     if (FAILED(hr)) {
         return false;
     }
 
-    mD3DDevice.reset(device);
-    mSwapChain.reset(swapChain, Deleter<IDXGISwapChain>());
     return true;
 }
 
@@ -93,35 +87,23 @@ bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, 
 bool D3DCore::createRenderTargetView() {
 
     //  BackBuffer ‚ÌŠm•Û
-    auto backBuffer = createBackBuffer();
-    if (backBuffer == nullptr) {
+    COMPtr<ID3D10Texture2D> backBuffer(nullptr);
+    HRESULT hr = mSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), reinterpret_cast<LPVOID*>(&backBuffer));
+    if (FAILED(hr)) {
         return false;
     }
 
     // RenderTargetView ‚Ìì¬
-    ID3D10RenderTargetView *renderTargetView = nullptr;
-    HRESULT hr = mD3DDevice->CreateRenderTargetView(backBuffer.get(), nullptr, &renderTargetView);
+    COMPtr<ID3D10RenderTargetView> renderTargetView = nullptr;
+    hr = mD3DDevice->CreateRenderTargetView(backBuffer, nullptr, &renderTargetView);
     if (FAILED(hr)) {
         return false;
     }
 
     // RenderTargetView ‚Ì“o˜^
     mD3DDevice->OMSetRenderTargets(1, &renderTargetView, nullptr);
-    mRenderTargetView.reset(renderTargetView);
 
     return true;
-}
-
-
-std::shared_ptr<ID3D10Texture2D> D3DCore::createBackBuffer() {
-    ID3D10Texture2D* tempBuffer = nullptr;
-    HRESULT hr = mSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), reinterpret_cast<LPVOID*>(&tempBuffer));
-    if (FAILED(hr)) {
-        return nullptr;
-    }
-
-    std::shared_ptr<ID3D10Texture2D> backBuffer(tempBuffer, Deleter<ID3D10Texture2D>());
-    return backBuffer;
 }
 
 
