@@ -107,6 +107,18 @@ void D2DCore::RotateTransform(const float centerX, const float centerY, const fl
 }
 
 
+bool D2DCore::createFactory() {
+    ID2D1Factory* factory = nullptr;
+    HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
+    if (FAILED(hr)) {
+        return false;
+    }
+
+    mD2DFactory.reset(factory);
+    return true;
+}
+
+
 bool D2DCore::createWriteFactory() {
     IDWriteFactory* writeFactory = nullptr;
     HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,
@@ -118,18 +130,6 @@ bool D2DCore::createWriteFactory() {
     }
 
     mWriteFactory.reset(writeFactory, Deleter<IDWriteFactory>());
-    return true;
-}
-
-
-bool D2DCore::createFactory() {
-    ID2D1Factory* factory = nullptr;
-    HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
-    if (FAILED(hr)) {
-        return false;
-    }
-
-    mD2DFactory.reset(factory);
     return true;
 }
 

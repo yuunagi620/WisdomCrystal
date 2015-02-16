@@ -8,7 +8,6 @@
     #pragma comment(lib, "xaudio2.lib")
 #endif
 
-
 #include <CommCtrl.h>
 
 #include "WisdomCrystal.h"
