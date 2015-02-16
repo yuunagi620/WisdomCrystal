@@ -34,13 +34,13 @@ bool WICCore::Init(std::shared_ptr<ID2D1RenderTarget> renderTarget) {
 ID2D1Bitmap* WICCore::CreateD2DBitmapFromFile(LPCTSTR imageFilePath) {
 
     // IWICBitmapDecoder を作成
-    std::shared_ptr<IWICBitmapDecoder> decoder(createDecoder(imageFilePath),  Deleter<IWICBitmapDecoder>());
+    auto decoder = createDecoder(imageFilePath);
     if (decoder == nullptr) {
         return nullptr;
     }
 
     // イメージから Frame を取得
-    std::shared_ptr<IWICBitmapFrameDecode> frame(getFrame(decoder), Deleter<IWICBitmapFrameDecode>());
+    auto frame = getFrame(decoder);
     if (frame == nullptr) {
         return nullptr;
     }
@@ -92,13 +92,13 @@ ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR 
     }
 
     // デコーダーの作成
-    std::shared_ptr<IWICBitmapDecoder> decoder(createDecoder(stream),  Deleter<IWICBitmapDecoder>());
+    auto decoder = createDecoder(stream);
     if (decoder == nullptr) {
         return nullptr;
     }
 
     // イメージから Frame を取得
-    std::shared_ptr<IWICBitmapFrameDecode> frame(getFrame(decoder), Deleter<IWICBitmapFrameDecode>());
+    auto frame = getFrame(decoder);
     if (frame == nullptr) {
         return nullptr;
     }
@@ -108,8 +108,8 @@ ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR 
 }
 
 
-IWICBitmapDecoder* WICCore::createDecoder(LPCTSTR imageFilePath) {
-    IWICBitmapDecoder *decoder = nullptr;
+COMPtr<IWICBitmapDecoder> WICCore::createDecoder(LPCTSTR imageFilePath) {
+    COMPtr<IWICBitmapDecoder> decoder(nullptr);
     HRESULT hr = mWICFactory->CreateDecoderFromFilename(imageFilePath,
                                                         nullptr,
                                                         GENERIC_READ,
@@ -118,12 +118,13 @@ IWICBitmapDecoder* WICCore::createDecoder(LPCTSTR imageFilePath) {
     if (FAILED(hr)) {
         return nullptr;
     }
+
     return decoder;
 }
 
 
-IWICBitmapDecoder* WICCore::createDecoder(COMPtr<IWICStream> stream) {
-    IWICBitmapDecoder *decoder = nullptr;
+COMPtr<IWICBitmapDecoder> WICCore::createDecoder(COMPtr<IWICStream> stream) {
+    COMPtr<IWICBitmapDecoder> decoder(nullptr);
     HRESULT hr = mWICFactory->CreateDecoderFromStream(stream,
                                                       nullptr,
                                                       WICDecodeMetadataCacheOnLoad,
@@ -131,22 +132,12 @@ IWICBitmapDecoder* WICCore::createDecoder(COMPtr<IWICStream> stream) {
     if (FAILED(hr)) {
         return nullptr;
     }
+
     return decoder;
 }
 
 
-IWICStream* WICCore::createStream() {
-    IWICStream *stream = nullptr;
-    HRESULT hr = mWICFactory->CreateStream(&stream);
-    if (FAILED(hr)) {
-        return nullptr;
-    }
-
-    return stream;
-}
-
-
-COMPtr<IWICBitmapFrameDecode> WICCore::getFrame(std::shared_ptr<IWICBitmapDecoder> decoder) {
+COMPtr<IWICBitmapFrameDecode> WICCore::getFrame(COMPtr<IWICBitmapDecoder> decoder) {
     COMPtr<IWICBitmapFrameDecode> frame(nullptr);
     HRESULT hr = decoder->GetFrame(0, &frame);
     if (FAILED(hr)) {
@@ -157,7 +148,7 @@ COMPtr<IWICBitmapFrameDecode> WICCore::getFrame(std::shared_ptr<IWICBitmapDecode
 }
 
 
-ID2D1Bitmap* WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame) {
+ID2D1Bitmap* WICCore::convertD2DBitmap(COMPtr<IWICBitmapFrameDecode> frame) {
 
     // converter の作成
     COMPtr<IWICFormatConverter> converter(nullptr);
@@ -167,7 +158,7 @@ ID2D1Bitmap* WICCore::convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> fr
     }
 
     // イメージのピクセル形式を 32bppPBGRA に変換
-    hr = converter->Initialize(frame.get(),
+    hr = converter->Initialize(frame,
                                GUID_WICPixelFormat32bppPBGRA,
                                WICBitmapDitherTypeNone,
                                nullptr,

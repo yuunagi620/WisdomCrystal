@@ -26,13 +26,11 @@ public:
     ID2D1Bitmap* CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
 private:
-    IWICBitmapDecoder* createDecoder(LPCTSTR imageFilePath);
-    IWICBitmapDecoder* createDecoder(COMPtr<IWICStream> stream);
+    COMPtr<IWICBitmapDecoder>     createDecoder(LPCTSTR imageFilePath);
+    COMPtr<IWICBitmapDecoder>     createDecoder(COMPtr<IWICStream> stream);
 
-    IWICStream* createStream();
-
-    COMPtr<IWICBitmapFrameDecode> getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
-    ID2D1Bitmap*           convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame);
+    COMPtr<IWICBitmapFrameDecode> getFrame(COMPtr<IWICBitmapDecoder> decoder);
+    ID2D1Bitmap*                  convertD2DBitmap(COMPtr<IWICBitmapFrameDecode> frame);
 
 private:
     COMPtr<IWICImagingFactory> mWICFactory;
