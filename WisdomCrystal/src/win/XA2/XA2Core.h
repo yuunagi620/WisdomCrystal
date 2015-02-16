@@ -6,7 +6,6 @@
 #include <memory>
 #include <boost/noncopyable.hpp>
 
-#include "win/COM/Deleter.h"
 #include "win/COM/COMPtr.h"
 
 

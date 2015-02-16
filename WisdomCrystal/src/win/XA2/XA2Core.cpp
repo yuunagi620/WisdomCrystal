@@ -39,6 +39,15 @@ std::shared_ptr<IXAudio2SourceVoice> XA2Core::CreateSourceVoice(const WAVEFORMAT
         return nullptr;
     }
 
-    std::shared_ptr<IXAudio2SourceVoice> sourceVoice(tempSourceVoice, Deleter<IXAudio2SourceVoice>());
+    // ソースボイス用のデリータ
+    auto deleter = [](IXAudio2SourceVoice *ptr) {
+        if (ptr != nullptr) {
+            ptr->Stop();
+            ptr->DestroyVoice();
+            ptr = nullptr;
+        }
+    };
+
+    std::shared_ptr<IXAudio2SourceVoice> sourceVoice(tempSourceVoice, deleter);
     return sourceVoice;
 }
