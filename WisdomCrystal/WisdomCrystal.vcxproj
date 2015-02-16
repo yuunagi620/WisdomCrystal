@@ -32,6 +32,7 @@
     <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\COM\COMInitializer.h" />
+    <ClInclude Include="src\win\COM\COMPtr.h" />
     <ClInclude Include="src\win\COM\Deleter.h" />
     <ClInclude Include="src\win\COM\SafeRelease.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />

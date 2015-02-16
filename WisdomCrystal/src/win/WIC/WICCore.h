@@ -8,6 +8,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "win/COM/Deleter.h"
+#include "win/COM/COMPtr.h"
 
 
 class WICCore : private boost::noncopyable {
@@ -26,15 +27,14 @@ public:
 
 private:
     IWICBitmapDecoder* createDecoder(LPCTSTR imageFilePath);
-    IWICBitmapDecoder* createDecoder(std::shared_ptr<IWICStream> stream);
+    IWICBitmapDecoder* createDecoder(COMPtr<IWICStream> stream);
 
     IWICStream* createStream();
 
-    IWICBitmapFrameDecode* getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
+    COMPtr<IWICBitmapFrameDecode> getFrame(std::shared_ptr<IWICBitmapDecoder> decoder);
     ID2D1Bitmap*           convertD2DBitmap(std::shared_ptr<IWICBitmapFrameDecode> frame);
-    IWICFormatConverter*   createConverter();
 
 private:
-    std::unique_ptr<IWICImagingFactory, Deleter<IWICImagingFactory>> mWICFactory;
+    COMPtr<IWICImagingFactory> mWICFactory;
     std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
 };

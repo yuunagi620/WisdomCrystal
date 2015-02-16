@@ -44,6 +44,7 @@
     <ClInclude Include="src\util\CSVHandler.h" />
     <ClInclude Include="src\util\BinaryFileHandler.h" />
     <ClInclude Include="src\util\CSVFile.h" />
+    <ClInclude Include="src\win\COM\COMPtr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
