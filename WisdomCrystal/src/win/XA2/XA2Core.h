@@ -7,6 +7,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "win/COM/Deleter.h"
+#include "win/COM/COMPtr.h"
 
 
 class XA2Core : private boost::noncopyable {
@@ -20,10 +21,6 @@ public:
     std::shared_ptr<IXAudio2SourceVoice> CreateSourceVoice(const WAVEFORMATEX& waveFormatEx);
 
 private:
-    bool createMasteringVoice();
-    bool createXAudio2();
-
-private:
-    std::unique_ptr<IXAudio2, Deleter<IXAudio2>> mXAudio;
-    std::unique_ptr<IXAudio2MasteringVoice, Deleter<IXAudio2MasteringVoice>> mMasteringVoice;
+    COMPtr<IXAudio2> mXAudio;
+    COMPtr<IXAudio2MasteringVoice> mMasteringVoice;
 };

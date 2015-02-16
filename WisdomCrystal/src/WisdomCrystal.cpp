@@ -179,8 +179,7 @@ void WisdomCrystal::onUpdate() {
     BeginPaint(GetHWnd(), &ps);
     mGraphicsDevice.BeginDraw();
     
-    const D2D1_COLOR_F fillColor = D2D1::ColorF(0x000000); // black
-    mGraphicsDevice.ClearScreen(fillColor);
+    mGraphicsDevice.ClearScreen(D2D1::ColorF(0x000000));
 
     mSceneChanger.UpdateScene();
     

@@ -40,12 +40,3 @@ inline unsigned long SafeRelease<IXAudio2SourceVoice>(IXAudio2SourceVoice **ppT)
 }
 
 
-// MasteringVoice
-template <>
-inline unsigned long SafeRelease<IXAudio2MasteringVoice>(IXAudio2MasteringVoice **ppT) {
-    if (*ppT != nullptr) {
-        (*ppT)->DestroyVoice();
-    }
-
-    return 0;
-}

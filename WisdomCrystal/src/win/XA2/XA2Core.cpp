@@ -1,7 +1,6 @@
 // XA2Core.cpp
 
 #include "XA2Core.h"
-#include "win/COM/Deleter.h"
 
 
 XA2Core::XA2Core() : mXAudio(nullptr), mMasteringVoice(nullptr) {
@@ -17,12 +16,15 @@ XA2Core::~XA2Core() {
 bool XA2Core::Init() {
 
      // XAudio2 オブジェクトの作成
-    if (createXAudio2() == false) {
+    UINT32 xaudioCreateFlag = 0;
+    HRESULT hr = XAudio2Create(&mXAudio, xaudioCreateFlag);
+    if (FAILED(hr)) {
         return false;
     }
 
      // マスターボイスの作成
-    if (createMasteringVoice() == false) {
+    hr = mXAudio->CreateMasteringVoice(&mMasteringVoice);
+    if (FAILED(hr)) {
         return false;
     }
 
@@ -39,25 +41,4 @@ std::shared_ptr<IXAudio2SourceVoice> XA2Core::CreateSourceVoice(const WAVEFORMAT
 
     std::shared_ptr<IXAudio2SourceVoice> sourceVoice(tempSourceVoice, Deleter<IXAudio2SourceVoice>());
     return sourceVoice;
-}
-
-
-bool XA2Core::createMasteringVoice() {
-    IXAudio2MasteringVoice *masteringVoice = nullptr;
-    if (FAILED(mXAudio->CreateMasteringVoice(&masteringVoice))) {
-        return false;
-    }
-    mMasteringVoice.reset(masteringVoice);
-    return true;
-}
-
-
-bool XA2Core::createXAudio2() {
-    UINT32 xaudioCreateFlag = 0;
-    IXAudio2 *xAudio2 = nullptr;
-    if (FAILED(XAudio2Create(&xAudio2, xaudioCreateFlag))) {
-        return false;
-    }
-    mXAudio.reset(xAudio2);
-    return true;
 }

@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <boost/noncopyable.hpp>
+
 #include "SafeRelease.h"
 
 
@@ -51,4 +53,42 @@ public:
 private:
     T *mPtr;
     unsigned long counter;
+};
+
+
+// MasteringVoice —p‚Ì“ÁŽê‰»
+template<>
+class COMPtr<IXAudio2MasteringVoice> : private boost::noncopyable {
+
+public:
+    COMPtr() : mPtr(nullptr) {}
+    COMPtr(IXAudio2MasteringVoice* ptr) : mPtr(nullptr) { Set(ptr); }
+    COMPtr(const COMPtr<IXAudio2MasteringVoice>& ptr) : mPtr(nullptr) { Set(ptr); }
+
+    ~COMPtr() { Release(); }
+
+    operator IXAudio2MasteringVoice*() const { return mPtr; }
+    IXAudio2MasteringVoice** operator&() { return &mPtr; }
+    IXAudio2MasteringVoice* operator->() const { return mPtr; }
+
+    void Set(IXAudio2MasteringVoice* ptr){
+        Release();
+        mPtr = ptr;
+    }
+
+    void Set(const COMPtr<IXAudio2MasteringVoice>& ptr) {
+        Release();
+        mPtr = ptr.mPtr;
+    }
+
+    IXAudio2MasteringVoice* Get() const { return mPtr; }
+
+    void Release() {
+        if (mPtr != nullptr) {
+            mPtr->DestroyVoice();
+        }
+    }
+
+private:
+    IXAudio2MasteringVoice *mPtr;
 };

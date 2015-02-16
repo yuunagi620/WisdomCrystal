@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include "win/wave/WaveFile.h"
-
 #include <vector>
+
+#include "win/wave/WaveFile.h"
 
 
 class SoundPacket {
