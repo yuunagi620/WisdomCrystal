@@ -41,7 +41,7 @@ void D2DText::Draw(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& la
                                                  string.size(),
                                                  mTextFormat,
                                                  layoutRect,
-                                                 mBrush.get());
+                                                 mBrush);
 }
 
 
@@ -55,7 +55,7 @@ void D2DText::Draw(const std::basic_string<TCHAR>& string, const RECT& rect) {
                                                  string.size(),
                                                  mTextFormat,
                                                  targetRect,
-                                                 mBrush.get());
+                                                 mBrush);
 }
 
 
@@ -80,13 +80,11 @@ bool D2DText::CreateTextFormat() {
 
 
 bool D2DText::SetColor(const D2D1_COLOR_F& color) {
-    ID2D1SolidColorBrush *brush = nullptr;
-    HRESULT hr = mGraphicsDevice->GetRenderTarget()->CreateSolidColorBrush(color, &brush);
+    HRESULT hr = mGraphicsDevice->GetRenderTarget()->CreateSolidColorBrush(color, &mBrush);
     if (SUCCEEDED(hr) == false) {
         return false;
     }
 
-    mBrush.reset(brush);
     return true;
 }
 

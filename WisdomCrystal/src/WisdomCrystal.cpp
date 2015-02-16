@@ -81,7 +81,7 @@ bool WisdomCrystal::Init() {
         MessageBox(nullptr, TEXT("Can not initialize BGM Data."), TEXT("ERROR"), MB_OK);
     }
 
-    mBGMData.SetBGMVolume(START_BGM_VOLUME);
+    mBGMData.SetBGMVolume(0.5f);
     mBGMData.Start();
 
     // GameObjManager の初期化
@@ -109,7 +109,7 @@ int WisdomCrystal::MessageLoop() {
     bool isError = false;
 
     FPSCounter fpsCounter;
-    HighResolutionTimer timer(1.0 / FPS); // 1秒間に60回呼ばれるタイマーをセット
+    HighResolutionTimer timer(1.0 / 60); // 1秒間に60回呼ばれるタイマーをセット
     
     for (;;) {
         MSG msg;

@@ -4,12 +4,9 @@
 
 #include <Windows.h>
 #include <d3d10_1.h>
-#include <memory>
 #include <boost/noncopyable.hpp>
 
-#include "win/COM/Deleter.h"
 #include "win/COM/COMPtr.h"
-
 
 
 class D3DCore : private boost::noncopyable {

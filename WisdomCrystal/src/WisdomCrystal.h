@@ -12,21 +12,6 @@
 #include "scene/SceneChanger.h"
 
 
-// ƒXƒNƒŠ[ƒ“ŠÖŒW
-const double FPS = 60.0;
-const int MAP_ROW = 22;
-const int MAP_COL = 40;
-const int MAX_MAP_CHIP = MAP_ROW * MAP_COL;
-
-// ‰æ‘œŠÖŒW
-const int MAP_CHIP_WIDTH  = 32;
-const int MAP_CHIP_HEIGHT = 32;
-const int MAP_CHIP_IMAGE_COL = 10;
-
-// ‚»‚Ì‘¼
-const float START_BGM_VOLUME = 0.4f;
-
-
 class WisdomCrystal : public WinApplication, private boost::noncopyable {
 
 public:

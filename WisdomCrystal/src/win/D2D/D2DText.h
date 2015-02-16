@@ -6,10 +6,8 @@
 #include <d2d1.h>
 #include <Dwrite.h>
 #include <string>
-#include <memory>
 
 #include "GraphicsDevice.h"
-#include "win/COM/Deleter.h"
 
 
 class D2DText {
@@ -39,9 +37,9 @@ public:
 
 private:
     GraphicsDevice    *mGraphicsDevice;
-    IDWriteTextFormat *mTextFormat;
 
-    std::unique_ptr<ID2D1SolidColorBrush, Deleter<ID2D1SolidColorBrush>> mBrush;
+    COMPtr<IDWriteTextFormat> mTextFormat;
+    COMPtr<ID2D1SolidColorBrush> mBrush;
 
     std::basic_string<TCHAR> mFontFamilyName;
     float mFontSize;

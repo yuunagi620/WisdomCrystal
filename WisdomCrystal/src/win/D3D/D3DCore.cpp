@@ -67,6 +67,7 @@ bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, 
     sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
     sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
+    // SwapChain とデバイスの作成
     HRESULT hr = D3D10CreateDeviceAndSwapChain1(nullptr,
                                                 D3D10_DRIVER_TYPE_HARDWARE,
                                                 nullptr,
@@ -94,7 +95,7 @@ bool D3DCore::createRenderTargetView() {
     }
 
     // RenderTargetView の作成
-    COMPtr<ID3D10RenderTargetView> renderTargetView = nullptr;
+    COMPtr<ID3D10RenderTargetView> renderTargetView(nullptr);
     hr = mD3DDevice->CreateRenderTargetView(backBuffer, nullptr, &renderTargetView);
     if (FAILED(hr)) {
         return false;

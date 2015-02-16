@@ -4,8 +4,8 @@
 
 #include <d2d1.h>
 
-#include "win/COM/COMPtr.h"
 #include "GraphicsDevice.h"
+#include "win/COM/COMPtr.h"
 
 
 class D2DImage {
