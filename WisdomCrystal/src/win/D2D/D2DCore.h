@@ -8,6 +8,8 @@
 #include <memory>
 #include <boost/noncopyable.hpp>
 
+#include "win/COM/COMPtr.h"
+
 
 class D2DCore : private boost::noncopyable {
 
@@ -32,10 +34,10 @@ public:
     void FlipVertical(const float centerX, const float centerY);
     void RotateTransform(const float centerX, const float centerY, const float angle);
 
-    inline std::shared_ptr<ID2D1RenderTarget> GetRenderTarget() const {
+    inline COMPtr<ID2D1RenderTarget> GetRenderTarget() const {
         return mRenderTarget;
     }
-    inline std::shared_ptr<IDWriteFactory> GetWriteFactory() const {
+    inline COMPtr<IDWriteFactory> GetWriteFactory() const {
         return mWriteFactory;
     }
 
@@ -48,7 +50,7 @@ private:
                             const D2D1_RENDER_TARGET_PROPERTIES& props);
 
 private:
-    std::unique_ptr<ID2D1Factory, Deleter<ID2D1Factory>> mD2DFactory;
-    std::shared_ptr<IDWriteFactory>    mWriteFactory;
-    std::shared_ptr<ID2D1RenderTarget> mRenderTarget;
+    COMPtr<ID2D1Factory>      mD2DFactory;
+    COMPtr<IDWriteFactory>    mWriteFactory;
+    COMPtr<ID2D1RenderTarget> mRenderTarget;
 };

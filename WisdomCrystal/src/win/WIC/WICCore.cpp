@@ -15,7 +15,7 @@ WICCore::~WICCore() {
 }
 
 
-bool WICCore::Init(std::shared_ptr<ID2D1RenderTarget> renderTarget) {
+bool WICCore::Init(COMPtr<ID2D1RenderTarget> renderTarget) {
     mRenderTarget = renderTarget;
 
     HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,
@@ -31,26 +31,26 @@ bool WICCore::Init(std::shared_ptr<ID2D1RenderTarget> renderTarget) {
 }
 
 
-ID2D1Bitmap* WICCore::CreateD2DBitmapFromFile(LPCTSTR imageFilePath) {
+COMPtr<ID2D1Bitmap> WICCore::CreateBitmapFromFile(LPCTSTR imageFilePath) {
 
     // IWICBitmapDecoder を作成
     auto decoder = createDecoder(imageFilePath);
     if (decoder == nullptr) {
-        return nullptr;
+        return false;
     }
 
     // イメージから Frame を取得
     auto frame = getFrame(decoder);
     if (frame == nullptr) {
-        return nullptr;
+        return false;
     }
 
-    // Direct2D で使用できる形式に変換して返す
-    return convertD2DBitmap(frame);
+    // Direct2D で使用できる形式に変換
+    return convertBitmap(frame);
 }
 
 
-ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
+COMPtr<ID2D1Bitmap> WICCore::CreateBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
 
     HMODULE hModule = GetModuleHandle(nullptr);
 
@@ -103,8 +103,8 @@ ID2D1Bitmap* WICCore::CreateD2DBitmapFromResource(LPCTSTR resourceName, LPCTSTR 
         return nullptr;
     }
 
-    // Direct2D で使用できる形式に変換して返す
-    return convertD2DBitmap(frame);
+    // Direct2D で使用できる形式に変換
+    return convertBitmap(frame);
 }
 
 
@@ -148,7 +148,7 @@ COMPtr<IWICBitmapFrameDecode> WICCore::getFrame(COMPtr<IWICBitmapDecoder> decode
 }
 
 
-ID2D1Bitmap* WICCore::convertD2DBitmap(COMPtr<IWICBitmapFrameDecode> frame) {
+COMPtr<ID2D1Bitmap> WICCore::convertBitmap(COMPtr<IWICBitmapFrameDecode> frame) {
 
     // converter の作成
     COMPtr<IWICFormatConverter> converter(nullptr);
@@ -169,12 +169,12 @@ ID2D1Bitmap* WICCore::convertD2DBitmap(COMPtr<IWICBitmapFrameDecode> frame) {
     }
 
     // ID2D1Bitmap オブジェクトを作成
-    ID2D1Bitmap *d2dBitmap = nullptr;
-    hr = mRenderTarget->CreateBitmapFromWicBitmap(converter, &d2dBitmap);
+    COMPtr<ID2D1Bitmap> bitmap;
+    hr = mRenderTarget->CreateBitmapFromWicBitmap(converter, &bitmap);
     if (FAILED(hr)) {
-        d2dBitmap = nullptr;
+        return nullptr;
     }
 
-    return d2dBitmap;
+    return bitmap;
 }
 

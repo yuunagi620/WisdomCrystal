@@ -4,6 +4,7 @@
 
 #include <d2d1.h>
 
+#include "win/COM/COMPtr.h"
 #include "GraphicsDevice.h"
 
 
@@ -27,7 +28,7 @@ public:
 private:
     GraphicsDevice *mGraphicsDevice;
 
-    ID2D1Bitmap *mImage;
+    COMPtr<ID2D1Bitmap> mBitmap;
     D2D1_SIZE_U mImageSize;
     D2D1_RECT_F mImageSrcRect;
 };

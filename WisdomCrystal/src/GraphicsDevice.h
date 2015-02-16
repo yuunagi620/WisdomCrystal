@@ -26,9 +26,9 @@ public:
 
     void ClearScreen(const D2D1_COLOR_F& fillColor);
 
-    ID2D1Bitmap* CreateD2DBitmap(LPCTSTR imageFilePath);
+    COMPtr<ID2D1Bitmap> CreateBitmapFromFile(LPCTSTR imageFilePath);
 
-    ID2D1Bitmap* CreateD2DBitmap(LPCTSTR resourceName, LPCTSTR resourceType);
+    COMPtr<ID2D1Bitmap> CreateBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
     void DrawBitmap(ID2D1Bitmap* bitmap,
                     const D2D1_RECT_F& destinationRectangle,
@@ -43,10 +43,10 @@ public:
 
     void RotateTransform(const float centerX, const float centerY, const float angle);
 
-    inline std::shared_ptr<ID2D1RenderTarget> GetRenderTarget() const {
+    inline COMPtr<ID2D1RenderTarget> GetRenderTarget() const {
         return mD2DCore.GetRenderTarget();
     }
-    inline std::shared_ptr<IDWriteFactory> GetWriteFactory() const {
+    inline COMPtr<IDWriteFactory> GetWriteFactory() const {
         return mD2DCore.GetWriteFactory();
     }
 
