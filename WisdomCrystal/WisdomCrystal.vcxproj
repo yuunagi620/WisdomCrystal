@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BackGround.h" />
+    <ClInclude Include="src\Canvas.h" />
     <ClInclude Include="src\GraphicsDevice.h" />
     <ClInclude Include="src\object\GameObject.h" />
     <ClInclude Include="src\object\GameObjectId.h" />
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BackGround.cpp" />
+    <ClCompile Include="src\Canvas.cpp" />
     <ClCompile Include="src\GraphicsDevice.cpp" />
     <ClCompile Include="src\object\GameObject.cpp" />
     <ClCompile Include="src\object\GameObjManager.cpp" />

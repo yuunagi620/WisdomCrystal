@@ -82,23 +82,3 @@ void GraphicsDevice::DrawBitmap(ID2D1Bitmap* bitmap,
 
     mD2DCore.DrawBitmap(bitmap, destinationRectangle, opacity, sourceRectangle);
 }
-
-
-void GraphicsDevice::ResetTransform() {
-    mD2DCore.ResetTransform();
-}
-
-
-void GraphicsDevice::FlipHorizontal(const float centerX, const float centerY) {
-    mD2DCore.FlipHorizontal(centerX, centerY);
-}
-
-
-void GraphicsDevice::FlipVertical(const float centerX, const float centerY) {
-    mD2DCore.FlipVertical(centerX, centerY);
-}
-
-
-void GraphicsDevice::RotateTransform(const float centerX, const float centerY, const float angle) {
-    mD2DCore.RotateTransform(centerX, centerY, angle);
-}

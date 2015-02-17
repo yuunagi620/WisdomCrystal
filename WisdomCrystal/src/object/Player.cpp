@@ -11,7 +11,7 @@ const int   Player::PLAYER_SPEED        = 3;
 const int   Player::ROTATION_RATE       = 10;
 
 
-Player::Player() : mGraphicsDevice(nullptr),
+Player::Player() : mCanvas(),
                    mSoundDevice(nullptr),
                    mImage(),
                    mGameOverSE(),
@@ -31,10 +31,11 @@ Player::~Player() {
 
 
 bool Player::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
-    mGraphicsDevice = graphicsDevice;
+    mCanvas.Init(graphicsDevice);
+
     mSoundDevice = soundDevice;
 
-    if (mImage.Init(mGraphicsDevice, TEXT("IMAGE_1"), TEXT("PNG")) == false) {
+    if (mImage.Init(graphicsDevice, TEXT("IMAGE_1"), TEXT("PNG")) == false) {
         return false;
     }
 
@@ -103,7 +104,7 @@ void Player::draw() {
 
     // ¶‚ÉŒü‚¢‚Ä‚¢‚½‚ç‰æ‘œ‚ð”½“]
     if (mIsLeft) {
-        mGraphicsDevice->FlipHorizontal(static_cast<float>(mX) + PLAYER_IMAGE_WIDTH  / 2,
+        mCanvas.FlipHorizontal(static_cast<float>(mX) + PLAYER_IMAGE_WIDTH  / 2,
                                         static_cast<float>(mY) + PLAYER_IMAGE_HEIGHT / 2);
     }
 
@@ -112,7 +113,7 @@ void Player::draw() {
     } 
 
     mImage.Draw(mX, mY);
-    mGraphicsDevice->ResetTransform();
+    mCanvas.ResetTransform();
 }
 
 
@@ -121,8 +122,8 @@ void Player::gameOverAnimetion() {
     static int angle = 0;
     angle = (angle + ROTATION_RATE) % 360;
     
-    mGraphicsDevice->RotateTransform(static_cast<float>(mX) + PLAYER_IMAGE_WIDTH  / 2,
-                                     static_cast<float>(mY) + PLAYER_IMAGE_HEIGHT / 2,
-                                     static_cast<float>(angle));
+    mCanvas.RotateTransform(static_cast<float>(mX) + PLAYER_IMAGE_WIDTH  / 2,
+                            static_cast<float>(mY) + PLAYER_IMAGE_HEIGHT / 2,
+                            static_cast<float>(angle));
 }
 

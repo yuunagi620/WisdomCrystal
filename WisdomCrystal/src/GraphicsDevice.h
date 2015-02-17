@@ -35,14 +35,6 @@ public:
                     const float opacity,
                     const D2D1_RECT_F& sourceRectangle);
 
-    void ResetTransform();
-
-    void FlipHorizontal(const float centerX, const float centerY);
-
-    void FlipVertical(const float centerX, const float centerY);
-
-    void RotateTransform(const float centerX, const float centerY, const float angle);
-
     inline COMPtr<ID2D1RenderTarget> GetRenderTarget() const {
         return mD2DCore.GetRenderTarget();
     }

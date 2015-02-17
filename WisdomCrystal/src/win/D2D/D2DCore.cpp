@@ -90,26 +90,6 @@ void D2DCore::DrawBitmap(ID2D1Bitmap *bitmap,
 }
 
 
-void D2DCore::ResetTransform() {
-    mRenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
-}
-
-
-void D2DCore::FlipHorizontal(const float centerX, const float centerY) {
-    mRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(-1, 1, D2D1::Point2F(centerX, centerY)));
-}
-
-
-void D2DCore::FlipVertical(const float centerX, const float centerY) {
-    mRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(1, -1, D2D1::Point2F(centerX, centerY)));
-}
-
-
-void D2DCore::RotateTransform(const float centerX, const float centerY, const float angle) {
-    mRenderTarget->SetTransform(D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(centerX, centerY)));
-}
-
-
 bool D2DCore::createFactory() {
     HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &mD2DFactory);
     if (FAILED(hr)) {

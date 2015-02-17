@@ -44,6 +44,7 @@
     <ClInclude Include="src\util\BinaryFileHandler.h" />
     <ClInclude Include="src\util\CSVFile.h" />
     <ClInclude Include="src\win\COM\COMPtr.h" />
+    <ClInclude Include="src\Canvas.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -82,6 +83,7 @@
     <ClCompile Include="src\object\GameObject.cpp" />
     <ClCompile Include="src\win\wave\WaveFile.cpp" />
     <ClCompile Include="src\util\CSVFile.cpp" />
+    <ClCompile Include="src\Canvas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />
