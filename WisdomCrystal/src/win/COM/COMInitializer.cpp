@@ -1,5 +1,7 @@
 // COMInitializer.cpp
 
+#pragma comment(lib, "Windowscodecs.lib")
+
 #include "COMInitializer.h"
 
 

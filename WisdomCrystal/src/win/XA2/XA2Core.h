@@ -2,6 +2,10 @@
 
 #pragma once
 
+#if(_WIN32_WINNT >= 0x0602) // Windows8 ˆÈã‚Ìê‡
+    #pragma comment(lib, "xaudio2.lib")
+#endif
+
 #include <XAudio2.h>
 #include <memory>
 #include <boost/noncopyable.hpp>

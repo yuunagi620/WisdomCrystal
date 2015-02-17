@@ -1,5 +1,7 @@
 // Joypad.cpp
 
+#pragma comment(lib, "winmm.lib")
+
 #include "Joypad.h"
 
 

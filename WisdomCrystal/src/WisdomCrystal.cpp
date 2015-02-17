@@ -1,13 +1,5 @@
 // WisdomCrystal.cpp
 
-#pragma comment(lib, "Windowscodecs.lib")
-#pragma comment(lib, "winmm.lib")
-#pragma comment(lib, "comctl32.lib")
-
-#if(_WIN32_WINNT >= 0x0602) // Windows8 à»è„ÇÃèÍçá
-    #pragma comment(lib, "xaudio2.lib")
-#endif
-
 #include <CommCtrl.h>
 
 #include "WisdomCrystal.h"
@@ -52,7 +44,7 @@ int WisdomCrystal::Run() {
 
 bool WisdomCrystal::Init() {
 
-    // Windows ÇÃèâä˙âª
+    // Window ÇÃèâä˙âª
     if (WinApplication::Init() == false) {
         MessageBox(nullptr, TEXT("Can not initialize Window."), TEXT("ERROR"), MB_OK);
         return false;
@@ -115,12 +107,12 @@ int WisdomCrystal::MessageLoop() {
         MSG msg;
         
         if (PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)) {
-            int getMessageResult = GetMessage(&msg, nullptr, 0, 0);
+            int messageResult = GetMessage(&msg, nullptr, 0, 0);
 
-            if (getMessageResult > 0) {
+            if (messageResult > 0) {
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
-            } else if (getMessageResult == -1) {
+            } else if (messageResult == -1) {
                 isError = true;
                 break;
             } else {
@@ -134,7 +126,6 @@ int WisdomCrystal::MessageLoop() {
                 onUpdate();
                 fpsCounter.CountFPS();
                 DebugManager::OutputValue(fpsCounter.GetFPS());
-                
             }
             mBGMData.UpdateBGM();
             UpdateWindow(GetHWnd());
