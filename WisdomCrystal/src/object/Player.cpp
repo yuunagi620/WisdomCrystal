@@ -84,7 +84,7 @@ void Player::Update() {
     }
 
     if (Input::IsKeyPressed(Input::SPACE)) {
-        mGameOverSE.StartSE();
+        mGameOverSE.Start();
     }
 
     if (Input::IsKeyPressed(Input::C)) {

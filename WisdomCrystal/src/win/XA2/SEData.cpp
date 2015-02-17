@@ -3,7 +3,7 @@
 #include "SEData.h"
 
 
-SEData::SEData() : mWaveFile(), mSourceVoiceForSE(nullptr) {
+SEData::SEData() : mWaveFile(), mSourceVoice(nullptr) {
     // empty
 }
 
@@ -14,31 +14,34 @@ SEData::~SEData() {
 
 
 bool SEData::Init(SoundDevice* soundDevice, const std::string& filePath) {
+
+    // SE データの読み込み
     if (mWaveFile.Load(filePath) == false) {
         MessageBox(nullptr, TEXT("SEData: Can not read WaveFile."), TEXT("ERROR"), MB_OK);
-        return false; // SE データの読み込みに失敗
+        return false;
     }
 
-    mSourceVoiceForSE = soundDevice->CreateSourceVoice(mWaveFile.GetWaveFormatEx());
-    if (mSourceVoiceForSE == nullptr) {
+    // SourceVoice の作成
+    mSourceVoice = soundDevice->CreateSourceVoice(mWaveFile.GetWaveFormatEx());
+    if (mSourceVoice == nullptr) {
         MessageBox(nullptr, TEXT("SEData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
-        return false; // SourceVoice の作成に失敗
+        return false;
     }
 
     return true;
 }
 
 
-void SEData::StartSE() {
-    mSourceVoiceForSE->Stop();
-    mSourceVoiceForSE->FlushSourceBuffers();
+void SEData::Start() {
+    mSourceVoice->Stop();
+    mSourceVoice->FlushSourceBuffers();
     resetSourceVoice();
-    mSourceVoiceForSE->Start();
+    mSourceVoice->Start();
 }
 
 
-void SEData::SetSEVolume(const float volume) {
-    mSourceVoiceForSE->SetVolume(volume);
+void SEData::SetVolume(const float volume) {
+    mSourceVoice->SetVolume(volume);
 }
 
 
@@ -48,5 +51,5 @@ void SEData::resetSourceVoice() {
     buffer.pAudioData = &(mWaveFile.GetDataBufferPtr()->front());
     buffer.Flags = XAUDIO2_END_OF_STREAM;
 
-    mSourceVoiceForSE->SubmitSourceBuffer(&buffer);
+    mSourceVoice->SubmitSourceBuffer(&buffer);
 }

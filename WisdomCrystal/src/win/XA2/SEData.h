@@ -14,13 +14,14 @@ public:
 
     bool Init(SoundDevice* soundDevice, const std::string& filePath);
 
-    void StartSE();
-    void SetSEVolume(const float volume);
+    void Start();
+
+    void SetVolume(const float volume);
 
 private:
     void resetSourceVoice();
     
 private:
     WaveFile mWaveFile;
-    std::shared_ptr<IXAudio2SourceVoice> mSourceVoiceForSE;
+    std::shared_ptr<IXAudio2SourceVoice> mSourceVoice;
 };
