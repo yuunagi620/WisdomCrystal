@@ -77,11 +77,11 @@ bool WisdomCrystal::Init() {
     }
 
     // BGMData ‚Ì‰Šú‰»
-    if (mBGMData.Init(&mSoundDevice, "resources/sound/BGM/bgm_02.wav") == false) { 
+    if (mBGMData.Init(&mSoundDevice, "resources/sound/BGM/bgm_03.wav") == false) { 
         MessageBox(nullptr, TEXT("Can not initialize BGM Data."), TEXT("ERROR"), MB_OK);
     }
 
-    mBGMData.SetBGMVolume(0.5f);
+    mBGMData.SetVolume(0.5f);
     mBGMData.Start();
 
     // GameObjManager ‚Ì‰Šú‰»

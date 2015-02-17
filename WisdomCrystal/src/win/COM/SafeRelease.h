@@ -38,5 +38,3 @@ inline unsigned long SafeRelease<IXAudio2SourceVoice>(IXAudio2SourceVoice **ppT)
 
     return 0;
 }
-
-

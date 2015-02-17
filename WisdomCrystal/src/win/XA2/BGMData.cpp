@@ -67,7 +67,7 @@ void BGMData::UpdateBGM() {
 }
 
 
-void BGMData::SetBGMVolume(const float volume) {
+void BGMData::SetVolume(const float volume) {
     mSourceVoiceForBGM->SetVolume(volume);
 }
 

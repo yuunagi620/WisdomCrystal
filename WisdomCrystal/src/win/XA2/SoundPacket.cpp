@@ -21,10 +21,8 @@ void SoundPacket::Init(std::vector<unsigned char> *srcBuffer, const long begin, 
     // mBuffer を dataSize バイト確保
     mBuffer.resize(mDataSize);
 
-    std::vector<unsigned char>::iterator beginIt = srcBuffer->begin() + begin;
-    std::vector<unsigned char>::iterator endIt   = srcBuffer->begin() + end;
-
-    std::copy(beginIt, endIt, mBuffer.begin());
+    // srcBuffer から mBuffer へ指定範囲コピー
+    std::copy(srcBuffer->begin() + begin, srcBuffer->begin() + end, mBuffer.begin());
 }
 
 

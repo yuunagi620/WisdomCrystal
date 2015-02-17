@@ -21,7 +21,7 @@ public:
 
     void UpdateBGM();
 
-    void SetBGMVolume(const float volume);
+    void SetVolume(const float volume);
 
 private:
     bool divideSoundPacket(WaveFile* WaveFile);
