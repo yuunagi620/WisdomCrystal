@@ -3,7 +3,7 @@
 #include "D2DImage.h"
 
 
-D2DImage::D2DImage() : mGraphicsDevice(nullptr),
+D2DImage::D2DImage() : mRenderTarget(nullptr),
                        mBitmap(nullptr),
                        mImageSize(),
                        mImageSrcRect()
@@ -17,10 +17,10 @@ D2DImage::~D2DImage() {
 }
 
 
-bool D2DImage::Init(GraphicsDevice *graphicsDevice, LPCTSTR imageFilePath) {
-    mGraphicsDevice = graphicsDevice;
+bool D2DImage::Init(GraphicsDevice* graphicsDevice, LPCTSTR imageFilePath) {
+    mRenderTarget = graphicsDevice->GetRenderTarget();
 
-    mBitmap = mGraphicsDevice->CreateBitmapFromFile(imageFilePath);
+    mBitmap = graphicsDevice->CreateBitmapFromFile(imageFilePath);
     if (mBitmap == nullptr) {
         return false;
     }
@@ -33,10 +33,10 @@ bool D2DImage::Init(GraphicsDevice *graphicsDevice, LPCTSTR imageFilePath) {
 }
 
 
-bool D2DImage::Init(GraphicsDevice *graphicsDevice, LPCTSTR resourceName, LPCTSTR resourceType) {
-    mGraphicsDevice = graphicsDevice;
+bool D2DImage::Init(GraphicsDevice* graphicsDevice, LPCTSTR resourceName, LPCTSTR resourceType) {
+    mRenderTarget = graphicsDevice->GetRenderTarget();
 
-    mBitmap = mGraphicsDevice->CreateBitmapFromResource(resourceName, resourceType);
+    mBitmap = graphicsDevice->CreateBitmapFromResource(resourceName, resourceType);
     if (mBitmap == nullptr) {
         return false;
     }
@@ -54,8 +54,11 @@ void D2DImage::Draw(const int x, const int y, const float opacity) {
                                          static_cast<float>(y + mImageSrcRect.top),
                                          static_cast<float>(x + mImageSrcRect.right),
                                          static_cast<float>(y + mImageSrcRect.bottom));
-
-    mGraphicsDevice->DrawBitmap(mBitmap, targetRect, 1, mImageSrcRect);
+    mRenderTarget->DrawBitmap(mBitmap,
+                              targetRect,
+                              opacity,
+                              D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
+                              mImageSrcRect);
 }
 
 
@@ -64,8 +67,11 @@ void D2DImage::Draw(const RECT& rect, const float opacity) {
                                          static_cast<float>(rect.top),
                                          static_cast<float>(rect.right),
                                          static_cast<float>(rect.bottom));
-
-    mGraphicsDevice->DrawBitmap(mBitmap, targetRect, opacity, mImageSrcRect);
+    mRenderTarget->DrawBitmap(mBitmap,
+                              targetRect,
+                              opacity,
+                              D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
+                              mImageSrcRect);
 }
 
 

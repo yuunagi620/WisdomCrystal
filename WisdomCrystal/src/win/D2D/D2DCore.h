@@ -19,14 +19,10 @@ public:
     bool Init(const HWND& hWnd, COMPtr<IDXGISwapChain> swapChain);
 
     void BeginDraw();
+
     HRESULT EndDraw();
 
     void ClearScreen(const D2D1_COLOR_F& fillColor);
-
-    void DrawBitmap(ID2D1Bitmap *bitmap,
-                    const D2D1_RECT_F& destinationRectangle,
-                    const float opacity,
-                    const D2D1_RECT_F& sourceRectangle);
 
     inline COMPtr<ID2D1RenderTarget> GetRenderTarget() const {
         return mRenderTarget;

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Canvas.h"
 #include "win/D2D/D2DImage.h"
 
 
@@ -17,7 +18,7 @@ public:
     void Update() override;
 
 private:
-    GraphicsDevice* mGraphicsDevice;
+    Canvas mCanvas;
     SoundDevice* mSoundDevice;
 
     D2DImage mImage;

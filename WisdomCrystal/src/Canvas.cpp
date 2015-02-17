@@ -3,9 +3,8 @@
 #include "Canvas.h"
 
 
-Canvas::Canvas() : mRenderTarget(nullptr)
-{
-
+Canvas::Canvas() : mRenderTarget(nullptr) {
+    // empty
 }
 
 

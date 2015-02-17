@@ -3,7 +3,8 @@
 #include "D2DText.h"
 
 
-D2DText::D2DText() : mGraphicsDevice(nullptr),
+D2DText::D2DText() : mRenderTarget(nullptr),
+                     mWriteFactory(nullptr),
                      mTextFormat(nullptr),
                      mBrush(nullptr),
                      mFontFamilyName(TEXT("ƒƒCƒŠƒI")),
@@ -22,7 +23,8 @@ D2DText::~D2DText() {
 
 
 bool D2DText::Init(GraphicsDevice* graphicsDevice) {
-    mGraphicsDevice = graphicsDevice;
+    mRenderTarget = graphicsDevice->GetRenderTarget();
+    mWriteFactory = graphicsDevice->GetWriteFactory();
 
     if (SetColor(D2D1::ColorF(0x000000)) == false) {
         return false;
@@ -37,11 +39,7 @@ bool D2DText::Init(GraphicsDevice* graphicsDevice) {
 
 
 void D2DText::Draw(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect) {
-    mGraphicsDevice->GetRenderTarget()->DrawText(string.c_str(),
-                                                 string.size(),
-                                                 mTextFormat,
-                                                 layoutRect,
-                                                 mBrush);
+    mRenderTarget->DrawText(string.c_str(), string.size(), mTextFormat, layoutRect, mBrush);
 }
 
 
@@ -50,27 +48,22 @@ void D2DText::Draw(const std::basic_string<TCHAR>& string, const RECT& rect) {
                                          static_cast<float>(rect.top),
                                          static_cast<float>(rect.right),
                                          static_cast<float>(rect.bottom));
-
-    mGraphicsDevice->GetRenderTarget()->DrawText(string.c_str(),
-                                                 string.size(),
-                                                 mTextFormat,
-                                                 targetRect,
-                                                 mBrush);
+    Draw(string, targetRect);
 }
 
 
 
 bool D2DText::CreateTextFormat() {
-    HRESULT hr = mGraphicsDevice->GetWriteFactory()->CreateTextFormat(mFontFamilyName.c_str(),
-                                                                      nullptr,
-                                                                      mFontWeight,
-                                                                      mFontStyle,
-                                                                      mFontStretch,
-                                                                      mFontSize,
-                                                                      TEXT("ja-jp"),
-                                                                      &mTextFormat);
+    HRESULT hr = mWriteFactory->CreateTextFormat(mFontFamilyName.c_str(),
+                                                 nullptr,
+                                                 mFontWeight,
+                                                 mFontStyle,
+                                                 mFontStretch,
+                                                 mFontSize,
+                                                 TEXT("ja-jp"),
+                                                 &mTextFormat);
 
-    if (SUCCEEDED(hr) == false) {
+    if (FAILED(hr)) {
         return false;
     }
 
@@ -78,14 +71,19 @@ bool D2DText::CreateTextFormat() {
 }
 
 
-
 bool D2DText::SetColor(const D2D1_COLOR_F& color) {
-    HRESULT hr = mGraphicsDevice->GetRenderTarget()->CreateSolidColorBrush(color, &mBrush);
-    if (SUCCEEDED(hr) == false) {
+    HRESULT hr = mRenderTarget->CreateSolidColorBrush(color, &mBrush);
+    if (FAILED(hr)) {
         return false;
     }
 
     return true;
+}
+
+
+bool D2DText::SetFontFamilyName(const std::basic_string<TCHAR>& fontFamilyName) {
+    mFontFamilyName = fontFamilyName;
+    return CreateTextFormat();
 }
 
 
@@ -95,39 +93,23 @@ bool D2DText::SetFontSize(const float fontSize) {
     }
 
     mFontSize = fontSize;
-    if (CreateTextFormat() == false) {
-        return false;
-    }
-
-    return true;
+    return CreateTextFormat();
 }
 
 
 bool D2DText::SetFontWeight(const DWRITE_FONT_WEIGHT& fontWeight) {
     mFontWeight = fontWeight;
-    if (CreateTextFormat() == false) {
-        return false;
-    }
-
-    return true;
+    return CreateTextFormat();
 }
 
 
 bool D2DText::SetFontStyle(const DWRITE_FONT_STYLE& fontStyle) {
     mFontStyle = fontStyle;
-    if (CreateTextFormat() == false) {
-        return false;
-    }
-
-    return true;
+    return CreateTextFormat();
 }
 
 
 bool D2DText::SetFontStretch(const DWRITE_FONT_STRETCH& fontStretch) {
     mFontStretch = fontStretch;
-    if (CreateTextFormat() == false) {
-        return false;
-    }
-
-    return true;
+    return CreateTextFormat();
 }

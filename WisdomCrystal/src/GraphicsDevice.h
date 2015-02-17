@@ -30,11 +30,6 @@ public:
 
     COMPtr<ID2D1Bitmap> CreateBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType);
 
-    void DrawBitmap(ID2D1Bitmap* bitmap,
-                    const D2D1_RECT_F& destinationRectangle,
-                    const float opacity,
-                    const D2D1_RECT_F& sourceRectangle);
-
     inline COMPtr<ID2D1RenderTarget> GetRenderTarget() const {
         return mD2DCore.GetRenderTarget();
     }

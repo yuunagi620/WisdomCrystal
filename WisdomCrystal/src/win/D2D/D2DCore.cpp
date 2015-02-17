@@ -77,19 +77,6 @@ void D2DCore::ClearScreen(const D2D1_COLOR_F& fillColor) {
 }
 
 
-void D2DCore::DrawBitmap(ID2D1Bitmap *bitmap,
-                         const D2D1_RECT_F& destinationRectangle,
-                         const float opacity,
-                         const D2D1_RECT_F& sourceRectangle) {
-
-    mRenderTarget->DrawBitmap(bitmap,
-                              destinationRectangle,
-                              opacity,
-                              D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-                              sourceRectangle);
-}
-
-
 bool D2DCore::createFactory() {
     HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &mD2DFactory);
     if (FAILED(hr)) {

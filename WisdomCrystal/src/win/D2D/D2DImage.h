@@ -26,8 +26,7 @@ public:
     void SetImageSrcRect(const RECT& rect);
 
 private:
-    GraphicsDevice *mGraphicsDevice;
-
+    COMPtr<ID2D1RenderTarget> mRenderTarget;
     COMPtr<ID2D1Bitmap> mBitmap;
     D2D1_SIZE_U mImageSize;
     D2D1_RECT_F mImageSrcRect;

@@ -27,6 +27,8 @@ public:
 
     bool SetColor(const D2D1_COLOR_F& color);
 
+    bool SetFontFamilyName(const std::basic_string<TCHAR>& fontFamilyName);
+
     bool SetFontSize(const float fontSize);
 
     bool SetFontWeight(const DWRITE_FONT_WEIGHT& fontWeight);
@@ -36,9 +38,9 @@ public:
     bool SetFontStretch(const DWRITE_FONT_STRETCH& fontStretch);
 
 private:
-    GraphicsDevice    *mGraphicsDevice;
-
-    COMPtr<IDWriteTextFormat> mTextFormat;
+    COMPtr<ID2D1RenderTarget>    mRenderTarget;
+    COMPtr<IDWriteFactory>       mWriteFactory;
+    COMPtr<IDWriteTextFormat>    mTextFormat;
     COMPtr<ID2D1SolidColorBrush> mBrush;
 
     std::basic_string<TCHAR> mFontFamilyName;

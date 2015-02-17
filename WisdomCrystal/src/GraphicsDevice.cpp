@@ -73,12 +73,3 @@ COMPtr<ID2D1Bitmap> GraphicsDevice::CreateBitmapFromFile(LPCTSTR imageFilePath) 
 COMPtr<ID2D1Bitmap> GraphicsDevice::CreateBitmapFromResource(LPCTSTR resourceName, LPCTSTR resourceType) {
     return mWICCore.CreateBitmapFromResource(resourceName, resourceType);
 }
-
-
-void GraphicsDevice::DrawBitmap(ID2D1Bitmap* bitmap,
-                                const D2D1_RECT_F& destinationRectangle,
-                                const float opacity,
-                                const D2D1_RECT_F& sourceRectangle) {
-
-    mD2DCore.DrawBitmap(bitmap, destinationRectangle, opacity, sourceRectangle);
-}

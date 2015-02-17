@@ -4,7 +4,7 @@
 #include "win/util/Input.h"
 
 
-Ghost::Ghost() : mGraphicsDevice(nullptr),
+Ghost::Ghost() : mCanvas(),
                  mSoundDevice(nullptr),
                  mImage(),
                  mX(600),
@@ -21,10 +21,10 @@ Ghost::~Ghost() {
 
 
 bool Ghost::Init(GraphicsDevice* graphicsDevice, SoundDevice* soundDevice) {
-    mGraphicsDevice = graphicsDevice;
+    mCanvas.Init(graphicsDevice);
     mSoundDevice = soundDevice;
 
-    if (mImage.Init(mGraphicsDevice, TEXT("resources/image/ghost.png")) == false) {
+    if (mImage.Init(graphicsDevice, TEXT("resources/image/ghost.png")) == false) {
         return false;
     }
 
