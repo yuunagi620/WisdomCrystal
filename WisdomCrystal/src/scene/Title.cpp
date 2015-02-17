@@ -47,6 +47,7 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
     }
 
     mText.SetFontSize(50.0f);
+    mText.SetFontFamilyName(TEXT("‚l‚r ‚o–¾’©"));
 
     mNextScene = this;
 
@@ -55,12 +56,10 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
 
 
 Scene* Title::Update() {
-
-    mText.Draw(TEXT("ƒ^ƒCƒgƒ‹"), D2D1::RectF(550.f, 300.f, 800.f, 400.f));
-    
     onKeyDown();
 
     mBackGround.Draw();
+    mText.Draw(TEXT("ƒ^ƒCƒgƒ‹"), D2D1::RectF(0.f, 0.f, 800.f, 400.f));
     mPlay.Draw(mId);
     mSetting.Draw(mId);
     mEnd.Draw(mId);
