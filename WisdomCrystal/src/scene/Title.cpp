@@ -9,10 +9,9 @@ Title::Title() : mId(0),
                  mKeyWait(0),
                  mPlay(),
                  mSetting(),
+                 mBrush(),
                  mText(),
                  mBackGround(),
-                 mGraphicsDevice(nullptr),
-                 mSoundDevice(nullptr),
                  mNextScene(nullptr)
 {
     // empty
@@ -27,27 +26,27 @@ Title::~Title() {
 bool Title::Init(GraphicsDevice* graphicsDevice,
                  SoundDevice*    soundDevice,
                  GameObjManager *gameObjManager) {
-    mGraphicsDevice = graphicsDevice;
-    mSoundDevice = soundDevice;
 
-    if (mPlay.Init(mGraphicsDevice, mSoundDevice, 0, 600, 460, TEXT("リスト1")) == false) {
+    if (mPlay.Init(graphicsDevice, soundDevice, 0, 600, 460, TEXT("リスト1")) == false) {
         return false;
     }
-    if (mSetting.Init(mGraphicsDevice, mSoundDevice, 1, 600, 490, TEXT("リスト2")) == false) {
+    if (mSetting.Init(graphicsDevice, soundDevice, 1, 600, 490, TEXT("リスト2")) == false) {
         return false;
     }
-    if (mEnd.Init(mGraphicsDevice, mSoundDevice, 2, 600, 520, TEXT("終了")) == false) {
+    if (mEnd.Init(graphicsDevice, soundDevice, 2, 600, 520, TEXT("終了")) == false) {
         return false;
     }
-    if (mText.Init(mGraphicsDevice) == false) {
+    if (mText.Init(graphicsDevice) == false) {
         return false;
     }
-    if (mBackGround.Init(mGraphicsDevice, 0) == false) {
+    if (mBackGround.Init(graphicsDevice, 0) == false) {
         return false;
     }
+
+    mBrush.Init(graphicsDevice);
+    mBrush.CreateLinearGradientBrush();
 
     mText.SetFontSize(50.0f);
-    mText.SetFontFamilyName(TEXT("ＭＳ Ｐ明朝"));
 
     mNextScene = this;
 
@@ -59,6 +58,7 @@ Scene* Title::Update() {
     onKeyDown();
 
     mBackGround.Draw();
+    mBrush.Update();
     mText.Draw(TEXT("タイトル"), D2D1::RectF(0.f, 0.f, 800.f, 400.f));
     mPlay.Draw(mId);
     mSetting.Draw(mId);

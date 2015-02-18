@@ -13,6 +13,8 @@ public:
 
     void Init(GraphicsDevice *mGraphicsDevice);
 
+    void Clear(const D2D1_COLOR_F& fillColor);
+
     void ResetTransform();
 
     void FlipHorizontal(const float centerX, const float centerY);

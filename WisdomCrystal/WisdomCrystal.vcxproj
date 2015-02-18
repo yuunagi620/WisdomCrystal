@@ -35,6 +35,7 @@
     <ClInclude Include="src\win\COM\COMInitializer.h" />
     <ClInclude Include="src\win\COM\COMPtr.h" />
     <ClInclude Include="src\win\COM\SafeRelease.h" />
+    <ClInclude Include="src\win\D2D\D2DBrush.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D2D\D2DImage.h" />
     <ClInclude Include="src\win\D2D\D2DText.h" />
@@ -80,6 +81,7 @@
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\win\COM\COMInitializer.cpp" />
+    <ClCompile Include="src\win\D2D\D2DBrush.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
     <ClCompile Include="src\win\D2D\D2DImage.cpp" />
     <ClCompile Include="src\win\D2D\D2DText.cpp" />

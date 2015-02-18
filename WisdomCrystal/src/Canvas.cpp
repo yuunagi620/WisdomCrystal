@@ -18,6 +18,11 @@ void Canvas::Init(GraphicsDevice* graphicsDevice) {
 }
 
 
+void Canvas::Clear(const D2D1_COLOR_F& fillColor) {
+    mRenderTarget->Clear(fillColor);
+}
+
+
 void Canvas::ResetTransform() {
     mRenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 }

@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "TitleMenu.h"
 #include "BackGround.h"
+#include "win/D2D/D2DBrush.h"
 #include "win/util/Input.h"
 
 
@@ -34,10 +35,8 @@ private:
     TitleMenu mSetting;
     TitleMenu mEnd;
     D2DText mText;
+    D2DBrush mBrush;
     BackGround mBackGround;
-
-    GraphicsDevice *mGraphicsDevice;
-    SoundDevice    *mSoundDevice;
 
     Scene *mNextScene;
 };
