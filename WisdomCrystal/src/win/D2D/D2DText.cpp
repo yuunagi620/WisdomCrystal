@@ -38,17 +38,23 @@ bool D2DText::Init(GraphicsDevice* graphicsDevice) {
 }
 
 
-void D2DText::Draw(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect) {
-    mRenderTarget->DrawText(string.c_str(), string.size(), mTextFormat, layoutRect, mBrush);
+void D2DText::Draw(const std::basic_string<TCHAR>& string,
+                   const int x, const int y, const int width, const int height) {
+
+                       RECT rect = {x, y, width, height};
+    Draw(string, rect);
 }
 
 
-void D2DText::Draw(const std::basic_string<TCHAR>& string, const RECT& rect) {
-    D2D1_RECT_F targetRect = D2D1::RectF(static_cast<float>(rect.left),
-                                         static_cast<float>(rect.top),
-                                         static_cast<float>(rect.right),
-                                         static_cast<float>(rect.bottom));
-    Draw(string, targetRect);
+void D2DText::Draw(const std::basic_string<TCHAR>& string, const RECT& layoutRect) {
+    mRenderTarget->DrawText(string.c_str(),
+                            string.size(),
+                            mTextFormat,
+                            D2D1::RectF(static_cast<float>(layoutRect.left),
+                                        static_cast<float>(layoutRect.top),
+                                        static_cast<float>(layoutRect.right),
+                                        static_cast<float>(layoutRect.bottom)),
+                            mBrush);
 }
 
 

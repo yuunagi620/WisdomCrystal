@@ -9,6 +9,8 @@ Title::Title() : mId(0),
                  mKeyWait(0),
                  mPlay(),
                  mSetting(),
+                 mEnd(),
+                 mCanvas(),
                  mBrush(),
                  mText(),
                  mBackGround(),
@@ -36,6 +38,9 @@ bool Title::Init(GraphicsDevice* graphicsDevice,
     if (mEnd.Init(graphicsDevice, soundDevice, 2, 600, 520, TEXT("終了")) == false) {
         return false;
     }
+
+    mCanvas.Init(graphicsDevice);
+
     if (mText.Init(graphicsDevice) == false) {
         return false;
     }
@@ -59,7 +64,8 @@ Scene* Title::Update() {
 
     mBackGround.Draw();
     mBrush.Update();
-    mText.Draw(TEXT("タイトル"), D2D1::RectF(0.f, 0.f, 800.f, 400.f));
+    mCanvas.FillRectangle(0, 0, 150, 150, mBrush);
+    mText.Draw(TEXT("タイトル"), 300, 600, 400, 800);
     mPlay.Draw(mId);
     mSetting.Draw(mId);
     mEnd.Draw(mId);

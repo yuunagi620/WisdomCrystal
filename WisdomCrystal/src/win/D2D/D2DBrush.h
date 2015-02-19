@@ -17,6 +17,10 @@ public:
 
     void Update();
 
+    inline COMPtr<ID2D1LinearGradientBrush> GetBrush() const {
+        return mBrush;
+    }
+
 private:
     COMPtr<ID2D1RenderTarget> mRenderTarget;
     COMPtr<ID2D1GradientStopCollection> mGradientStops;

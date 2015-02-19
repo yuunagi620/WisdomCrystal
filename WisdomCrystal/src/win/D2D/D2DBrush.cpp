@@ -22,14 +22,17 @@ void D2DBrush::Init(GraphicsDevice* graphicsDevice) {
 
 
 bool D2DBrush::CreateLinearGradientBrush() {
-    D2D1_GRADIENT_STOP gradientStops[2];
-    gradientStops[0].color = D2D1::ColorF(D2D1::ColorF::Yellow, 1);
+    D2D1_GRADIENT_STOP gradientStops[3];
+
+    gradientStops[0].color = D2D1::ColorF(D2D1::ColorF::Red, 1);
     gradientStops[0].position = 0.0f;
-    gradientStops[1].color = D2D1::ColorF(D2D1::ColorF::ForestGreen, 1);
-    gradientStops[1].position = 1.0f;
+    gradientStops[1].color = D2D1::ColorF(D2D1::ColorF(0xffc9cc0));
+    gradientStops[1].position = 0.5f;
+    gradientStops[2].color = D2D1::ColorF(D2D1::ColorF::Red, 1);
+    gradientStops[2].position = 1.0f;
 
     HRESULT hr = mRenderTarget->CreateGradientStopCollection(gradientStops,
-                                                             2,
+                                                             3,
                                                              D2D1_GAMMA_2_2,
                                                              D2D1_EXTEND_MODE_CLAMP,
                                                              &mGradientStops);
@@ -39,17 +42,29 @@ bool D2DBrush::CreateLinearGradientBrush() {
 
     hr = mRenderTarget->CreateLinearGradientBrush(
         D2D1::LinearGradientBrushProperties(
-            D2D1::Point2F(0, 0),
-            D2D1::Point2F(150, 150)),
+            D2D1::Point2F(0, 75),
+            D2D1::Point2F(250, 75)),
         mGradientStops,
         &mBrush);
 
     if (FAILED(hr)) {
         return false;
     }
+
+    return true;
 }
 
 
 void D2DBrush::Update() {
-    mRenderTarget->FillRectangle(D2D1::RectF(0.f, 0.f, 150.f, 150.f), mBrush);
+
+    static int x = -250;
+    x += 5;
+    if (x >= 400) { x = -400; }
+
+    mRenderTarget->CreateLinearGradientBrush(
+        D2D1::LinearGradientBrushProperties(
+            D2D1::Point2F((float)x, 75),
+            D2D1::Point2F(150, 75)),
+        mGradientStops,
+        &mBrush);
 }

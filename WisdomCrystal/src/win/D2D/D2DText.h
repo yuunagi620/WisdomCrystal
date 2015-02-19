@@ -19,9 +19,10 @@ public:
 
     bool Init(GraphicsDevice *mGraphicsDevice);
 
-    void Draw(const std::basic_string<TCHAR>& string, const D2D1_RECT_F& layoutRect);
+    void Draw(const std::basic_string<TCHAR>& string,
+              const int x, const int y, const int width, const int height);
 
-    void Draw(const std::basic_string<TCHAR>& string, const RECT& rect);
+    void Draw(const std::basic_string<TCHAR>& string, const RECT& layoutRect);
 
     bool CreateTextFormat();
 
