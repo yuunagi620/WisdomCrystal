@@ -7,7 +7,6 @@
     <ClInclude Include="src\scene\Loading.h" />
     <ClInclude Include="src\scene\Playing.h" />
     <ClInclude Include="src\scene\Scene.h" />
-    <ClInclude Include="src\util\MathUtil.h" />
     <ClInclude Include="src\win\D2D\D2DCore.h" />
     <ClInclude Include="src\win\D3D\D3DCore.h" />
     <ClInclude Include="src\win\joypad\Joypad.h" />
@@ -46,6 +45,8 @@
     <ClInclude Include="src\win\COM\COMPtr.h" />
     <ClInclude Include="src\Canvas.h" />
     <ClInclude Include="src\win\D2D\D2DBrush.h" />
+    <ClInclude Include="src\util\Rect.h" />
+    <ClInclude Include="src\util\Point.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -53,7 +54,6 @@
     <ClCompile Include="src\scene\Loading.cpp" />
     <ClCompile Include="src\scene\Playing.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
-    <ClCompile Include="src\util\MathUtil.cpp" />
     <ClCompile Include="src\win\D2D\D2DCore.cpp" />
     <ClCompile Include="src\win\D3D\D3DCore.cpp" />
     <ClCompile Include="src\win\joypad\Joypad.cpp" />
@@ -86,6 +86,8 @@
     <ClCompile Include="src\util\CSVFile.cpp" />
     <ClCompile Include="src\Canvas.cpp" />
     <ClCompile Include="src\win\D2D\D2DBrush.cpp" />
+    <ClCompile Include="src\util\Rect.cpp" />
+    <ClCompile Include="src\util\Point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

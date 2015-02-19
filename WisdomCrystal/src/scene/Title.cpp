@@ -3,6 +3,7 @@
 #include "Title.h"
 #include "Loading.h"
 #include "win/util/Input.h"
+#include "util/Point.h"
 
 
 Title::Title() : mId(0),
@@ -69,6 +70,17 @@ Scene* Title::Update() {
     mPlay.Draw(mId);
     mSetting.Draw(mId);
     mEnd.Draw(mId);
+
+    Point p1;
+    Point p2;
+    p2.x = 3;
+    p1 = p2;
+    p1 = 2 * p1;
+
+    if (p1.Equals(p2)) {
+        int a = 3;
+    }
+    
 
     return mNextScene;
 }
