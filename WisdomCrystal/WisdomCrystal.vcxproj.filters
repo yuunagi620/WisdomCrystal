@@ -47,6 +47,7 @@
     <ClInclude Include="src\win\D2D\D2DBrush.h" />
     <ClInclude Include="src\util\Rect.h" />
     <ClInclude Include="src\util\Point.h" />
+    <ClInclude Include="src\util\PointF.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="src\win\D2D\D2DBrush.cpp" />
     <ClCompile Include="src\util\Rect.cpp" />
     <ClCompile Include="src\util\Point.cpp" />
+    <ClCompile Include="src\util\PointF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

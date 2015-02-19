@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "PointF.h"
+
 
 class Point {
 
@@ -24,6 +26,8 @@ public:
     inline bool IsEmpty() {
         return (x == 0 && y == 0);
     }
+
+
 
     // ‰‰ŽZŽq‚Ì’è‹`
     Point& operator = (const Point& p) { x = p.x;  y = p.y;  return *this; }

@@ -3,7 +3,9 @@
 #include "Title.h"
 #include "Loading.h"
 #include "win/util/Input.h"
+#include "util/PointF.h"
 #include "util/Point.h"
+
 
 
 Title::Title() : mId(0),
@@ -71,23 +73,11 @@ Scene* Title::Update() {
     mSetting.Draw(mId);
     mEnd.Draw(mId);
 
-    Point p1(1,1);
-    Point p2(2,2);
-    Point p3(3,3);
-    Point p4(4,4);
+    PointF p1(1,1);
+    PointF p2(2,2);
+    PointF p3(3, 4);
+    Point p4(2,3);
 
-    Point p5(5,5);
-    p5 = p1 + p2;
-    Point p6(5,5);
-    p6 = p1 - p2;
-    Point p7(5,5);
-    p7 = p1 * p2;
-    Point p8(5,5);
-    p8 = p1 * 2;
-    Point p9(5,5);
-    p9 = p1 / p2;
-    Point p10(5,5);
-    p10 = p4 / 2;
 
     return mNextScene;
 }
