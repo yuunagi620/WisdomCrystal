@@ -77,7 +77,7 @@ Scene* Title::Update() {
     PointF p2(2,2);
     PointF p3(3, 4);
     Point p4(2,3);
-    p4.
+    //p4 = p3.ToPointI();
 
     return mNextScene;
 }

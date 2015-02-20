@@ -27,6 +27,11 @@ public:
         return (x == 0 && y == 0);
     }
 
+    // RectF Œ^‚É•ÏŠ·‚µ‚Ä•Ô‚µ‚Ü‚·
+    inline PointF ToPointF() {
+        return PointF(static_cast<float>(x), static_cast<float>(y));
+    }
+
 
     // ‰‰ŽZŽq‚Ì’è‹`
     Point& operator = (const Point& p) { x = p.x;  y = p.y;  return *this; }

@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Point.h"
+
 
 
 class PointF {
@@ -27,10 +27,10 @@ public:
         return (x == 0.f && y == 0.f);
     }
 
-    int ConvertPoint() {
-        return 0;
-    }
-
+    //// RectF Œ^‚É•ÏŠ·‚µ‚Ä•Ô‚µ‚Ü‚·
+    //inline Point ToPointI() {
+    //    return Point(static_cast<int>(x), static_cast<int>(y));
+    //}
 
     // ‰‰ŽZŽq‚Ì’è‹`
     PointF& operator = (const PointF& p) { x = p.x;  y = p.y;  return *this; }
@@ -56,5 +56,4 @@ public:
 
     bool operator==(const PointF& p) const { return  (x == p.x && y == p.y); }
     bool operator!=(const PointF& p) const { return !(x == p.x && y == p.y); }
-
 };
