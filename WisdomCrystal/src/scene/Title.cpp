@@ -73,11 +73,14 @@ Scene* Title::Update() {
     mSetting.Draw(mId);
     mEnd.Draw(mId);
 
+    using namespace Util;
+
     PointF p1(1,1);
     PointF p2(2,2);
     PointF p3(3, 4);
     Point p4(2,3);
-    //p4 = p3.ToPointI();
+
+    p3 = p4;
 
     return mNextScene;
 }

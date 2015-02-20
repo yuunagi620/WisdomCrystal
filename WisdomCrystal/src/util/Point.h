@@ -2,13 +2,12 @@
 
 #pragma once
 
-#include "PointF.h"
 
+namespace Util {
 
 class Point {
 
 public:
-    // public ƒƒ“ƒo•Ï”
     int x, y;
 
 public:
@@ -26,12 +25,6 @@ public:
     inline bool IsEmpty() {
         return (x == 0 && y == 0);
     }
-
-    // RectF Œ^‚É•ÏŠ·‚µ‚Ä•Ô‚µ‚Ü‚·
-    inline PointF ToPointF() {
-        return PointF(static_cast<float>(x), static_cast<float>(y));
-    }
-
 
     // ‰‰Zq‚Ì’è‹`
     Point& operator = (const Point& p) { x = p.x;  y = p.y;  return *this; }
@@ -58,3 +51,5 @@ public:
     bool operator==(const Point& p) const { return  (x == p.x && y == p.y); }
     bool operator!=(const Point& p) const { return !(x == p.x && y == p.y); }
 };
+
+} // namespace Util
