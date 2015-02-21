@@ -3,7 +3,7 @@
 #include "Title.h"
 #include "Loading.h"
 #include "win/util/Input.h"
-#include "util/Vector2D.h"
+#include "util/Color.h"
 
 
 
@@ -74,10 +74,11 @@ Scene* Title::Update() {
 
     using namespace Util;
 
-    Vector2D v1(20, 30);
-    Vector2D v2(45, 70);
+    D2D1::ColorF color(0xff0001);
+    D2D1::ColorF color2(1.0f, 0.f, 0.f);
 
-    auto v3 = Vector2D::Dot(v1, v2);
+    Color c1(0xff0001, 1.f);
+    auto a = c1.ToR8G8B8();
 
     return mNextScene;
 }

@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <cstdint>
+
 
 namespace Util {
 
@@ -12,32 +14,27 @@ public:
 
 public:
     Color();
-    Color( float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 0.0f );
-
+    Color(std::uint32_t rgb, float initA);
+    Color(float initR, float initG, float initB, float initA);
+    Color(std::uint8_t initR, std::uint8_t initG, std::uint8_t initB, std::uint8_t initA);
+    
     virtual ~Color();
 
-    //  2 つの四角形が等しいかどうかを判定します
-    inline bool Equals(const Color& r) {
-        return ((x == r.x) && (y == r.y) && (width == r.width) && (height == r.height));
+    inline std::uint32_t ToR8G8B8() const {
+        const std::uint32_t r_ = static_cast<std::uint32_t>(r * 255) << 16;
+        const std::uint32_t g_ = static_cast<std::uint32_t>(g * 255) <<  8;
+        const std::uint32_t b_ = static_cast<std::uint32_t>(b * 255) <<  0;
+        return (r_ | g_ | b_);
     }
-    
-    //  x，y ，width，heightが 0 の場合は true，違えば false を返します
-    inline bool IsEmpty() {
-        return (x == 0 && y == 0 && width == 0 && height == 0);
-    }
+private:
+    static const UINT32 RED_SHIFT   = 16;
+    static const UINT32 GREEN_SHIFT = 8;
+    static const UINT32 BLUE_SHIFT  = 0;    
 
-    inline int Top()    { return y;          }
-    inline int Bottom() { return y + height; }
-    inline int Left()   { return x;          }
-    inline int Right()  { return x + width;  }
-
-    // 四角形を移動させます
-    inline void Offset(int offsetX, int offsetY) {
-        x += offsetX;
-        y += offsetY;
-        width  += offsetX;
-        height += offsetY;
-    }
+    static const UINT32 RED_MASK   = 0xff << RED_SHIFT;
+    static const UINT32 GREEN_MASK = 0xff << GREEN_SHIFT;
+    static const UINT32 BLUE_MASK  = 0xff << BLUE_SHIFT;   
 };
+
 
 } // namespace Util

@@ -1,23 +1,23 @@
-// RectangleF.h
+// Rect.h
 
 #pragma once
 
 
 namespace Util {
 
-class RectangleF {
+class Rect {
 
 public:
-    float x, y, width, height;
+    int x, y, width, height;
 
 public:
-    RectangleF();
-    RectangleF(float initX, float initY, float initWidth, float initHeight);
+    Rect();
+    Rect(int initX, int initY, int initWidth, int initHeight);
 
-    virtual ~RectangleF();
+    virtual ~Rect();
 
     //  2 ‚Â‚ÌŽlŠpŒ`‚ª“™‚µ‚¢‚©‚Ç‚¤‚©‚ð”»’è‚µ‚Ü‚·
-    inline bool Equals(const RectangleF& r) {
+    inline bool Equals(const Rect& r) {
         return ((x == r.x) && (y == r.y) && (width == r.width) && (height == r.height));
     }
     
@@ -26,13 +26,13 @@ public:
         return (x == 0 && y == 0 && width == 0 && height == 0);
     }
 
-    inline float Top()    { return y;          }
-    inline float Bottom() { return y + height; }
-    inline float Left()   { return x;          }
-    inline float Right()  { return x + width;  }
+    inline int Top()    { return y;          }
+    inline int Bottom() { return y + height; }
+    inline int Left()   { return x;          }
+    inline int Right()  { return x + width;  }
 
     // ŽlŠpŒ`‚ðˆÚ“®‚³‚¹‚Ü‚·
-    inline void Offset(float offsetX, float offsetY) {
+    inline void Offset(int offsetX, int offsetY) {
         x += offsetX;
         y += offsetY;
         width  += offsetX;

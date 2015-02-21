@@ -48,9 +48,9 @@
     <ClInclude Include="src\util\PointF.h" />
     <ClInclude Include="src\util\Convert.h" />
     <ClInclude Include="src\util\Vector2D.h" />
-    <ClInclude Include="src\util\Rectangle.h" />
-    <ClInclude Include="src\util\RectangleF.h" />
     <ClInclude Include="src\util\Color.h" />
+    <ClInclude Include="src\util\Rect.h" />
+    <ClInclude Include="src\util\RectF.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -93,9 +93,9 @@
     <ClCompile Include="src\util\PointF.cpp" />
     <ClCompile Include="src\util\Convert.cpp" />
     <ClCompile Include="src\util\Vector2D.cpp" />
-    <ClCompile Include="src\util\Rectangle.cpp" />
-    <ClCompile Include="src\util\RectangleF.cpp" />
     <ClCompile Include="src\util\Color.cpp" />
+    <ClCompile Include="src\util\Rect.cpp" />
+    <ClCompile Include="src\util\RectF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />
