@@ -2,7 +2,9 @@
 
 #pragma once
 
+#pragma warning (disable: 4005) // C4005 警告無視
 #include <cstdint>
+#pragma warning (default: 4005) // C4005 警告解除
 
 
 namespace Util {
@@ -10,31 +12,35 @@ namespace Util {
 class Color {
 
 public:
-    float r, g, b, a;
-
-public:
     Color();
-    Color(std::uint32_t rgb, float initA);
-    Color(float initR, float initG, float initB, float initA);
-    Color(std::uint8_t initR, std::uint8_t initG, std::uint8_t initB, std::uint8_t initA);
+    Color(float red, float green, float blue, float alpha = 1.0f);
+    Color(std::uint32_t rgb, float alpha = 1.0f);
     
     virtual ~Color();
 
-    inline std::uint32_t ToR8G8B8() const {
-        const std::uint32_t r_ = static_cast<std::uint32_t>(r * 255) << 16;
-        const std::uint32_t g_ = static_cast<std::uint32_t>(g * 255) <<  8;
-        const std::uint32_t b_ = static_cast<std::uint32_t>(b * 255) <<  0;
-        return (r_ | g_ | b_);
-    }
+    // RGB 形式に変換して返します
+    std::uint32_t ToRGB() const;
+
+    float GetRed()   const { return mRed;   }
+    float GetGreen() const { return mGreen; }
+    float GetBlue()  const { return mBlue;  }
+    float GetAlpha() const { return mAlpha; }
+
+    void SetRed  (float red)   { mRed   = red;   }
+    void SetGreen(float green) { mGreen = green; }
+    void SetBlue (float blue)  { mBlue  = blue;  }
+    void SetAlpha(float alpha) { mAlpha = alpha; }
+
 private:
-    static const UINT32 RED_SHIFT   = 16;
-    static const UINT32 GREEN_SHIFT = 8;
-    static const UINT32 BLUE_SHIFT  = 0;    
+    static const UINT32 RED_SHIFT   = 16; // 赤のビットシフト数
+    static const UINT32 GREEN_SHIFT = 8;  // 緑のビットシフト数
+    static const UINT32 BLUE_SHIFT  = 0;  // 青のビットシフト数
 
-    static const UINT32 RED_MASK   = 0xff << RED_SHIFT;
-    static const UINT32 GREEN_MASK = 0xff << GREEN_SHIFT;
-    static const UINT32 BLUE_MASK  = 0xff << BLUE_SHIFT;   
+    static const UINT32 RED_MASK   = 0xff << RED_SHIFT;   // 赤のビットマスク
+    static const UINT32 GREEN_MASK = 0xff << GREEN_SHIFT; // 緑のビットマスク
+    static const UINT32 BLUE_MASK  = 0xff << BLUE_SHIFT;  // 青のビットマスク
+
+    float mRed, mGreen, mBlue, mAlpha;
 };
-
 
 } // namespace Util
