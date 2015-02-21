@@ -33,7 +33,7 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
 
     std::array<int, 7> posArray;
 
-    if (BinaryFileHandler::ImportData<decltype(posArray)>("abc.csv", &posArray) == false) {
+    if (Util::BinaryFileHandler::ImportData<decltype(posArray)>("abc.csv", &posArray) == false) {
         return false;
     }
     Activate(PLAYER, posArray.at(0), posArray.at(1));

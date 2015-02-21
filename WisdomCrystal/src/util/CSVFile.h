@@ -7,6 +7,8 @@
 #include <string>
 
 
+namespace Util {
+
 class CSVFile {
 
 public:
@@ -22,3 +24,5 @@ private:
     std::ifstream mIfstream;
     std::vector<std::string> mFields; // 個々のデータ
 };
+
+} // namespace Util

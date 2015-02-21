@@ -44,9 +44,13 @@
     <ClInclude Include="src\win\COM\COMPtr.h" />
     <ClInclude Include="src\Canvas.h" />
     <ClInclude Include="src\win\D2D\D2DBrush.h" />
-    <ClInclude Include="src\util\Rect.h" />
     <ClInclude Include="src\util\Point.h" />
     <ClInclude Include="src\util\PointF.h" />
+    <ClInclude Include="src\util\Convert.h" />
+    <ClInclude Include="src\util\Vector2D.h" />
+    <ClInclude Include="src\util\Rectangle.h" />
+    <ClInclude Include="src\util\RectangleF.h" />
+    <ClInclude Include="src\util\Color.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -85,9 +89,13 @@
     <ClCompile Include="src\util\CSVFile.cpp" />
     <ClCompile Include="src\Canvas.cpp" />
     <ClCompile Include="src\win\D2D\D2DBrush.cpp" />
-    <ClCompile Include="src\util\Rect.cpp" />
     <ClCompile Include="src\util\Point.cpp" />
     <ClCompile Include="src\util\PointF.cpp" />
+    <ClCompile Include="src\util\Convert.cpp" />
+    <ClCompile Include="src\util\Vector2D.cpp" />
+    <ClCompile Include="src\util\Rectangle.cpp" />
+    <ClCompile Include="src\util\RectangleF.cpp" />
+    <ClCompile Include="src\util\Color.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

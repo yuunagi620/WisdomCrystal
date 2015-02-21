@@ -28,11 +28,15 @@
     <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\util\BinaryFileHandler.h" />
+    <ClInclude Include="src\util\Color.h" />
+    <ClInclude Include="src\util\Convert.h" />
     <ClInclude Include="src\util\CSVFile.h" />
     <ClInclude Include="src\util\CSVHandler.h" />
     <ClInclude Include="src\util\Point.h" />
     <ClInclude Include="src\util\PointF.h" />
-    <ClInclude Include="src\util\Rect.h" />
+    <ClInclude Include="src\util\Rectangle.h" />
+    <ClInclude Include="src\util\RectangleF.h" />
+    <ClInclude Include="src\util\Vector2D.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\win\COM\COMInitializer.h" />
     <ClInclude Include="src\win\COM\COMPtr.h" />
@@ -77,10 +81,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\util\Color.cpp" />
+    <ClCompile Include="src\util\Convert.cpp" />
     <ClCompile Include="src\util\CSVFile.cpp" />
     <ClCompile Include="src\util\Point.cpp" />
     <ClCompile Include="src\util\PointF.cpp" />
-    <ClCompile Include="src\util\Rect.cpp" />
+    <ClCompile Include="src\util\Rectangle.cpp" />
+    <ClCompile Include="src\util\RectangleF.cpp" />
+    <ClCompile Include="src\util\Vector2D.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\win\COM\COMInitializer.cpp" />

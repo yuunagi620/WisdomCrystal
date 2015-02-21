@@ -5,6 +5,8 @@
 #include "CSVFile.h"
 
 
+namespace Util {
+
 CSVFile::CSVFile() : mIfstream()
 {
     // empty
@@ -49,3 +51,5 @@ void CSVFile::reserveFields() {
 
     mFields.reserve(fieldNum);
 }
+
+} // namespace Util

@@ -3,8 +3,7 @@
 #include "Title.h"
 #include "Loading.h"
 #include "win/util/Input.h"
-#include "util/PointF.h"
-#include "util/Point.h"
+#include "util/Vector2D.h"
 
 
 
@@ -75,12 +74,10 @@ Scene* Title::Update() {
 
     using namespace Util;
 
-    PointF p1(1,1);
-    PointF p2(2,2);
-    PointF p3(3, 4);
-    Point p4(2,3);
+    Vector2D v1(20, 30);
+    Vector2D v2(45, 70);
 
-    p3 = p4;
+    auto v3 = Vector2D::Dot(v1, v2);
 
     return mNextScene;
 }

@@ -8,7 +8,7 @@
 #include <fstream>
 #include <sstream>
 
-
+namespace Util {
 namespace BinaryFileHandler {
 
 // CSV ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ
@@ -20,7 +20,10 @@ template<typename T>
 bool ExportData(const std::string& filePath, T *container);
 
 } // namespace BinaryFileHandler
+} // namespace Util
 
+
+namespace Util {
 
 template<typename T>
 bool BinaryFileHandler::ImportData(const std::string& filePath, T* container) {
@@ -67,3 +70,4 @@ bool BinaryFileHandler::ExportData(const std::string& fileName, T* container) {
     return true;
 }
 
+} // namespace Util
