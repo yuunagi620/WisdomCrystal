@@ -19,6 +19,7 @@
     <ClInclude Include="src\object\GameObjManager.h" />
     <ClInclude Include="src\object\Ghost.h" />
     <ClInclude Include="src\object\Player.h" />
+    <ClInclude Include="src\ogg\OggFile.h" />
     <ClInclude Include="src\scene\Loading.h" />
     <ClInclude Include="src\scene\Playing.h" />
     <ClInclude Include="src\scene\Scene.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="src\object\GameObjManager.cpp" />
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\Player.cpp" />
+    <ClCompile Include="src\ogg\OggFile.cpp" />
     <ClCompile Include="src\scene\Loading.cpp" />
     <ClCompile Include="src\scene\Playing.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
@@ -145,8 +147,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\src;$(BOOST_DIR);$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST_DIR)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(OGG_DIR)\libvorbis\include;$(OGG_DIR)\libogg\include;$(ProjectDir)\src;$(BOOST_DIR);$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\lib\Debug;$(BOOST_DIR)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -166,6 +168,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
     <ResourceCompile>
       <ResourceOutputFileName>$(IntDir)%(Filename).res</ResourceOutputFileName>

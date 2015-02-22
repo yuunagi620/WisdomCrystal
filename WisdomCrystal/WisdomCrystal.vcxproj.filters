@@ -51,6 +51,7 @@
     <ClInclude Include="src\util\Color.h" />
     <ClInclude Include="src\util\Rect.h" />
     <ClInclude Include="src\util\RectF.h" />
+    <ClInclude Include="src\ogg\OggFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -96,6 +97,7 @@
     <ClCompile Include="src\util\Color.cpp" />
     <ClCompile Include="src\util\Rect.cpp" />
     <ClCompile Include="src\util\RectF.cpp" />
+    <ClCompile Include="src\ogg\OggFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

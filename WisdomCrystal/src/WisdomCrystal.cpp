@@ -1,6 +1,13 @@
 // WisdomCrystal.cpp
 
+#pragma comment (lib, "libogg_static.lib")
+#pragma comment (lib, "libvorbis_static.lib")
+#pragma comment (lib, "libvorbisfile_static.lib")
+
 #include <CommCtrl.h>
+
+#include "vorbis\vorbisfile.h"
+#include "vorbis\vorbisenc.h"
 
 #include "WisdomCrystal.h"
 #include "win/util/FPSCounter.h"
@@ -87,6 +94,14 @@ bool WisdomCrystal::Init() {
         MessageBox(nullptr, TEXT("Can not initialize SceneChanger."), TEXT("ERROR"), MB_OK);
         return false;
     }
+
+    // Oggファイルのオープン
+    OggVorbis_File* ovf = new OggVorbis_File();
+    char* filename = "resources/sound/BGM/bgm_01.ogg";
+    int error = ov_fopen(filename, ovf);
+
+    delete ovf;
+
 
     // ウィンドウのフルスクリーン化
     mIsFullscreen = false;

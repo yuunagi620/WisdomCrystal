@@ -78,11 +78,7 @@ Scene* Title::Update() {
     D2D1::ColorF color2(1.0f, 0.f, 0.f);
 
     Color c1(1.f, 1.f, 0.f);
-    auto a = c1.ToRGB();
 
-    if (a == 0xff0002) {
-        Sleep(0);
-    }
     return mNextScene;
 }
 
