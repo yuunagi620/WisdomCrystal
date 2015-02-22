@@ -1,14 +1,25 @@
-// OggFile.cpp.h
+// OggFile.h
 
 #pragma once
 
+#include <string>
 
-class OggFile.cpp {
+#include "Deleter.h"
+
+
+namespace Ogg {
+
+class OggFile {
 
 public:
-    OggFile.cpp();
-    virtual ~OggFile.cpp();
+    OggFile();
+    virtual ~OggFile();
+
+    bool Init(const std::string& filePath);
 
 private:
-
+    std::unique_ptr<OggVorbis_File, OvfDeleter> mOvf;
+    WAVEFORMATEX mWaveFormat;
 };
+
+}

@@ -1,13 +1,6 @@
 // WisdomCrystal.cpp
 
-#pragma comment (lib, "libogg_static.lib")
-#pragma comment (lib, "libvorbis_static.lib")
-#pragma comment (lib, "libvorbisfile_static.lib")
-
 #include <CommCtrl.h>
-
-#include "vorbis\vorbisfile.h"
-#include "vorbis\vorbisenc.h"
 
 #include "WisdomCrystal.h"
 #include "win/util/FPSCounter.h"
@@ -26,6 +19,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
       mGraphicsDevice(),
       mSoundDevice(),
       mBGMData(),
+      mOggFile(),
       mGameObjManager(),
       mSceneChanger()
 {
@@ -96,12 +90,10 @@ bool WisdomCrystal::Init() {
     }
 
     // Oggファイルのオープン
-    OggVorbis_File* ovf = new OggVorbis_File();
-    char* filename = "resources/sound/BGM/bgm_01.ogg";
-    int error = ov_fopen(filename, ovf);
-
-    delete ovf;
-
+    if (mOggFile.Init("resources/sound/BGM/bgm_01.ogg") == false) {
+        MessageBox(nullptr, TEXT("Can not initialize OggFile."), TEXT("ERROR"), MB_OK);
+        return false;
+    }
 
     // ウィンドウのフルスクリーン化
     mIsFullscreen = false;
