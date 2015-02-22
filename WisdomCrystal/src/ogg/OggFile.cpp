@@ -10,7 +10,8 @@
 namespace Ogg {
 
 OggFile::OggFile() : mOvf(nullptr),
-                     mWaveFormat()
+                     mFormat(),
+                     mBuffer()
 {
     // empty
 }
@@ -37,12 +38,23 @@ bool OggFile::Init(const std::string& filePath) {
     }
 
     // WAVEFORMATEXÇê›íË
-    mWaveFormat.wFormatTag      = WAVE_FORMAT_PCM;
-    mWaveFormat.nChannels       = static_cast<WORD>(oggInfo->channels);
-    mWaveFormat.nSamplesPerSec  = oggInfo->rate;
-    mWaveFormat.wBitsPerSample  = 16;
-    mWaveFormat.nBlockAlign     = static_cast<WORD>(oggInfo->channels * 2);
-    mWaveFormat.nAvgBytesPerSec = mWaveFormat.nSamplesPerSec * mWaveFormat.nBlockAlign;
+    mFormat.wFormatTag      = WAVE_FORMAT_PCM;
+    mFormat.nChannels       = static_cast<WORD>(oggInfo->channels);
+    mFormat.nSamplesPerSec  = oggInfo->rate;
+    mFormat.wBitsPerSample  = 16;
+    mFormat.nBlockAlign     = static_cast<WORD>(oggInfo->channels * 2);
+    mFormat.nAvgBytesPerSec = mFormat.nSamplesPerSec * mFormat.nBlockAlign;
+
+
+    mBuffer.resize(4096);
+    int bitStream = 0;
+    long readSize = ov_read(mOvf.get(),
+                            reinterpret_cast<char *>(&mBuffer.front()),
+                            4096,
+                            0,
+                            2,
+                            1,
+                            &bitStream);
 
     return true;
 }

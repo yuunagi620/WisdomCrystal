@@ -3,6 +3,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <memory>
 
 #include "vorbis\vorbisfile.h"
 #include "vorbis\vorbisenc.h"
@@ -24,7 +26,8 @@ private:
 
 private:
     std::unique_ptr<OggVorbis_File, OvfDeleter> mOvf;
-    WAVEFORMATEX mWaveFormat;
+    WAVEFORMATEX mFormat;
+    std::vector<unsigned char> mBuffer;
 };
 
 }
