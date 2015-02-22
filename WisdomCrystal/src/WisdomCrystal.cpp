@@ -90,7 +90,7 @@ bool WisdomCrystal::Init() {
     }
 
     // Oggファイルのオープン
-    if (mOggFile.Init("resources/sound/BGM/bgm_01.ogg") == false) {
+    if (mOggFile.Init("resources/sound/BGM/bgm_03.ogg") == false) {
         MessageBox(nullptr, TEXT("Can not initialize OggFile."), TEXT("ERROR"), MB_OK);
         return false;
     }

@@ -4,6 +4,8 @@
 
 #include <string>
 
+#include "vorbis\vorbisfile.h"
+#include "vorbis\vorbisenc.h"
 #include "Deleter.h"
 
 
@@ -16,6 +18,9 @@ public:
     virtual ~OggFile();
 
     bool Init(const std::string& filePath);
+
+private:
+    void setWaveFormat();
 
 private:
     std::unique_ptr<OggVorbis_File, OvfDeleter> mOvf;
