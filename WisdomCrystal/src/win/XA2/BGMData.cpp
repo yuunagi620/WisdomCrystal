@@ -78,11 +78,11 @@ bool BGMData::divideSoundPacket(WaveFile* WaveFile) {
         unsigned int index = 0;
 
         // 最初のパケット
-        mSoundPacketArray.at(index).Init(WaveFile->GetDataBufferPtr(), 0, WaveFile->GetDataSize() / SOUND_PACKET_NUM);
+        mSoundPacketArray.at(index).Init(WaveFile->GetBufferPtr(), 0, WaveFile->GetDataSize() / SOUND_PACKET_NUM);
 
         ++index;
         while (index < SOUND_PACKET_NUM - 1) {
-            mSoundPacketArray.at(index).Init(WaveFile->GetDataBufferPtr(),
+            mSoundPacketArray.at(index).Init(WaveFile->GetBufferPtr(),
                                             (WaveFile->GetDataSize() / SOUND_PACKET_NUM  * index),
                                             (WaveFile->GetDataSize() / SOUND_PACKET_NUM) * (index + 1));
 
@@ -90,7 +90,7 @@ bool BGMData::divideSoundPacket(WaveFile* WaveFile) {
         }
 
         // 最後のパケット
-        mSoundPacketArray.at(index).Init(WaveFile->GetDataBufferPtr(),
+        mSoundPacketArray.at(index).Init(WaveFile->GetBufferPtr(),
                                          WaveFile->GetDataSize() / SOUND_PACKET_NUM  * index,
                                          WaveFile->GetDataSize());
     } catch (const std::out_of_range&) {

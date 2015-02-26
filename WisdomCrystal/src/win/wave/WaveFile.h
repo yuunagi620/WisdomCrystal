@@ -21,7 +21,7 @@ public:
     inline const DWORD GetDataSize() const {
         return mBuffer.size();
     }
-    inline std::vector<unsigned char>* GetDataBufferPtr() {
+    inline std::vector<unsigned char>* GetBufferPtr() {
         return &mBuffer;
     }
 

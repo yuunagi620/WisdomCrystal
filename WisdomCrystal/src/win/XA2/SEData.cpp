@@ -48,7 +48,7 @@ void SEData::SetVolume(const float volume) {
 void SEData::resetSourceVoice() {
     XAUDIO2_BUFFER buffer = {0};
     buffer.AudioBytes = mWaveFile.GetDataSize();
-    buffer.pAudioData = &(mWaveFile.GetDataBufferPtr()->front());
+    buffer.pAudioData = &(mWaveFile.GetBufferPtr()->front());
     buffer.Flags = XAUDIO2_END_OF_STREAM;
 
     mSourceVoice->SubmitSourceBuffer(&buffer);

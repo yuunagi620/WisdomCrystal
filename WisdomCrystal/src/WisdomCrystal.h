@@ -8,7 +8,7 @@
 #include "win/COM/COMInitializer.h"
 #include "GraphicsDevice.h"
 #include "SoundDevice.h"
-#include "ogg/OggFile.h"
+#include "ogg/OggBGM.h"
 #include "object/GameObjManager.h"
 #include "scene/SceneChanger.h"
 
@@ -41,8 +41,7 @@ private:
     COMInitializer mCOMInitializer;
     GraphicsDevice mGraphicsDevice;
     SoundDevice    mSoundDevice;
-    BGMData        mBGMData;
-    Ogg::OggFile   mOggFile;
+    Ogg::OggBGM    mOggBGM;
     GameObjManager mGameObjManager;
     SceneChanger   mSceneChanger;
 };

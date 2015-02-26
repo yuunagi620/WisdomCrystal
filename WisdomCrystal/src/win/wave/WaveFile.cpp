@@ -57,11 +57,11 @@ bool WaveFile::Load(const std::string& filePath){
 
     // フォーマットサイズの読み込み
     std::uint32_t formatSize;
-    ifs.read(reinterpret_cast<char *>(&formatSize), sizeof(formatSize));
+    ifs.read(reinterpret_cast<char*>(&formatSize), sizeof(formatSize));
 
     // フォーマットIDの読み込み
     std::uint16_t id;
-    ifs.read(reinterpret_cast<char *>(&id), sizeof(id));
+    ifs.read(reinterpret_cast<char*>(&id), sizeof(id));
 
     //  フォーマットIDから対応している形式か調べる
     if (id == 1) {
@@ -74,19 +74,19 @@ bool WaveFile::Load(const std::string& filePath){
     }
 
     // チャンネル数の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nChannels), sizeof(mFormat.nChannels));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nChannels), sizeof(mFormat.nChannels));
 
     // サンプルレートの読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nSamplesPerSec), sizeof(mFormat.nSamplesPerSec));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nSamplesPerSec), sizeof(mFormat.nSamplesPerSec));
 
     // データ速度 (Byte/sec)の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nAvgBytesPerSec), sizeof(mFormat.nAvgBytesPerSec));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nAvgBytesPerSec), sizeof(mFormat.nAvgBytesPerSec));
 
     // ブロックサイズ(Byte/sample×チャンネル数)の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.nBlockAlign), sizeof(mFormat.nBlockAlign));
+    ifs.read(reinterpret_cast<char*>(&mFormat.nBlockAlign), sizeof(mFormat.nBlockAlign));
 
     // サンプル当たりのビット数の読み込み
-    ifs.read(reinterpret_cast<char *>(&mFormat.wBitsPerSample), sizeof(mFormat.wBitsPerSample));
+    ifs.read(reinterpret_cast<char*>(&mFormat.wBitsPerSample), sizeof(mFormat.wBitsPerSample));
 
     // 拡張ヘッダ情報を読み飛ばす
     ifs.ignore(formatSize - 16);
@@ -101,11 +101,11 @@ bool WaveFile::Load(const std::string& filePath){
 
     // 波形データのバイト数の読み込み
     std::uint32_t size;
-    ifs.read(reinterpret_cast<char *>(&size), sizeof(size));
+    ifs.read(reinterpret_cast<char*>(&size), sizeof(size));
 
     // 波形データの読み込み
     mBuffer.resize(size);
-    ifs.read(reinterpret_cast<char *>(&mBuffer.front()), size);
+    ifs.read(reinterpret_cast<char*>(&mBuffer.front()), size);
 
     return true;
 }

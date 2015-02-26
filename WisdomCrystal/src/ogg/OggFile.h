@@ -5,9 +5,10 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <queue>
+#include <vorbis/vorbisfile.h>
+#include <vorbis/vorbisenc.h>
 
-#include "vorbis\vorbisfile.h"
-#include "vorbis\vorbisenc.h"
 #include "Deleter.h"
 
 
@@ -21,13 +22,20 @@ public:
 
     bool Init(const std::string& filePath);
 
-private:
-    void setWaveFormat();
+    WAVEFORMATEX GetWaveFormatEx() const { return mFormat; }
+    std::vector<char>* GetBufferPtr() { return &mBuffer.front(); }
+
+    void Update();
 
 private:
+    static const int BUFFER_SIZE = 4096;
+
     std::unique_ptr<OggVorbis_File, OvfDeleter> mOvf;
     WAVEFORMATEX mFormat;
-    std::vector<unsigned char> mBuffer;
+
+    std::queue<std::vector<char>> mBuffer;
+    bool mIsLooped;
+    long mOffset;
 };
 
 }

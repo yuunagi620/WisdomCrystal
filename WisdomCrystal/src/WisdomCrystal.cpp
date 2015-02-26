@@ -18,8 +18,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
       mCOMInitializer(),
       mGraphicsDevice(),
       mSoundDevice(),
-      mBGMData(),
-      mOggFile(),
+      mOggBGM(),
       mGameObjManager(),
       mSceneChanger()
 {
@@ -69,14 +68,6 @@ bool WisdomCrystal::Init() {
         return false;
     }
 
-    // BGMData の初期化
-    if (mBGMData.Init(&mSoundDevice, "resources/sound/BGM/bgm_03.wav") == false) { 
-        MessageBox(nullptr, TEXT("Can not initialize BGM Data."), TEXT("ERROR"), MB_OK);
-    }
-
-    mBGMData.SetVolume(0.5f);
-    mBGMData.Start();
-
     // GameObjManager の初期化
     if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
         MessageBox(nullptr, TEXT("Can not initialize GameObjManager."), TEXT("ERROR"), MB_OK);
@@ -89,15 +80,17 @@ bool WisdomCrystal::Init() {
         return false;
     }
 
-    // Oggファイルのオープン
-    if (mOggFile.Init("resources/sound/BGM/bgm_03.ogg") == false) {
-        MessageBox(nullptr, TEXT("Can not initialize OggFile."), TEXT("ERROR"), MB_OK);
-        return false;
-    }
-
     // ウィンドウのフルスクリーン化
     mIsFullscreen = false;
     mGraphicsDevice.SetFullScreenState(mIsFullscreen);
+
+    // BGMData の初期化
+    if (mOggBGM.Init(&mSoundDevice, "resources/sound/BGM/bgm_03.ogg") == false) { 
+        MessageBox(nullptr, TEXT("Can not initialize BGM Data."), TEXT("ERROR"), MB_OK);
+    }
+
+    mOggBGM.SetVolume(0.5f);
+    mOggBGM.Start();
 
     return true;
 }
@@ -134,7 +127,7 @@ int WisdomCrystal::MessageLoop() {
                 fpsCounter.CountFPS();
                 DebugManager::OutputValue(fpsCounter.GetFPS());
             }
-            mBGMData.UpdateBGM();
+            mOggBGM.UpdateBGM();
             UpdateWindow(GetHWnd());
         }
 
@@ -206,9 +199,9 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
 
     // debug
     if (wParam == VK_F1) {
-        static bool isOn = true;
-        isOn = !isOn;
-        isOn ? mBGMData.Start() : mBGMData.Stop() ;
+        //static bool isOn = true;
+        //isOn = !isOn;
+        //isOn ? mOggBGM.Start() : mOggBGM.Stop() ;
     }
 
 }

@@ -72,13 +72,6 @@ Scene* Title::Update() {
     mSetting.Draw(mId);
     mEnd.Draw(mId);
 
-    using namespace Util;
-
-    D2D1::ColorF color(0xff0001);
-    D2D1::ColorF color2(1.0f, 0.f, 0.f);
-
-    Color c1(1.f, 1.f, 0.f);
-
     return mNextScene;
 }
 

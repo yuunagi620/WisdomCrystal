@@ -33,14 +33,14 @@ bool XA2Core::Init() {
 
 
 std::shared_ptr<IXAudio2SourceVoice> XA2Core::CreateSourceVoice(const WAVEFORMATEX& waveFormatEx) {
-    IXAudio2SourceVoice *tempSourceVoice = nullptr;
+    IXAudio2SourceVoice* tempSourceVoice = nullptr;
     HRESULT hr = mXAudio->CreateSourceVoice(&tempSourceVoice, &waveFormatEx);
     if (FAILED(hr)) {
         return nullptr;
     }
 
     // ソースボイス用のデリータ
-    auto deleter = [](IXAudio2SourceVoice *ptr) {
+    auto deleter = [](IXAudio2SourceVoice* ptr) {
         if (ptr != nullptr) {
             ptr->Stop();
             ptr->DestroyVoice();
