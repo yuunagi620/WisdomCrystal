@@ -25,12 +25,14 @@ bool OggBGM::Init(SoundDevice* soundDevice, const std::string& filePath) {
     }
 
     // SourceVoice �̍쐬
-    mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx());
+    mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx(), this);
     if (mSourceVoice == nullptr) {
         MessageBox(nullptr, TEXT("OggBGM: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false;
     }
 
+    mOggFile.Update();
+    UpdateBGM();
     return true;
 }
 
@@ -53,12 +55,17 @@ void OggBGM::UpdateBGM() {
     }
 
     mOggFile.Update();
+    static auto i = 0;
+
     XAUDIO2_BUFFER buffer = {0};
-    buffer.AudioBytes = mOggFile.GetBufferPtr()->size();
-    buffer.pAudioData = reinterpret_cast<unsigned char*>(&mOggFile.GetBufferPtr()->front());
+    buffer.AudioBytes = mOggFile.GetBufferPtr()->at(i).size();
+    buffer.pAudioData = reinterpret_cast<unsigned char*>(&mOggFile.GetBufferPtr()->at(i).front());
     buffer.Flags = 0;
 
     mSourceVoice->SubmitSourceBuffer(&buffer);
+
+    ++i;
+    if (i == 21) {i =0;}
 }
 
 

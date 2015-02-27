@@ -13,7 +13,7 @@ namespace Ogg {
 OggFile::OggFile() : mOvf(nullptr),
                      mFormat(),
                      mBuffer(),
-                     mIsLooped(true),
+                     mIsLoaded(false),
                      mOffset(0)
 {
     // empty
@@ -53,9 +53,10 @@ bool OggFile::Init(const std::string& filePath) {
 
 
 void OggFile::Update() {
-    mBuffer.push(std::vector<char>());	
-    //mBuffer.back().resize(262144);
-    mBuffer.back().resize(162144);
+    if (mIsLoaded) { return; }
+
+    mBuffer.push_back(std::vector<char>());	
+    mBuffer.back().resize(100000);
 
     int readSize = 0;
     int bitStream = 0;
@@ -73,15 +74,9 @@ void OggFile::Update() {
 
         // 曲が終わった場合
 	    if (readSize == 0) {
-            if (mIsLooped) {
-
-                // イントロを抜かした位置にシーク
-                ov_pcm_seek(mOvf.get(), mOffset); 
-            } else {
-
-                // ループしないので何もせず抜ける
-                break;
-            }
+            mBuffer.back().resize(completeSize);
+            mIsLoaded = true;
+            break;
         } 
 
         completeSize += readSize;

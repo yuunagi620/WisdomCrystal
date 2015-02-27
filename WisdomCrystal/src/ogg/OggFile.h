@@ -23,7 +23,7 @@ public:
     bool Init(const std::string& filePath);
 
     WAVEFORMATEX GetWaveFormatEx() const { return mFormat; }
-    std::vector<char>* GetBufferPtr() { return &mBuffer.front(); }
+    std::vector<std::vector<char>>* GetBufferPtr() { return &mBuffer; }
 
     void Update();
 
@@ -33,8 +33,8 @@ private:
     std::unique_ptr<OggVorbis_File, OvfDeleter> mOvf;
     WAVEFORMATEX mFormat;
 
-    std::queue<std::vector<char>> mBuffer;
-    bool mIsLooped;
+    std::vector<std::vector<char>> mBuffer;
+    bool mIsLoaded;
     long mOffset;
 };
 
