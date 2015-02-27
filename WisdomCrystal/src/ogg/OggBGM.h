@@ -33,6 +33,7 @@ public:
 private:
     OggFile mOggFile;
     std::shared_ptr<IXAudio2SourceVoice> mSourceVoice;
+    int mBufferIndex;
 };
 
 } // namespace Ogg

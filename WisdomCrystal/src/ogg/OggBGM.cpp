@@ -5,7 +5,9 @@
 
 namespace Ogg {
 
-OggBGM::OggBGM() : mSourceVoice(nullptr)
+OggBGM::OggBGM() : mOggFile(),
+                   mSourceVoice(nullptr),
+                   mBufferIndex(0)
 {
     // empty
 }
@@ -55,17 +57,15 @@ void OggBGM::UpdateBGM() {
     }
 
     mOggFile.Update();
-    static auto i = 0;
+    static auto it = mOggFile.GetBufferPtr()->begin();
 
     XAUDIO2_BUFFER buffer = {0};
-    buffer.AudioBytes = mOggFile.GetBufferPtr()->at(i).size();
-    buffer.pAudioData = reinterpret_cast<unsigned char*>(&mOggFile.GetBufferPtr()->at(i).front());
+    buffer.AudioBytes = mOggFile.GetBufferPtr()->at(mBufferIndex).size();
+    buffer.pAudioData = reinterpret_cast<unsigned char*>(&mOggFile.GetBufferPtr()->at(mBufferIndex).front());
     buffer.Flags = 0;
-
     mSourceVoice->SubmitSourceBuffer(&buffer);
 
-    ++i;
-    if (i == 21) {i =0;}
+    ++mBufferIndex %= mOggFile.GetBufferPtr()->size();
 }
 
 
