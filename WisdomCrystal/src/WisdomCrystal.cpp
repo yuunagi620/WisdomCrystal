@@ -199,9 +199,9 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
 
     // debug
     if (wParam == VK_F1) {
-        //static bool isOn = true;
-        //isOn = !isOn;
-        //isOn ? mOggBGM.Start() : mOggBGM.Stop() ;
+        static bool isOn = true;
+        isOn = !isOn;
+        isOn ? mOggBGM.Start() : mOggBGM.Stop() ;
     }
 
 }

@@ -21,8 +21,7 @@ public:
 
     bool Init();
 
-    std::shared_ptr<IXAudio2SourceVoice> CreateSourceVoice(const WAVEFORMATEX& waveFormatEx,
-                                                           IXAudio2VoiceCallback* callback = nullptr);
+    std::shared_ptr<IXAudio2SourceVoice> CreateSourceVoice(const WAVEFORMATEX& waveFormatEx);
 
 private:
     COMPtr<IXAudio2> mXAudio;

@@ -27,13 +27,13 @@ bool OggBGM::Init(SoundDevice* soundDevice, const std::string& filePath) {
     }
 
     // SourceVoice の作成
-    mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx(), this);
+    mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx());
     if (mSourceVoice == nullptr) {
         MessageBox(nullptr, TEXT("OggBGM: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false;
     }
 
-    mOggFile.Update();
+    mOggFile.Load(1000000);
     UpdateBGM();
     return true;
 }
@@ -53,11 +53,10 @@ void OggBGM::UpdateBGM() {
     XAUDIO2_VOICE_STATE state;
     mSourceVoice->GetState(&state);
     if (state.BuffersQueued >= 2) {
-        return;
+        return; // 再生キューに2つ以上のバッファがあった場合処理を更新しない
     }
 
-    mOggFile.Update();
-    static auto it = mOggFile.GetBufferPtr()->begin();
+    mOggFile.Load(1000000);
 
     XAUDIO2_BUFFER buffer = {0};
     buffer.AudioBytes = mOggFile.GetBufferPtr()->at(mBufferIndex).size();

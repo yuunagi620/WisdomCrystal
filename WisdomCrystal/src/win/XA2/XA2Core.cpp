@@ -32,10 +32,9 @@ bool XA2Core::Init() {
 }
 
 
-std::shared_ptr<IXAudio2SourceVoice> XA2Core::CreateSourceVoice(const WAVEFORMATEX& waveFormatEx,
-                                                                IXAudio2VoiceCallback* callback) {
+std::shared_ptr<IXAudio2SourceVoice> XA2Core::CreateSourceVoice(const WAVEFORMATEX& waveFormatEx) {
     IXAudio2SourceVoice* tempSourceVoice = nullptr;
-    HRESULT hr = mXAudio->CreateSourceVoice(&tempSourceVoice, &waveFormatEx, 0, XAUDIO2_DEFAULT_FREQ_RATIO, callback);
+    HRESULT hr = mXAudio->CreateSourceVoice(&tempSourceVoice, &waveFormatEx);
     if (FAILED(hr)) {
         return nullptr;
     }

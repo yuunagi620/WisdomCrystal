@@ -7,7 +7,7 @@
 
 namespace Ogg {
 
-class OggBGM : private IXAudio2VoiceCallback {
+class OggBGM {
 
 public:
     OggBGM();
@@ -21,14 +21,6 @@ public:
     void UpdateBGM();
 
     void SetVolume(const float volume);
-
-    void WINAPI OnStreamEnd() {};
-    void WINAPI OnVoiceProcessingPassEnd() {};
-    void WINAPI OnVoiceProcessingPassStart(UINT32) {};
-    void WINAPI OnBufferEnd(void *) {};
-    void WINAPI OnBufferStart(void *) {};
-    void WINAPI OnLoopEnd(void *) {};
-    void WINAPI OnVoiceError(void *, HRESULT) {};
 
 private:
     OggFile mOggFile;

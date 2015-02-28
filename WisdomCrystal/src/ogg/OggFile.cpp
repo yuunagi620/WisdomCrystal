@@ -5,7 +5,6 @@
 #pragma comment (lib, "libvorbisfile_static.lib")
 
 #include "OggFile.h"
-#include "util/CSVHandler.h"
 
 
 namespace Ogg {
@@ -13,8 +12,7 @@ namespace Ogg {
 OggFile::OggFile() : mOvf(nullptr),
                      mFormat(),
                      mBuffer(),
-                     mIsLoaded(false),
-                     mOffset(0)
+                     mIsLoadedComplete(false)
 {
     // empty
 }
@@ -52,16 +50,19 @@ bool OggFile::Init(const std::string& filePath) {
 }
 
 
-void OggFile::Update() {
-    if (mIsLoaded) { return; }
+void OggFile::Load(int size) {
+    if (mIsLoadedComplete) {
+        return;
+    }
 
     mBuffer.push_back(std::vector<char>());	
-    mBuffer.back().resize(100000);
+    mBuffer.back().resize(size);
 
-    int readSize = 0;
-    int bitStream = 0;
-    long completeSize = 0;
-    long requestSize = 4096;
+    int bitStream = 0;     // 現在の論理ビットストリームの番号．特に使用しない
+    int readSize  = 0;     // 1回で読み込んだサイズ
+    long completeSize = 0; // 今まで読み込んだサイズ
+
+    long requestSize = MAX_READ_SIZE; // 1回の読み込みに要求するサイズ
 
     for(;;) {
 	    readSize = ov_read(mOvf.get(),
@@ -75,19 +76,20 @@ void OggFile::Update() {
         // 曲が終わった場合
 	    if (readSize == 0) {
             mBuffer.back().resize(completeSize);
-            mIsLoaded = true;
+            mIsLoadedComplete = true;
             break;
         } 
 
+        // 書き込んだサイズを足す
         completeSize += readSize;
 
-        // 波形データ配列の次の書き込み位置がバッファサイズを超えてたらループを抜ける
-	    if (completeSize >= mBuffer.back().size()) {
+        // バッファの次の書き込み位置がバッファサイズを超えてたらループを抜ける
+	    if (completeSize >= static_cast<long>(mBuffer.back().size())) {
 	        break;
 	    }
 
-        // バッファを全部書き込んでなかったら次の書き込み要求サイズをバッファサイズから書き込んだサイズを引いたものにする
-	    if (mBuffer.back().size() - completeSize < 4096) {
+        // 残りのバッファサイズに合わせて requestSize を調整 
+	    if (mBuffer.back().size() - completeSize < MAX_READ_SIZE) {
 	        requestSize = mBuffer.back().size() - completeSize;
 	    }
 

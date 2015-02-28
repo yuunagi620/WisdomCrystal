@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <queue>
 #include <vorbis/vorbisfile.h>
 #include <vorbis/vorbisenc.h>
 
@@ -22,20 +21,20 @@ public:
 
     bool Init(const std::string& filePath);
 
-    WAVEFORMATEX GetWaveFormatEx() const { return mFormat; }
-    std::vector<std::vector<char>>* GetBufferPtr() { return &mBuffer; }
+    void Load(int size);
 
-    void Update();
+    inline WAVEFORMATEX GetWaveFormatEx() const { return mFormat; }
+
+    inline std::vector<std::vector<char>>* GetBufferPtr() { return &mBuffer; }
 
 private:
-    static const int BUFFER_SIZE = 4096;
+    static const int MAX_READ_SIZE = 4096; // ov_read ä÷êîÇÃãKíËíl
 
     std::unique_ptr<OggVorbis_File, OvfDeleter> mOvf;
     WAVEFORMATEX mFormat;
 
     std::vector<std::vector<char>> mBuffer;
-    bool mIsLoaded;
-    long mOffset;
+    bool mIsLoadedComplete;
 };
 
 }
