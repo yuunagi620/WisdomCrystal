@@ -21,7 +21,7 @@ public:
 
     bool Init(const std::string& filePath);
 
-    void Load(int size);
+    void Load(int size = 1048576);
 
     inline WAVEFORMATEX GetWaveFormatEx() const { return mFormat; }
 
@@ -31,9 +31,8 @@ private:
     static const int MAX_READ_SIZE = 4096; // ov_read ä÷êîÇÃãKíËíl
 
     std::unique_ptr<OggVorbis_File, OvfDeleter> mOvf;
-    WAVEFORMATEX mFormat;
-
     std::vector<std::vector<char>> mBuffer;
+    WAVEFORMATEX mFormat;
     bool mIsLoadedComplete;
 };
 

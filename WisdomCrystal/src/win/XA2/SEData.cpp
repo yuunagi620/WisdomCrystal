@@ -22,7 +22,7 @@ bool SEData::Init(SoundDevice* soundDevice, const std::string& filePath) {
     }
 
     // SourceVoice �̍쐬
-    mSourceVoice = soundDevice->CreateSourceVoice(mWaveFile.GetWaveFormatEx());
+    mSourceVoice = soundDevice->CreateSourceVoice(mWaveFile.GetWaveFormatEx(), nullptr);
     if (mSourceVoice == nullptr) {
         MessageBox(nullptr, TEXT("SEData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false;

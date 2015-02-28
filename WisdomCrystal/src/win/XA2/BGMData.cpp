@@ -27,7 +27,7 @@ bool BGMData::Init(SoundDevice* soundDevice, const std::string& filePath) {
     }
 
     // SourceVoice �̍쐬
-    mSourceVoiceForBGM = soundDevice->CreateSourceVoice(WaveFile.GetWaveFormatEx());
+    mSourceVoiceForBGM = soundDevice->CreateSourceVoice(WaveFile.GetWaveFormatEx(), nullptr);
     if (mSourceVoiceForBGM == nullptr) {
         MessageBox(nullptr, TEXT("BGMData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false;

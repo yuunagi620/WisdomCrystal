@@ -7,7 +7,7 @@
 
 namespace Ogg {
 
-class OggBGM {
+class OggBGM : public IXAudio2VoiceCallback {
 
 public:
     OggBGM();
@@ -16,11 +16,24 @@ public:
     bool Init(SoundDevice* soundDevice, const std::string& filePath);
 
     void Start();
+
     void Stop();
 
-    void UpdateBGM();
+    bool Update();
 
-    void SetVolume(const float volume);
+    void SetVolume(float volume);
+
+    // IXAudio2VoiceCallback のコールバック関数の実装
+    void WINAPI OnBufferEnd(void*) { Update(); } // ボイスがバッファーの処理を終了時にUpdateを呼ぶ
+
+    // 何もしないメソッドがあっても全てをオーバーライドする必要がある
+    // 以下の関数は何もしないため空にしておく
+    void WINAPI OnStreamEnd() {}
+    void WINAPI OnVoiceProcessingPassEnd() {}
+    void WINAPI OnVoiceProcessingPassStart(UINT32) {}
+    void WINAPI OnBufferStart(void*) {}
+    void WINAPI OnLoopEnd(void*) {}
+    void WINAPI OnVoiceError(void*, HRESULT) {}
 
 private:
     OggFile mOggFile;

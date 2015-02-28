@@ -27,14 +27,14 @@ bool OggBGM::Init(SoundDevice* soundDevice, const std::string& filePath) {
     }
 
     // SourceVoice の作成
-    mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx());
+    mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx(), this);
     if (mSourceVoice == nullptr) {
         MessageBox(nullptr, TEXT("OggBGM: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false;
     }
 
-    mOggFile.Load(1000000);
-    UpdateBGM();
+    mOggFile.Load(); // 予め，余分に1つ多く読み込んでおく
+    Update();
     return true;
 }
 
@@ -49,26 +49,32 @@ void OggBGM::Stop() {
 }
 
 
-void OggBGM::UpdateBGM() {
-    XAUDIO2_VOICE_STATE state;
-    mSourceVoice->GetState(&state);
-    if (state.BuffersQueued >= 2) {
-        return; // 再生キューに2つ以上のバッファがあった場合処理を更新しない
+bool OggBGM::Update() {
+    mOggFile.Load();
+
+    std::vector<char>* currentBuffer;
+
+    try {
+        currentBuffer = &mOggFile.GetBufferPtr()->at(mBufferIndex);
+    } catch (const std::out_of_range&) {
+        return false; // 範囲外アクセス
     }
 
-    mOggFile.Load(1000000);
+    // ボイスキューに新しいバッファーを追加
+    XAUDIO2_BUFFER xa2Buffer = {0};
+    xa2Buffer.AudioBytes = currentBuffer->size();
+    xa2Buffer.pAudioData = reinterpret_cast<unsigned char*>(&currentBuffer->front());
+    xa2Buffer.Flags = 0;
+    mSourceVoice->SubmitSourceBuffer(&xa2Buffer);
 
-    XAUDIO2_BUFFER buffer = {0};
-    buffer.AudioBytes = mOggFile.GetBufferPtr()->at(mBufferIndex).size();
-    buffer.pAudioData = reinterpret_cast<unsigned char*>(&mOggFile.GetBufferPtr()->at(mBufferIndex).front());
-    buffer.Flags = 0;
-    mSourceVoice->SubmitSourceBuffer(&buffer);
-
+    // 1つインデックスを進めて最大値を超えていたら最初に戻る
     ++mBufferIndex %= mOggFile.GetBufferPtr()->size();
+
+    return true;
 }
 
 
-void OggBGM::SetVolume(const float volume) {
+void OggBGM::SetVolume(float volume) {
     mSourceVoice->SetVolume(volume);
 }
 

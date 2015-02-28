@@ -22,6 +22,7 @@
     <ClInclude Include="src\ogg\Deleter.h" />
     <ClInclude Include="src\ogg\OggBGM.h" />
     <ClInclude Include="src\ogg\OggFile.h" />
+    <ClInclude Include="src\ogg\VoiceContext.h" />
     <ClInclude Include="src\scene\Loading.h" />
     <ClInclude Include="src\scene\Playing.h" />
     <ClInclude Include="src\scene\Scene.h" />

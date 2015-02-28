@@ -11,9 +11,9 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
                              const int screenWidth,
                              const int screenHeight,
                              const LPCTSTR captionName,
-                             const LPCTSTR windowClassName)
+                             const LPCTSTR windowClassName):
 
-    : WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
+      WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
       mIsFullscreen(false),
       mCOMInitializer(),
       mGraphicsDevice(),
@@ -127,7 +127,6 @@ int WisdomCrystal::MessageLoop() {
                 fpsCounter.CountFPS();
                 DebugManager::OutputValue(fpsCounter.GetFPS());
             }
-            mOggBGM.UpdateBGM();
             UpdateWindow(GetHWnd());
         }
 
@@ -170,7 +169,7 @@ void WisdomCrystal::onUpdate() {
     BeginPaint(GetHWnd(), &ps);
     mGraphicsDevice.BeginDraw();
     
-    mGraphicsDevice.ClearScreen(D2D1::ColorF(0x000000));
+    mGraphicsDevice.ClearScreen(D2D1::ColorF(0x000000)); // çïÇ≈îwåiÇìhÇËÇ¬Ç‘Ç∑
 
     mSceneChanger.UpdateScene();
     

@@ -10,8 +10,8 @@
 namespace Ogg {
 
 OggFile::OggFile() : mOvf(nullptr),
-                     mFormat(),
                      mBuffer(),
+                     mFormat(),
                      mIsLoadedComplete(false)
 {
     // empty

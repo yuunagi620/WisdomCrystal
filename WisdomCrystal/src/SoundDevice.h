@@ -15,7 +15,8 @@ public:
     bool Init();
 
     // ソースボイスの作成
-    std::shared_ptr<IXAudio2SourceVoice> CreateSourceVoice(const WAVEFORMATEX& waveFormatEx);
+    std::shared_ptr<IXAudio2SourceVoice> CreateSourceVoice(const WAVEFORMATEX& waveFormatEx,
+                                                           IXAudio2VoiceCallback* callback);
 
 private:
     XA2Core mXA2Core;

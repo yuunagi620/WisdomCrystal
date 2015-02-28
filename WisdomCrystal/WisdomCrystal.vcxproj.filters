@@ -54,6 +54,7 @@
     <ClInclude Include="src\ogg\OggFile.h" />
     <ClInclude Include="src\ogg\Deleter.h" />
     <ClInclude Include="src\ogg\OggBGM.h" />
+    <ClInclude Include="src\ogg\VoiceContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
