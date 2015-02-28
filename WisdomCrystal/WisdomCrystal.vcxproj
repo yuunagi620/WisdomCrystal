@@ -22,7 +22,7 @@
     <ClInclude Include="src\ogg\Deleter.h" />
     <ClInclude Include="src\ogg\OggBGM.h" />
     <ClInclude Include="src\ogg\OggFile.h" />
-    <ClInclude Include="src\ogg\VoiceContext.h" />
+    <ClInclude Include="src\ogg\OggSE.h" />
     <ClInclude Include="src\scene\Loading.h" />
     <ClInclude Include="src\scene\Playing.h" />
     <ClInclude Include="src\scene\Scene.h" />
@@ -76,6 +76,7 @@
     <ClCompile Include="src\object\Player.cpp" />
     <ClCompile Include="src\ogg\OggBGM.cpp" />
     <ClCompile Include="src\ogg\OggFile.cpp" />
+    <ClCompile Include="src\ogg\OggSE.cpp" />
     <ClCompile Include="src\scene\Loading.cpp" />
     <ClCompile Include="src\scene\Playing.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />

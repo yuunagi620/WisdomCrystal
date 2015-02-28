@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Canvas.h"
 #include "win/D2D/D2DImage.h"
+#include "ogg/OggSE.h"
 
 
 class Player : public GameObject {
@@ -31,7 +32,7 @@ private:
     SoundDevice* mSoundDevice;
 
     D2DImage mImage;
-    SEData mGameOverSE;
+    Ogg::OggSE mGameOverSE;
 
     int mX, mY;
     bool mIsAlive;

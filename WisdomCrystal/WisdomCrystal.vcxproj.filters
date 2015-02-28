@@ -54,7 +54,7 @@
     <ClInclude Include="src\ogg\OggFile.h" />
     <ClInclude Include="src\ogg\Deleter.h" />
     <ClInclude Include="src\ogg\OggBGM.h" />
-    <ClInclude Include="src\ogg\VoiceContext.h" />
+    <ClInclude Include="src\ogg\OggSE.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -102,6 +102,7 @@
     <ClCompile Include="src\util\RectF.cpp" />
     <ClCompile Include="src\ogg\OggFile.cpp" />
     <ClCompile Include="src\ogg\OggBGM.cpp" />
+    <ClCompile Include="src\ogg\OggSE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />
