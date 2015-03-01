@@ -6,7 +6,7 @@
 BGMData::BGMData() : SOUND_PACKET_NUM(2),
                      mNextPacketIndex(0),
                      mSoundPacketArray(SOUND_PACKET_NUM),
-                     mSourceVoiceForBGM(nullptr)
+                     mSourceVoice(nullptr)
 {
     // empty
 }
@@ -27,8 +27,8 @@ bool BGMData::Init(SoundDevice* soundDevice, const std::string& filePath) {
     }
 
     // SourceVoice ‚Ìì¬
-    mSourceVoiceForBGM = soundDevice->CreateSourceVoice(WaveFile.GetWaveFormatEx(), nullptr);
-    if (mSourceVoiceForBGM == nullptr) {
+    mSourceVoice = soundDevice->CreateSourceVoice(WaveFile.GetWaveFormatEx(), nullptr);
+    if (mSourceVoice == nullptr) {
         MessageBox(nullptr, TEXT("BGMData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
         return false;
     }
@@ -39,36 +39,36 @@ bool BGMData::Init(SoundDevice* soundDevice, const std::string& filePath) {
         return false;
     }
 
-    mSoundPacketArray.front().AddSoundPacket(mSourceVoiceForBGM);
+    mSoundPacketArray.front().AddSoundPacket(mSourceVoice);
     mNextPacketIndex = 1;
     return true;
 }
 
 
 void BGMData::Start() {
-    mSourceVoiceForBGM->Start();
+    mSourceVoice->Start();
 }
 
 
 void BGMData::Stop() {
-    mSourceVoiceForBGM->Stop();
+    mSourceVoice->Stop();
 }
 
 
 void BGMData::UpdateBGM() {
     XAUDIO2_VOICE_STATE state;
-    mSourceVoiceForBGM->GetState(&state);
+    mSourceVoice->GetState(&state);
     if (state.BuffersQueued >= SOUND_PACKET_NUM) {
         return;
     }
-    mSoundPacketArray.at(mNextPacketIndex).AddSoundPacket(mSourceVoiceForBGM);
+    mSoundPacketArray.at(mNextPacketIndex).AddSoundPacket(mSourceVoice);
     ++mNextPacketIndex;
     mNextPacketIndex %= SOUND_PACKET_NUM; // Å‘å’l‚ð’´‚¦‚½‚çÅ‰‚É–ß‚é
 }
 
 
 void BGMData::SetVolume(const float volume) {
-    mSourceVoiceForBGM->SetVolume(volume);
+    mSourceVoice->SetVolume(volume);
 }
 
 

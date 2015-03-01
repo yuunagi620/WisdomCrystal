@@ -3,7 +3,8 @@
 #include "XA2Core.h"
 
 
-XA2Core::XA2Core() : mXAudio(nullptr), mMasteringVoice(nullptr) {
+XA2Core::XA2Core() : mXAudio(nullptr),
+                     mMasteringVoice(nullptr) {
     // empty
 }
 

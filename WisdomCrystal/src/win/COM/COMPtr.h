@@ -18,7 +18,7 @@ public:
     ~COMPtr() { Release(); }
 
     operator T*() const { return mPtr; }
-    T** operator&() { return &mPtr; }
+    T** operator&() { Release();return &mPtr; }
     T* operator->() const { return mPtr; }
 
     const COMPtr<T>& operator=(T* ptr) { Set(ptr); return *this; }

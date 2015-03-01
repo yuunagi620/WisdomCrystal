@@ -31,5 +31,5 @@ private:
     int mNextPacketIndex;
 
     std::vector<SoundPacket> mSoundPacketArray;
-    std::shared_ptr<IXAudio2SourceVoice> mSourceVoiceForBGM;
+    std::shared_ptr<IXAudio2SourceVoice> mSourceVoice;
 };

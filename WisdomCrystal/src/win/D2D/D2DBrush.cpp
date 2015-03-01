@@ -61,6 +61,7 @@ void D2DBrush::Update() {
     x += 5;
     if (x >= 400) { x = -400; }
 
+    mBrush->Release();
     mRenderTarget->CreateLinearGradientBrush(
         D2D1::LinearGradientBrushProperties(
             D2D1::Point2F((float)x, 75),

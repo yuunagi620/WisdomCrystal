@@ -23,13 +23,15 @@ SceneChanger::~SceneChanger() {
 bool SceneChanger::Init(GraphicsDevice *graphicsDevice,
                         SoundDevice *soundDevice,
                         GameObjManager *gameObjManager) {
+
     mGraphicsDevice = graphicsDevice;
-    mSoundDevice = soundDevice;
+    mSoundDevice    = soundDevice;
     mGameObjManager = gameObjManager;
 
     if (initNextScene() == false) {
         return false;
     }
+
     return true;
 }
 

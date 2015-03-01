@@ -169,7 +169,7 @@ COMPtr<ID2D1Bitmap> WICCore::convertBitmap(COMPtr<IWICBitmapFrameDecode> frame) 
     }
 
     // ID2D1Bitmap オブジェクトを作成
-    COMPtr<ID2D1Bitmap> bitmap;
+    COMPtr<ID2D1Bitmap> bitmap(nullptr);
     hr = mRenderTarget->CreateBitmapFromWicBitmap(converter, &bitmap);
     if (FAILED(hr)) {
         return nullptr;

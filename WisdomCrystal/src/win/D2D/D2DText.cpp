@@ -41,7 +41,7 @@ bool D2DText::Init(GraphicsDevice* graphicsDevice) {
 void D2DText::Draw(const std::basic_string<TCHAR>& string,
                    const int x, const int y, const int width, const int height) {
 
-                       RECT rect = {x, y, width, height};
+    RECT rect = {x, y, width, height};
     Draw(string, rect);
 }
 
