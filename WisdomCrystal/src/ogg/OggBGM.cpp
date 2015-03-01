@@ -7,8 +7,7 @@ namespace Ogg {
 
 OggBGM::OggBGM() : mOggFile(),
                    mSourceVoice(nullptr),
-                   mBufferIndex(0)
-{
+                   mBufferIndex(0) {
     // empty
 }
 

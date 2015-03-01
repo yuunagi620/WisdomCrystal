@@ -7,8 +7,7 @@ TitleMenu::TitleMenu() : mId(0),
                          mX(0),
                          mY(0),
                          mName(),
-                         mText()
-{
+                         mText() {
     // empty
 }
 

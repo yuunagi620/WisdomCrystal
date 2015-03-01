@@ -11,8 +11,7 @@ D2DText::D2DText() : mRenderTarget(nullptr),
                      mFontSize(12.0f),
                      mFontWeight(DWRITE_FONT_WEIGHT_NORMAL),
                      mFontStyle(DWRITE_FONT_STYLE_NORMAL),
-                     mFontStretch(DWRITE_FONT_STRETCH_NORMAL)
-{
+                     mFontStretch(DWRITE_FONT_STRETCH_NORMAL) {
     // empty
 }
 
@@ -78,6 +77,7 @@ bool D2DText::CreateTextFormat() {
 
 
 bool D2DText::SetColor(const D2D1_COLOR_F& color) {
+    mBrush.Release();
     HRESULT hr = mRenderTarget->CreateSolidColorBrush(color, &mBrush);
     if (FAILED(hr)) {
         return false;

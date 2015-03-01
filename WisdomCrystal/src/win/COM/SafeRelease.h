@@ -13,7 +13,7 @@ inline unsigned long SafeRelease(T **ppT) {
 }
 
 
-// SwapChain
+// SwapChain —p‚Ì“ÁŽê‰»
 template <>
 inline unsigned long SafeRelease<IDXGISwapChain>(IDXGISwapChain **ppT) {
     if (*ppT != nullptr) {
@@ -27,7 +27,7 @@ inline unsigned long SafeRelease<IDXGISwapChain>(IDXGISwapChain **ppT) {
 }
 
 
-// SourceVoice
+// SourceVoice —p‚Ì“ÁŽê‰»
 #include <XAudio2.h>
 template <>
 inline unsigned long SafeRelease<IXAudio2SourceVoice>(IXAudio2SourceVoice **ppT) {

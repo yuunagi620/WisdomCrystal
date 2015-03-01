@@ -13,15 +13,14 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
                              const LPCTSTR captionName,
                              const LPCTSTR windowClassName):
 
-      WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
-      mIsFullscreen(false),
-      mCOMInitializer(),
-      mGraphicsDevice(),
-      mSoundDevice(),
-      mOggBGM(),
-      mGameObjManager(),
-      mSceneChanger()
-{
+    WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
+    mIsFullscreen(false),
+    mCOMInitializer(),
+    mGraphicsDevice(),
+    mSoundDevice(),
+    mOggBGM(),
+    mGameObjManager(),
+    mSceneChanger() {
     // empty
 }
 

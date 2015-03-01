@@ -5,8 +5,7 @@
 
 D2DBrush::D2DBrush() : mRenderTarget(nullptr),
                        mGradientStops(nullptr),
-                       mBrush(nullptr)
-{
+                       mBrush(nullptr) {
     // empty
 }
 
