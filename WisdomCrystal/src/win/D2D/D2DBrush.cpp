@@ -1,5 +1,6 @@
 // D2DBrush.cpp
 
+#include "StdAfx.h"
 #include "D2DBrush.h"
 
 
