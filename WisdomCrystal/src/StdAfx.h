@@ -12,8 +12,6 @@
 #include "win/XA2/SEData.h"
 #include "win/XA2/BGMData.h"
 
-
-
 // debug
 #include "win/util/DebugManager.h"
 #define new ::new(_NORMAL_BLOCK, __FILE__, __LINE__)
