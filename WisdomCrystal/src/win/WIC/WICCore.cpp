@@ -21,8 +21,7 @@ bool WICCore::Init(COMPtr<ID2D1RenderTarget> renderTarget) {
     HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,
                                   nullptr,
                                   CLSCTX_INPROC_SERVER,
-                                  IID_IWICImagingFactory,
-                                  reinterpret_cast<void **>(&mWICFactory));
+                                  IID_PPV_ARGS(&mWICFactory));
     if (FAILED(hr)) {
         return false;
     }

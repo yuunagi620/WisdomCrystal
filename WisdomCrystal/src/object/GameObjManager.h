@@ -22,5 +22,5 @@ public:
     void Update();
 
 private:
-    std::unordered_multimap<GameObjectId, std::unique_ptr<GameObject>> mGameObjectMap;
+    std::unordered_multimap<GameObjectId, GameObject*> mGameObjectMap;
 };

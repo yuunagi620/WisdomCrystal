@@ -1,6 +1,7 @@
 // WisdomCrystal.cpp
 
 #include <CommCtrl.h>
+#include <DirectXMath.h>
 
 #include "WisdomCrystal.h"
 #include "win/util/FPSCounter.h"
@@ -201,5 +202,4 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
         isOn = !isOn;
         isOn ? mOggBGM.Start() : mOggBGM.Stop() ;
     }
-
 }
