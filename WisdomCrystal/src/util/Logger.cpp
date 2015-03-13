@@ -20,9 +20,20 @@ Logger::~Logger() {
 
 
 bool Logger::Write(const std::string& msg) {
+    writeTimeLog();
+    mOfstream << msg << std::endl;
+
+    if (mOfstream.fail()) {
+        return false;
+    }
+
+    return true;
+}
+
+
+void Logger::writeTimeLog() {
     SYSTEMTIME st;
     GetLocalTime(&st);
-
 
     mOfstream << "[";
     mOfstream << std::setfill('0') << std::setw(2) << std::to_string(st.wDay)    << "/";
@@ -33,14 +44,6 @@ bool Logger::Write(const std::string& msg) {
     mOfstream << std::setfill('0') << std::setw(2) << std::to_string(st.wSecond) << " ";
     mOfstream << "+0900";
     mOfstream << "]";
-
-    mOfstream << msg << std::endl;
-
-    if (mOfstream.fail()) {
-        return false;
-    }
-
-    return true;
 }
 
 } // namespace Util

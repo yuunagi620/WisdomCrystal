@@ -3,8 +3,6 @@
 #include "GameObjManager.h"
 #include "Player.h"
 #include "Ghost.h"
-#include "util/CSVHandler.h"
-#include "util/BinaryFileHandler.h"
 
 
 GameObjManager::GameObjManager() : mGameObjectMap() {
@@ -23,9 +21,9 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
         mGameObjectMap.insert(std::make_pair(GHOST, std::make_shared<Ghost>()));
     }
 
-    for (auto it = mGameObjectMap.begin(); it != mGameObjectMap.end(); ++it) {
-        if (it->second != nullptr) {
-            if (it->second->Init(graphicsDevice, soundDevice) == false) {
+    for (const auto& el : mGameObjectMap) {
+        if (el.second != nullptr) {
+            if (el.second->Init(graphicsDevice, soundDevice) == false) {
                 return false;
             }
         }
@@ -39,7 +37,7 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
 }
 
 
-bool GameObjManager::Activate(const GameObjectId initId, const int initX, const int initY) {
+bool GameObjManager::Activate(const GameObjectId initId, int initX, int initY) {
     auto range = mGameObjectMap.equal_range(initId);
     for (auto it = range.first; it != range.second; ++it) {
         if (it->second->Activate(initX, initY)) {
@@ -52,10 +50,10 @@ bool GameObjManager::Activate(const GameObjectId initId, const int initX, const 
 
 
 void GameObjManager::Update() {
-    for (auto it = mGameObjectMap.begin(); it != mGameObjectMap.end(); ++it) {
-        if (it->second != nullptr) {
-            if (it->second->GetIsAlive()) { 
-                it->second->Update();
+    for (const auto& el : mGameObjectMap) {
+        if (el.second != nullptr) {
+            if (el.second->GetIsAlive()) { 
+                el.second->Update();
             }
         }
     }

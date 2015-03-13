@@ -34,8 +34,6 @@ bool D3DCore::Init(const HWND& hWnd, int screenWidth, int screenHeight) {
     // viewport ÇÃìoò^
     setViewport(screenWidth, screenHeight);
 
-    Util::Logger logger("log.txt");
-    logger.Write("test");
 
     return true;
 }
@@ -51,7 +49,7 @@ void D3DCore::Present() const {
 }
 
 
-bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, const int screenHeight) {
+bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, int screenWidth, int screenHeight) {
 
     // SwapChain ÇÃê›íË
     DXGI_SWAP_CHAIN_DESC sd;

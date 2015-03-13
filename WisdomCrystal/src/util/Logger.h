@@ -17,6 +17,9 @@ public:
     bool Write(const std::string& msg);
 
 private:
+    void writeTimeLog();
+
+private:
     std::ofstream mOfstream;
 };
 

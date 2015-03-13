@@ -48,6 +48,12 @@ bool WisdomCrystal::Init() {
         return false;
     }
 
+    // CPU ‚ª DirectXMath ‚É‘Î‰‚µ‚Ä‚¢‚é‚©’²‚×‚é
+    if (DirectX::XMVerifyCPUSupport() == false) {
+        MessageBox(nullptr, TEXT("DirectXMath ‚É‘Î‰‚µ‚Ä‚¢‚È‚¢CPU‚Å‚·."), TEXT("ERROR"), MB_OK);
+        return false;
+    }
+
     // COM ‚Ì‰Šú‰»
     if (mCOMInitializer.Init() == false) {
         MessageBox(nullptr, TEXT("Can not initialize COM."), TEXT("ERROR"), MB_OK);

@@ -26,7 +26,7 @@ public:
     }
 
 private:
-    bool createDeviceAndSwapChain(const HWND& hWnd, const int screenWidth, const int screenHeight);
+    bool createDeviceAndSwapChain(const HWND& hWnd, int screenWidth, int screenHeight);
     bool createRenderTargetView();
     void setViewport(const int screenWidth, const int screenHeight);
 
