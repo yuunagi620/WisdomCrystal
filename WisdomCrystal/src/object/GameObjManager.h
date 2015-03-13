@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <memory>
 #include <unordered_map>
 #include <boost/noncopyable.hpp>
 
@@ -22,5 +23,5 @@ public:
     void Update();
 
 private:
-    std::unordered_multimap<GameObjectId, GameObject*> mGameObjectMap;
+    std::unordered_multimap<GameObjectId, std::shared_ptr<GameObject>> mGameObjectMap;
 };

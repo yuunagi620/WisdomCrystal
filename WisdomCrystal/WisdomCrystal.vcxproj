@@ -34,8 +34,9 @@
     <ClInclude Include="src\util\BinaryFileHandler.h" />
     <ClInclude Include="src\util\Color.h" />
     <ClInclude Include="src\util\Convert.h" />
-    <ClInclude Include="src\util\CSVFile.h" />
     <ClInclude Include="src\util\CSVHandler.h" />
+    <ClInclude Include="src\util\Logger.h" />
+    <ClInclude Include="src\util\Month.h" />
     <ClInclude Include="src\util\Point.h" />
     <ClInclude Include="src\util\PointF.h" />
     <ClInclude Include="src\util\Rect.h" />
@@ -90,7 +91,8 @@
     </ClCompile>
     <ClCompile Include="src\util\Color.cpp" />
     <ClCompile Include="src\util\Convert.cpp" />
-    <ClCompile Include="src\util\CSVFile.cpp" />
+    <ClCompile Include="src\util\Logger.cpp" />
+    <ClCompile Include="src\util\Month.cpp" />
     <ClCompile Include="src\util\Point.cpp" />
     <ClCompile Include="src\util\PointF.cpp" />
     <ClCompile Include="src\util\Rect.cpp" />

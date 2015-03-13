@@ -40,7 +40,6 @@
     <ClInclude Include="src\win\wave\WaveFile.h" />
     <ClInclude Include="src\util\CSVHandler.h" />
     <ClInclude Include="src\util\BinaryFileHandler.h" />
-    <ClInclude Include="src\util\CSVFile.h" />
     <ClInclude Include="src\win\COM\COMPtr.h" />
     <ClInclude Include="src\Canvas.h" />
     <ClInclude Include="src\win\D2D\D2DBrush.h" />
@@ -55,6 +54,8 @@
     <ClInclude Include="src\ogg\Deleter.h" />
     <ClInclude Include="src\ogg\OggBGM.h" />
     <ClInclude Include="src\ogg\OggSE.h" />
+    <ClInclude Include="src\util\Logger.h" />
+    <ClInclude Include="src\util\Month.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -90,7 +91,6 @@
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\GameObject.cpp" />
     <ClCompile Include="src\win\wave\WaveFile.cpp" />
-    <ClCompile Include="src\util\CSVFile.cpp" />
     <ClCompile Include="src\Canvas.cpp" />
     <ClCompile Include="src\win\D2D\D2DBrush.cpp" />
     <ClCompile Include="src\util\Point.cpp" />
@@ -103,6 +103,8 @@
     <ClCompile Include="src\ogg\OggFile.cpp" />
     <ClCompile Include="src\ogg\OggBGM.cpp" />
     <ClCompile Include="src\ogg\OggSE.cpp" />
+    <ClCompile Include="src\util\Logger.cpp" />
+    <ClCompile Include="src\util\Month.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

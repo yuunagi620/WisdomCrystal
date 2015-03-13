@@ -1,5 +1,7 @@
 // WinMain.cpp
 
+#pragma warning (disable: 4005) // C4005 åxçêñ≥éã
+
 #include "WisdomCrystal.h"
 
 const int SCREEN_WIDTH = 1280;

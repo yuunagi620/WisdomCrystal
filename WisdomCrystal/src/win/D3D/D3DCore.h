@@ -15,9 +15,9 @@ public:
     D3DCore();
     virtual ~D3DCore();
 
-    bool Init(const HWND& hWnd, const int screenWidth, const int screenHeight);
+    bool Init(const HWND& hWnd, int screenWidth, int screenHeight);
 
-    void SetFullscreenState(const bool isFullscreen) const;
+    void SetFullscreenState(bool isFullscreen) const;
 
     void Present() const;
     

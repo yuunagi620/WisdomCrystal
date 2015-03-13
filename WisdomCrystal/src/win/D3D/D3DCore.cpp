@@ -3,6 +3,7 @@
 #pragma comment(lib, "d3d10_1.lib")
 
 #include "D3DCore.h"
+#include "util/Logger.h"
 
 
 D3DCore::D3DCore() : mD3DDevice(nullptr),
@@ -18,7 +19,7 @@ D3DCore::~D3DCore() {
 }
 
 
-bool D3DCore::Init(const HWND& hWnd, const int screenWidth, const int screenHeight) {
+bool D3DCore::Init(const HWND& hWnd, int screenWidth, int screenHeight) {
 
     // Device‚ÆSwapChain‚Ìì¬
     if (createDeviceAndSwapChain(hWnd, screenWidth, screenHeight) == false) {
@@ -33,11 +34,14 @@ bool D3DCore::Init(const HWND& hWnd, const int screenWidth, const int screenHeig
     // viewport ‚Ì“o˜^
     setViewport(screenWidth, screenHeight);
 
+    Util::Logger logger("log.txt");
+    logger.Write("test");
+
     return true;
 }
 
 
-void D3DCore::SetFullscreenState(const bool isFullscreen) const {
+void D3DCore::SetFullscreenState(bool isFullscreen) const {
     mSwapChain->SetFullscreenState(isFullscreen, nullptr);
 }
 

@@ -1,7 +1,5 @@
 // WisdomCrystal.cpp
 
-#pragma warning (disable: 4005) // C4005 åxçêñ≥éã
-
 #include <CommCtrl.h>
 #include <DirectXMath.h>
 

@@ -18,9 +18,9 @@ GameObjManager::~GameObjManager() {
 
 
 bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice) {
-    mGameObjectMap.insert(std::make_pair(PLAYER, new Player()));
+    mGameObjectMap.insert(std::make_pair(PLAYER, std::make_shared<Player>()));
     for (int i = 0; i < 3; ++i) {
-        mGameObjectMap.insert(std::make_pair(GHOST, new Ghost()));
+        mGameObjectMap.insert(std::make_pair(GHOST, std::make_shared<Ghost>()));
     }
 
     for (auto it = mGameObjectMap.begin(); it != mGameObjectMap.end(); ++it) {
@@ -31,14 +31,9 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
         }
     }
 
-    std::array<int, 7> posArray;
-
-    if (Util::BinaryFileHandler::ImportData<decltype(posArray)>("abc.csv", &posArray) == false) {
-        return false;
-    }
-    Activate(PLAYER, posArray.at(0), posArray.at(1));
-    Activate(GHOST,  posArray.at(2), posArray.at(3));
-    Activate(GHOST,  posArray.at(4), posArray.at(5));
+    Activate(PLAYER, 100, 100);
+    Activate(GHOST,  500, 300);
+    Activate(GHOST,  500, 500);
 
     return true;
 }
