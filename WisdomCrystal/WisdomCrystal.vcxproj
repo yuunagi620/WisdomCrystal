@@ -154,7 +154,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(OGG_DIR)\libvorbis\include;$(OGG_DIR)\libogg\include;$(ProjectDir)\src;$(BOOST_DIR);$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(OGG_DIR)\libvorbis\include;$(OGG_DIR)\libogg\include;$(ProjectDir)\src;$(BOOST_DIR);$(DXSDK_DIR)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)\lib\Debug;$(BOOST_DIR)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

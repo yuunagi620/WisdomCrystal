@@ -1,5 +1,7 @@
 // WisdomCrystal.cpp
 
+#pragma warning (disable: 4005) // C4005 警告無視
+
 #include <CommCtrl.h>
 #include <DirectXMath.h>
 
@@ -12,8 +14,8 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
                              const int screenWidth,
                              const int screenHeight,
                              const LPCTSTR captionName,
-                             const LPCTSTR windowClassName):
-
+                             const LPCTSTR windowClassName)
+    :
     WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
     mIsFullscreen(false),
     mCOMInitializer(),
@@ -32,13 +34,11 @@ WisdomCrystal::~WisdomCrystal() {
 
 
 int WisdomCrystal::Run() {
-    int returnCode = 0;
-
     if (Init()) {
-        returnCode = MessageLoop();
+        return MessageLoop();
     }
 
-    return returnCode;
+    return 0;
 }
 
 
@@ -101,7 +101,7 @@ int WisdomCrystal::MessageLoop() {
     bool isError = false;
 
     FPSCounter fpsCounter;
-    HighResolutionTimer timer(1.0 / 60); // 1秒間に60回呼ばれるタイマーをセット
+    HighResolutionTimer timer(1.0 / 60); // 60fpsタイマーをセット
     
     for (;;) {
         MSG msg;
