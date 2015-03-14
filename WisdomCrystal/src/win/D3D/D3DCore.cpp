@@ -3,7 +3,6 @@
 #pragma comment(lib, "d3d10_1.lib")
 
 #include "D3DCore.h"
-#include "util/Logger.h"
 
 
 D3DCore::D3DCore() : mD3DDevice(nullptr),
@@ -33,7 +32,6 @@ bool D3DCore::Init(const HWND& hWnd, int screenWidth, int screenHeight) {
 
     // viewport ‚Ì“o˜^
     setViewport(screenWidth, screenHeight);
-
 
     return true;
 }
