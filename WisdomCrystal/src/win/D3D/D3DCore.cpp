@@ -18,10 +18,10 @@ D3DCore::~D3DCore() {
 }
 
 
-bool D3DCore::Init(const HWND& hWnd, int screenWidth, int screenHeight) {
+bool D3DCore::Init(const HWND& hWnd, int clientWidth, int clientHeight) {
 
     // DeviceÇ∆SwapChainÇÃçÏê¨
-    if (createDeviceAndSwapChain(hWnd, screenWidth, screenHeight) == false) {
+    if (createDeviceAndSwapChain(hWnd, clientWidth, clientHeight) == false) {
         return false;
     }
 
@@ -31,7 +31,7 @@ bool D3DCore::Init(const HWND& hWnd, int screenWidth, int screenHeight) {
     }
 
     // viewport ÇÃìoò^
-    setViewport(screenWidth, screenHeight);
+    setViewport(clientWidth, clientHeight);
 
     return true;
 }
@@ -47,14 +47,14 @@ void D3DCore::Present() const {
 }
 
 
-bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, int screenWidth, int screenHeight) {
+bool D3DCore::createDeviceAndSwapChain(const HWND& hWnd, int clientWidth, int clientHeight) {
 
     // SwapChain ÇÃê›íË
     DXGI_SWAP_CHAIN_DESC sd;
     SecureZeroMemory(&sd, sizeof(sd));
 
-    sd.BufferDesc.Width = screenWidth;
-    sd.BufferDesc.Height = screenHeight;
+    sd.BufferDesc.Width = clientWidth;
+    sd.BufferDesc.Height = clientHeight;
     sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
     sd.BufferDesc.RefreshRate.Numerator = 60;
     sd.BufferDesc.RefreshRate.Denominator = 1; // 60fps
@@ -108,15 +108,15 @@ bool D3DCore::createRenderTargetView() {
 }
 
 
-void D3DCore::setViewport(const int screenWidth, const int screenHeight) {
+void D3DCore::setViewport(const int clientWidth, const int clientHeight) {
 
     // viewport ÇÃê›íË
     D3D10_VIEWPORT vp;
 
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
-	vp.Width    = static_cast<UINT>(screenWidth);
-	vp.Height   = static_cast<UINT>(screenHeight);
+	vp.Width    = static_cast<UINT>(clientWidth);
+	vp.Height   = static_cast<UINT>(clientHeight);
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 

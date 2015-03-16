@@ -15,7 +15,7 @@ public:
     D3DCore();
     virtual ~D3DCore();
 
-    bool Init(const HWND& hWnd, int screenWidth, int screenHeight);
+    bool Init(const HWND& hWnd, int clientWidth, int clientHeight);
 
     void SetFullscreenState(bool isFullscreen) const;
 
@@ -26,9 +26,9 @@ public:
     }
 
 private:
-    bool createDeviceAndSwapChain(const HWND& hWnd, int screenWidth, int screenHeight);
+    bool createDeviceAndSwapChain(const HWND& hWnd, int clientWidth, int clientHeight);
     bool createRenderTargetView();
-    void setViewport(const int screenWidth, const int screenHeight);
+    void setViewport(const int clientWidth, const int clientHeight);
 
 private:
     COMPtr<ID3D10Device1>          mD3DDevice;

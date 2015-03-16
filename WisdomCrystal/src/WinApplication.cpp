@@ -2,23 +2,21 @@
 
 #pragma comment(lib, "comctl32.lib")
 
-#include "WinApplication.h"
 #include <CommCtrl.h>
+#include "WinApplication.h"
 
 
-WinApplication::WinApplication(const HINSTANCE hInstnce,
-                               const int screenWidth,
-                               const int screenHeight,
-                               const LPCTSTR captionName,
-                               const LPCTSTR windowClassName)
-
-    : mHInstance(hInstnce),
-      mHWnd(nullptr),
-      SCREEN_WIDTH(screenWidth),
-      SCREEN_HEIGHT(screenHeight),
-      CAPTION_NAME(captionName),
-      WINDOW_CLASS_NAME(windowClassName)
-{
+WinApplication::WinApplication(const HINSTANCE& hInstnce,
+                               int clientWidth,
+                               int clientHeight,
+                               LPCTSTR captionName,
+                               LPCTSTR windowClassName)
+    : mHInstance(hInstnce)
+    , mHWnd(nullptr)
+    , CLIENT_WIDTH(clientWidth)
+    , CLIENT_HEIGHT(clientHeight)
+    , CAPTION_NAME(captionName)
+    , WINDOW_CLASS_NAME(windowClassName) {
     // empty
 }
 
@@ -29,13 +27,11 @@ WinApplication::~WinApplication() {
 
 
 int WinApplication::Run() {
-    int returnCode = 0;
-
     if (Init()) {
-        returnCode = MessageLoop();
+        return MessageLoop();
     }
 
-    return returnCode;
+    return 0;
 }
 
 
@@ -59,20 +55,20 @@ bool WinApplication::Init() {
 
     // WindowClass の登録
     if (registerWindowClass() == false) {
-        MessageBox(nullptr, TEXT("Can not register WindowClass."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WindowClass の登録に失敗しました"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // Window の作成
     mHWnd = createWindow();
     if (mHWnd == nullptr) {
-        MessageBox(nullptr, TEXT("Can not create window."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("Window が作成できませんでした"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // ウィンドウプロシージャの関連付けを設定
     if (SetWindowSubclass(mHWnd, SubClassProc, reinterpret_cast<UINT_PTR>(this), 0) == false) {
-        MessageBox(nullptr, TEXT("Can not set \"SubClassProc\"."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("ウィンドウプロシージャの関連付けに失敗しました"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
@@ -107,7 +103,7 @@ int WinApplication::MessageLoop() {
     }
 
     if (isError) {
-        MessageBox(nullptr, TEXT("Can not get message."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("MessageLoop でエラーが発生しました"), TEXT("ERROR"), MB_OK);
     }
 
     return returnCode;
@@ -150,15 +146,24 @@ bool WinApplication::registerWindowClass() {
 }
 
 
-HWND WinApplication::createWindow() {     
+HWND WinApplication::createWindow() {
+    const DWORD winsowStyle = (WS_OVERLAPPEDWINDOW ^ WS_SIZEBOX ^ WS_MAXIMIZEBOX) | WS_VISIBLE;
+
+    // ウィンドウサイズを取得
+    RECT clientRect = { 0, 0, CLIENT_WIDTH, CLIENT_HEIGHT };
+    if (AdjustWindowRectEx(&clientRect, winsowStyle, false, 0) == false) {
+        MessageBox(nullptr, TEXT("ウィンドウサイズの取得に失敗しました"), TEXT("ERROR"), MB_OK);
+        return nullptr;
+    }
+
     return CreateWindowEx(WS_EX_LEFT,
                           WINDOW_CLASS_NAME,
                           CAPTION_NAME,
-                          (WS_OVERLAPPEDWINDOW ^ WS_SIZEBOX ^ WS_MAXIMIZEBOX) | WS_VISIBLE,
+                          winsowStyle,
                           CW_USEDEFAULT,
                           CW_USEDEFAULT,
-                          SCREEN_WIDTH,
-                          SCREEN_HEIGHT,
+                          clientRect.right  - clientRect.left,
+                          clientRect.bottom - clientRect.top,
                           nullptr,
                           nullptr,
                           mHInstance,

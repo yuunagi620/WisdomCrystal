@@ -15,18 +15,18 @@ public:
 
     void Init(GraphicsDevice *mGraphicsDevice);
 
-    void Clear(const D2D1_COLOR_F& fillColor);
+    void Clear(D2D1_COLOR_F& fillColor);
 
     void ResetTransform();
 
-    void FlipHorizontal(const float centerX, const float centerY);
+    void FlipHorizontal(float centerX, float centerY);
 
-    void FlipVertical(const float centerX, const float centerY);
+    void FlipVertical(float centerX, float centerY);
 
-    void RotateTransform(const float centerX, const float centerY, const float angle);
+    void RotateTransform(float centerX, float centerY, float angle);
 
-    void FillRectangle(const int x, const int y, const int width, const int height, const D2DBrush& brush);
-    void FillRectangle(const float x, const float y, const float width, const float height, const D2DBrush& brush);
+    void FillRectangle(int x, int y, int width, int height, const D2DBrush& brush);
+    void FillRectangle(float x, float y, float width, float height, const D2DBrush& brush);
 
 private:
     COMPtr<ID2D1RenderTarget> mRenderTarget;

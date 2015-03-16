@@ -8,11 +8,11 @@
 class WinApplication {
 
 public:
-    WinApplication(const HINSTANCE hInstance,
-                   const int screenWidth = 800,
-                   const int screenHeight = 600,
-                   const LPCTSTR captionName = TEXT("WinApplication"),
-                   const LPCTSTR windowClassName = TEXT("WinApplication"));
+    WinApplication(const HINSTANCE& hInstance,
+                   int clientWidth = 800,
+                   int clientHeight = 600,
+                   LPCTSTR captionName = TEXT("WinApplication"),
+                   LPCTSTR windowClassName = TEXT("WinApplication"));
 
     virtual ~WinApplication();
 
@@ -30,26 +30,18 @@ protected:
     virtual int MessageLoop();
     virtual LRESULT WinMsgHandler(const UINT msg, const WPARAM wParam, const LPARAM lParam);
 
-    inline HINSTANCE GetHInstance() const {
-        return mHInstance;
-    }
-    inline HWND GetHWnd() const {
-        return mHWnd;
-    }
-    inline int GetScreenWidth() const {
-        return SCREEN_WIDTH;
-    }
-    inline int GetScreenHeight() const {
-        return SCREEN_HEIGHT;
-    }
+    inline const HINSTANCE& GetHInstance() const { return mHInstance; }
+    inline const HWND& GetHWnd() const { return mHWnd; }
+    inline int GetClientWidth()  const { return CLIENT_WIDTH; }
+    inline int GetClientHeight() const { return CLIENT_HEIGHT; }
 
 private:
     bool registerWindowClass();
     HWND createWindow();
 
 private:
-    const int SCREEN_WIDTH;
-    const int SCREEN_HEIGHT;
+    const int CLIENT_WIDTH;
+    const int CLIENT_HEIGHT;
     const LPCTSTR CAPTION_NAME;
     const LPCTSTR WINDOW_CLASS_NAME;
 

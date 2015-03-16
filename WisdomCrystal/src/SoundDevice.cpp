@@ -17,7 +17,7 @@ bool SoundDevice::Init() {
 
     // XAudio2 ‚Ì‰Šú‰»
     if (mXA2Core.Init() == false) {
-        MessageBox(nullptr, TEXT("Can not initialize XAudio2."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("XAudio2 ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 

@@ -15,11 +15,11 @@ public:
     BackGround();
     virtual ~BackGround();
 
-    bool Init(GraphicsDevice *graphicsDevice, const int index = 0);
+    bool Init(GraphicsDevice *graphicsDevice, int index = 0);
 
     void Draw();
 
-    bool ChangeBackGroundImage(const int index);
+    bool ChangeBackGroundImage(int index);
 
 private:
     void changeImagePath();
@@ -28,8 +28,7 @@ private:
 
 private:
     GraphicsDevice* mGraphicsDevice;
-    int mImageID;
-
     std::basic_string<TCHAR> mImagePath;
+    int mImageID;
     D2DImage mImage;
 };

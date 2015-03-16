@@ -16,11 +16,11 @@
 class WisdomCrystal : public WinApplication, private boost::noncopyable {
 
 public:
-    WisdomCrystal(const HINSTANCE hInstance,
-                  const int screenWidth,
-                  const int screenHeight,
-                  const LPCTSTR captionName,
-                  const LPCTSTR windowClassName);
+    WisdomCrystal(const HINSTANCE& hInstance,
+                  int clientWidth,
+                  int clientHeight,
+                  LPCTSTR captionName,
+                  LPCTSTR windowClassName);
 
     virtual ~WisdomCrystal();
 

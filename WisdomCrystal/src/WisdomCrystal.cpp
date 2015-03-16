@@ -8,20 +8,19 @@
 #include "win/util/HighResolutionTimer.h"
 
 
-WisdomCrystal::WisdomCrystal(const HINSTANCE hInstance,
-                             const int screenWidth,
-                             const int screenHeight,
-                             const LPCTSTR captionName,
-                             const LPCTSTR windowClassName)
-    :
-    WinApplication(hInstance, screenWidth, screenHeight, captionName, windowClassName),
-    mIsFullscreen(false),
-    mCOMInitializer(),
-    mGraphicsDevice(),
-    mSoundDevice(),
-    mOggBGM(),
-    mGameObjManager(),
-    mSceneChanger() {
+WisdomCrystal::WisdomCrystal(const HINSTANCE& hInstance,
+                             int clientWidth,
+                             int clientHeight,
+                             LPCTSTR captionName,
+                             LPCTSTR windowClassName)
+    : WinApplication(hInstance, clientWidth, clientHeight, captionName, windowClassName)
+    , mIsFullscreen(false)
+    , mCOMInitializer()
+    , mGraphicsDevice()
+    , mSoundDevice()
+    , mOggBGM()
+    , mGameObjManager()
+    , mSceneChanger() {
     // empty
 }
 
@@ -61,7 +60,7 @@ bool WisdomCrystal::Init() {
     }
 
     // GraphicsDevice ÇÃèâä˙âª
-    if (mGraphicsDevice.Init(GetHWnd(), GetScreenWidth(), GetScreenHeight()) == false) {
+    if (mGraphicsDevice.Init(GetHWnd(), GetClientWidth(), GetClientHeight()) == false) {
         MessageBox(nullptr, TEXT("GraphicsDevice ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
@@ -137,7 +136,7 @@ int WisdomCrystal::MessageLoop() {
     }
 
     if (isError) {
-        MessageBox(nullptr, TEXT("Can not get message."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("MessageLoop Ç≈ÉGÉâÅ[Ç™î≠ê∂ÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
     }
 
     return returnCode;
@@ -202,8 +201,6 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
 
     // debug
     if (wParam == VK_F1) {
-        static bool isOn = true;
-        isOn = !isOn;
-        isOn ? mOggBGM.Start() : mOggBGM.Stop() ;
+        // empty
     }
 }

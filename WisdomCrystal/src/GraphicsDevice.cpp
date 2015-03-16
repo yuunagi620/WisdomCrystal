@@ -3,10 +3,10 @@
 #include "GraphicsDevice.h"
 
 
-GraphicsDevice::GraphicsDevice() : mD3DCore(),
-                                   mD2DCore(),
-                                   mWICCore()
-{
+GraphicsDevice::GraphicsDevice()
+    : mD3DCore()
+    , mD2DCore()
+    , mWICCore() {
     // empty
 }
 
@@ -16,23 +16,23 @@ GraphicsDevice::~GraphicsDevice() {
 }
 
 
-bool GraphicsDevice::Init(const HWND& hWnd, const int screenWidth, const int screenHeight) {
+bool GraphicsDevice::Init(const HWND& hWnd, int clientWidth, int clientHeight) {
     
     // Direct3D 10.1ÇÃèâä˙âª
-    if (mD3DCore.Init(hWnd, screenWidth, screenHeight) == false) {
-        MessageBox(nullptr, TEXT("Can not initialize Direct3D."), TEXT("ERROR"), MB_OK);
+    if (mD3DCore.Init(hWnd, clientWidth, clientHeight) == false) {
+        MessageBox(nullptr, TEXT("Direct3D ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // Direct2D ÇÃèâä˙âª
     if (mD2DCore.Init(hWnd, mD3DCore.GetSwapChain()) == false) {
-        MessageBox(nullptr, TEXT("Can not initialize Direct2D."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("Direct2D ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // WIC ÇÃèâä˙âª
     if (mWICCore.Init(mD2DCore.GetRenderTarget()) == false) {
-        MessageBox(nullptr, TEXT("Can not initialize WIC."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WIC ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
@@ -55,7 +55,7 @@ void GraphicsDevice::Present() {
 }
 
 
-void GraphicsDevice::SetFullScreenState(const bool isFullscreen) {
+void GraphicsDevice::SetFullScreenState(bool isFullscreen) {
     mD3DCore.SetFullscreenState(isFullscreen);
 }
 

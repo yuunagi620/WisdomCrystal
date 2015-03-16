@@ -7,11 +7,11 @@
 #pragma warning (default: 4005) // C4005 åxçêâèú
 
 
-BackGround::BackGround() : mGraphicsDevice(nullptr),
-                           mImageID(0),
-                           mImagePath(),
-                           mImage()
-{
+BackGround::BackGround()
+    : mGraphicsDevice(nullptr)
+    , mImagePath()
+    , mImageID(0)
+    , mImage() {
     mImagePath.clear();
 }
 
@@ -21,7 +21,7 @@ BackGround::~BackGround() {
 }
 
 
-bool BackGround::Init(GraphicsDevice *graphicsDevice, const int backGroundIndex) {
+bool BackGround::Init(GraphicsDevice *graphicsDevice, int backGroundIndex) {
     mGraphicsDevice = graphicsDevice;
     mImageID = backGroundIndex;
 
@@ -42,9 +42,8 @@ void BackGround::Draw() {
 
 
 // îwåiâÊëúÇÃïœçX
-bool BackGround::ChangeBackGroundImage(const int index) {
+bool BackGround::ChangeBackGroundImage(int index) {
     mImageID = index;
-
     changeImagePath();
 
     if (setBackGroundImage() == false) {
