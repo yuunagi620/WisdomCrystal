@@ -1,11 +1,12 @@
 // BackGround.cpp
 
+#include <string>
+
 #include "BackGround.h"
 
 
 BackGround::BackGround()
     : mGraphicsDevice(nullptr)
-    , mImagePath()
     , mImageID(0)
     , mImage() {
     // empty
@@ -33,11 +34,12 @@ void BackGround::Draw() {
 }
 
 
-bool BackGround::ChangeBackGroundImage(int index) {
-    mImageID = index;
-    mImagePath = TEXT("resources/image/backGround_") + std::to_wstring(mImageID) + TEXT(".jpg");
+bool BackGround::ChangeBackGroundImage(int imageID) {
+    mImageID = imageID;
+    std::basic_string<TCHAR> imagePath = 
+        TEXT("resources/image/backGround_") + std::to_wstring(mImageID) + TEXT(".jpg");
 
-    if (mImage.Init(mGraphicsDevice, &mImagePath.front()) == false) {
+    if (mImage.Init(mGraphicsDevice, &imagePath.front()) == false) {
         return false;
     }
 

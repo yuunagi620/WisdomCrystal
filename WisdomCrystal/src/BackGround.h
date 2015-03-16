@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include <string>
 #include <boost/noncopyable.hpp>
 
 #include "GraphicsDevice.h"
@@ -15,14 +14,13 @@ public:
     BackGround();
     virtual ~BackGround();
 
-    bool Init(GraphicsDevice *graphicsDevice, int index = 0);
+    bool Init(GraphicsDevice *graphicsDevice, int imageID = 0);
 
     void Draw();
-    bool ChangeBackGroundImage(int index);
+    bool ChangeBackGroundImage(int imageID);
 
 private:
     GraphicsDevice* mGraphicsDevice;
-    std::basic_string<TCHAR> mImagePath;
     int mImageID;
     D2DImage mImage;
 };
