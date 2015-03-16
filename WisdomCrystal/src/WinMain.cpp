@@ -3,8 +3,8 @@
 #include "WinApplication.h"
 #include "WisdomCrystal.h"
 
-const int CLIENT_WIDTH = 1366;
-const int CLIENT_HEIGHT = 768;
+const int CLIENT_WIDTH = 1280;
+const int CLIENT_HEIGHT = 704;
 const LPCTSTR CAPTION_NAME = TEXT("Wisdom Crystal");
 const LPCTSTR WINDOW_CLASS_NAME = TEXT("WisdomCrystal");
 

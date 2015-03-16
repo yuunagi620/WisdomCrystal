@@ -18,13 +18,7 @@ public:
     bool Init(GraphicsDevice *graphicsDevice, int index = 0);
 
     void Draw();
-
     bool ChangeBackGroundImage(int index);
-
-private:
-    void changeImagePath();
-    bool setBackGroundImage();
-    D2D1_RECT_F getRectF();
 
 private:
     GraphicsDevice* mGraphicsDevice;
