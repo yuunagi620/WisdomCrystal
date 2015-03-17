@@ -13,14 +13,13 @@
 #include "win/COM/COMPtr.h"
 
 
-class XA2Core : private boost::noncopyable {
+class XA2Core final : private boost::noncopyable {
 
 public:
     XA2Core();
     virtual ~XA2Core();
 
     bool Init();
-
     std::shared_ptr<IXAudio2SourceVoice> CreateSourceVoice(const WAVEFORMATEX& waveFormatEx,
                                                            IXAudio2VoiceCallback* callback);
 

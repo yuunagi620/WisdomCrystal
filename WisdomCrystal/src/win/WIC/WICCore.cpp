@@ -3,9 +3,7 @@
 #include "WICCore.h"
 
 
-WICCore::WICCore() : mWICFactory(nullptr),
-                     mRenderTarget(nullptr)                 
-{
+WICCore::WICCore() : mWICFactory(nullptr), mRenderTarget(nullptr) {
     // empty
 }
 

@@ -3,11 +3,7 @@
 #include "TitleMenu.h"
 
 
-TitleMenu::TitleMenu() : mId(0),
-                         mX(0),
-                         mY(0),
-                         mName(),
-                         mText() {
+TitleMenu::TitleMenu() : mId(0), mX(0), mY(0), mName(), mText() {
     // empty
 }
 

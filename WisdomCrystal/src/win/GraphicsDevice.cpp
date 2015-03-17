@@ -1,12 +1,9 @@
 // GraphicsDevice.cpp
 
-#include "GraphicsDevice.h"
+#include "win/GraphicsDevice.h"
 
 
-GraphicsDevice::GraphicsDevice()
-    : mD3DCore()
-    , mD2DCore()
-    , mWICCore() {
+GraphicsDevice::GraphicsDevice() : mD3DCore(), mD2DCore(), mWICCore() {
     // empty
 }
 

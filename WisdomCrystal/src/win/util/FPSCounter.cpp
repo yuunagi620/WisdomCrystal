@@ -3,10 +3,11 @@
 #include "FPSCounter.h"
 
 
-FPSCounter::FPSCounter() : mCurrentFPS(0.0),
-                           mDeltaFreq(0.0),
-                           mPerformanceCount(),
-                           mLongCount(0) {
+FPSCounter::FPSCounter()
+    : mCurrentFPS(0.0)
+    , mDeltaFreq(0.0)
+    , mPerformanceCount()
+    , mLongCount(0) {
 
     // ¶¬‚ÌƒJƒEƒ“ƒg”‚ğ•Û
     QueryPerformanceCounter(&mPerformanceCount);

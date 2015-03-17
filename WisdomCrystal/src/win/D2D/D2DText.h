@@ -7,35 +7,25 @@
 #include <Dwrite.h>
 #include <string>
 
-#include "GraphicsDevice.h"
+#include "win/GraphicsDevice.h"
 
 
 class D2DText {
 
 public:
     D2DText();
-
     virtual ~D2DText();
 
     bool Init(GraphicsDevice *mGraphicsDevice);
-
-    void Draw(const std::basic_string<TCHAR>& string,
-              const int x, const int y, const int width, const int height);
-
+    void Draw(const std::basic_string<TCHAR>& string, int x, int y, int width, int height);
     void Draw(const std::basic_string<TCHAR>& string, const RECT& layoutRect);
 
     bool CreateTextFormat();
-
     bool SetColor(const D2D1_COLOR_F& color);
-
     bool SetFontFamilyName(const std::basic_string<TCHAR>& fontFamilyName);
-
-    bool SetFontSize(const float fontSize);
-
+    bool SetFontSize(float fontSize);
     bool SetFontWeight(const DWRITE_FONT_WEIGHT& fontWeight);
-
     bool SetFontStyle(const DWRITE_FONT_STYLE& fontStyle);
-
     bool SetFontStretch(const DWRITE_FONT_STRETCH& fontStretch);
 
 private:

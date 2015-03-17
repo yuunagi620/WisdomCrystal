@@ -18,12 +18,9 @@ public:
     bool Init(const HWND& hWnd, int clientWidth, int clientHeight);
 
     void SetFullscreenState(bool isFullscreen) const;
-
     void Present() const;
     
-    inline COMPtr<IDXGISwapChain> GetSwapChain() const {
-        return mSwapChain;
-    }
+    inline COMPtr<IDXGISwapChain> GetSwapChain() const { return mSwapChain; }
 
 private:
     bool createDeviceAndSwapChain(const HWND& hWnd, int clientWidth, int clientHeight);

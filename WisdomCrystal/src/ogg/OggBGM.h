@@ -3,6 +3,7 @@
 #pragma once
 
 #include "OggFile.h"
+#include "win/SoundDevice.h"
 
 
 namespace Ogg {
@@ -14,13 +15,9 @@ public:
     virtual ~OggBGM();
 
     bool Init(SoundDevice* soundDevice, const std::string& filePath);
-
     void Start();
-
     void Stop();
-
     bool Update();
-
     void SetVolume(float volume);
 
     // IXAudio2VoiceCallback のコールバック関数の実装

@@ -6,10 +6,7 @@
 #include "D2DCore.h"
 
 
-D2DCore::D2DCore() : mD2DFactory(nullptr),
-                     mWriteFactory(nullptr),
-                     mRenderTarget(nullptr)
-{
+D2DCore::D2DCore() : mD2DFactory(nullptr), mWriteFactory(nullptr), mRenderTarget(nullptr) {    
     // empty
 }
 
@@ -21,8 +18,8 @@ D2DCore::~D2DCore() {
 
 bool D2DCore::Init(const HWND& hWnd, COMPtr<IDXGISwapChain> swapChain) {
 
-    // Factory の作成
-    if (createFactory() == false) {
+    // D2DFactory の作成
+    if (createD2DFactory() == false) {
         return false;
     }
 
@@ -44,11 +41,11 @@ bool D2DCore::Init(const HWND& hWnd, COMPtr<IDXGISwapChain> swapChain) {
     mD2DFactory->GetDesktopDpi(&dpiX, &dpiY);
 
     // RenderTarget プロパティの設定
-    D2D1_RENDER_TARGET_PROPERTIES props = D2D1::RenderTargetProperties(
-            D2D1_RENDER_TARGET_TYPE_DEFAULT,
-            D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED),
-            dpiX,
-            dpiY);
+    D2D1_RENDER_TARGET_PROPERTIES props =
+        D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT,
+                                     D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED),
+                                     dpiX,
+                                     dpiY);
 
     // Direct2D用のレンダーターゲット作成
     hr = mD2DFactory->CreateDxgiSurfaceRenderTarget(backBuffer,
@@ -77,7 +74,7 @@ void D2DCore::ClearScreen(const D2D1_COLOR_F& fillColor) {
 }
 
 
-bool D2DCore::createFactory() {
+bool D2DCore::createD2DFactory() {
     HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &mD2DFactory);
     if (FAILED(hr)) {
         return false;

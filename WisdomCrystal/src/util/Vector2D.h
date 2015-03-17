@@ -5,8 +5,6 @@
 #include <cmath>
 
 
-namespace Util {
-
 class Vector2D {
 
 public:
@@ -75,5 +73,3 @@ public:
     bool operator==(const Vector2D& v) const { return  (x == v.x && y == v.y); }
     bool operator!=(const Vector2D& v) const { return !(x == v.x && y == v.y); }
 };
-
-} // namespace Util

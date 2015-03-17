@@ -9,8 +9,8 @@
 namespace DebugManager {
 
 void OutputString(const std::wstring& string);
-void OutputValue(const int value);
-void OutputValue(const double value);
-void OutputValue(const float value);
+void OutputValue(int value);
+void OutputValue(double value);
+void OutputValue(float value);
 
 } // namespace DebugManager

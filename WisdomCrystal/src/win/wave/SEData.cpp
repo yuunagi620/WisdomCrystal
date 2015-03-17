@@ -17,14 +17,14 @@ bool SEData::Init(SoundDevice* soundDevice, const std::string& filePath) {
 
     // SE ÉfÅ[É^ÇÃì«Ç›çûÇ›
     if (mWaveFile.Load(filePath) == false) {
-        MessageBox(nullptr, TEXT("SEData: Can not read WaveFile."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("SEData: WaveFile ÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // SourceVoice ÇÃçÏê¨
     mSourceVoice = soundDevice->CreateSourceVoice(mWaveFile.GetWaveFormatEx(), nullptr);
     if (mSourceVoice == nullptr) {
-        MessageBox(nullptr, TEXT("SEData: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("SEData: SourceVoice ÇÃçÏê¨Ç…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 

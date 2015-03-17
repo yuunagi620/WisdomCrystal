@@ -10,6 +10,7 @@
 class Loading : public Scene, private boost::noncopyable {
 
 public:
+    Loading();
     virtual ~Loading();
 
     virtual bool Init(GraphicsDevice *graphicsDevice,

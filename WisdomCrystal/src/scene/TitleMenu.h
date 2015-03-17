@@ -5,8 +5,8 @@
 #include <string>
 #include <boost/noncopyable.hpp>
 
-#include "GraphicsDevice.h"
-#include "SoundDevice.h"
+#include "win/GraphicsDevice.h"
+#include "win/SoundDevice.h"
 #include "win/D2D/D2DText.h"
 
 

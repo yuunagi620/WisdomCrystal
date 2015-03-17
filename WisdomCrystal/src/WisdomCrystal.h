@@ -6,11 +6,12 @@
 
 #include "WinApplication.h"
 #include "win/COM/COMInitializer.h"
-#include "GraphicsDevice.h"
-#include "SoundDevice.h"
+#include "win/GraphicsDevice.h"
+#include "win/SoundDevice.h"
 #include "ogg/OggBGM.h"
 #include "object/GameObjManager.h"
 #include "scene/SceneChanger.h"
+#include "win/wave/BGMData.h"
 
 
 class WisdomCrystal final : public WinApplication, private boost::noncopyable {

@@ -3,15 +3,16 @@
 #include "D2DText.h"
 
 
-D2DText::D2DText() : mRenderTarget(nullptr),
-                     mWriteFactory(nullptr),
-                     mTextFormat(nullptr),
-                     mBrush(nullptr),
-                     mFontFamilyName(TEXT("メイリオ")),
-                     mFontSize(12.0f),
-                     mFontWeight(DWRITE_FONT_WEIGHT_NORMAL),
-                     mFontStyle(DWRITE_FONT_STYLE_NORMAL),
-                     mFontStretch(DWRITE_FONT_STRETCH_NORMAL) {
+D2DText::D2DText()
+    : mRenderTarget(nullptr)
+    , mWriteFactory(nullptr)
+    , mTextFormat(nullptr)
+    , mBrush(nullptr)
+    , mFontFamilyName(TEXT("メイリオ"))
+    , mFontSize(12.0f)
+    , mFontWeight(DWRITE_FONT_WEIGHT_NORMAL)
+    , mFontStyle(DWRITE_FONT_STYLE_NORMAL)
+    , mFontStretch(DWRITE_FONT_STRETCH_NORMAL) {
     // empty
 }
 
@@ -37,9 +38,7 @@ bool D2DText::Init(GraphicsDevice* graphicsDevice) {
 }
 
 
-void D2DText::Draw(const std::basic_string<TCHAR>& string,
-                   const int x, const int y, const int width, const int height) {
-
+void D2DText::Draw(const std::basic_string<TCHAR>& string, int x, int y, int width, int height) {
     RECT rect = {x, y, width, height};
     Draw(string, rect);
 }
@@ -93,7 +92,7 @@ bool D2DText::SetFontFamilyName(const std::basic_string<TCHAR>& fontFamilyName) 
 }
 
 
-bool D2DText::SetFontSize(const float fontSize) {
+bool D2DText::SetFontSize(float fontSize) {
     if (fontSize <= 0) {
         return false;
     }

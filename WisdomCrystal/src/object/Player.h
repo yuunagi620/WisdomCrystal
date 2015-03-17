@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameObject.h"
-#include "Canvas.h"
+#include "win/Canvas.h"
 #include "win/D2D/D2DImage.h"
 #include "ogg/OggSE.h"
 

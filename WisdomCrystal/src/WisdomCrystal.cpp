@@ -13,6 +13,7 @@ WisdomCrystal::WisdomCrystal(const HINSTANCE& hInstance,
                              int clientHeight,
                              LPCTSTR captionName,
                              LPCTSTR windowClassName)
+
     : WinApplication(hInstance, clientWidth, clientHeight, captionName, windowClassName)
     , mIsFullscreen(false)
     , mCOMInitializer()
@@ -43,43 +44,43 @@ bool WisdomCrystal::Init() {
 
     // Window ‚Ì‰Šú‰»
     if (WinApplication::Init() == false) {
-        MessageBox(nullptr, TEXT("Window ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("Window‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // CPU ‚ª DirectXMath ‚É‘Î‰‚µ‚Ä‚¢‚é‚©’²‚×‚é
     if (DirectX::XMVerifyCPUSupport() == false) {
-        MessageBox(nullptr, TEXT("DirectXMath ‚É‘Î‰‚µ‚Ä‚¢‚È‚¢CPU‚Å‚·"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("DirectXMath‚É‘Î‰‚µ‚Ä‚¢‚È‚¢CPU‚Å‚·"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // COM ‚Ì‰Šú‰»
     if (mCOMInitializer.Init() == false) {
-        MessageBox(nullptr, TEXT("COM ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("COM‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // GraphicsDevice ‚Ì‰Šú‰»
     if (mGraphicsDevice.Init(GetHWnd(), GetClientWidth(), GetClientHeight()) == false) {
-        MessageBox(nullptr, TEXT("GraphicsDevice ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("GraphicsDevice‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // SoundDevice ‚Ì‰Šú‰»
     if (mSoundDevice.Init() == false) {
-        MessageBox(nullptr, TEXT("SoundDevice ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("SoundDevice‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // GameObjManager ‚Ì‰Šú‰»
     if (mGameObjManager.Init(&mGraphicsDevice, &mSoundDevice) == false) {
-        MessageBox(nullptr, TEXT("GameObjManager ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("GameObjManager‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // SceneChanger ‚Ì‰Šú‰»
     if (mSceneChanger.Init(&mGraphicsDevice, &mSoundDevice, &mGameObjManager) == false) {
-        MessageBox(nullptr, TEXT("SceneChanger ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("SceneChanger‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
@@ -88,11 +89,11 @@ bool WisdomCrystal::Init() {
     mGraphicsDevice.SetFullScreenState(mIsFullscreen);
 
     // BGMData ‚Ì‰Šú‰»
-    if (mOggBGM.Init(&mSoundDevice, "resources/sound/BGM/bgm_03.ogg") == false) { 
-        MessageBox(nullptr, TEXT("BGM ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+    if (mOggBGM.Init(&mSoundDevice, "resources/sound/BGM/bgm_04.ogg") == false) { 
+        MessageBox(nullptr, TEXT("BGM‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
     }
 
-    mOggBGM.SetVolume(0.5f);
+    mOggBGM.SetVolume(1.0f);
     mOggBGM.Start();
 
     return true;

@@ -7,8 +7,6 @@
 #include "Month.h"
 
 
-namespace Util {
-
 Logger::Logger(const std::string& fileName) : mOfstream(fileName, std::ios::app) {
     // empty
 }
@@ -45,5 +43,3 @@ void Logger::writeTimeLog() {
     mOfstream << "+0900";
     mOfstream << "]";
 }
-
-} // namespace Util

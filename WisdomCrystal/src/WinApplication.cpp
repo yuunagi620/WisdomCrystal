@@ -55,14 +55,14 @@ bool WinApplication::Init() {
 
     // WindowClass ‚Ì“o˜^
     if (registerWindowClass() == false) {
-        MessageBox(nullptr, TEXT("WindowClass ‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WindowClass‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // Window ‚Ìì¬
     mHWnd = createWindow();
     if (mHWnd == nullptr) {
-        MessageBox(nullptr, TEXT("Window ‚ªì¬‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("Window‚ªì¬‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½"), TEXT("ERROR"), MB_OK);
         return false;
     }
 

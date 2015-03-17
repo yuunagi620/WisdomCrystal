@@ -7,8 +7,6 @@
 #pragma warning (default: 4005) // C4005 Œx‰ğœ
 
 
-namespace Util {
-
 class Color {
 
 public:
@@ -42,5 +40,3 @@ private:
 
     float mRed, mGreen, mBlue, mAlpha;
 };
-
-} // namespace Util

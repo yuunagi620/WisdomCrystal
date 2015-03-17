@@ -1,12 +1,9 @@
 // D2DBrush.cpp
 
-#include "StdAfx.h"
 #include "D2DBrush.h"
 
 
-D2DBrush::D2DBrush() : mRenderTarget(nullptr),
-                       mGradientStops(nullptr),
-                       mBrush(nullptr) {
+D2DBrush::D2DBrush() : mRenderTarget(nullptr), mGradientStops(nullptr), mBrush(nullptr) {
     // empty
 }
 

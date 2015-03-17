@@ -3,8 +3,6 @@
 #pragma once
 
 
-namespace Util {
-
 class Rect {
 
 public:
@@ -26,11 +24,6 @@ public:
         return (x == 0 && y == 0 && width == 0 && height == 0);
     }
 
-    inline int Top()    { return y;          }
-    inline int Bottom() { return y + height; }
-    inline int Left()   { return x;          }
-    inline int Right()  { return x + width;  }
-
     // lŠpŒ`‚ğˆÚ“®‚³‚¹‚Ü‚·
     inline void Offset(int offsetX, int offsetY) {
         x += offsetX;
@@ -39,5 +32,3 @@ public:
         height += offsetY;
     }
 };
-
-} // namespace Util

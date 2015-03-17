@@ -5,9 +5,7 @@
 
 namespace Ogg {
 
-OggBGM::OggBGM() : mOggFile(),
-                   mSourceVoice(nullptr),
-                   mBufferIndex(0) {
+OggBGM::OggBGM() : mOggFile(), mSourceVoice(nullptr), mBufferIndex(0) {
     // empty
 }
 
@@ -21,14 +19,14 @@ bool OggBGM::Init(SoundDevice* soundDevice, const std::string& filePath) {
 
     // BGM ÉfÅ[É^ÇÃì«Ç›çûÇ›
     if (mOggFile.Init(filePath) == false) {
-        MessageBox(nullptr, TEXT("OggBGM: Can not read OggFile."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("OggBGM: OggFileÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // SourceVoice ÇÃçÏê¨
     mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx(), this);
     if (mSourceVoice == nullptr) {
-        MessageBox(nullptr, TEXT("OggBGM: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("OggBGM: SourceVoiceÇÃçÏê¨Ç…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 

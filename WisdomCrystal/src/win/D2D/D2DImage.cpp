@@ -3,11 +3,11 @@
 #include "D2DImage.h"
 
 
-D2DImage::D2DImage() : mRenderTarget(nullptr),
-                       mBitmap(nullptr),
-                       mImageSize(),
-                       mImageSrcRect()
-{
+D2DImage::D2DImage() 
+    : mRenderTarget(nullptr)
+    , mBitmap(nullptr)
+    , mImageSize()
+    , mImageSrcRect() {
     // empty
 }
 

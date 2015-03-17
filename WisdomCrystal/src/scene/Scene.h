@@ -10,9 +10,9 @@ class Scene {
 public:
     virtual ~Scene() {}
 
-    virtual bool Init(GraphicsDevice *graphicsDevice,
-                      SoundDevice *soundDevice,
-                      GameObjManager *gameObjManager) = 0;
+    virtual bool Init(GraphicsDevice* graphicsDevice,
+                      SoundDevice* soundDevice,
+                      GameObjManager* gameObjManager) = 0;
 
     virtual Scene* Update() = 0;
 };

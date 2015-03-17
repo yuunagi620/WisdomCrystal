@@ -14,9 +14,7 @@ public:
 
     void CountFPS();
 
-    inline double GetFPS() const {
-        return mCurrentFPS;
-    };
+    inline double GetFPS() const { return mCurrentFPS; }
 
 private:
     double getCurDefTime();

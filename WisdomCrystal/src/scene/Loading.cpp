@@ -5,6 +5,11 @@
 #include "object/GameObjManager.h"
 
 
+Loading::Loading() {
+    // empty
+}
+
+
 Loading::~Loading() {
     // empty
 }

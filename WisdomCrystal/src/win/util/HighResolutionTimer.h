@@ -8,7 +8,7 @@
 class HighResolutionTimer {
 
 public:
-    explicit HighResolutionTimer(const double interval);
+    explicit HighResolutionTimer(double interval);
     virtual ~HighResolutionTimer();
 
     // タイマが経過したか調べる
@@ -17,6 +17,5 @@ public:
 private:
     LARGE_INTEGER mOldCount;
     LARGE_INTEGER mNowCount;
-
     double mStepCount; 
 };

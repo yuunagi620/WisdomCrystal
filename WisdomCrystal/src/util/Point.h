@@ -3,8 +3,6 @@
 #pragma once
 
 
-namespace Util {
-
 class Point {
 
 public:
@@ -51,5 +49,3 @@ public:
     bool operator==(const Point& p) const { return  (x == p.x && y == p.y); }
     bool operator!=(const Point& p) const { return !(x == p.x && y == p.y); }
 };
-
-} // namespace Util

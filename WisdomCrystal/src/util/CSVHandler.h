@@ -8,7 +8,6 @@
 #include <sstream>
 
 
-namespace Util {
 namespace CSVHandler {
 
 // CSV ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ
@@ -20,10 +19,7 @@ template<typename T>
 bool ExportData(const std::string& filePath, T *container);
 
 } // namespace CSVHandler
-} // namespace Util
 
-
-namespace Util {
 
 template<typename T>
 bool CSVHandler::ImportData(const std::string& filePath, T* container) {
@@ -74,4 +70,4 @@ bool CSVHandler::ExportData(const std::string& fileName, T* container) {
     return true;
 }
 
-} // namespace Util
+

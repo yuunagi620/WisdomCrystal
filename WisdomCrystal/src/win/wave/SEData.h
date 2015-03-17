@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "SoundDevice.h"
-#include "win/wave/WaveFile.h"
+#include "win/SoundDevice.h"
+#include "WaveFile.h"
 
 
 class SEData {
@@ -13,9 +13,7 @@ public:
     virtual ~SEData();
 
     bool Init(SoundDevice* soundDevice, const std::string& filePath);
-
     void Start();
-
     void SetVolume(const float volume);
 
 private:

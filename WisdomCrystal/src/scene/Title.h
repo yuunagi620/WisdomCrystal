@@ -8,7 +8,7 @@
 #include "Scene.h"
 #include "TitleMenu.h"
 #include "BackGround.h"
-#include "Canvas.h"
+#include "win/Canvas.h"
 #include "win/D2D/D2DBrush.h"
 #include "win/util/Input.h"
 

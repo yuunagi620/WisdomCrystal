@@ -2,10 +2,8 @@
 
 #pragma once
 
-#include <array>
-
-#include "win/wave/WaveFile.h"
-#include "SoundPacket.h"
+#include "win/SoundDevice.h"
+#include "WaveFile.h"
 
 
 class BGMData {
@@ -15,21 +13,11 @@ public:
     virtual ~BGMData();
 
     bool Init(SoundDevice* soundDevice, const std::string& filePath);
-
     void Start();
     void Stop();
-
-    void UpdateBGM();
-
     void SetVolume(const float volume);
 
 private:
-    bool divideSoundPacket(WaveFile* WaveFile);
-
-private:
-    const unsigned int SOUND_PACKET_NUM;
-    int mNextPacketIndex;
-
-    std::vector<SoundPacket> mSoundPacketArray;
+    WaveFile mWaveFile;
     std::shared_ptr<IXAudio2SourceVoice> mSourceVoice;
 };

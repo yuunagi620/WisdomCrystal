@@ -11,16 +11,16 @@ const int   Player::PLAYER_SPEED        = 3;
 const int   Player::ROTATION_RATE       = 10;
 
 
-Player::Player() : mCanvas(),
-                   mSoundDevice(nullptr),
-                   mImage(),
-                   mGameOverSE(),
-                   mX(100),
-                   mY(400),
-                   mIsAlive(false),
-                   mIsLeft(false),
-                   mIsGameOver(false)
-{
+Player::Player() 
+    : mCanvas()
+    , mSoundDevice(nullptr)
+    , mImage()
+    , mGameOverSE()
+    , mX(100)
+    , mY(400)
+    , mIsAlive(false)
+    , mIsLeft(false)
+    , mIsGameOver(false) {
     // empty
 }
 

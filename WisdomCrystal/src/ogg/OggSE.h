@@ -3,6 +3,7 @@
 #pragma once
 
 #include "OggFile.h"
+#include "win/SoundDevice.h"
 
 
 namespace Ogg {
@@ -14,11 +15,8 @@ public:
     virtual ~OggSE();
 
     bool Init(SoundDevice* soundDevice, const std::string& filePath);
-
     void Start();
-
     void Stop();
-
     void SetVolume(float volume);
 
 private:

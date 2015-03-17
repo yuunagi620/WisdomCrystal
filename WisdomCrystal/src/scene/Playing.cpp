@@ -4,9 +4,7 @@
 #include "object/GameObjManager.h"
 
 
-Playing::Playing() : mGameObjManager(nullptr),
-                     mBackGround()
-{
+Playing::Playing() : mGameObjManager(nullptr), mBackGround() {
     // empty
 }
 

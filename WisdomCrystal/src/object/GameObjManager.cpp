@@ -37,8 +37,9 @@ bool GameObjManager::Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevi
 }
 
 
-bool GameObjManager::Activate(const GameObjectId initId, int initX, int initY) {
+bool GameObjManager::Activate(GameObjectId initId, int initX, int initY) {
     auto range = mGameObjectMap.equal_range(initId);
+
     for (auto it = range.first; it != range.second; ++it) {
         if (it->second->Activate(initX, initY)) {
             return true;

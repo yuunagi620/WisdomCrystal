@@ -5,10 +5,7 @@
 #include "D3DCore.h"
 
 
-D3DCore::D3DCore() : mD3DDevice(nullptr),
-                     mSwapChain(nullptr),
-                     mRenderTargetView(nullptr)
-{
+D3DCore::D3DCore() : mD3DDevice(nullptr), mSwapChain(nullptr), mRenderTargetView(nullptr) {
     // empty
 }
 

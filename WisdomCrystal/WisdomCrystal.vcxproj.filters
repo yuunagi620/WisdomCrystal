@@ -16,12 +16,8 @@
     <ClInclude Include="src\win\util\HighResolutionTimer.h" />
     <ClInclude Include="src\win\util\Input.h" />
     <ClInclude Include="src\win\WIC\WICCore.h" />
-    <ClInclude Include="src\win\XA2\BGMData.h" />
-    <ClInclude Include="src\win\XA2\SEData.h" />
     <ClInclude Include="src\win\XA2\XA2Core.h" />
     <ClInclude Include="src\BackGround.h" />
-    <ClInclude Include="src\GraphicsDevice.h" />
-    <ClInclude Include="src\SoundDevice.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\WinApplication.h" />
     <ClInclude Include="src\WisdomCrystal.h" />
@@ -29,7 +25,6 @@
     <ClInclude Include="src\win\XA2\XAudio2Deleter.h" />
     <ClInclude Include="src\win\COM\COMInitializer.h" />
     <ClInclude Include="src\win\util\Deleter.h" />
-    <ClInclude Include="src\win\XA2\SoundPacket.h" />
     <ClInclude Include="src\scene\TitleMenu.h" />
     <ClInclude Include="src\scene\Title.h" />
     <ClInclude Include="src\win\COM\SafeRelease.h" />
@@ -41,7 +36,6 @@
     <ClInclude Include="src\util\CSVHandler.h" />
     <ClInclude Include="src\util\BinaryFileHandler.h" />
     <ClInclude Include="src\win\COM\COMPtr.h" />
-    <ClInclude Include="src\Canvas.h" />
     <ClInclude Include="src\win\D2D\D2DBrush.h" />
     <ClInclude Include="src\util\Point.h" />
     <ClInclude Include="src\util\PointF.h" />
@@ -56,6 +50,12 @@
     <ClInclude Include="src\ogg\OggSE.h" />
     <ClInclude Include="src\util\Logger.h" />
     <ClInclude Include="src\util\Month.h" />
+    <ClInclude Include="src\win\COM\Deleter\Deleter.h" />
+    <ClInclude Include="src\win\Canvas.h" />
+    <ClInclude Include="src\win\GraphicsDevice.h" />
+    <ClInclude Include="src\win\SoundDevice.h" />
+    <ClInclude Include="src\win\wave\BGMData.h" />
+    <ClInclude Include="src\win\wave\SEData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\object\GameObjManager.cpp" />
@@ -71,19 +71,14 @@
     <ClCompile Include="src\win\util\HighResolutionTimer.cpp" />
     <ClCompile Include="src\win\util\Input.cpp" />
     <ClCompile Include="src\win\WIC\WICCore.cpp" />
-    <ClCompile Include="src\win\XA2\BGMData.cpp" />
-    <ClCompile Include="src\win\XA2\SEData.cpp" />
     <ClCompile Include="src\win\XA2\XA2Core.cpp" />
     <ClCompile Include="src\BackGround.cpp" />
-    <ClCompile Include="src\GraphicsDevice.cpp" />
-    <ClCompile Include="src\SoundDevice.cpp" />
     <ClCompile Include="src\StdAfx.cpp" />
     <ClCompile Include="src\WinApplication.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\WisdomCrystal.cpp" />
     <ClCompile Include="src\scene\SceneChanger.cpp" />
     <ClCompile Include="src\win\COM\COMInitializer.cpp" />
-    <ClCompile Include="src\win\XA2\SoundPacket.cpp" />
     <ClCompile Include="src\scene\TitleMenu.cpp" />
     <ClCompile Include="src\scene\Title.cpp" />
     <ClCompile Include="src\win\D2D\D2DImage.cpp" />
@@ -91,7 +86,6 @@
     <ClCompile Include="src\object\Ghost.cpp" />
     <ClCompile Include="src\object\GameObject.cpp" />
     <ClCompile Include="src\win\wave\WaveFile.cpp" />
-    <ClCompile Include="src\Canvas.cpp" />
     <ClCompile Include="src\win\D2D\D2DBrush.cpp" />
     <ClCompile Include="src\util\Point.cpp" />
     <ClCompile Include="src\util\PointF.cpp" />
@@ -105,6 +99,11 @@
     <ClCompile Include="src\ogg\OggSE.cpp" />
     <ClCompile Include="src\util\Logger.cpp" />
     <ClCompile Include="src\util\Month.cpp" />
+    <ClCompile Include="src\win\Canvas.cpp" />
+    <ClCompile Include="src\win\GraphicsDevice.cpp" />
+    <ClCompile Include="src\win\SoundDevice.cpp" />
+    <ClCompile Include="src\win\wave\BGMData.cpp" />
+    <ClCompile Include="src\win\wave\SEData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\myicon.ico" />

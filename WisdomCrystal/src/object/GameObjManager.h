@@ -8,8 +8,8 @@
 
 #include "GameObject.h"
 #include "GameObjectId.h"
-#include "GraphicsDevice.h"
-#include "SoundDevice.h"
+#include "win/GraphicsDevice.h"
+#include "win/SoundDevice.h"
 
 
 class GameObjManager : private boost::noncopyable {
@@ -19,7 +19,7 @@ public:
     virtual ~GameObjManager();
 
     bool Init(GraphicsDevice *graphicsDevice, SoundDevice *soundDevice);
-    bool Activate(const GameObjectId initId, int initX, int initY);
+    bool Activate(GameObjectId initId, int initX, int initY);
     void Update();
 
 private:

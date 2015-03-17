@@ -3,8 +3,6 @@
 #pragma once
 
 
-namespace Util {
-
 class RectF {
 
 public:
@@ -26,11 +24,6 @@ public:
         return (x == 0 && y == 0 && width == 0 && height == 0);
     }
 
-    inline float Top()    { return y;          }
-    inline float Bottom() { return y + height; }
-    inline float Left()   { return x;          }
-    inline float Right()  { return x + width;  }
-
     // ŽlŠpŒ`‚ðˆÚ“®‚³‚¹‚Ü‚·
     inline void Offset(float offsetX, float offsetY) {
         x += offsetX;
@@ -39,5 +32,3 @@ public:
         height += offsetY;
     }
 };
-
-} // namespace Util

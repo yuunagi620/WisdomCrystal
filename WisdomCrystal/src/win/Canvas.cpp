@@ -1,10 +1,9 @@
 // Canvas.cpp
 
-#include "Canvas.h"
+#include "win/Canvas.h"
 
 
-Canvas::Canvas()
-    : mRenderTarget(nullptr) {
+Canvas::Canvas() : mRenderTarget(nullptr) {
     // empty
 }
 

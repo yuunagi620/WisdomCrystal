@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "GraphicsDevice.h"
+#include "win/GraphicsDevice.h"
 #include "win/D2D/D2DBrush.h"
 
 

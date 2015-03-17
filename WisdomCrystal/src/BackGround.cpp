@@ -5,10 +5,7 @@
 #include "BackGround.h"
 
 
-BackGround::BackGround()
-    : mGraphicsDevice(nullptr)
-    , mImageID(0)
-    , mImage() {
+BackGround::BackGround() : mGraphicsDevice(nullptr), mImageID(0), mImage() {
     // empty
 }
 

@@ -4,13 +4,13 @@
 #include "win/util/Input.h"
 
 
-Ghost::Ghost() : mCanvas(),
-                 mSoundDevice(nullptr),
-                 mImage(),
-                 mX(600),
-                 mY(400),
-                 mIsAlive(false)
-{
+Ghost::Ghost()
+    : mCanvas()
+    , mSoundDevice(nullptr)
+    , mImage()
+    , mX(600)
+    , mY(400)
+    , mIsAlive(false) {
     // empty
 }
 

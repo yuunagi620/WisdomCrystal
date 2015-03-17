@@ -6,18 +6,17 @@
 #include "util/Color.h"
 
 
-
-Title::Title() : mId(0),
-                 mKeyWait(0),
-                 mPlay(),
-                 mSetting(),
-                 mEnd(),
-                 mCanvas(),
-                 mBrush(),
-                 mText(),
-                 mBackGround(),
-                 mNextScene(nullptr)
-{
+Title::Title() 
+    : mId(0)
+    , mKeyWait(0)
+    , mPlay()
+    , mSetting()
+    , mEnd()
+    , mCanvas()
+    , mBrush()
+    , mText()
+    , mBackGround()
+    , mNextScene(nullptr) {
     // empty
 }
 

@@ -9,11 +9,7 @@
 
 namespace Ogg {
 
-OggFile::OggFile() : mOvf(nullptr),
-                     mBuffer(),
-                     mFormat(),
-                     mIsLoadedComplete(false)
-{
+OggFile::OggFile() : mOvf(nullptr), mBuffer(), mFormat(), mIsLoadedComplete(false) {
     // empty
 }
 
@@ -28,7 +24,7 @@ bool OggFile::Init(const std::string& filePath) {
     // Oggファイルのオープン
     mOvf.reset(new OggVorbis_File);
     int errorCode = ov_fopen(filePath.c_str(), mOvf.get());
-    if (errorCode) {
+    if (errorCode != 0) {
         return false;
     }
 

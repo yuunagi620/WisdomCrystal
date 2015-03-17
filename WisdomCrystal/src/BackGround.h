@@ -4,7 +4,7 @@
 
 #include <boost/noncopyable.hpp>
 
-#include "GraphicsDevice.h"
+#include "win/GraphicsDevice.h"
 #include "win/D2D/D2DImage.h"
 
 

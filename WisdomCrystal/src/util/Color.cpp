@@ -3,17 +3,13 @@
 #include "Color.h"
 
 
-namespace Util {
-
-Color::Color() : mRed(0), mGreen(0), mBlue(0), mAlpha(0)
-{
+Color::Color() : mRed(0), mGreen(0), mBlue(0), mAlpha(0) {
     // empty
 }
 
 
 Color::Color(float red, float green, float blue, float alpha)
-    : mRed(red), mGreen(green), mBlue(blue), mAlpha(alpha)
-{
+    : mRed(red), mGreen(green), mBlue(blue), mAlpha(alpha) {
     // empty
 }
 
@@ -38,4 +34,4 @@ std::uint32_t Color::ToRGB() const {
     return (r | g | b);
 }
 
-} // namespace Util
+

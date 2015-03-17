@@ -6,9 +6,7 @@
 #include "WaveFile.h"
 
 
-WaveFile::WaveFile() : mBuffer(),
-                       mFormat()
-{
+WaveFile::WaveFile() : mBuffer(), mFormat() {
     //empty
 }
 
@@ -23,7 +21,7 @@ bool WaveFile::Load(const std::string& filePath){
     // ファイルの読み込み
     std::ifstream ifs(filePath, std::ios::in | std::ios::binary);
     if (ifs == false) {
-        MessageBox(nullptr, TEXT("WaveFile: ファイルのオープンに失敗．"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WaveFile: ファイルのオープンに失敗"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
@@ -32,7 +30,7 @@ bool WaveFile::Load(const std::string& filePath){
     char readData[4];
     ifs.read(readData, sizeof(readData));
     if (std::memcmp(riff, readData, sizeof(riff))) {
-        MessageBox(nullptr, TEXT("WaveFile: RIFEチャンクが存在しませんでした．"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WaveFile: RIFEチャンクが存在しませんでした"), TEXT("ERROR"), MB_OK);
         return false;
     } 
 
@@ -43,7 +41,7 @@ bool WaveFile::Load(const std::string& filePath){
     const char wave[4] = {'W', 'A', 'V', 'E'};
     ifs.read(readData, sizeof(readData));
     if (std::memcmp(wave, readData, sizeof(wave))) {
-        MessageBox(nullptr, TEXT("WaveFile: WAVEチャンクが存在しませんでした．"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WaveFile: WAVEチャンクが存在しませんでした"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
@@ -51,7 +49,7 @@ bool WaveFile::Load(const std::string& filePath){
     const char fmt[4] = {'f', 'm', 't', ' '};
     ifs.read(readData, sizeof(readData));
     if (std::memcmp(fmt, readData, sizeof(fmt))) {
-        MessageBox(nullptr, TEXT("WaveFile: WAVEチャンクが存在しませんでした．"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WaveFile: fmtチャンクが存在しませんでした"), TEXT("ERROR"), MB_OK);
         return false;
     } 
 
@@ -69,7 +67,7 @@ bool WaveFile::Load(const std::string& filePath){
     } else if (id == 2) {
         mFormat.wFormatTag = WAVE_FORMAT_ADPCM; // MS ADPCM 
     } else {
-        MessageBox(nullptr, TEXT("WaveFile: このフォーマットには対応していません．"), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("WaveFile: このフォーマットには対応していません"), TEXT("ERROR"), MB_OK);
         return false;
     }
 

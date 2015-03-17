@@ -6,8 +6,6 @@
 #include <sstream>
 
 
-namespace Util {
-
 class Logger {
 
 public:
@@ -22,5 +20,3 @@ private:
 private:
     std::ofstream mOfstream;
 };
-
-} // namespace Util

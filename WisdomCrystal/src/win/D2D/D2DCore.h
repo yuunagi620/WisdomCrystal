@@ -17,22 +17,15 @@ public:
     virtual ~D2DCore();
 
     bool Init(const HWND& hWnd, COMPtr<IDXGISwapChain> swapChain);
-
     void BeginDraw();
-
     HRESULT EndDraw();
-
     void ClearScreen(const D2D1_COLOR_F& fillColor);
 
-    inline COMPtr<ID2D1RenderTarget> GetRenderTarget() const {
-        return mRenderTarget;
-    }
-    inline COMPtr<IDWriteFactory> GetWriteFactory() const {
-        return mWriteFactory;
-    }
+    inline COMPtr<ID2D1RenderTarget> GetRenderTarget() const { return mRenderTarget; }
+    inline COMPtr<IDWriteFactory>    GetWriteFactory() const { return mWriteFactory; }
 
 private:
-    bool createFactory();
+    bool createD2DFactory();
     bool createWriteFactory();
 
 private:

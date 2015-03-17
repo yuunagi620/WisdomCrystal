@@ -5,9 +5,7 @@
 
 namespace Ogg {
 
-OggSE::OggSE() : mOggFile(),
-                 mSourceVoice(nullptr)
-{
+OggSE::OggSE() : mOggFile(), mSourceVoice(nullptr) {
     // empty
 }
 
@@ -21,14 +19,14 @@ bool OggSE::Init(SoundDevice* soundDevice, const std::string& filePath) {
 
     // SE ÉfÅ[É^ÇÃì«Ç›çûÇ›
     if (mOggFile.Init(filePath) == false) {
-        MessageBox(nullptr, TEXT("OggSE: Can not read OggFile."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("OggSE: OggFileÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 
     // SourceVoice ÇÃçÏê¨
     mSourceVoice = soundDevice->CreateSourceVoice(mOggFile.GetWaveFormatEx(), nullptr);
     if (mSourceVoice == nullptr) {
-        MessageBox(nullptr, TEXT("OggSE: Can not create sourceVoice."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("OggSE: SourceVoiceÇÃçÏê¨Ç…é∏îsÇµÇ‹ÇµÇΩ"), TEXT("ERROR"), MB_OK);
         return false;
     }
 

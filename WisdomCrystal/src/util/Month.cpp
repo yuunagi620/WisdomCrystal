@@ -1,25 +1,16 @@
 // Month.cpp
 
+#include <array>
+
 #include "Month.h"
 
 
-namespace Util {
 namespace Month {
 
-std::string ToEnglishMonthName(int month) {
-    const std::array<std::string, 13> Month = { "None",
-                                                "Jan",
-                                                "Feb",
-                                                "Mar",
-                                                "Apr",
-                                                "May",
-                                                "Jun",
-                                                "Jul",
-                                                "Aug",
-                                                "Sep",
-                                                "Oct",
-                                                "Nov",
-                                                "Dec" };
+const std::string& ToEnglishMonthName(int month) {
+    const std::array<std::string, 13> Month = {
+        "None", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    };
 
     try {
         return Month.at(month);
@@ -29,4 +20,4 @@ std::string ToEnglishMonthName(int month) {
 }
 
 } // namespace Month
-} // namespace Util
+
