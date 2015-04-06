@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <fbxsdk.h>
 #include <boost/noncopyable.hpp>
 
 #include "WinApplication.h"
@@ -32,6 +33,7 @@ private:
     LRESULT WinMsgHandler(const UINT msg, const WPARAM wParam, const LPARAM lParam) override;
     void onUpdate();
     void onKeyDown(const WPARAM& wParam);
+    void getMesh(FbxNode* node);
 
 private:
     bool mIsFullscreen;

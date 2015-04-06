@@ -2,6 +2,7 @@
 
 #include <CommCtrl.h>
 #include <DirectXMath.h>
+#include <fbxsdk.h>
 
 #include "WisdomCrystal.h"
 #include "win/util/FPSCounter.h"
@@ -95,6 +96,28 @@ bool WisdomCrystal::Init() {
 
     mOggBGM.SetVolume(1.0f);
     mOggBGM.Start();
+
+    // FBXを管理するクラス コレを作らないと始まらない
+    FbxManager* manager = FbxManager::Create();
+
+    // FBXファイルのインポータを作成（第二引数は名前 適当なものでいい）
+    FbxImporter* importer = FbxImporter::Create(manager, "Importer");
+
+    // シーンクラスを作成
+    FbxScene* scene = FbxScene::Create(manager, "Scene");
+
+    // FBXファイルを読み込む
+    const char* filename = "test02.fbx";
+    importer->Initialize(filename);
+
+    // 読み込んだFBXファイルからシーンデータを取り出す
+    importer->Import(scene);
+
+    // メッシュ探索
+    getMesh(scene->GetRootNode());
+
+    // FBX開放処理
+    manager->Destroy();
 
     return true;
 }
@@ -203,5 +226,18 @@ void WisdomCrystal::onKeyDown(const WPARAM& wParam) {
     // debug
     if (wParam == VK_F1) {
         // empty
+    }
+}
+
+void WisdomCrystal::getMesh(FbxNode* node) {
+    // メッシュ
+    FbxMesh* mesh = node->GetMesh();
+
+    if(NULL != mesh)
+        printf("\nMesh=%s Node=%s", mesh->GetName(), node->GetName());
+
+    // 子ノード
+    for(int i = 0; i < node->GetChildCount(); i++) {
+        getMesh(node->GetChild(i));
     }
 }
